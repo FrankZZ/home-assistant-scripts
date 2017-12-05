@@ -1,0 +1,23 @@
+light:
+  platform: limitlessled
+  bridges:
+    - host: milight01
+      version: 4
+      port: 8899
+      groups:
+      - number: 3
+        type: rgbw
+        name: Woonkamer2
+        fade: on
+    #   - number: 1
+    #     type: rgbw
+    #     name: Woonkamer
+    #     fade: on
+    #   - number: 2
+    #     type: rgbw
+    #     name: Gang
+    #     fade: on
+    #   - number: 4
+    #     type: rgbw
+    #     name: Overloop
+    #     fade: on
