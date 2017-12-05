@@ -10,8 +10,6 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: !secret time_zone
-  # Customization file
-  customize: !include customize.yaml
 
 # Enables the frontend
 frontend:
@@ -43,6 +41,6 @@ tts:
   - platform: google
 
 light: !include lights.yaml
-# group: !include_dir_merge_named groups
+group: !include_dir_merge_named groups
 # script: !include_dir_list scripts
 # automation: !include_dir_list automations
