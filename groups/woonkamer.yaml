@@ -1,0 +1,4 @@
+woonkamer:
+  name: Woonkamer
+  entities:
+    - light.woonkamer2
