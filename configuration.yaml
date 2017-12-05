@@ -12,7 +12,7 @@ homeassistant:
   time_zone: !secret time_zone
 
 # Enables the frontend
-frontend:
+frontend: !include themes.yaml
 
 # Enables configuration UI
 config:
