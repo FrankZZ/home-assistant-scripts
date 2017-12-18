@@ -33,8 +33,8 @@ sun:
 sensor:
   - platform: yr
 
-recorder:
-  db_url: !secret recorder_db_url
+# recorder:
+#   db_url: !secret recorder_db_url
 
 # Text to speech
 tts:
