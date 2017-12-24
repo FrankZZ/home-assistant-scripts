@@ -31,7 +31,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.pws_solarradiation
-      above: 30
+      above: 35
   condition:
     condition: template
     value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
