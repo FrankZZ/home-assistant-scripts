@@ -1,0 +1,16 @@
+- platform: wunderground
+  api_key: !secret wunderground_api_key
+  pws_id: !secret wunderground_pws_id
+  lang: !secret wunderground_lang
+  monitored_conditions:
+    - solarradiation
+    - location
+    - weather_1d_metric
+    - weather_1n_metric
+    - weather_2d_metric
+    - weather_2n_metric
+    - weather_3d_metric
+    - weather_3n_metric
+    - weather_4d_metric
+    - weather_4n_metric
+    - weather

@@ -1,0 +1,32 @@
+- name: hallway_morning
+  entities:
+    light.hallway:
+      state: on
+      brightness: 40
+      rgb_color: [255,255,255] # white
+
+- name: hallway_midday
+  entities:
+    light.hallway:
+      state: on
+      brightness: 100
+      rgb_color: [255,255,255] # white
+
+- name: hallway_evening
+  entities:
+    light.hallway:
+      state: on
+      brightness: 80
+      rgb_color: [255,255,255] # white
+
+- name: hallway_night
+  entities:
+    light.hallway:
+      state: on
+      brightness: 1
+      rgb_color: [255,255,255] # white
+
+- name: hallway_off
+  entities:
+    light.hallway:
+      state: off

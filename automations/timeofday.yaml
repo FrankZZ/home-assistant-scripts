@@ -1,0 +1,45 @@
+- alias: timeofday night
+  initial_state: on
+  trigger:
+    platform: time
+    at: '23:30:00'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.timeofday
+      option: night
+
+- alias: timeofday morning
+  initial_state: on
+  trigger:
+    platform: time
+    at: '05:15'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.timeofday
+      option: morning
+
+- alias: timeofday midday
+  initial_state: on
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '+00:45:00'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.timeofday
+      option: midday
+
+- alias: timeofday evening
+  initial_state: on
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-01:00:00'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.timeofday
+      option: evening

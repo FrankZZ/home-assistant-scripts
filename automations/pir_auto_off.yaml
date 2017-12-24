@@ -1,0 +1,32 @@
+- alias: auto off fix rflink
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: switch.hallway_pir_0
+      to: 'on'
+      for:
+        seconds: 3
+    - platform: state
+      entity_id: switch.hallway_pir_1
+      to: 'on'
+      for:
+        seconds: 3
+    - platform: state
+      entity_id: switch.upperhallway_pir_0
+      to: 'on'
+      for:
+        seconds: 3
+    - platform: state
+      entity_id: switch.upperhallway_pir_1
+      to: 'on'
+      for:
+        seconds: 3
+    - platform: state
+      entity_id: switch.hallway_contact_0
+      to: 'on'
+      for:
+        seconds: 3
+  action:
+    service: switch.turn_off
+    data_template: 
+      entity_id: "{{ trigger.entity_id }}"
