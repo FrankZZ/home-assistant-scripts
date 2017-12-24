@@ -25,3 +25,9 @@ light.hallway:
 
 light.upperhallway:
   friendly_name: Lamp Overloop
+
+switch.hallway_switch_0:
+  friendly_name: Lichtknop Gang
+
+switch.hallway_switch_1:
+  friendly_name: Lichtknop Overloop

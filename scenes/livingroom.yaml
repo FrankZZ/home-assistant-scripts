@@ -2,28 +2,35 @@
   entities:
     light.livingroom:
       state: on
-      brightness: 30
+      brightness: 50
       rgb_color: [255,255,255] # white
 
 - name: livingroom_midday
   entities:
     light.livingroom:
       state: on
-      brightness: 50
+      brightness: 200
       rgb_color: [255,255,255] # white
 
 - name: livingroom_evening
   entities:
     light.livingroom:
       state: on
-      brightness: 80
+      brightness: 180
       rgb_color: [255,255,255] # white
 
 - name: livingroom_night
   entities:
     light.livingroom:
       state: on
-      brightness: 15
+      brightness: 10
+      rgb_color: [255,255,255] # white
+
+- name: livingroom_full
+  entities:
+    light.livingroom:
+      state: on
+      brightness: 255
       rgb_color: [255,255,255] # white
 
 - name: livingroom_off

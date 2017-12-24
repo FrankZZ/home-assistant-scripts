@@ -9,14 +9,14 @@
   entities:
     light.upperhallway:
       state: on
-      brightness: 100
+      brightness: 255
       rgb_color: [255,255,255] # white
 
 - name: upperhallway_evening
   entities:
     light.upperhallway:
       state: on
-      brightness: 80
+      brightness: 50
       rgb_color: [255,255,255] # white
 
 - name: upperhallway_night
@@ -25,6 +25,14 @@
       state: on
       brightness: 1
       rgb_color: [255,255,255] # white
+
+- name: upperhallway_full
+  entities:
+    light.upperhallway:
+      state: on
+      brightness: 255
+      rgb_color: [255,255,255] # white
+
 
 - name: upperhallway_off
   entities:

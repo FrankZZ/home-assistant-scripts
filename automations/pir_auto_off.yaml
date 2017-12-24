@@ -26,6 +26,16 @@
       to: 'on'
       for:
         seconds: 3
+    - platform: state
+      entity_id: switch.hallway_switch_0
+      to: 'on'
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: switch.hallway_switch_1
+      to: 'on'
+      for:
+        minutes: 1
   action:
     service: switch.turn_off
     data_template: 

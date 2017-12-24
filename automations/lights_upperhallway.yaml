@@ -8,28 +8,37 @@
         switch.upperhallway_contact_0
       to: 'on'
   condition:
-    condition: numeric_state
-    entity_id: sensor.pws_solarradiation
-    below: 50
+    condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.pws_solarradiation
+      below: 50
+    - condition: template 
+      value_template: "{{ is_state('switch.hallway_switch_1', 'off') }}"
   action:
     service: scene.turn_on
     data_template:
       entity_id: "scene.upperhallway_{{ states('input_select.timeofday') }}"
 
-- alias: upperhallway_lights_off_during_daytime_after_1_minute_idle
+- alias: upperhallway_lights_off_during_daytime_after_30_seconds_idle
   initial_state: on
   trigger:
     - platform: state
       entity_id: 
         switch.upperhallway_pir_0,
         switch.upperhallway_pir_1,
-        switch.upperhallway_contact_0
+        switch.upperhallway_contact_0,
+        switch.hallway_switch_1
       to: 'off'
       for:
-        minutes: 1
+        seconds: 30
   condition:
-    condition: template
-    value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
+    condition: and
+    conditions:
+    - condition: template
+      value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
+    - condition: template 
+      value_template: "{{ is_state('switch.hallway_switch_1', 'off') }}"
   action:
     service: scene.turn_on
     entity_id: "scene.upperhallway_off"
@@ -41,13 +50,18 @@
     entity_id: 
       switch.upperhallway_pir_0,
       switch.upperhallway_pir_1,
-      switch.upperhallway_contact_0
+      switch.upperhallway_contact_0,
+      switch.hallway_switch_1
     to: 'off'
     for:
       seconds: 10
   condition:
-    condition: template
-    value_template: "{{ is_state('input_select.timeofday', 'night') }}"
+    condition: and
+    conditions:
+    - condition: template
+      value_template: "{{ is_state('input_select.timeofday', 'night') }}"
+    - condition: template 
+      value_template: "{{ is_state('switch.hallway_switch_1', 'off') }}"
   action:
     service: scene.turn_on
     entity_id: "scene.upperhallway_off"
@@ -64,3 +78,13 @@
     service: scene.turn_on
     data_template:
       entity_id: "scene.upperhallway_{{ states('input_select.timeofday') }}"
+
+- alias: hallway_lights_forced_by_switch
+  initial_state: on
+  trigger:
+  - platform: state
+    entity_id: switch.hallway_switch_1
+    to: "on"
+  action:
+    service: scene.turn_on
+    entity_id: scene.upperhallway_full
