@@ -1,0 +1,86 @@
+- alias: lights_livingroom_on_when_evening_or_morning
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: input_select.timeofday
+      to: 'evening'
+    - platform: state
+      entity_id: input_select.timeofday
+      to: 'morning'
+  action:
+    service: scene.turn_on
+    data_template:
+      entity_id: "scene.livingroom_{{ states('input_select.timeofday') }}"
+
+- alias: lights_livingroom_on_when_sun_dim
+  initial_state: on
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.pws_solarradiation
+      below: 30
+  condition:
+    condition: template
+    value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
+  action:
+    service: scene.turn_on
+    data_template:
+      entity_id: "scene.livingroom_{{ states('input_select.timeofday') }}"
+
+- alias: lights_livingroom_off_when_sun_bright
+  initial_state: on
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.pws_solarradiation
+      above: 30
+  condition:
+    condition: template
+    value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
+  action:
+    service: scene.turn_on
+    entity_id: "scene.livingroom_off"
+
+- alias: lights_livingroom_on_when_activity_at_night
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: 
+        switch.hallway_pir_0,
+        switch.hallway_contact_0
+      to: 'on'
+  condition:
+    condition: template
+    value_template: "{{ is_state('input_select.timeofday', 'night') }}"
+  action:
+    service: scene.turn_on
+    data_template:
+      entity_id: "scene.livingroom_{{ states('input_select.timeofday') }}"
+
+- alias: livingroom_lights_off_during_nighttime_after_2_minutes_idle
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: 
+        switch.hallway_pir_0,
+        switch.hallway_contact_0
+      to: 'off'
+      for:
+        minutes: 2
+  condition:
+    condition: template
+    value_template: "{{ is_state('input_select.timeofday', 'night') }}"
+  action:
+    service: scene.turn_on
+    entity_id: "scene.livingroom_off"
+
+- alias: livingroom_lights_follow_timeofday
+  initial_state: on
+  trigger:
+  - platform: state
+    entity_id: input_select.timeofday
+  condition:
+    condition: template
+    value_template: "{{ not is_state('light.livingroom', 'off') }}"
+  action:
+    service: scene.turn_on
+    data_template:
+      entity_id: "scene.livingroom_{{ states('input_select.timeofday') }}"

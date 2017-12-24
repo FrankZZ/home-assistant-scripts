@@ -1,5 +1,0 @@
-woonkamer:
-  name: Woonkamer
-  icon: mdi:sofa
-  entities:
-    - light.woonkamer2

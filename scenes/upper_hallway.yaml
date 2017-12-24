@@ -1,0 +1,32 @@
+- name: upperhallway_morning
+  entities:
+    light.upperhallway:
+      state: on
+      brightness: 40
+      rgb_color: [255,255,255] # white
+
+- name: upperhallway_midday
+  entities:
+    light.upperhallway:
+      state: on
+      brightness: 100
+      rgb_color: [255,255,255] # white
+
+- name: upperhallway_evening
+  entities:
+    light.upperhallway:
+      state: on
+      brightness: 80
+      rgb_color: [255,255,255] # white
+
+- name: upperhallway_night
+  entities:
+    light.upperhallway:
+      state: on
+      brightness: 1
+      rgb_color: [255,255,255] # white
+
+- name: upperhallway_off
+  entities:
+    light.upperhallway:
+      state: off

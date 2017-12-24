@@ -10,15 +10,22 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: !secret time_zone
+  customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
 
 # Enables the frontend
 frontend: !include themes.yaml
+
+logger:
+  default: debug
 
 # Enables configuration UI
 config:
 
 # Discover some devices automatically
 discovery:
+  ignore:
+    - google_cast
 
 # Enables support for tracking state changes over time
 history:
@@ -29,23 +36,41 @@ logbook:
 # Track the sun
 sun:
 
-weather:
-  - platform: yweather
-    name: "Yahoo Weather"
+rflink:
+  port: /dev/ttyACM0
 
-# Weather prediction
-sensor:
-  - platform: yr
+# weather:
+#   - platform: yweather
+#     name: "Yahoo Weather"
 
 recorder:
-  db_url: !secret recorder_db_url
+  # db_url: !secret recorder_db_url
 
 # Text to speech
 tts:
   - platform: google
 
 light: !include_dir_merge_list components/lights
-group: !include_dir_merge_named groups
-automation: !include_dir_merge_named automations
+sensor: !include_dir_merge_list components/sensors
+switch: !include_dir_merge_list components/switches
+# binary_sensor: !include_dir_merge_list components/binary_sensors
+scene: !include_dir_merge_list scenes
+group: !include groups.yaml
+automation: !include_dir_merge_list automations
+input_select: 
+  timeofday:
+    name: Time of day
+    initial: midday
+    options:
+      - "morning"
+      - "midday"
+      - "evening"
+      - "night"
+
+remote:
+  - platform: harmony
+    name: livingroom
+    host: !secret harmony_livingroom_ip
+
 # script: !include_dir_list scripts
 

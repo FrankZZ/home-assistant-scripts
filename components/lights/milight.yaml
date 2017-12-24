@@ -4,19 +4,19 @@
     version: 4
     port: 8899
     groups:
-    - number: 3
-      type: rgbw
-      name: woonkamer1
-      fade: on
-  #   - number: 1
-  #     type: rgbw
-  #     name: Woonkamer
-  #     fade: on
-  #   - number: 2
-  #     type: rgbw
-  #     name: Gang
-  #     fade: on
-  #   - number: 4
-  #     type: rgbw
-  #     name: Overloop
-  #     fade: on
+      - number: 1
+        type: rgbw
+        name: livingroom
+        fade: on
+      - number: 2
+        type: rgbw
+        name: hallway
+        fade: on
+      - number: 3
+        type: rgbw
+        name: livingroom1
+        fade: on
+      - number: 4
+        type: rgbw
+        name: upperhallway
+        fade: on
