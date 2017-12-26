@@ -1,37 +1,30 @@
-- alias: upperhallway_on_activity_when_dark
+- alias: upperhallway_on_activity
   initial_state: on
   trigger:
     - platform: state
       entity_id: 
         switch.upperhallway_pir_0,
-        switch.upperhallway_pir_1,
-        switch.upperhallway_contact_0
+        switch.upperhallway_pir_1
       to: 'on'
   condition:
-    condition: and
-    conditions:
-    - condition: numeric_state
-      entity_id: sensor.pws_solarradiation
-      below: 50
-    - condition: template 
-      value_template: "{{ is_state('switch.hallway_switch_1', 'off') }}"
+    condition: template 
+    value_template: "{{ is_state('switch.hallway_switch_1', 'off') }}"
   action:
     service: scene.turn_on
     data_template:
       entity_id: "scene.upperhallway_{{ states('input_select.timeofday') }}"
 
-- alias: upperhallway_lights_off_during_daytime_after_30_seconds_idle
+- alias: upperhallway_lights_off_during_daytime_after_1_minute_idle
   initial_state: on
   trigger:
     - platform: state
       entity_id: 
         switch.upperhallway_pir_0,
         switch.upperhallway_pir_1,
-        switch.upperhallway_contact_0,
         switch.hallway_switch_1
       to: 'off'
       for:
-        seconds: 30
+        minutes: 1
   condition:
     condition: and
     conditions:
@@ -50,7 +43,6 @@
     entity_id: 
       switch.upperhallway_pir_0,
       switch.upperhallway_pir_1,
-      switch.upperhallway_contact_0,
       switch.hallway_switch_1
     to: 'off'
     for:

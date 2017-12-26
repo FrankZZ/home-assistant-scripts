@@ -3,6 +3,7 @@
     light.livingroom:
       state: on
       brightness: 50
+      transition: 5
       rgb_color: [255,255,255] # white
 
 - name: livingroom_midday
@@ -10,6 +11,7 @@
     light.livingroom:
       state: on
       brightness: 200
+      transition: 5
       rgb_color: [255,255,255] # white
 
 - name: livingroom_evening
@@ -17,13 +19,15 @@
     light.livingroom:
       state: on
       brightness: 180
+      transition: 5
       rgb_color: [255,255,255] # white
 
 - name: livingroom_night
   entities:
     light.livingroom:
       state: on
-      brightness: 10
+      brightness: 20
+      transition: 5
       rgb_color: [255,255,255] # white
 
 - name: livingroom_full

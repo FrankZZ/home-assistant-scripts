@@ -7,7 +7,7 @@
       - number: 1
         type: rgbw
         name: livingroom
-        fade: off
+        fade: on
       - number: 2
         type: rgbw
         name: hallway
