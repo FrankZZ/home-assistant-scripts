@@ -4,13 +4,13 @@
   lang: !secret wunderground_lang
   monitored_conditions:
     - solarradiation
-    - location
-    - weather_1d_metric
-    - weather_1n_metric
-    - weather_2d_metric
-    - weather_2n_metric
-    - weather_3d_metric
-    - weather_3n_metric
-    - weather_4d_metric
-    - weather_4n_metric
-    - weather
+    # - location
+    # - weather_1d_metric
+    # - weather_1n_metric
+    # - weather_2d_metric
+    # - weather_2n_metric
+    # - weather_3d_metric
+    # - weather_3n_metric
+    # - weather_4d_metric
+    # - weather_4n_metric
+    # - weather

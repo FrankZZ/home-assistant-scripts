@@ -18,16 +18,12 @@ frontend: !include themes.yaml
 
 logger:
   default: warn
-  logs:
-    homeassistant.components.device_tracker: info
 
 # Enables configuration UI
 config:
 
 # Discover some devices automatically
 discovery:
-  ignore:
-    - google_cast
 
 # Enables support for tracking state changes over time
 history:

@@ -13,6 +13,13 @@ switch.upperhallway_pir_1:
 switch.hallway_contact_0:
   friendly_name: Deurcontact Voordeur
   device_class: opening
+switch.hallway_switch_0:
+  friendly_name: Lichtknop Gang
+switch.hallway_switch_1:
+  friendly_name: Lichtknop Overloop
+
+switch.chromecast_livingroom_power:
+  friendly_name: Chromecast Huiskamer
 
 light.livingroom1:
   friendly_name: Testlamp
@@ -25,9 +32,3 @@ light.hallway:
 
 light.upperhallway:
   friendly_name: Lamp Overloop
-
-switch.hallway_switch_0:
-  friendly_name: Lichtknop Gang
-
-switch.hallway_switch_1:
-  friendly_name: Lichtknop Overloop
