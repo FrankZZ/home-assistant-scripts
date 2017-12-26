@@ -102,17 +102,3 @@
     service: scene.turn_on
     data_template:
       entity_id: "scene.livingroom_{{ states('input_select.timeofday') }}"
-
-# - alias: livingroom_disco
-#   initial_state: on
-#   trigger:
-#   condition:
-#     platform: template
-#     value_template: "{{ is_state('input_select.disco_mode', 'on') }}"
-#   action:
-#     service: light.turn_on
-#     data_template:
-#       brightness: 255
-#       color_rgb: ['{{ (range(0, 255)|random) }}', '{{ (range(0, 255)|random) }}', '{{ (range(0, 255)|random) }}']
-#       entity_id: "light.livingroom"
-
