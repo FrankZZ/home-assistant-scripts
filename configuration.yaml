@@ -17,7 +17,7 @@ homeassistant:
 frontend: !include themes.yaml
 
 logger:
-  default: debug
+  default: warn
 
 # Enables configuration UI
 config:
@@ -44,7 +44,15 @@ rflink:
 #     name: "Yahoo Weather"
 
 recorder:
-  # db_url: !secret recorder_db_url
+  db_url: !secret recorder_db_url
+  purge_interval: 2
+  purge_keep_days: 5
+  exclude:
+    domains:
+      - automation
+      - weblink
+      - updater
+      - scene
 
 # Text to speech
 tts:
@@ -57,6 +65,8 @@ switch: !include_dir_merge_list components/switches
 scene: !include_dir_merge_list scenes
 group: !include groups.yaml
 automation: !include_dir_merge_list automations
+
+# does not work in components/input_selects
 input_select: 
   timeofday:
     name: Time of day
@@ -72,5 +82,12 @@ remote:
     name: livingroom
     host: !secret harmony_livingroom_ip
 
-# script: !include_dir_list scripts
-
+device_tracker:
+  - platform: nmap_tracker
+    hosts: !secret nmap_tracker_hosts
+    home_interval: 5
+    interval_seconds: 30
+    scan_options: " --privileged -sP "
+    track_new_devices: false
+    new_device_defaults:
+      track_new_devices: false

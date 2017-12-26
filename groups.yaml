@@ -40,3 +40,9 @@ daily_forecast:
     - sensor.pws_weather_4d_metric
     - sensor.pws_weather_4n_metric
     - sensor.pws_weather_weather
+
+presence_view:
+  name: Aanwezigheid
+  view: yes
+  entities:
+    - group.all_devices

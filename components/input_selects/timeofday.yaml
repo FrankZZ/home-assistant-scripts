@@ -1,8 +1,0 @@
-timeofday:
-  name: Time of day
-  initial: midday
-  options:
-    - morning
-    - midday
-    - evening
-    - night
