@@ -18,6 +18,8 @@ frontend: !include themes.yaml
 
 logger:
   default: warn
+  logs:
+    homeassistant.components.device_tracker: info
 
 # Enables configuration UI
 config:
@@ -67,10 +69,10 @@ group: !include groups.yaml
 automation: !include_dir_merge_list automations
 
 # does not work in components/input_selects
-input_select: 
+input_select:
   timeofday:
     name: Time of day
-    initial: midday
+    initial: evening
     options:
       - "morning"
       - "midday"
@@ -85,9 +87,10 @@ remote:
 device_tracker:
   - platform: nmap_tracker
     hosts: !secret nmap_tracker_hosts
-    home_interval: 5
-    interval_seconds: 30
-    scan_options: " --privileged -sP "
+    home_interval: 1
+    interval_seconds: 15
+    consider_home: 180
+    scan_options: " --host-timeout 3s --privileged -sP "
     track_new_devices: false
     new_device_defaults:
       track_new_devices: false
