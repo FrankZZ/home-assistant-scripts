@@ -1,0 +1,13 @@
+- alias: "Power-cycle Chromecast when started from harmony hub"
+  trigger:
+    platform: state
+    entity_id: remote.livingroom
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Chromecast kijken" }}'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.chromecast_livingroom_power
+    - delay: 00:00:01
+    - service: switch.turn_on
+      entity_id: switch.chromecast_livingroom_power

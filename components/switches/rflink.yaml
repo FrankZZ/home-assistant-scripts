@@ -14,3 +14,5 @@
       name: hallway_switch_0
     !secret hallway_switch_1_id:
       name: hallway_switch_1
+    !secret chromecast_livingroom_power_id:
+      name: chromecast_livingroom_power
