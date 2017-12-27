@@ -28,6 +28,7 @@ harrie_iphone5:
   icon:
   mac: !secret device_harrie_mac
   picture:
+  consider_home: 1140 # It's an iPhone...
   track: true
 
 malissa_g5:

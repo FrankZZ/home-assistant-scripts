@@ -46,3 +46,9 @@ presence_view:
   view: yes
   entities:
     - group.all_devices
+
+automations_view:
+  name: Automatisering
+  view: yes
+  entities:
+    - group.all_automations

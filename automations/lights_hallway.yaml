@@ -1,4 +1,4 @@
-- alias: lights_hallway_on_activity_when_dark
+- alias: "Licht Gang aan bij beweging als het donker is buiten"
   initial_state: on
   trigger:
     - platform: state
@@ -12,15 +12,17 @@
     conditions:
     - condition: numeric_state
       entity_id: sensor.pws_solarradiation
-      below: 50
+      below: 60
     - condition: template 
       value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}"
+    - condition: template
+      value_template: "{{ is_state('light.hallway', 'off') }}"
   action:
     service: scene.turn_on
     data_template:
       entity_id: "scene.hallway_{{ states('input_select.timeofday') }}"
 
-- alias: lights_hallway_on_when_coming_downstairs
+- alias: "Licht Gang aan als iemand van de trap af komt"
   initial_state: on
   trigger:
     - platform: state
@@ -28,14 +30,23 @@
         switch.upperhallway_pir_0
       to: 'on'
   condition:
-    condition: template
-    value_template: '{{ (as_timestamp(now())-as_timestamp(states.switch.upperhallway_pir_1.last_updated)) < 30 }}'
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.pws_solarradiation
+        below: 60
+      - condition: template 
+        value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}"
+      - condition: template
+        value_template: "{{ is_state('light.hallway', 'off') }}"
+      - condition: template
+        value_template: '{{ (as_timestamp(now())-as_timestamp(states.switch.upperhallway_pir_1.last_updated)) < 30 }}'
   action:
     service: scene.turn_on
     data_template:
       entity_id: "scene.hallway_{{ states('input_select.timeofday') }}"
 
-- alias: hallway_lights_off_during_daytime_after_1_minute_idle
+- alias: "Licht Gang uit na 1 minuut overdag"
   initial_state: on
   trigger:
     - platform: state
@@ -53,12 +64,14 @@
     - condition: template
       value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
     - condition: template
-      value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}"
+      value_template: "{{ is_state('light.hallway', 'on') }}"
+    - condition: template
+      value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}" # override
   action:
     service: scene.turn_on
     entity_id: "scene.hallway_off"
 
-- alias: hallway_lights_off_during_nighttime_after_30_seconds_idle
+- alias: "Licht Gang uit na 30 seconden 'snachts"
   initial_state: on
   trigger:
   - platform: state
@@ -76,13 +89,15 @@
     - condition: template
       value_template: "{{ is_state('input_select.timeofday', 'night') }}"
     - condition: template
-      value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}"
+      value_template: "{{ is_state('light.hallway', 'on') }}"
+    - condition: template
+      value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}" # override
   action:
     service: scene.turn_on
     data_template:
       entity_id: "scene.hallway_off"
  
-- alias: hallway_lights_follow_timeofday
+- alias: "Licht Gang volgt dagdeel"
   initial_state: on
   trigger:
   - platform: state
@@ -91,7 +106,7 @@
     condition: and
     conditions:
     - condition: template
-      value_template: "{{ not is_state('light.hallway', 'off') }}"
+      value_template: "{{ is_state('light.hallway', 'on') }}"
     - condition: template 
       value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}"
   action:
@@ -99,7 +114,7 @@
     data_template:
       entity_id: "scene.hallway_{{ states('input_select.timeofday') }}"
 
-- alias: hallway_lights_forced_by_switch_on
+- alias: "Licht Gang fel aan door muurknop"
   initial_state: on
   trigger:
   - platform: state
