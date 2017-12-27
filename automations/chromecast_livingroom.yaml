@@ -13,6 +13,7 @@
       entity_id: switch.chromecast_livingroom_power
 
 - alias: "Greet when someone gets home and the TV is powered off"
+  initial_state: off
   trigger:
     - platform: state
       entity_id: device_tracker.frank_n6

@@ -10,7 +10,7 @@ switch.upperhallway_pir_0:
 switch.upperhallway_pir_1:
   friendly_name: Beweging Overloop Gang
   device_class: motion
-switch.hallway_contact_0:
+switch.hallway_door_0:
   friendly_name: Deurcontact Voordeur
   device_class: opening
 switch.hallway_switch_0:

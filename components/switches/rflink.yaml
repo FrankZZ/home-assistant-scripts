@@ -8,8 +8,8 @@
       name: upperhallway_pir_0
     !secret upperhallway_pir_1_id:
       name: upperhallway_pir_1
-    !secret hallway_contact_0_id:
-      name: hallway_contact_0
+    !secret hallway_door_0_id:
+      name: hallway_door_0
     !secret hallway_switch_0_id:
       name: hallway_switch_0
     !secret hallway_switch_1_id:

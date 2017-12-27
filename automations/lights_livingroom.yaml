@@ -16,7 +16,7 @@
     data_template:
       entity_id: "scene.livingroom_{{ states('input_select.timeofday') }}"
 
-- alias: "Licht Woonkamer aan bij weinig zonlicht"
+- alias: "Licht Woonkamer aan bij weinig zonlicht als er iemand thuis is"
   initial_state: on
   trigger:
     - platform: numeric_state
@@ -27,6 +27,8 @@
     conditions:
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'midday') or is_state('input_select.timeofday', 'evening') }}"
+      - condition: template
+        value_template: "{{ is_state('group.all_devices', 'home') }}"
       - condition: template
         value_template: "{{ not is_state('light.livingroom', 'on') }}"
   action:
@@ -51,26 +53,31 @@
     service: scene.turn_on
     entity_id: "scene.livingroom_off"
 
-- alias: "Licht Woonkamer uit zodra we in nachtmodus gaan"
+- alias: "Licht Woonkamer uit zodra we in nachtmodus gaan en niemand kijkt tv"
   initial_state: on
   trigger:
     - platform: state
       entity_id: input_select.timeofday
       to: "night"
   condition:
-    condition: template
-    value_template: "{{ is_state('light.livingroom', 'on') }}"
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('light.livingroom', 'on') }}"
+      - condition: template
+        value_template: "{{ is_state('remote.livingroom', 'off') }}"
   action:
     service: scene.turn_on
     entity_id: "scene.livingroom_off"
 
-- alias: "Licht Woonkamer aan bij beweging 'snachts"
+- alias: "Licht Woonkamer aan bij beweging of tv 'snachts"
   initial_state: on
   trigger:
     - platform: state
       entity_id:
         switch.hallway_pir_0,
-        switch.hallway_contact_0
+        switch.hallway_door_0,
+        remote.livingroom
       to: 'on'
   condition:
     condition: template
@@ -86,13 +93,18 @@
     - platform: state
       entity_id:
         switch.hallway_pir_0,
-        switch.hallway_contact_0
+        switch.hallway_door_0,
+        remote.livingroom # TV is uitgezet
       to: 'off'
       for:
         minutes: 5
   condition:
-    condition: template
-    value_template: "{{ is_state('input_select.timeofday', 'night') }}"
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('light.livingroom', 'on') }}"
+      - condition: template
+        value_template: "{{ is_state('input_select.timeofday', 'night') }}"
   action:
     service: scene.turn_on
     entity_id: "scene.livingroom_off"

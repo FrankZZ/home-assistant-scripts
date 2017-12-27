@@ -22,7 +22,7 @@
       for:
         seconds: 3
     - platform: state
-      entity_id: switch.hallway_contact_0
+      entity_id: switch.hallway_door_0
       to: 'on'
       for:
         seconds: 3
@@ -38,5 +38,5 @@
         minutes: 5
   action:
     service: switch.turn_off
-    data_template: 
+    data_template:
       entity_id: "{{ trigger.entity_id }}"

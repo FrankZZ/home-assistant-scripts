@@ -11,7 +11,7 @@ hallway:
     - light.hallway
     - switch.hallway_pir_0
     - switch.hallway_pir_1
-    - switch.hallway_contact_0
+    - switch.hallway_door_0
 
 upperhallway:
   name: Overloop
