@@ -1,0 +1,11 @@
+{
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.yaml$",
+                "cmd": "hass --script check_config -c .",
+                "autoClearConsole": true
+            }
+        ]
+    }
+}

@@ -1,0 +1,54 @@
+- alias: "Power-cycle Chromecast when started from harmony hub"
+  trigger:
+    platform: state
+    entity_id: remote.livingroom
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Chromecast kijken" }}'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.chromecast_livingroom_power
+    - delay: 00:00:01
+    - service: switch.turn_on
+      entity_id: switch.chromecast_livingroom_power
+
+- alias: "Greet when someone gets home and the TV is powered off"
+  initial_state: off
+  trigger:
+    - platform: state
+      entity_id: device_tracker.frank_n6
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.ferry_s8
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.annemieke_s7
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.malissa_g5
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.harrie_iphone5
+      to: 'home'
+  condition:
+    condition: template
+    value_template: '{{ states.remote.livingroom.attributes.current_activity == "PowerOff" }}'
+  action:
+    - service: media_player.turn_on
+      entity_id: media_player.woonkamer_tv
+    - service: remote.turn_on
+      data:
+        entity_id: remote.livingroom
+        activity: "Chromecast luisteren"
+    - delay: "00:00:10"
+    - service: tts.google_say
+      entity_id: media_player.woonkamer_tv
+      data_template:
+        message: "Hallo, {{ states.device_tracker[trigger.entity_id.split('.')[1]].attributes.friendly_name }}. Fijne feestdagen toegewenst van Wam Media!"
+        language: 'nl'
+    - delay: "00:00:20"
+    - service: media_player.turn_off
+      entity_id: media_player.woonkamer_tv
+    - service: remote.turn_off
+      data:
+        entity_id: remote.livingroom

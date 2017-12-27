@@ -1,0 +1,90 @@
+- alias: "Licht Overloop aan bij beweging"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: 
+        switch.upperhallway_pir_0,
+        switch.upperhallway_pir_1
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('switch.hallway_switch_1', 'off') }}"
+      - condition: template
+        value_template: "{{ is_state('light.upperhallway', 'off') }}"
+  action:
+    service: scene.turn_on
+    data_template:
+      entity_id: "scene.upperhallway_{{ states('input_select.timeofday') }}"
+
+- alias: "Licht Overloop uit na 1 minuut overdag"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: 
+        switch.upperhallway_pir_0,
+        switch.upperhallway_pir_1,
+        switch.hallway_switch_1
+      to: 'off'
+      for:
+        minutes: 1
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
+    - condition: template
+      value_template: "{{ is_state('light.upperhallway', 'on') }}"
+    - condition: template 
+      value_template: "{{ is_state('switch.hallway_switch_1', 'off') }}"
+  action:
+    service: scene.turn_on
+    entity_id: "scene.upperhallway_off"
+
+- alias: "Licht Overloop uit na 10 seconden 'snachts"
+  initial_state: on
+  trigger:
+  - platform: state
+    entity_id: 
+      switch.upperhallway_pir_0,
+      switch.upperhallway_pir_1,
+      switch.hallway_switch_1
+    to: 'off'
+    for:
+      seconds: 10
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: "{{ is_state('input_select.timeofday', 'night') }}"
+    - condition: template
+      value_template: "{{ is_state('light.upperhallway', 'on') }}"
+    - condition: template 
+      value_template: "{{ is_state('switch.hallway_switch_1', 'off') }}"
+  action:
+    service: scene.turn_on
+    entity_id: "scene.upperhallway_off"
+
+- alias: "Licht Overloop volgt dagdeel"
+  initial_state: on
+  trigger:
+  - platform: state
+    entity_id: input_select.timeofday
+  condition:
+    condition: template
+    value_template: "{{ is_state('light.upperhallway', 'on') }}"
+  action:
+    service: scene.turn_on
+    data_template:
+      entity_id: "scene.upperhallway_{{ states('input_select.timeofday') }}"
+
+- alias: "Licht Overloop vol aan door muurknop"
+  initial_state: on
+  trigger:
+  - platform: state
+    entity_id: switch.hallway_switch_1
+    to: "on"
+  action:
+    service: scene.turn_on
+    entity_id: scene.upperhallway_full

@@ -1,0 +1,43 @@
+switch.hallway_pir_0:
+  friendly_name: Beweging Gang Voor
+  device_class: motion
+switch.hallway_pir_1:
+  friendly_name: Beweging Gang Achter
+  device_class: motion
+switch.upperhallway_pir_0:
+  friendly_name: Beweging Overloop Trap
+  device_class: motion
+switch.upperhallway_pir_1:
+  friendly_name: Beweging Overloop Gang
+  device_class: motion
+switch.hallway_door_0:
+  friendly_name: Deurcontact Voordeur
+  device_class: opening
+switch.hallway_switch_0:
+  friendly_name: Lichtknop Gang
+switch.hallway_switch_1:
+  friendly_name: Lichtknop Overloop
+
+switch.chromecast_livingroom_power:
+  friendly_name: Chromecast Huiskamer
+
+light.livingroom1:
+  friendly_name: Testlamp
+
+light.livingroom:
+  friendly_name: Woonkamer
+
+light.hallway:
+  friendly_name: Lamp Gang
+
+light.upperhallway:
+  friendly_name: Lamp Overloop
+
+media_player.woonkamer_tv:
+  friendly_name: Chromecast Woonkamer
+
+group.all_devices:
+  hidden: false
+
+group.all_automations:
+  hidden: false

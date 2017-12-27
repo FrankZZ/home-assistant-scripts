@@ -1,0 +1,54 @@
+livingroom:
+  name: Woonkamer
+  view: yes
+  entities:
+    - light.livingroom
+
+hallway:
+  name: Gang
+  view: yes
+  entities:
+    - light.hallway
+    - switch.hallway_pir_0
+    - switch.hallway_pir_1
+    - switch.hallway_door_0
+
+upperhallway:
+  name: Overloop
+  view: yes
+  entities:
+    - light.upperhallway
+    - switch.upperhallway_pir_0
+    - switch.upperhallway_pir_1
+
+# daily_forecast_view:
+#   view: yes
+#   entities:
+#     - group.daily_forecast
+
+# daily_forecast:
+#   name: Weersvoorspelling
+#   entities:
+#     - sensor.pws_location
+#     - sensor.pws_solarradiation
+#     - sensor.pws_weather_1d_metric
+#     - sensor.pws_weather_1n_metric
+#     - sensor.pws_weather_2d_metric
+#     - sensor.pws_weather_2n_metric
+#     - sensor.pws_weather_3d_metric
+#     - sensor.pws_weather_3n_metric
+#     - sensor.pws_weather_4d_metric
+#     - sensor.pws_weather_4n_metric
+#     - sensor.pws_weather_weather
+
+presence_view:
+  name: Aanwezigheid
+  view: yes
+  entities:
+    - group.all_devices
+
+automations_view:
+  name: Automatisering
+  view: yes
+  entities:
+    - group.all_automations

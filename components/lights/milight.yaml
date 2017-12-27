@@ -1,0 +1,22 @@
+- platform: limitlessled
+  bridges:
+  - host: milight01
+    version: 4
+    port: 8899
+    groups:
+      - number: 1
+        type: rgbw
+        name: livingroom
+        fade: on
+      - number: 2
+        type: rgbw
+        name: hallway
+        fade: off
+      - number: 3
+        type: rgbw
+        name: livingroom1
+        fade: off
+      - number: 4
+        type: rgbw
+        name: upperhallway
+        fade: off

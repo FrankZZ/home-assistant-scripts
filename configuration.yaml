@@ -10,9 +10,14 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: !secret time_zone
+  customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
 
 # Enables the frontend
-frontend:
+frontend: !include themes.yaml
+
+logger:
+  default: warn
 
 # Enables configuration UI
 config:
@@ -29,18 +34,64 @@ logbook:
 # Track the sun
 sun:
 
-# Weather prediction
-sensor:
-  - platform: yr
+rflink:
+  port: /dev/ttyACM0
 
-# recorder:
-#   db_url: !secret recorder_db_url
+# weather:
+#   - platform: yweather
+#     name: "Yahoo Weather"
+
+recorder:
+  db_url: !secret recorder_db_url
+  purge_interval: 2
+  purge_keep_days: 5
+  exclude:
+    domains:
+      - automation
+      - weblink
+      - updater
+      - scene
 
 # Text to speech
 tts:
   - platform: google
 
-light: !include lights.yaml
-group: !include_dir_merge_named groups
-# script: !include_dir_list scripts
-# automation: !include_dir_list automations
+light: !include_dir_merge_list components/lights
+sensor: !include_dir_merge_list components/sensors
+switch: !include_dir_merge_list components/switches
+# binary_sensor: !include_dir_merge_list components/binary_sensors
+scene: !include_dir_merge_list scenes
+group: !include groups.yaml
+automation: !include_dir_merge_list automations
+
+# does not work in components/input_selects
+input_select:
+  timeofday:
+    name: Time of day
+    initial: evening
+    options:
+      - "morning"
+      - "midday"
+      - "evening"
+      - "night"
+
+remote:
+  - platform: harmony
+    name: livingroom
+    host: !secret harmony_livingroom_ip
+
+device_tracker:
+  - platform: nmap_tracker
+    hosts: !secret nmap_tracker_hosts
+    home_interval: 10 # 5 mins
+    interval_seconds: 12
+    consider_home: 00:15:00
+    scan_options: " --host-timeout 5s --privileged -sP "
+    new_device_defaults:
+      track_new_devices: false
+
+notify:
+  - name: notify
+    platform: pushover
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_user_key

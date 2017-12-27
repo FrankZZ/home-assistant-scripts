@@ -1,3 +1,4 @@
+.DS_Store
 *.conf
 *.uuid
 *.spotify-token-cache
@@ -6,7 +7,7 @@
 *.yaml.o
 secrets.yaml
 ip_bans.yaml
-known_devices.yaml
 config.json
 AccessoryInfo.*.json
 IdentifierCache.*.json
+deps/

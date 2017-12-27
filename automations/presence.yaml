@@ -1,0 +1,55 @@
+- alias: "Notify when someone gets home"
+  trigger:
+    - platform: state
+      entity_id: device_tracker.frank_n6
+      from: 'not_home'
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.ferry_s8
+      from: 'not_home'
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.annemieke_s7
+      from: 'not_home'
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.malissa_g5
+      from: 'not_home'
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.harrie_iphone5
+      from: 'not_home'
+      to: 'home'
+  action:
+    - service: notify.notify
+      data_template:
+        message: "{{ states.device_tracker[trigger.entity_id.split('.')[1]].attributes.friendly_name }} is nu thuis gekomen."
+        title: 'Aanwezigheidsmelding'
+
+- alias: "Notify when someone goes away from home"
+  trigger:
+    - platform: state
+      entity_id: device_tracker.frank_n6
+      from: 'home'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.ferry_s8
+      from: 'home'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.annemieke_s7
+      from: 'home'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.malissa_g5
+      from: 'home'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.harrie_iphone5
+      from: 'home'
+      to: 'not_home'
+  action:
+    - service: notify.notify
+      data_template:
+        message: "{{ states.device_tracker[trigger.entity_id.split('.')[1]].attributes.friendly_name }} is uit huis gegaan."
+        title: 'Aanwezigheidsmelding'
