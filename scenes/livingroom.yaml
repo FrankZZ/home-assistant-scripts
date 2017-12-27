@@ -26,7 +26,7 @@
   entities:
     light.livingroom:
       state: on
-      brightness: 20
+      brightness: 50
       transition: 5
       rgb_color: [255,255,255] # white
 

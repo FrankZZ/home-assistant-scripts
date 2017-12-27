@@ -35,3 +35,9 @@ light.upperhallway:
 
 media_player.woonkamer_tv:
   friendly_name: Chromecast Woonkamer
+
+group.all_devices:
+  hidden: false
+
+group.all_automations:
+  hidden: false
