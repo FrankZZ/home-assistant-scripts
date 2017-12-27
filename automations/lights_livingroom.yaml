@@ -19,8 +19,12 @@
       entity_id:
         switch.hallway_pir_0
   condition:
-    condition: template
-    value_template: "{{ is_state('input_select.timeofday', 'morning') }}"
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('input_select.timeofday', 'morning') }}"
+      - condition: template
+        value_template: "{{ not is_state('light.livingroom', 'on') }}"
   action:
     service: scene.turn_on
     data_template:
@@ -36,7 +40,7 @@
     condition: and
     conditions:
       - condition: template
-        value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
+        value_template: "{{ is_state('input_select.timeofday', 'midday') }}"
       - condition: template
         value_template: "{{ not is_state('light.livingroom', 'on') }}"
   action:
@@ -51,8 +55,12 @@
       entity_id: sensor.pws_solarradiation
       above: 35
   condition:
-    condition: template
-    value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('input_select.timeofday', 'midday') }}"
+      - condition: template
+        value_template: "{{ not is_state('light.livingroom', 'off') }}"
   action:
     service: scene.turn_on
     entity_id: "scene.livingroom_off"
