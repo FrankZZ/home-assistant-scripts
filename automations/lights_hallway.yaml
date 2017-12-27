@@ -2,10 +2,10 @@
   initial_state: on
   trigger:
     - platform: state
-      entity_id: 
+      entity_id:
         switch.hallway_pir_0,
         switch.hallway_pir_1,
-        switch.hallway_contact_0
+        switch.hallway_door_0
       to: 'on'
   condition:
     condition: and
@@ -13,7 +13,7 @@
     - condition: numeric_state
       entity_id: sensor.pws_solarradiation
       below: 60
-    - condition: template 
+    - condition: template
       value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}"
     - condition: template
       value_template: "{{ is_state('light.hallway', 'off') }}"
@@ -35,7 +35,7 @@
       - condition: numeric_state
         entity_id: sensor.pws_solarradiation
         below: 60
-      - condition: template 
+      - condition: template
         value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}"
       - condition: template
         value_template: "{{ is_state('light.hallway', 'off') }}"
@@ -50,10 +50,10 @@
   initial_state: on
   trigger:
     - platform: state
-      entity_id: 
+      entity_id:
         switch.hallway_pir_0,
         switch.hallway_pir_1,
-        switch.hallway_contact_0,
+        switch.hallway_door_0,
         switch.hallway_switch_0
       to: 'off'
       for:
@@ -75,10 +75,10 @@
   initial_state: on
   trigger:
   - platform: state
-    entity_id: 
+    entity_id:
       switch.hallway_pir_0,
       switch.hallway_pir_1,
-      switch.hallway_contact_0,
+      switch.hallway_door_0,
       switch.hallway_switch_1
     to: 'off'
     for:
@@ -96,7 +96,7 @@
     service: scene.turn_on
     data_template:
       entity_id: "scene.hallway_off"
- 
+
 - alias: "Licht Gang volgt dagdeel"
   initial_state: on
   trigger:
@@ -107,7 +107,7 @@
     conditions:
     - condition: template
       value_template: "{{ is_state('light.hallway', 'on') }}"
-    - condition: template 
+    - condition: template
       value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}"
   action:
     service: scene.turn_on
