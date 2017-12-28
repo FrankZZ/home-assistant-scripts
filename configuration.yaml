@@ -63,6 +63,7 @@ switch: !include_dir_merge_list components/switches
 scene: !include_dir_merge_list scenes
 group: !include groups.yaml
 automation: !include_dir_merge_list automations
+shell_command: !include_dir_merge_list components/shell_commands
 
 # does not work in components/input_selects
 input_select:
