@@ -14,7 +14,18 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
 
 # Enables the frontend
-frontend: !include themes.yaml
+frontend:
+  javascript_version: es5
+
+emulated_hue:
+  exposed_domains: scene
+
+http:
+  api_password: !secret api_password
+  base_url: !secret http_base_url
+  use_x_forwarded_for: true
+  ip_ban_enabled: true
+  login_attempts_threshold: 3
 
 logger:
   default: warn
@@ -63,7 +74,9 @@ switch: !include_dir_merge_list components/switches
 scene: !include_dir_merge_list scenes
 group: !include groups.yaml
 automation: !include_dir_merge_list automations
-shell_command: !include_dir_merge_list components/shell_commands
+shell_command: !include_dir_merge_named components/shell_commands
+ios:
+media_player: !include_dir_merge_list components/media_players
 
 # does not work in components/input_selects
 input_select:
@@ -92,7 +105,15 @@ device_tracker:
       track_new_devices: false
 
 notify:
-  - name: notify
+  - name: pushover
     platform: pushover
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
+
+camera:
+  - platform: ffmpeg
+    name: Cam 1
+    input: !secret cam1_input
+
+ffmpeg:
+  ffmpeg_bin: /usr/local/bin/ffmpeg

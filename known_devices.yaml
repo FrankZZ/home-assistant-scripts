@@ -26,9 +26,8 @@ harrie_iphone5:
   name: Harrie
   hide_if_away: false
   icon:
-  mac: !secret device_harrie_mac
+  mac:
   picture:
-  consider_home: 1140 # It's an iPhone...
   track: true
 
 malissa_g5:

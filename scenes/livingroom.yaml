@@ -11,7 +11,7 @@
     light.livingroom:
       state: on
       brightness: 200
-      transition: 5
+      transition: 10
       rgb_color: [255,255,255] # white
 
 - name: livingroom_evening

@@ -21,7 +21,7 @@
       from: 'not_home'
       to: 'home'
   action:
-    - service: notify.notify
+    - service: notify.pushover
       data_template:
         message: "{{ states.device_tracker[trigger.entity_id.split('.')[1]].attributes.friendly_name }} is nu thuis gekomen."
         title: 'Aanwezigheidsmelding'
@@ -49,7 +49,7 @@
       from: 'home'
       to: 'not_home'
   action:
-    - service: notify.notify
+    - service: notify.pushover
       data_template:
         message: "{{ states.device_tracker[trigger.entity_id.split('.')[1]].attributes.friendly_name }} is uit huis gegaan."
         title: 'Aanwezigheidsmelding'

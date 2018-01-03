@@ -7,5 +7,6 @@
                 "autoClearConsole": true
             }
         ]
-    }
+    },
+    "editor.tabSize": 2
 }
