@@ -112,7 +112,7 @@ notify:
 
 camera:
   - platform: ffmpeg
-    name: Cam 1
+    name: !secret cam1_name
     input: !secret cam1_input
 
 ffmpeg:
