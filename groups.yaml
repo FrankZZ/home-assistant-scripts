@@ -30,7 +30,7 @@ upperhallway:
 #   name: Weersvoorspelling
 #   entities:
 #     - sensor.pws_location
-#     - sensor.pws_solarradiation
+#     - sensor.solarradiation
 #     - sensor.pws_weather_1d_metric
 #     - sensor.pws_weather_1n_metric
 #     - sensor.pws_weather_2d_metric

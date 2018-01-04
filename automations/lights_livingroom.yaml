@@ -25,7 +25,7 @@
       to: not_home
   condition:
     condition: template
-    value_template: "{{ not is_state('light.livingroom', 'on') }}"
+    value_template: "{{ is_state('light.livingroom', 'on') }}"
   action:
     service: scene.turn_on
     data_template:
@@ -35,7 +35,7 @@
   initial_state: on
   trigger:
     - platform: numeric_state
-      entity_id: sensor.pws_solarradiation
+      entity_id: sensor.solarradiation
       below: 30
     - platform: state
       entity_id: group.all_devices
@@ -44,7 +44,7 @@
     condition: and
     conditions:
       - condition: numeric_state
-        entity_id: sensor.pws_solarradiation
+        entity_id: sensor.solarradiation
         below: 30
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'midday') or is_state('input_select.timeofday', 'evening') }}"
@@ -61,7 +61,7 @@
   initial_state: on
   trigger:
     - platform: numeric_state
-      entity_id: sensor.pws_solarradiation
+      entity_id: sensor.solarradiation
       above: 50
   condition:
     condition: and
@@ -128,6 +128,8 @@
     conditions:
       - condition: template
         value_template: "{{ is_state('light.livingroom', 'on') }}"
+      - condition: template
+        value_template: "{{ is_state('remote.livingroom', 'off') }}"
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'night') }}"
   action:

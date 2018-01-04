@@ -2,7 +2,7 @@
   initial_state: on
   trigger:
     - platform: state
-      entity_id: 
+      entity_id:
         switch.upperhallway_pir_0,
         switch.upperhallway_pir_1
       to: 'on'
@@ -22,7 +22,7 @@
   initial_state: on
   trigger:
     - platform: state
-      entity_id: 
+      entity_id:
         switch.upperhallway_pir_0,
         switch.upperhallway_pir_1,
         switch.hallway_switch_1
@@ -36,7 +36,7 @@
       value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
     - condition: template
       value_template: "{{ is_state('light.upperhallway', 'on') }}"
-    - condition: template 
+    - condition: template
       value_template: "{{ is_state('switch.hallway_switch_1', 'off') }}"
   action:
     service: scene.turn_on
@@ -46,7 +46,7 @@
   initial_state: on
   trigger:
   - platform: state
-    entity_id: 
+    entity_id:
       switch.upperhallway_pir_0,
       switch.upperhallway_pir_1,
       switch.hallway_switch_1
@@ -60,7 +60,7 @@
       value_template: "{{ is_state('input_select.timeofday', 'night') }}"
     - condition: template
       value_template: "{{ is_state('light.upperhallway', 'on') }}"
-    - condition: template 
+    - condition: template
       value_template: "{{ is_state('switch.hallway_switch_1', 'off') }}"
   action:
     service: scene.turn_on

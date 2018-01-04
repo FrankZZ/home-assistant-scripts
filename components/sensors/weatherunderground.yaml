@@ -14,3 +14,12 @@
     # - weather_4d_metric
     # - weather_4n_metric
     # - weather
+
+- platform: template
+  sensors:
+    solarradiation:
+      friendly_name: "Solar Radiation"
+      entity_id: sensor.pws_solarradiation
+      unit_of_measurement: 'w/m2'
+      value_template: "{{ states.sensor.pws_solarradiation.state | int }}"
+
