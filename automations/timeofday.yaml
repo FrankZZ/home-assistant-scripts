@@ -25,7 +25,7 @@
   trigger:
     platform: sun
     event: sunrise
-    offset: '+00:45:00'
+    offset: '+01:00:00'
   action:
     service: input_select.select_option
     data:
