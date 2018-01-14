@@ -117,6 +117,3 @@ camera:
 
 ffmpeg:
   ffmpeg_bin: /usr/local/bin/ffmpeg
-
-mqtt:
-  broker: !secret mqtt_server
