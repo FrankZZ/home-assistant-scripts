@@ -98,7 +98,7 @@ device_tracker:
   - platform: nmap_tracker
     hosts: !secret nmap_tracker_hosts
     home_interval: 10 # 5 mins
-    interval_seconds: 12
+    interval_seconds: 30
     consider_home: 00:15:00
     scan_options: " --host-timeout 5s --privileged -sP "
     new_device_defaults:
@@ -117,3 +117,6 @@ camera:
 
 ffmpeg:
   ffmpeg_bin: /usr/local/bin/ffmpeg
+
+mqtt:
+  broker: !secret mqtt_server

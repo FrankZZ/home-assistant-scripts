@@ -5,6 +5,12 @@
       brightness: 120
       transition: 5
       rgb_color: [255,255,255] # white
+    light.rgbw01:
+      state: on
+      brightness: 255
+      transition: 5
+      white_value: 80
+      rgb_color: [255,128,0]
 
 - name: livingroom_midday
   entities:
@@ -13,6 +19,12 @@
       brightness: 200
       transition: 10
       rgb_color: [255,255,255] # white
+    light.rgbw01:
+      state: on
+      brightness: 255
+      transition: 5
+      white_value: 200
+      rgb_color: [255,128,0]
 
 - name: livingroom_evening
   entities:
@@ -21,6 +33,12 @@
       brightness: 180
       transition: 5
       rgb_color: [255,255,255] # white
+    light.rgbw01:
+      state: on
+      brightness: 255
+      transition: 5
+      white_value: 85
+      rgb_color: [255,128,0]
 
 - name: livingroom_night
   entities:
@@ -29,6 +47,12 @@
       brightness: 50
       transition: 5
       rgb_color: [255,255,255] # white
+    light.rgbw01:
+      state: on
+      brightness: 128
+      transition: 5
+      white_value: 20
+      rgb_color: [255,128,0]
 
 - name: livingroom_full
   entities:
@@ -36,8 +60,16 @@
       state: on
       brightness: 255
       rgb_color: [255,255,255] # white
+    light.rgbw01:
+      state: on
+      brightness: 255
+      transition: 5
+      white_value: 255
+      rgb_color: [255,128,0]
 
 - name: livingroom_off
   entities:
     light.livingroom:
+      state: off
+    light.rgbw01:
       state: off
