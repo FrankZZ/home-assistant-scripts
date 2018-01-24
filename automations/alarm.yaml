@@ -1,0 +1,21 @@
+- alias: "Stuur bericht bij beweging maar niemand is thuis"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id:
+        switch.upper_hallway_pir_0,
+        switch.upper_hallway_pir_1,
+        switch.hallway_pir_0,
+        switch.hallway_pir_1,
+        switch.hallway_door_0
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+  action:
+    service: notify.frank
+    data_template:
+      title: "ALARM"
+      message: "{{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }}: Onverwachte activiteit gedetecteerd!"

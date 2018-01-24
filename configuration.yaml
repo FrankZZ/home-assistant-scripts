@@ -48,6 +48,8 @@ sun:
 rflink:
   port: /dev/ttyACM0
 
+ios:
+
 # weather:
 #   - platform: yweather
 #     name: "Yahoo Weather"
@@ -75,7 +77,7 @@ scene: !include_dir_merge_list scenes
 group: !include groups.yaml
 automation: !include_dir_merge_list automations
 shell_command: !include_dir_merge_named components/shell_commands
-ios:
+notify: !include_dir_merge_list components/notifiers
 media_player: !include_dir_merge_list components/media_players
 
 # does not work in components/input_selects
@@ -97,18 +99,12 @@ remote:
 device_tracker:
   - platform: nmap_tracker
     hosts: !secret nmap_tracker_hosts
-    home_interval: 10 # 5 mins
+    home_interval: 5
     interval_seconds: 30
     consider_home: 00:15:00
     scan_options: " --host-timeout 5s --privileged -sP "
     new_device_defaults:
       track_new_devices: false
-
-notify:
-  - name: pushover
-    platform: pushover
-    api_key: !secret pushover_api_key
-    user_key: !secret pushover_user_key
 
 camera:
   - platform: ffmpeg
@@ -120,3 +116,11 @@ ffmpeg:
 
 mqtt:
   broker: !secret mqtt_server
+
+telegram_bot:
+  - platform: webhooks
+    api_key: !secret telegram_bot_api_key
+    allowed_chat_ids:
+      - !secret telegram_frank_id
+      - !secret telegram_malissa_id
+      - !secret telegram_harrie_id
