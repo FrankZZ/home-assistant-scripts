@@ -35,4 +35,4 @@ Parts list:
 
 To save costs I have ordered some bulk quantities, because I want to create multiple nodes anyway.
 
-Based on taking 1 piece of all components in this list, the total price for this node is €14,41
+Based on taking 1 piece of all components in this list, the total price for this node is €12,81

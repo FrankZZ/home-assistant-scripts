@@ -13,9 +13,16 @@ homeassistant:
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
 
+mysensors:
+  gateways:
+    - device: !secret mysensors_gateway
+      tcp_port: 5003
+      persistence_file: 'mysensors.json'
+  persistence: true
+  version: '2.0'
+
 # Enables the frontend
 frontend:
-  javascript_version: es5
 
 emulated_hue:
   exposed_domains: scene
@@ -99,9 +106,9 @@ remote:
 device_tracker:
   - platform: nmap_tracker
     hosts: !secret nmap_tracker_hosts
-    home_interval: 5
+    home_interval: 10
     interval_seconds: 30
-    consider_home: 00:15:00
+    consider_home: 00:20:00
     scan_options: " --host-timeout 5s --privileged -sP "
     new_device_defaults:
       track_new_devices: false

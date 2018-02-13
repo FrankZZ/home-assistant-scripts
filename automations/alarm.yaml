@@ -1,5 +1,5 @@
 - alias: "Stuur bericht bij beweging maar niemand is thuis"
-  initial_state: on
+  initial_state: off
   trigger:
     - platform: state
       entity_id:
@@ -17,5 +17,5 @@
   action:
     service: notify.frank
     data_template:
-      title: "ALARM"
-      message: "{{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }}: Onverwachte activiteit gedetecteerd!"
+      title: "*ALARM: {{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }}*"
+      message: "Onverwachte activiteit gedetecteerd!"

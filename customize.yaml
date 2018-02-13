@@ -1,20 +1,26 @@
 switch.hallway_pir_0:
   friendly_name: Beweging Gang Voor
   device_class: motion
+
 switch.hallway_pir_1:
   friendly_name: Beweging Gang Achter
   device_class: motion
+
 switch.upperhallway_pir_0:
   friendly_name: Beweging Overloop Trap
   device_class: motion
+
 switch.upperhallway_pir_1:
   friendly_name: Beweging Overloop Gang
   device_class: motion
+
 switch.hallway_door_0:
   friendly_name: Deurcontact Voordeur
   device_class: opening
+
 switch.hallway_switch_0:
   friendly_name: Lichtknop Gang
+
 switch.hallway_switch_1:
   friendly_name: Lichtknop Overloop
 
@@ -25,7 +31,7 @@ light.livingroom1:
   friendly_name: Testlamp
 
 light.livingroom:
-  friendly_name: Woonkamer
+  friendly_name: Lamp Woonkamer
 
 light.hallway:
   friendly_name: Lamp Gang
@@ -37,7 +43,17 @@ media_player.woonkamer_tv:
   friendly_name: Chromecast Woonkamer
 
 group.all_devices:
-  hidden: false
+  friendly_name: Aanwezigheid
 
 group.all_automations:
+  hidden: true
+
+group.livingroom_scenes:
+  friendly_name: Woonkamer Scenes
   hidden: false
+
+group.presence_view:
+  icon: mdi:account-multiple
+
+group.settings:
+  friendly_name: Instellingen

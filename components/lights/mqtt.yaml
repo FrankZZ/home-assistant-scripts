@@ -17,3 +17,22 @@
   white_value: true
   white_value_command_topic: 'RGBW01/channel/3/set'
   white_value_state_topic: 'RGBW01/channel/3'
+- platform: mqtt
+  name: 'RGBW02'
+  state_topic: 'RGBW02/relay/0'
+  command_topic: 'RGBW02/relay/0/set'
+  payload_on: 1
+  payload_off: 0
+  rgb_state_topic: 'RGBW02/color'
+  rgb_command_topic: 'RGBW02/color/set'
+  rgb: true
+  optimistic: false
+  color_temp: true
+  color_temp_command_topic: 'RGBW02/mired/set'
+  brightness: true
+  brightness_scale: 255
+  brightness_command_topic:  'RGBW02/brightness/set'
+  brightness_state_topic: 'RGBW02/brightness'
+  white_value: true
+  white_value_command_topic: 'RGBW02/channel/3/set'
+  white_value_state_topic: 'RGBW02/channel/3'

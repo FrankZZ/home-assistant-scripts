@@ -1,2 +1,5 @@
 "automation.*":
   hidden: true
+
+"scene:*":
+  hidden: true

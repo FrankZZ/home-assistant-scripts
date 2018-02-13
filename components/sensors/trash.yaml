@@ -1,0 +1,27 @@
+- platform: rest
+  resource: !secret trash_rest_url
+  name: trash_today
+  scan_interval: 3600
+  value_template: >
+    {% set data = value.split("\n") %}
+    {% set today = as_timestamp(now()) | timestamp_custom("%d-%m-%Y") %}
+    {% for row in data %}
+      {% set row = row.split(";") %}
+      {% if (today in row) %}
+        {{ row[0] + ' ' }}
+      {% endif %}
+    {% endfor %}
+
+- platform: rest
+  resource: !secret trash_rest_url
+  name: trash_tomorrow
+  scan_interval: 3600
+  value_template: >
+    {% set data = value.split("\n") %}
+    {% set tomorrow = (as_timestamp(now())+86400) | timestamp_custom("%d-%m-%Y") %}
+    {% for row in data %}
+      {% set row = row.split(";") %}
+      {% if (tomorrow in row) %}
+        {{ row[0] + ' '}}
+      {% endif %}
+    {% endfor %}

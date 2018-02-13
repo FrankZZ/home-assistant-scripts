@@ -1,11 +1,28 @@
-livingroom:
-  name: Woonkamer
+livingroom_view:
   view: yes
   entities:
     - light.livingroom
 
+new_default_view:
+  view: yes
+  entities:
+    - group.all_devices
+    - group.settings
+    - group.livingroom_scenes
+    - camera.woonkamer
+
+livingroom_scenes:
+  entities:
+    - scene.livingroom_off
+    - scene.livingroom_morning
+    - scene.livingroom_midday
+    - scene.livingroom_evening
+
+settings:
+  entities:
+    - input_select.timeofday
+
 hallway:
-  name: Gang
   view: yes
   entities:
     - light.hallway
@@ -14,7 +31,6 @@ hallway:
     - switch.hallway_door_0
 
 upperhallway:
-  name: Overloop
   view: yes
   entities:
     - light.upperhallway
@@ -42,13 +58,11 @@ upperhallway:
 #     - sensor.pws_weather_weather
 
 presence_view:
-  name: Aanwezigheid
   view: yes
   entities:
     - group.all_devices
 
 automations_view:
-  name: Automatisering
   view: yes
   entities:
     - group.all_automations

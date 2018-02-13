@@ -1,4 +1,5 @@
 - alias: "Notify when someone gets home"
+  initial_state: off
   trigger:
     - platform: state
       entity_id: device_tracker.frank_n6
@@ -24,9 +25,10 @@
     - service: notify.frank
       data_template:
         message: "{{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }} is nu thuis gekomen."
-        title: 'Aanwezigheidsmelding'
+        title: '*Aanwezigheidsmelding*'
 
 - alias: "Notify when someone goes away from home"
+  initial_state: off
   trigger:
     - platform: state
       entity_id: device_tracker.frank_n6
@@ -52,4 +54,4 @@
     - service: notify.frank
       data_template:
         message: "{{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }} is uit huis gegaan."
-        title: 'Aanwezigheidsmelding'
+        title: '*Aanwezigheidsmelding*'
