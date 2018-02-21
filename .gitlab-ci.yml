@@ -4,6 +4,7 @@ before_script:
   - pip install homeassistant
   - python -V
   - hass --version
+  - mv secrets-empty.yaml secrets.yaml
 
 test:
   script:
