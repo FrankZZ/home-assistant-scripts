@@ -17,7 +17,7 @@ mysensors:
   gateways:
     - device: !secret mysensors_gateway
       tcp_port: 5003
-      persistence_file: '/home/homeassistant/.homeassistant/mysensors.json'
+      persistence_file: !secret mysensors_persistence_file
   persistence: true
   version: '2.0'
 
