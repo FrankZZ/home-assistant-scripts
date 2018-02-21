@@ -1,4 +1,4 @@
-image: homeassistant/home-assistant:latest
+image: vimagick/hass:latest
 
 before_script:
   - python -V
