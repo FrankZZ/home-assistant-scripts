@@ -1,7 +1,9 @@
-image: vimagick/hass:latest
+image: python:3.5-slim
 
 before_script:
+  - pip install homeassistant
   - python -V
+  - hass --version
 
 test:
   script:
