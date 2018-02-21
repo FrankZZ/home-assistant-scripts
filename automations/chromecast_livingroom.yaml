@@ -12,6 +12,26 @@
     - service: switch.turn_on
       entity_id: switch.chromecast_livingroom_power
 
+- alias: "TV uit als chromecast 5 minuten idle is"
+  trigger:
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      to: 'idle'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      to: 'off'
+      for:
+        minutes: 5
+  condition:
+    condition: template
+    value_template: '{{ states.remote.livingroom.attributes.current_activity == "Chromecast kijken" }}'
+  action:
+    - service: remote.turn_off
+      data:
+        entity_id: remote.livingroom
+
 - alias: "Greet when someone gets home and the TV is powered off"
   initial_state: off
   trigger:
