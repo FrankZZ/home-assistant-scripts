@@ -12,6 +12,9 @@ homeassistant:
   time_zone: !secret time_zone
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
+  customize_domain:
+    light:
+      assumed_state: false
 
 mysensors:
   gateways:

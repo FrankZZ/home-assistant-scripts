@@ -1,0 +1,10 @@
+- alias: "Reset all lights on startup"
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: light.turn_on
+      data:
+        rgb_color: [255,255,255] # white
+        brightness_pct: 1
+    - service: light.turn_off
