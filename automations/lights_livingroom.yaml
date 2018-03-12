@@ -37,7 +37,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.solarradiation
-      below: 30
+      below: 45
     - platform: state
       entity_id: group.all_devices
       to: home
@@ -46,7 +46,7 @@
     conditions:
       - condition: numeric_state
         entity_id: sensor.solarradiation
-        below: 30
+        below: 45
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'midday') or is_state('input_select.timeofday', 'evening') }}"
       - condition: template
@@ -64,6 +64,8 @@
     - platform: numeric_state
       entity_id: sensor.solarradiation
       above: 50
+      for:
+        minutes: 5
   condition:
     condition: and
     conditions:

@@ -22,9 +22,9 @@
 - name: hallway_night
   entities:
     light.hallway:
-      effect: 'night'
+      # effect: 'night'
       state: on
-      # brightness: 1
+      brightness_pct: 5
       rgb_color: [255,255,255] # white
 
 - name: hallway_full
