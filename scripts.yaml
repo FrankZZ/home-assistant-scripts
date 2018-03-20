@@ -1,0 +1,18 @@
+increase_livingroom_lights:
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.livingroom
+        brightness: "{{ [(states.light.livingroom.attributes.brightness|default(0))+50, 255]|min }}"
+        rgb_color: [255,255,255]
+decrease_livingroom_lights:
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.livingroom
+        brightness: "{{ [(states.light.livingroom.attributes.brightness|default(0))-50, 0]|max }}"
+        rgb_color: [255,255,255]
+    - condition: template
+      value_template: "{{ states('light.livingroom') == 'on' and states.light.livingroom.attributes.brightness == 0 }}"
+    - service: light.turn_off
+      entity_id: light.livingroom

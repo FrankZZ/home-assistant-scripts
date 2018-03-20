@@ -28,7 +28,9 @@ mysensors:
 frontend:
 
 emulated_hue:
-  exposed_domains: scene
+  exposed_domains: 
+    - script
+    - scene
 
 http:
   api_password: !secret api_password
@@ -89,6 +91,7 @@ automation: !include_dir_merge_list automations
 shell_command: !include_dir_merge_named components/shell_commands
 notify: !include_dir_merge_list components/notifiers
 media_player: !include_dir_merge_list components/media_players
+script: !include scripts.yaml
 
 # does not work in components/input_selects
 input_select:

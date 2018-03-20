@@ -24,7 +24,7 @@
     light.hallway:
       # effect: 'night'
       state: on
-      brightness_pct: 5
+      brightness_pct: 1
       rgb_color: [255,255,255] # white
 
 - name: hallway_full
