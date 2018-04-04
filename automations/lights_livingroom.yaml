@@ -36,8 +36,8 @@
   initial_state: on
   trigger:
     - platform: numeric_state
-      entity_id: sensor.solarradiation
-      below: 45
+      entity_id: sensor.lux_livingroom
+      below: 400
     - platform: state
       entity_id: group.all_devices
       to: home
@@ -45,8 +45,8 @@
     condition: and
     conditions:
       - condition: numeric_state
-        entity_id: sensor.solarradiation
-        below: 45
+        entity_id: sensor.lux_livingroom
+        below: 400
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'midday') or is_state('input_select.timeofday', 'evening') }}"
       - condition: template
@@ -62,10 +62,10 @@
   initial_state: on
   trigger:
     - platform: numeric_state
-      entity_id: sensor.solarradiation
-      above: 50
+      entity_id: sensor.lux_livingroom
+      above: 500
       for:
-        minutes: 5
+        minutes: 2
   condition:
     condition: and
     conditions:

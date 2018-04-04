@@ -3,3 +3,27 @@
 
 "scene:*":
   hidden: true
+
+"*_full":
+  friendly_name: Vol
+  icon: mdi:flashlight
+
+"*_morning":
+  friendly_name: Ochtend
+  icon: mdi:weather-sunset-up
+
+"*_midday":
+  friendly_name: Middag
+  icon: mdi:weather-sunny
+
+"*_evening":
+  friendly_name: Avond
+  icon: mdi:weather-sunset-down
+
+"*_night":
+  friendly_name: Nacht
+  icon: mdi:weather-night
+
+# increase/decrease
+"script.*_livingroom_lights":
+  hidden: true

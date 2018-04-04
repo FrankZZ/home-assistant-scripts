@@ -1,2 +1,2 @@
-- platform: mpd
-  host: !secret snapcast_server_ip
+# - platform: mpd
+#   host: !secret snapcast_server_ip

@@ -5,6 +5,7 @@ increase_livingroom_lights:
         entity_id: light.livingroom
         brightness: "{{ [(states.light.livingroom.attributes.brightness|default(0))+50, 255]|min }}"
         rgb_color: [255,255,255]
+
 decrease_livingroom_lights:
   sequence:
     - service: light.turn_on
@@ -16,3 +17,161 @@ decrease_livingroom_lights:
       value_template: "{{ states('light.livingroom') == 'on' and states.light.livingroom.attributes.brightness == 0 }}"
     - service: light.turn_off
       entity_id: light.livingroom
+
+hallway_morning:
+  sequence:
+    - condition: state
+      entity_id: light.hallway
+      state: 'off'
+    - service: light.turn_on
+      data:
+        entity_id: light.hallway
+        brightness: 50
+        rgb_color: [255,255,255] # white
+    - service: timer.start
+      data_template:
+        entity_id: timer.hallway
+        duration: "{{ states('input_number.hallway_timeout_morning')|default(60)|int }}"
+
+hallway_midday:
+  sequence:
+    - condition: state
+      entity_id: light.hallway
+      state: 'off'
+    - service: light.turn_on
+      data:
+        entity_id: light.hallway
+        brightness: 120
+        rgb_color: [255,255,255] # white
+    - service: timer.start
+      data_template:
+        entity_id: timer.hallway
+        duration: "{{ states('input_number.hallway_timeout_midday')|default(60)|int }}"
+
+hallway_evening:
+  sequence:
+    - condition: state
+      entity_id: light.hallway
+      state: 'off'
+    - service: light.turn_on
+      data:
+        entity_id: light.hallway
+        brightness: 80
+        rgb_color: [255,255,255] # white
+    - service: timer.start
+      data_template:
+        entity_id: timer.hallway
+        duration: "{{ states('input_number.hallway_timeout_evening')|default(60)|int }}"
+
+hallway_night:
+  sequence:
+    - condition: state
+      entity_id: light.hallway
+      state: 'off'
+    - service: light.turn_on
+      data:
+        entity_id: light.hallway
+        # effect: 'night'
+        brightness_pct: 1
+        rgb_color: [255,255,255] # white
+    - service: timer.start
+      data_template:
+        entity_id: timer.hallway
+        duration: "{{ states('input_number.hallway_timeout_night')|default(60)|int }}"
+
+hallway_full:
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.hallway
+        brightness: 255
+        rgb_color: [255,255,255] # white
+    - service: timer.start
+      data_template:
+        entity_id: timer.hallway
+        duration: "{{ states('input_number.hallway_timeout_full')|default(60)|int }}"
+
+hallway_off:
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.hallway
+
+upperhallway_morning:
+  sequence:
+    - condition: state
+      entity_id: light.upperhallway
+      state: 'off'
+    - service: light.turn_on
+      data:
+        entity_id: light.upperhallway
+        brightness: 40
+        rgb_color: [255,255,255] # white
+    - service: timer.start
+      data_template:
+        entity_id: timer.upperhallway
+        duration: "{{ states('input_number.upperhallway_timeout_morning')|default(60)|int }}"
+
+upperhallway_midday:
+  sequence:
+    - condition: state
+      entity_id: light.upperhallway
+      state: 'off'
+    - service: light.turn_on
+      data:
+        entity_id: light.upperhallway
+        brightness: 100
+        rgb_color: [255,255,255] # white
+    - service: timer.start
+      data_template:
+        entity_id: timer.upperhallway
+        duration: "{{ states('input_number.upperhallway_timeout_midday')|default(60)|int }}"
+
+upperhallway_evening:
+  sequence:
+    - condition: state
+      entity_id: light.upperhallway
+      state: 'off'
+    - service: light.turn_on
+      data:
+        entity_id: light.upperhallway
+        brightness: 50
+        rgb_color: [255,255,255] # white
+    - service: timer.start
+      data_template:
+        entity_id: timer.upperhallway
+        duration: "{{ states('input_number.upperhallway_timeout_evening')|default(60)|int }}"
+
+upperhallway_night:
+  sequence:
+    - condition: state
+      entity_id: light.upperhallway
+      state: 'off'
+    - service: light.turn_on
+      data:
+        entity_id: light.upperhallway
+        state: on
+        brightness_pct: 1
+        rgb_color: [255,255,255] # white
+    - service: timer.start
+      data_template:
+        entity_id: timer.upperhallway
+        duration: "{{ states('input_number.upperhallway_timeout_night')|default(60)|int }}"
+
+upperhallway_full:
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.upperhallway
+        brightness: 255
+        rgb_color: [255,255,255] # white
+    - service: timer.start
+      data_template:
+        entity_id: timer.upperhallway
+        duration: "{{ states('input_number.upperhallway_timeout_full')|default(60)|int }}"
+
+upperhallway_off:
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.upperhallway

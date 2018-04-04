@@ -28,7 +28,7 @@ mysensors:
 frontend:
 
 emulated_hue:
-  exposed_domains: 
+  exposed_domains:
     - script
     - scene
 
@@ -92,17 +92,70 @@ shell_command: !include_dir_merge_named components/shell_commands
 notify: !include_dir_merge_list components/notifiers
 media_player: !include_dir_merge_list components/media_players
 script: !include scripts.yaml
+timer: !include_dir_merge_named components/timers
 
 # does not work in components/input_selects
 input_select:
   timeofday:
     name: Time of day
-    initial: evening
+    # initial: evening
     options:
       - "morning"
       - "midday"
       - "evening"
       - "night"
+
+input_number:
+  hallway_timeout_morning:
+    min: 10
+    max: 600
+    step: 10
+    unit_of_measurement: seconden
+  hallway_timeout_midday:
+    min: 10
+    max: 600
+    step: 10
+    unit_of_measurement: seconden
+  hallway_timeout_evening:
+    min: 10
+    max: 600
+    step: 10
+    unit_of_measurement: seconden
+  hallway_timeout_night:
+    min: 10
+    max: 600
+    step: 10
+    unit_of_measurement: seconden
+  hallway_timeout_full:
+    min: 10
+    max: 600
+    step: 10
+    unit_of_measurement: seconden
+  upperhallway_timeout_morning:
+    min: 10
+    max: 600
+    step: 10
+    unit_of_measurement: seconden
+  upperhallway_timeout_midday:
+    min: 10
+    max: 600
+    step: 10
+    unit_of_measurement: seconden
+  upperhallway_timeout_evening:
+    min: 10
+    max: 600
+    step: 10
+    unit_of_measurement: seconden
+  upperhallway_timeout_night:
+    min: 10
+    max: 600
+    step: 10
+    unit_of_measurement: seconden
+  upperhallway_timeout_full:
+    min: 10
+    max: 600
+    step: 10
+    unit_of_measurement: seconden
 
 remote:
   - platform: harmony

@@ -1,28 +1,28 @@
 switch.hallway_pir_0:
-  friendly_name: Beweging Gang Voor
+  friendly_name: Gang Voor Beweging
   device_class: motion
 
 switch.hallway_pir_1:
-  friendly_name: Beweging Gang Achter
+  friendly_name: Gang Achter Beweging
   device_class: motion
 
 switch.upperhallway_pir_0:
-  friendly_name: Beweging Overloop Trap
+  friendly_name: Overloop Trap Beweging
   device_class: motion
 
 switch.upperhallway_pir_1:
-  friendly_name: Beweging Overloop Gang
+  friendly_name: Overloop Gang Beweging
   device_class: motion
 
 switch.hallway_door_0:
-  friendly_name: Deurcontact Voordeur
+  friendly_name: Voordeur Deurcontact
   device_class: opening
 
 switch.hallway_switch_0:
-  friendly_name: Lichtknop Gang
+  friendly_name: Gang Knop
 
 switch.hallway_switch_1:
-  friendly_name: Lichtknop Overloop
+  friendly_name: Overloop Knop
 
 switch.chromecast_livingroom_power:
   friendly_name: Chromecast Huiskamer
@@ -31,19 +31,26 @@ light.livingroom1:
   friendly_name: Testlamp
 
 light.livingroom:
-  friendly_name: Lamp Woonkamer
+  friendly_name: Woonkamer Lamp
 
 light.hallway:
-  friendly_name: Lamp Gang
+  friendly_name: Gang Lamp
 
 light.upperhallway:
-  friendly_name: Lamp Overloop
+  friendly_name: Overloop Lamp
+
+timer.hallway:
+  friendly_name: Gang Timeout
+
+timer.upperhallway:
+  friendly_name: Overloop Timeout
 
 media_player.woonkamer_tv:
   friendly_name: Chromecast Woonkamer
 
 group.all_devices:
   friendly_name: Aanwezigheid
+  hidden: false
 
 group.all_automations:
   hidden: true
@@ -52,8 +59,40 @@ group.livingroom_scenes:
   friendly_name: Woonkamer Scenes
   hidden: false
 
+group.hallway_scenes:
+  friendly_name: Gang Scenes
+  hidden: false
+
+group.upperhallway_scenes:
+  friendly_name: Overloop Scenes
+  hidden: false
+
 group.presence_view:
   icon: mdi:account-multiple
 
 group.settings:
-  friendly_name: Instellingen
+  icon: mdi:wrench
+
+group.hallway_timeoutsettings:
+  friendly_name: Gang Timeout
+
+group.upperhallway_timeoutsettings:
+  friendly_name: Overloop Timeout
+
+input_select.timeofday:
+  friendly_name: Huidig Dagdeel (Automatisch)
+
+group.livingroom_view:
+  icon: mdi:sofa
+
+group.hallway_view:
+  icon: mdi:door-open
+
+group.upperhallway_view:
+  icon: mdi:stairs
+
+group.generic_settings:
+  friendly_name: Overige Instellingen
+
+group.new_default_view:
+  icon: mdi:home-assistant

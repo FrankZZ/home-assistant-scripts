@@ -1,7 +1,3 @@
-livingroom_view:
-  view: yes
-  entities:
-    - light.livingroom
 
 new_default_view:
   view: yes
@@ -17,22 +13,45 @@ livingroom_scenes:
     - scene.livingroom_morning
     - scene.livingroom_midday
     - scene.livingroom_evening
+    - scene.livingroom_night
+    - scene.livingroom_full
 
-settings:
+hallway_scenes:
   entities:
-    - input_select.timeofday
+    - script.hallway_off
+    - script.hallway_morning
+    - script.hallway_midday
+    - script.hallway_evening
+    - script.hallway_night
+    - script.hallway_full
 
-hallway:
+upperhallway_scenes:
+  entities:
+    - script.upperhallway_off
+    - script.upperhallway_morning
+    - script.upperhallway_midday
+    - script.upperhallway_evening
+    - script.upperhallway_night
+    - script.upperhallway_full
+
+livingroom_view:
   view: yes
   entities:
+    - light.livingroom
+
+hallway_view:
+  view: yes
+  entities:
+    - timer.hallway
     - light.hallway
     - switch.hallway_pir_0
     - switch.hallway_pir_1
     - switch.hallway_door_0
 
-upperhallway:
+upperhallway_view:
   view: yes
   entities:
+    - timer.upperhallway
     - light.upperhallway
     - switch.upperhallway_pir_0
     - switch.upperhallway_pir_1
@@ -46,7 +65,7 @@ upperhallway:
 #   name: Weersvoorspelling
 #   entities:
 #     - sensor.pws_location
-#     - sensor.solarradiation
+#     - sensor.lux_livingroom
 #     - sensor.pws_weather_1d_metric
 #     - sensor.pws_weather_1n_metric
 #     - sensor.pws_weather_2d_metric
@@ -62,7 +81,34 @@ presence_view:
   entities:
     - group.all_devices
 
-automations_view:
+# automations_view:
+#   view: yes
+#   entities:
+#     - group.all_automations
+
+generic_settings:
+  entities:
+    - input_select.timeofday
+
+upperhallway_timeoutsettings:
+  entities:
+    - input_number.upperhallway_timeout_morning
+    - input_number.upperhallway_timeout_midday
+    - input_number.upperhallway_timeout_evening
+    - input_number.upperhallway_timeout_night
+    - input_number.upperhallway_timeout_full
+
+hallway_timeoutsettings:
+  entities:
+    - input_number.hallway_timeout_morning
+    - input_number.hallway_timeout_midday
+    - input_number.hallway_timeout_evening
+    - input_number.hallway_timeout_night
+    - input_number.hallway_timeout_full
+
+settings:
   view: yes
   entities:
-    - group.all_automations
+    - group.upperhallway_timeoutsettings
+    - group.hallway_timeoutsettings
+    - group.generic_settings
