@@ -27,3 +27,7 @@
 # increase/decrease
 "script.*_livingroom_lights":
   hidden: true
+
+"input_number.*_darkness_treshold":
+  friendly_name: Lichtgrens
+  icon: mdi:code-less-than-or-equal

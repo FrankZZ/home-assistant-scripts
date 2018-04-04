@@ -1,10 +1,9 @@
 
-new_default_view:
+default_view:
   view: yes
   entities:
-    - group.all_devices
-    - group.settings
-    - group.livingroom_scenes
+    - group.lights
+    - group.trash
     - camera.woonkamer
 
 livingroom_scenes:
@@ -38,6 +37,8 @@ livingroom_view:
   view: yes
   entities:
     - light.livingroom
+    - sensor.harmony_livingroom
+    - media_player.woonkamer_tv
 
 hallway_view:
   view: yes
@@ -47,6 +48,11 @@ hallway_view:
     - switch.hallway_pir_0
     - switch.hallway_pir_1
     - switch.hallway_door_0
+
+trash:
+  entities:
+    - sensor.trash_today
+    - sensor.trash_tomorrow
 
 upperhallway_view:
   view: yes
@@ -65,7 +71,6 @@ upperhallway_view:
 #   name: Weersvoorspelling
 #   entities:
 #     - sensor.pws_location
-#     - sensor.lux_livingroom
 #     - sensor.pws_weather_1d_metric
 #     - sensor.pws_weather_1n_metric
 #     - sensor.pws_weather_2d_metric
@@ -81,16 +86,11 @@ presence_view:
   entities:
     - group.all_devices
 
-# automations_view:
-#   view: yes
-#   entities:
-#     - group.all_automations
-
 generic_settings:
   entities:
     - input_select.timeofday
 
-upperhallway_timeoutsettings:
+upperhallway_timeout_settings:
   entities:
     - input_number.upperhallway_timeout_morning
     - input_number.upperhallway_timeout_midday
@@ -98,7 +98,7 @@ upperhallway_timeoutsettings:
     - input_number.upperhallway_timeout_night
     - input_number.upperhallway_timeout_full
 
-hallway_timeoutsettings:
+hallway_timeout_settings:
   entities:
     - input_number.hallway_timeout_morning
     - input_number.hallway_timeout_midday
@@ -106,9 +106,49 @@ hallway_timeoutsettings:
     - input_number.hallway_timeout_night
     - input_number.hallway_timeout_full
 
+upperhallway_brightness_settings:
+  entities:
+    - input_number.upperhallway_brightness_morning
+    - input_number.upperhallway_brightness_midday
+    - input_number.upperhallway_brightness_evening
+    - input_number.upperhallway_brightness_night
+    - input_number.upperhallway_brightness_full
+    - input_number.upperhallway_darkness_treshold
+
+hallway_brightness_settings:
+  entities:
+    - input_number.hallway_brightness_morning
+    - input_number.hallway_brightness_midday
+    - input_number.hallway_brightness_evening
+    - input_number.hallway_brightness_night
+    - input_number.hallway_brightness_full
+    - input_number.hallway_darkness_treshold
+
+livingroom_brightness_settings:
+  entities:
+    # - input_number.livingroom_brightness_morning
+    # - input_number.livingroom_brightness_midday
+    # - input_number.livingroom_brightness_evening
+    # - input_number.livingroom_brightness_night
+    # - input_number.livingroom_brightness_full
+    - input_number.livingroom_darkness_treshold
+
 settings:
   view: yes
   entities:
-    - group.upperhallway_timeoutsettings
-    - group.hallway_timeoutsettings
+    - group.upperhallway_timeout_settings
+    - group.upperhallway_brightness_settings
+    - group.hallway_brightness_settings
+    - group.hallway_timeout_settings
+    - group.livingroom_brightness_settings
     - group.generic_settings
+    - sensor.lux_livingroom
+
+lights:
+  entities:
+    - sensor.lux_livingroom
+    - light.livingroom
+    - light.hallway
+    - light.upperhallway
+    - timer.hallway
+    - timer.upperhallway

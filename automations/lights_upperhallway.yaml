@@ -6,6 +6,9 @@
         switch.upperhallway_pir_0,
         switch.upperhallway_pir_1
       to: 'on'
+  condition:
+    condition: template
+    value_template: "{{ states('sensor.lux_livingroom')|default(0) <= states('input_number.upperhallway_darkness_treshold') }}"
   action:
     service: script.turn_on
     data_template:

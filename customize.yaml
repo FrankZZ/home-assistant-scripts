@@ -31,13 +31,13 @@ light.livingroom1:
   friendly_name: Testlamp
 
 light.livingroom:
-  friendly_name: Woonkamer Lamp
+  friendly_name: Woonkamer
 
 light.hallway:
-  friendly_name: Gang Lamp
+  friendly_name: Gang
 
 light.upperhallway:
-  friendly_name: Overloop Lamp
+  friendly_name: Overloop
 
 timer.hallway:
   friendly_name: Gang Timeout
@@ -73,10 +73,10 @@ group.presence_view:
 group.settings:
   icon: mdi:wrench
 
-group.hallway_timeoutsettings:
+group.hallway_timeout_settings:
   friendly_name: Gang Timeout
 
-group.upperhallway_timeoutsettings:
+group.upperhallway_timeout_settings:
   friendly_name: Overloop Timeout
 
 input_select.timeofday:
@@ -91,8 +91,41 @@ group.hallway_view:
 group.upperhallway_view:
   icon: mdi:stairs
 
+group.livingroom_brightness_settings:
+  friendly_name: Huiskamer Lichtsterkte
+
+group.hallway_brightness_settings:
+  friendly_name: Gang Lichtsterkte
+
+group.upperhallway_brightness_settings:
+  friendly_name: Overloop Lichtsterkte
+
 group.generic_settings:
   friendly_name: Overige Instellingen
 
-group.new_default_view:
+group.default_view:
   icon: mdi:home-assistant
+
+sensor.lux_livingroom:
+  friendly_name: Lichtintensiteit Voor
+
+sensor.harmony_livingroom:
+  friendly_name: Woonkamer
+  icon: mdi:remote
+
+sensor.trash_today:
+  icon: mdi:calendar-today
+  friendly_name: Vandaag
+
+sensor.trash_tomorrow:
+  icon: mdi:skip-next
+  friendly_name: Morgen
+
+group.trash:
+  friendly_name: Afval
+  icon: mdi:delete-empty
+
+group.lights:
+  control: hidden
+  friendly_name: Licht
+  icon: mdi:light
