@@ -81,6 +81,12 @@ upperhallway_view:
 #     - sensor.pws_weather_4n_metric
 #     - sensor.pws_weather_weather
 
+milights:
+  entities:
+    - light.livingroom
+    - light.hallway
+    - light.upperhallway
+
 presence_view:
   view: yes
   entities:

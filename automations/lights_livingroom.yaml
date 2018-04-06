@@ -36,7 +36,7 @@
   initial_state: on
   trigger:
     - platform: template
-      value_template: "{{ states('sensor.lux_livingroom')|default(0) <= states('input_number.livingroom_darkness_treshold') }}"
+      value_template: "{{ states('sensor.lux_livingroom')|default(0)|int <= states('input_number.livingroom_darkness_treshold')|int }}"
     - platform: state
       entity_id: group.all_devices
       to: home
@@ -44,7 +44,7 @@
     condition: and
     conditions:
       - condition: template
-        value_template: "{{ states('sensor.lux_livingroom')|default(0) <= states('input_number.livingroom_darkness_treshold') }}"
+        value_template: "{{ states('sensor.lux_livingroom')|default(0)|int <= states('input_number.livingroom_darkness_treshold')|int }}"
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'midday') or is_state('input_select.timeofday', 'evening') }}"
       - condition: template
@@ -60,7 +60,7 @@
   initial_state: on
   trigger:
     - platform: template
-      value_template: "{{ (states('sensor.lux_livingroom')|default(0) + 50) >= states('input_number.livingroom_darkness_treshold') }}"
+      value_template: "{{ (states('sensor.lux_livingroom')|default(0)|int + 50) >= states('input_number.livingroom_darkness_treshold')|int }}"
   condition:
     condition: and
     conditions:

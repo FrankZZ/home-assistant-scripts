@@ -1,4 +1,4 @@
-- alias: "Reset all lights on startup"
+- alias: "Reset all milights on startup"
   trigger:
     - platform: homeassistant
       event: start
@@ -7,4 +7,5 @@
       data:
         rgb_color: [255,255,255] # white
         brightness_pct: 1
+        entity_id: group.milights
     - service: light.turn_off
