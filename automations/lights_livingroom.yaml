@@ -37,6 +37,8 @@
   trigger:
     - platform: template
       value_template: "{{ states('sensor.lux_livingroom')|default(0)|int <= states('input_number.livingroom_darkness_treshold')|int }}"
+    - platform: homeassistant
+      event: start
     - platform: state
       entity_id: group.all_devices
       to: home
