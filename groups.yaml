@@ -36,7 +36,7 @@ upperhallway_scenes:
 livingroom_view:
   view: yes
   entities:
-    - light.livingroom
+    - group.livingroomlights
     - sensor.harmony_livingroom
     - media_player.woonkamer_tv
 
@@ -44,7 +44,8 @@ hallway_view:
   view: yes
   entities:
     - timer.hallway
-    - light.hallway
+    - group.hallwaylights
+    - switch.hallway_switch_0
     - switch.hallway_pir_0
     - switch.hallway_pir_1
     - switch.hallway_door_0
@@ -58,7 +59,8 @@ upperhallway_view:
   view: yes
   entities:
     - timer.upperhallway
-    - light.upperhallway
+    - group.upperhallwaylights
+    - switch.hallway_switch_1
     - switch.upperhallway_pir_0
     - switch.upperhallway_pir_1
 
@@ -83,9 +85,31 @@ upperhallway_view:
 
 milights:
   entities:
-    - light.livingroom
-    - light.hallway
-    - light.upperhallway
+    - light.livingroom_dinertable
+    - light.livingroom_couch_1
+    - light.livingroom_couch_2
+    - light.hallway_frontdoor
+    - light.hallway_stairway
+    - light.hallway_kitchen
+    - light.upperhallway_stairway
+    - light.upperhallway_storage
+
+livingroomlights:
+  entities:
+    - light.livingroom_dinertable
+    - light.livingroom_couch_1
+    - light.livingroom_couch_2
+
+hallwaylights:
+  entities:
+    - light.hallway_frontdoor
+    - light.hallway_stairway
+    - light.hallway_kitchen
+
+upperhallwaylights:
+  entities:
+    - light.upperhallway_stairway
+    - light.upperhallway_storage
 
 presence_view:
   view: yes
@@ -153,8 +177,8 @@ settings:
 lights:
   entities:
     - sensor.lux_livingroom
-    - light.livingroom
-    - light.hallway
-    - light.upperhallway
+    - group.livingroomlights
+    - group.hallwaylights
+    - group.upperhallwaylights
     - timer.hallway
     - timer.upperhallway

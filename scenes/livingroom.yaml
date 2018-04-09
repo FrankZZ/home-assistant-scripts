@@ -1,6 +1,6 @@
 - name: livingroom_morning
   entities:
-    light.livingroom:
+    group.livingroomlights:
       state: on
       brightness: 120
       transition: 5
@@ -14,7 +14,7 @@
 
 - name: livingroom_midday
   entities:
-    light.livingroom:
+    group.livingroomlights:
       state: on
       brightness: 200
       transition: 10
@@ -28,7 +28,7 @@
 
 - name: livingroom_evening
   entities:
-    light.livingroom:
+    group.livingroomlights:
       state: on
       brightness: 180
       transition: 5
@@ -42,7 +42,7 @@
 
 - name: livingroom_night
   entities:
-    light.livingroom:
+    group.livingroomlights:
       state: on
       brightness: 50
       transition: 5
@@ -56,7 +56,7 @@
 
 - name: livingroom_full
   entities:
-    light.livingroom:
+    group.livingroomlights:
       state: on
       brightness: 255
       rgb_color: [255,255,255] # white
@@ -69,7 +69,7 @@
 
 - name: livingroom_off
   entities:
-    light.livingroom:
+    group.livingroomlights:
       state: off
     light.rgbw01:
       state: off

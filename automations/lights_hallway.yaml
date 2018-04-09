@@ -15,6 +15,24 @@
     data_template:
       entity_id: "script.hallway_{{ states('input_select.timeofday') }}"
 
+- alias: "Licht Gang soms een keer aan als er niemand thuis is"
+  initial_state: on
+  trigger:
+    - platform: time
+      minutes: '/10'
+      seconds: 00
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('input_select.timeofday', 'evening') }}"
+      - condition: template
+        value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+  action:
+    service: script.turn_on
+    data_template:
+      entity_id: "script.hallway_away"
+
 - alias: "Licht Gang aan als iemand van de trap af komt"
   initial_state: on
   trigger:

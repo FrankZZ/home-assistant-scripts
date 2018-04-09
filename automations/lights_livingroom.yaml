@@ -11,7 +11,29 @@
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'morning') }}"
       - condition: template
-        value_template: "{{ not is_state('light.livingroom', 'on') }}"
+        value_template: "{{ not is_state('group.livingroomlights', 'on') }}"
+  action:
+    service: scene.turn_on
+    data_template:
+      entity_id: "scene.livingroom_{{ states('input_select.timeofday') }}"
+
+- alias: "Licht Woonkamer aan savonds als niemand meer thuis is"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: group.all_devices
+      from: home
+      to: not_home
+    - platform: state
+      entity_id: input_select.timeofday
+      to: evening
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+      - condition: template
+        value_template: "{{ is_state('input_select.timeofday', 'evening') }}"
   action:
     service: scene.turn_on
     data_template:
@@ -25,8 +47,12 @@
       from: home
       to: not_home
   condition:
-    condition: template
-    value_template: "{{ is_state('light.livingroom', 'on') }}"
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('group.livingroomlights', 'on') }}"
+      - condition: template
+        value_template: "{{ is_state('input_select.timeofday', 'morning') or is_state('input_select.timeofday', 'midday') }}"
   action:
     service: scene.turn_on
     data_template:
@@ -52,7 +78,7 @@
       - condition: template
         value_template: "{{ is_state('group.all_devices', 'home') }}"
       - condition: template
-        value_template: "{{ not is_state('light.livingroom', 'on') }}"
+        value_template: "{{ not is_state('group.livingroomlights', 'on') }}"
   action:
     service: scene.turn_on
     data_template:
@@ -69,7 +95,7 @@
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'midday') }}"
       - condition: template
-        value_template: "{{ is_state('light.livingroom', 'on') }}"
+        value_template: "{{ is_state('group.livingroomlights', 'on') }}"
   action:
     service: scene.turn_on
     entity_id: "scene.livingroom_off"
@@ -84,7 +110,7 @@
     condition: and
     conditions:
       - condition: template
-        value_template: "{{ is_state('light.livingroom', 'on') }}"
+        value_template: "{{ is_state('group.livingroomlights', 'on') }}"
       - condition: template
         value_template: "{{ is_state('remote.livingroom', 'off') }}"
   action:
@@ -125,7 +151,7 @@
     condition: and
     conditions:
       - condition: template
-        value_template: "{{ is_state('light.livingroom', 'on') }}"
+        value_template: "{{ is_state('group.livingroomlights', 'on') }}"
       - condition: template
         value_template: "{{ is_state('remote.livingroom', 'off') }}"
       - condition: template
@@ -141,7 +167,7 @@
     entity_id: input_select.timeofday
   condition:
     condition: template
-    value_template: "{{ not is_state('light.livingroom', 'off') and not is_state('input_select.timeofday', 'night') }}"
+    value_template: "{{ not is_state('group.livingroomlights', 'off') and not is_state('input_select.timeofday', 'night') }}"
   action:
     service: scene.turn_on
     data_template:

@@ -30,14 +30,38 @@ switch.chromecast_livingroom_power:
 light.livingroom1:
   friendly_name: Testlamp
 
-light.livingroom:
-  friendly_name: Woonkamer
+light.livingroom_dinertable:
+  friendly_name: Eettafel
 
-light.hallway:
-  friendly_name: Gang
+light.livingroom_couch_1:
+  friendly_name: Bank Spiegel
 
-light.upperhallway:
-  friendly_name: Overloop
+light.livingroom_couch_2:
+  friendly_name: Bank Serre
+
+light.hallway_stairway:
+  friendly_name: Trap Beneden
+
+light.hallway_kitchen:
+  friendly_name: Keuken
+
+light.hallway_frontdoor:
+  friendly_name: Voordeur
+
+light.upperhallway_storage:
+  friendly_name: Werkkamer
+
+light.upperhallway_stairway:
+  friendly_name: Trap Boven
+
+group.livingroomlights:
+  friendly_name: Woonkamer Lampen
+
+group.hallwaylights:
+  friendly_name: Gang Lampen
+
+group.upperhallwaylights:
+  friendly_name: Overloop Lampen
 
 timer.hallway:
   friendly_name: Gang Timeout
