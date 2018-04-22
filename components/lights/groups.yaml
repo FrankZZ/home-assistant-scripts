@@ -1,0 +1,31 @@
+- platform: group
+  name: milights
+  entities:
+    - light.livingroom_dinertable
+    - light.livingroom_couch_1
+    - light.livingroom_couch_2
+    - light.hallway_frontdoor
+    - light.hallway_stairway
+    - light.hallway_kitchen
+    - light.upperhallway_stairway
+    - light.upperhallway_storage
+
+- platform: group
+  name: livingroom_lights
+  entities:
+    - light.livingroom_dinertable
+    - light.livingroom_couch_1
+    - light.livingroom_couch_2
+
+- platform: group
+  name: hallway_lights
+  entities:
+    - light.hallway_frontdoor
+    - light.hallway_stairway
+    - light.hallway_kitchen
+
+- platform: group
+  name: upperhallway_lights
+  entities:
+    - light.upperhallway_stairway
+    - light.upperhallway_storage

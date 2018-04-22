@@ -32,7 +32,7 @@
     entity_id: input_select.timeofday
   condition:
     condition: template
-    value_template: "{{ is_state('group.upperhallwaylights', 'on') }}"
+    value_template: "{{ is_state('light.upperhallway_lights', 'on') }}"
   action:
     service: script.turn_on
     data_template:

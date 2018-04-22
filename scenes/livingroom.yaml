@@ -1,75 +1,44 @@
 - name: livingroom_morning
   entities:
-    group.livingroomlights:
+    light.livingroom_lights:
       state: on
       brightness: 120
-      transition: 5
-      rgb_color: [255,255,255] # white
-    light.rgbw01:
-      state: on
-      brightness: 255
-      transition: 5
-      white_value: 80
-      rgb_color: [255,128,0]
+      effect: white_mode
+      # rgb_color: [255,255,255] # white
 
 - name: livingroom_midday
   entities:
-    group.livingroomlights:
+    light.livingroom_lights:
       state: on
       brightness: 200
-      transition: 10
-      rgb_color: [255,255,255] # white
-    light.rgbw01:
-      state: on
-      brightness: 255
-      transition: 5
-      white_value: 200
-      rgb_color: [255,128,0]
+      effect: white_mode
+      # rgb_color: [255,255,255] # white
 
 - name: livingroom_evening
   entities:
-    group.livingroomlights:
+    light.livingroom_lights:
       state: on
       brightness: 180
-      transition: 5
-      rgb_color: [255,255,255] # white
-    light.rgbw01:
-      state: on
-      brightness: 255
-      transition: 5
-      white_value: 85
-      rgb_color: [255,128,0]
+      effect: white_mode
+      # rgb_color: [255,255,255] # white
 
 - name: livingroom_night
   entities:
-    group.livingroomlights:
+    light.livingroom_lights:
       state: on
       brightness: 50
-      transition: 5
-      rgb_color: [255,255,255] # white
-    light.rgbw01:
-      state: on
-      brightness: 128
-      transition: 5
-      white_value: 20
-      rgb_color: [255,128,0]
+      effect: white_mode
+      # rgb_color: [255,255,255] # white
 
 - name: livingroom_full
   entities:
-    group.livingroomlights:
+    light.livingroom_lights:
       state: on
       brightness: 255
-      rgb_color: [255,255,255] # white
-    light.rgbw01:
-      state: on
-      brightness: 255
-      transition: 5
-      white_value: 255
-      rgb_color: [255,128,0]
+      effect: white_mode
+      # rgb_color: [255,255,255] # white
 
 - name: livingroom_off
   entities:
-    group.livingroomlights:
-      state: off
-    light.rgbw01:
+    light.livingroom_lights:
       state: off

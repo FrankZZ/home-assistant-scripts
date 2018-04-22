@@ -54,13 +54,13 @@ light.upperhallway_storage:
 light.upperhallway_stairway:
   friendly_name: Trap Boven
 
-group.livingroomlights:
+light.livingroom_lights:
   friendly_name: Woonkamer Lampen
 
-group.hallwaylights:
+light.hallway_lights:
   friendly_name: Gang Lampen
 
-group.upperhallwaylights:
+light.upperhallway_lights:
   friendly_name: Overloop Lampen
 
 timer.hallway:
@@ -151,5 +151,5 @@ group.trash:
 
 group.lights:
   control: hidden
-  friendly_name: Licht
+  friendly_name: Lampen
   icon: mdi:light

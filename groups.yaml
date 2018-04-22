@@ -5,6 +5,10 @@ default_view:
     - group.lights
     - group.trash
     - camera.woonkamer
+    - sun.sun
+    - sensor.lux_livingroom
+    - timer.hallway
+    - timer.upperhallway
 
 livingroom_scenes:
   entities:
@@ -36,7 +40,7 @@ upperhallway_scenes:
 livingroom_view:
   view: yes
   entities:
-    - group.livingroomlights
+    - light.livingroom_lights
     - sensor.harmony_livingroom
     - media_player.woonkamer_tv
 
@@ -44,7 +48,7 @@ hallway_view:
   view: yes
   entities:
     - timer.hallway
-    - group.hallwaylights
+    - light.hallway_lights
     - switch.hallway_switch_0
     - switch.hallway_pir_0
     - switch.hallway_pir_1
@@ -59,7 +63,7 @@ upperhallway_view:
   view: yes
   entities:
     - timer.upperhallway
-    - group.upperhallwaylights
+    - light.upperhallway_lights
     - switch.hallway_switch_1
     - switch.upperhallway_pir_0
     - switch.upperhallway_pir_1
@@ -82,34 +86,6 @@ upperhallway_view:
 #     - sensor.pws_weather_4d_metric
 #     - sensor.pws_weather_4n_metric
 #     - sensor.pws_weather_weather
-
-milights:
-  entities:
-    - light.livingroom_dinertable
-    - light.livingroom_couch_1
-    - light.livingroom_couch_2
-    - light.hallway_frontdoor
-    - light.hallway_stairway
-    - light.hallway_kitchen
-    - light.upperhallway_stairway
-    - light.upperhallway_storage
-
-livingroomlights:
-  entities:
-    - light.livingroom_dinertable
-    - light.livingroom_couch_1
-    - light.livingroom_couch_2
-
-hallwaylights:
-  entities:
-    - light.hallway_frontdoor
-    - light.hallway_stairway
-    - light.hallway_kitchen
-
-upperhallwaylights:
-  entities:
-    - light.upperhallway_stairway
-    - light.upperhallway_storage
 
 presence_view:
   view: yes
@@ -172,13 +148,11 @@ settings:
     - group.hallway_timeout_settings
     - group.livingroom_brightness_settings
     - group.generic_settings
+    - sun.sun
     - sensor.lux_livingroom
 
 lights:
   entities:
-    - sensor.lux_livingroom
-    - group.livingroomlights
-    - group.hallwaylights
-    - group.upperhallwaylights
-    - timer.hallway
-    - timer.upperhallway
+    - light.livingroom_lights
+    - light.hallway_lights
+    - light.upperhallway_lights
