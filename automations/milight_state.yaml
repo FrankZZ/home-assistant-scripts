@@ -1,4 +1,5 @@
 - alias: "Reset all milights on startup"
+  initial_state: off
   trigger:
     - platform: homeassistant
       event: start

@@ -8,8 +8,9 @@
         switch.hallway_door_0
       to: 'on'
   condition:
-    condition: template
-    value_template: "{{ states('sensor.lux_livingroom')|default(0)|int <= states('input_number.hallway_darkness_treshold')|int }}"
+    condition: state
+    entity_id: binary_sensor.hallway_dark
+    state: 'on'
   action:
     service: script.turn_on
     data_template:
@@ -43,8 +44,9 @@
   condition:
     condition: and
     conditions:
-      - condition: template
-        value_template: "{{ states('sensor.lux_livingroom')|default(0)|int <= states('input_number.hallway_darkness_treshold')|int }}"
+      - condition: state
+        entity_id: binary_sensor.hallway_dark
+        state: 'on'
       - condition: template
         value_template: '{{ (as_timestamp(now())-as_timestamp(states.switch.upperhallway_pir_1.last_updated)) < 30 }}'
   action:

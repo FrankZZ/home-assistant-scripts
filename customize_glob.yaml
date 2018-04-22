@@ -35,3 +35,6 @@
 "input_number.*_darkness_treshold":
   friendly_name: Lichtgrens
   icon: mdi:code-less-than-or-equal
+
+"group.*_scenes":
+  control: hidden
