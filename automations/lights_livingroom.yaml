@@ -10,6 +10,9 @@
     conditions:
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'morning') }}"
+      - condition: state
+        entity_id: binary_sensor.livingroom_dark
+        state: 'on'
       - condition: template
         value_template: "{{ not is_state('light.livingroom_lights', 'on') }}"
   action:
@@ -61,8 +64,10 @@
 - alias: "Licht Woonkamer aan bij weinig zonlicht als er iemand thuis is"
   initial_state: on
   trigger:
-    - platform: template
-      value_template: "{{ states('sensor.lux_livingroom')|default(0)|int <= states('input_number.livingroom_darkness_treshold')|int }}"
+    - platform: state
+      entity_id: binary_sensor.livingroom_dark
+      from: 'off'
+      to: 'on'
     - platform: homeassistant
       event: start
     - platform: state
@@ -71,8 +76,9 @@
   condition:
     condition: and
     conditions:
-      - condition: template
-        value_template: "{{ states('sensor.lux_livingroom')|default(0)|int <= states('input_number.livingroom_darkness_treshold')|int }}"
+      - condition: state
+        entity_id: binary_sensor.livingroom_dark
+        state: 'on'
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'midday') or is_state('input_select.timeofday', 'evening') }}"
       - condition: template
@@ -87,13 +93,15 @@
 - alias: "Licht Woonkamer uit bij genoeg zonlicht overdag"
   initial_state: on
   trigger:
-    - platform: template
-      value_template: "{{ (states('sensor.lux_livingroom')|default(0)|int + 50) >= states('input_number.livingroom_darkness_treshold')|int }}"
+    - platform: state
+      entity_id: binary_sensor.livingroom_dark
+      from: 'on'
+      to: 'off'
   condition:
     condition: and
     conditions:
       - condition: template
-        value_template: "{{ is_state('input_select.timeofday', 'midday') }}"
+        value_template: "{{ is_state('input_select.timeofday', 'morning') or is_state('input_select.timeofday', 'midday') }}"
       - condition: template
         value_template: "{{ is_state('light.livingroom_lights', 'on') }}"
   action:
@@ -116,7 +124,7 @@
   action:
     service: scene.turn_on
     entity_id: "scene.livingroom_off"
-
+ 
 - alias: "Licht Woonkamer aan bij beweging of tv 'snachts"
   initial_state: on
   trigger:
@@ -131,6 +139,8 @@
     conditions:
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'night') }}"
+      - condition: template
+        value_template: "{{ is_state('light.livingroom', 'off') }}"
   action:
     service: scene.turn_on
     data_template:

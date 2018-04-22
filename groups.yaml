@@ -2,6 +2,11 @@
 default_view:
   view: yes
   entities:
+    - binary_sensor.multisensor_2_1
+    - sensor.multisensor_2_2
+    - sensor.multisensor_2_3
+    - sensor.multisensor_2_4
+    - sensor.multisensor_2_5
     - group.lights
     - group.trash
     - camera.woonkamer
@@ -42,6 +47,7 @@ livingroom_view:
   entities:
     - light.livingroom_lights
     - sensor.harmony_livingroom
+    - group.livingroom_scenes
     - media_player.woonkamer_tv
 
 hallway_view:
@@ -50,14 +56,10 @@ hallway_view:
     - timer.hallway
     - light.hallway_lights
     - switch.hallway_switch_0
+    - group.hallway_scenes
     - switch.hallway_pir_0
     - switch.hallway_pir_1
     - switch.hallway_door_0
-
-trash:
-  entities:
-    - sensor.trash_today
-    - sensor.trash_tomorrow
 
 upperhallway_view:
   view: yes
@@ -65,8 +67,14 @@ upperhallway_view:
     - timer.upperhallway
     - light.upperhallway_lights
     - switch.hallway_switch_1
+    - group.upperhallway_scenes
     - switch.upperhallway_pir_0
     - switch.upperhallway_pir_1
+
+trash:
+  entities:
+    - sensor.trash_today
+    - sensor.trash_tomorrow
 
 # daily_forecast_view:
 #   view: yes

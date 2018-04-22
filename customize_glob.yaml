@@ -4,6 +4,10 @@
 "scene:*":
   hidden: true
 
+"*_off":
+  friendly_name: Uit
+  icon: mdi:flash-off
+
 "*_full":
   friendly_name: Vol
   icon: mdi:flashlight
