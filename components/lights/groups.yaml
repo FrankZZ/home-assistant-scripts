@@ -20,9 +20,9 @@
 - platform: group
   name: hallway_lights
   entities:
-    - light.hallway_frontdoor
     - light.hallway_stairway
     - light.hallway_kitchen
+    - light.hallway_frontdoor
 
 - platform: group
   name: upperhallway_lights
