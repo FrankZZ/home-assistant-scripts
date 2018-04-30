@@ -2,11 +2,7 @@
 default_view:
   view: yes
   entities:
-    - binary_sensor.multisensor_2_1
-    - sensor.multisensor_2_2
-    - sensor.multisensor_2_3
-    - sensor.multisensor_2_4
-    - sensor.multisensor_2_5
+    - binary_sensor.livingroom_dark
     - group.lights
     - group.trash
     - camera.woonkamer
@@ -45,6 +41,7 @@ upperhallway_scenes:
 livingroom_view:
   view: yes
   entities:
+    - binary_sensor.livingroom_dark
     - light.livingroom_lights
     - sensor.harmony_livingroom
     - group.livingroom_scenes
@@ -53,6 +50,7 @@ livingroom_view:
 hallway_view:
   view: yes
   entities:
+    - binary_sensor.hallway_dark
     - timer.hallway
     - light.hallway_lights
     - switch.hallway_switch_0
@@ -64,6 +62,7 @@ hallway_view:
 upperhallway_view:
   view: yes
   entities:
+    - binary_sensor.upperhallway_dark
     - timer.upperhallway
     - light.upperhallway_lights
     - switch.hallway_switch_1

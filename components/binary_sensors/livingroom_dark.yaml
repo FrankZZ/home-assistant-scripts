@@ -4,4 +4,12 @@
       delay_off:
         minutes: 10
       value_template: >-
-        {{ states('sensor.lux_livingroom')|default(0)|int <= states('input_number.livingroom_darkness_treshold')|int }}
+        {%- if states('sensor.lux_livingroom')|default(0)|int <= states('input_number.livingroom_darkness_treshold')|int %}
+          True
+        {%- else %} # if its brighter than lux limit + 50 its not dark anymore
+          {%- if states('sensor.lux_livingroom')|default(0)|int >= (states('input_number.livingroom_darkness_treshold')|int + 50) %}
+            False
+          {%- else %}
+            True
+          {%- endif %}
+        {%- endif %}

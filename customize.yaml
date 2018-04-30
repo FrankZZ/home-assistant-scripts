@@ -153,3 +153,12 @@ group.lights:
   control: hidden
   friendly_name: Lampen
   icon: mdi:light
+
+binary_sensor.livingroom_dark:
+  friendly_name: Woonkamer Donker
+
+binary_sensor.hallway_dark:
+  friendly_name: Gang Donker
+
+binary_sensor.upperhallway_dark:
+  friendly_name: Overloop Donker

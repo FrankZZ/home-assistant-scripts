@@ -262,10 +262,10 @@ device_tracker:
     new_device_defaults:
       track_new_devices: false
 
-camera:
-  - platform: ffmpeg
-    name: !secret cam1_name
-    input: !secret cam1_input
+# camera:
+#   - platform: ffmpeg
+#     name: !secret cam1_name
+#     input: !secret cam1_input
 
 ffmpeg:
   ffmpeg_bin: /usr/local/bin/ffmpeg
