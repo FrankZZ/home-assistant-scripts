@@ -1,0 +1,63 @@
+- alias: "Reminder when Frank gets home and its paid parking"
+  trigger:
+    - platform: state
+      entity_id: device_tracker.frank_n6
+      from: 'not_home'
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.frank_n6
+      from: 'not_home'
+      to: 'home'
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: device_tracker.frank_n6
+      from: 'not_home'
+      to: 'home'
+      for:
+        minutes: 2
+    - platform: state
+      entity_id: device_tracker.frank_n6
+      from: 'not_home'
+      to: 'home'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id: device_tracker.frank_n6
+      from: 'not_home'
+      to: 'home'
+      for:
+        minutes: 4
+    - platform: state
+      entity_id: device_tracker.frank_n6
+      from: 'not_home'
+      to: 'home'
+      for:
+        minutes: 5
+  condition:
+    condition: or
+    conditions:
+      - condition: time
+        after: '09:00'
+        before: '18:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: time
+        after: '18:00'
+        before: '21:00'
+        weekday:
+          - fri
+      - condition: time
+        after: '09:00'
+        before: '17:00'
+        weekday:
+          - sat
+  action:
+    service: notify.web_frank_s8p
+    data:
+      title: "Betaald Parkeren"
+      message: "Vergeet niet betaald parkeren aan te zetten!"
