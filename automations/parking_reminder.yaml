@@ -1,5 +1,17 @@
 - alias: "Reminder when Frank gets home and its paid parking"
   trigger:
+    - platform: time
+      at: '09:00'
+    - platform: time
+      at: '09:01'
+    - platform: time
+      at: '09:02'
+    - platform: time
+      at: '09:03'
+    - platform: time
+      at: '09:04'
+    - platform: time
+      at: '09:05'
     - platform: state
       entity_id: device_tracker.frank_n6
       from: 'not_home'
@@ -35,27 +47,32 @@
       for:
         minutes: 5
   condition:
-    condition: or
+    condition: and
     conditions:
-      - condition: time
-        after: '09:00'
-        before: '18:00'
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
-      - condition: time
-        after: '18:00'
-        before: '21:00'
-        weekday:
-          - fri
-      - condition: time
-        after: '09:00'
-        before: '17:00'
-        weekday:
-          - sat
+      - condition: state
+        entity_id: device_tracker.frank_n6
+        state: 'home'
+      - condition: or
+        conditions:
+          - condition: time
+            after: '08:59'
+            before: '18:01'
+            weekday:
+              - mon
+              - tue
+              - wed
+              - thu
+              - fri
+          - condition: time
+            after: '17:59'
+            before: '21:01'
+            weekday:
+              - fri
+          - condition: time
+            after: '08:59'
+            before: '17:01'
+            weekday:
+              - sat
   action:
     service: notify.web_frank_s8p
     data:
