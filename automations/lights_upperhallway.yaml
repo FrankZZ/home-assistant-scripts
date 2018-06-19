@@ -7,13 +7,34 @@
         switch.upperhallway_pir_1
       to: 'on'
   condition:
-    condition: state
-    entity_id: 'binary_sensor.upperhallway_dark'
-    state: 'on'
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: 'sensor.upperhallway_motions_lastminute'
+        below: '5'
+      - condition: state
+        entity_id: 'binary_sensor.upperhallway_dark'
+        state: 'on'
   action:
     service: script.turn_on
     data_template:
       entity_id: "script.upperhallway_{{ states('input_select.timeofday') }}"
+
+- alias: "Licht vol aan als er veel beweging is"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id:
+        switch.upperhallway_pir_0,
+        switch.upperhallway_pir_1
+      to: 'on'
+  condition:
+      condition: numeric_state
+      entity_id: 'sensor.upperhallway_motions_lastminute'
+      above: '4'
+  action:
+    service: switch.turn_on
+    entity_id: switch.hallway_switch_1
 
 - alias: "Licht Overloop uit als timer stopt"
   initial_state: on

@@ -163,3 +163,13 @@ lights:
     - light.livingroom_lights
     - light.hallway_lights
     - light.upperhallway_lights
+
+hallway_pirs:
+  entities:
+    - switch.hallway_pir_0
+    - switch.hallway_pir_1
+
+upperhallway_pirs:
+  entities:
+    - switch.upperhallway_pir_0
+    - switch.upperhallway_pir_1

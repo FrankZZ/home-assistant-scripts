@@ -1,0 +1,7 @@
+- platform: history_stats
+  name: upperhallway_motions_lastminute
+  entity_id: group.upperhallway_pirs
+  state: 'on'
+  type: count
+  duration: '00:01:00'
+  end: '{{ now() }}'

@@ -104,6 +104,9 @@ hallway_off:
 
 upperhallway_morning:
   sequence:
+    - condition: state
+      entity_id: switch.hallway_switch_1
+      state: 'off'
     - service: timer.start
       data_template:
         entity_id: timer.upperhallway
@@ -120,6 +123,9 @@ upperhallway_morning:
 
 upperhallway_midday:
   sequence:
+    - condition: state
+      entity_id: switch.hallway_switch_1
+      state: 'off'
     - service: timer.start
       data_template:
         entity_id: timer.upperhallway
@@ -136,6 +142,9 @@ upperhallway_midday:
 
 upperhallway_evening:
   sequence:
+    - condition: state
+      entity_id: switch.hallway_switch_1
+      state: 'off'
     - service: timer.start
       data_template:
         entity_id: timer.upperhallway
@@ -152,6 +161,9 @@ upperhallway_evening:
 
 upperhallway_night:
   sequence:
+    - condition: state
+      entity_id: switch.hallway_switch_1
+      state: 'off'
     - service: timer.start
       data_template:
         entity_id: timer.upperhallway
