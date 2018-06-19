@@ -10,8 +10,8 @@
     condition: and
     conditions:
       - condition: numeric_state
-        entity_id: 'sensor.upperhallway_motions_lastminute'
-        below: '5'
+        entity_id: 'sensor.upperhallway_motions_lasthalfminute'
+        below: '4'
       - condition: state
         entity_id: 'binary_sensor.upperhallway_dark'
         state: 'on'
@@ -30,8 +30,8 @@
       to: 'on'
   condition:
       condition: numeric_state
-      entity_id: 'sensor.upperhallway_motions_lastminute'
-      above: '4'
+      entity_id: 'sensor.upperhallway_motions_lasthalfminute'
+      above: '3'
   action:
     service: switch.turn_on
     entity_id: switch.hallway_switch_1

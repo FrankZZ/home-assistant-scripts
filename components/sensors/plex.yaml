@@ -1,1 +1,4 @@
-# - platform: plex
+- platform: plex
+  name: !secret plex_name
+  host: !secret plex_host
+  token: !secret plex_token

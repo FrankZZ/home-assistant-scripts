@@ -162,3 +162,6 @@ binary_sensor.hallway_dark:
 
 binary_sensor.upperhallway_dark:
   friendly_name: Overloop Donker
+
+sensor.upperhallway_motions_lasthalfminute:
+  friendly_name: Bewegingen laatste minuut

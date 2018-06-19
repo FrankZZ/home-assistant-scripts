@@ -10,6 +10,7 @@ default_view:
     - sensor.lux_livingroom
     - timer.hallway
     - timer.upperhallway
+    - sensor.plex01
 
 livingroom_scenes:
   entities:
@@ -62,6 +63,7 @@ hallway_view:
 upperhallway_view:
   view: yes
   entities:
+    - sensor.upperhallway_motions_lasthalfminute
     - binary_sensor.upperhallway_dark
     - timer.upperhallway
     - light.upperhallway_lights
