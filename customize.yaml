@@ -124,6 +124,9 @@ group.hallway_brightness_settings:
 group.upperhallway_brightness_settings:
   friendly_name: Overloop Lichtsterkte
 
+group.upperhallway_searchlight_settings:
+  friendly_name: Overloop Zoeklicht
+
 group.generic_settings:
   friendly_name: Overige Instellingen
 
@@ -163,5 +166,5 @@ binary_sensor.hallway_dark:
 binary_sensor.upperhallway_dark:
   friendly_name: Overloop Donker
 
-sensor.upperhallway_motions_lasthalfminute:
+sensor.upperhallway_recent_motions:
   friendly_name: Bewegingen laatste minuut

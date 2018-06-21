@@ -63,7 +63,7 @@ hallway_view:
 upperhallway_view:
   view: yes
   entities:
-    - sensor.upperhallway_motions_lasthalfminute
+    - sensor.upperhallway_recent_motions
     - binary_sensor.upperhallway_dark
     - timer.upperhallway
     - light.upperhallway_lights
@@ -130,6 +130,10 @@ upperhallway_brightness_settings:
     - input_number.upperhallway_brightness_full
     - input_number.upperhallway_darkness_treshold
 
+upperhallway_searchlight_settings:
+  - input_number.upperhallway_recent_motions_treshold
+  - input_number.upperhallway_recent_motions_seconds
+
 hallway_brightness_settings:
   entities:
     - input_number.hallway_brightness_morning
@@ -153,6 +157,7 @@ settings:
   entities:
     - group.upperhallway_timeout_settings
     - group.upperhallway_brightness_settings
+    - group.upperhallway_searchlight_settings
     - group.hallway_brightness_settings
     - group.hallway_timeout_settings
     - group.livingroom_brightness_settings

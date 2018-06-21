@@ -1,7 +1,7 @@
 - platform: history_stats
-  name: upperhallway_motions_lasthalfminute
+  name: upperhallway_recent_motions
   entity_id: group.upperhallway_pirs
   state: 'on'
   type: count
-  duration: '00:00:30'
+  start: "{{ as_timestamp(now())|int - states('input_number.upperhallway_recent_motions_seconds')|int }}"
   end: '{{ now() }}'

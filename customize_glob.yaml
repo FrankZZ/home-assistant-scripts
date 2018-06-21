@@ -36,5 +36,13 @@
   friendly_name: Lichtgrens
   icon: mdi:code-less-than-or-equal
 
+"input_number.*_recent_motions_treshold":
+  friendly_name: Bewegingsgrens
+  icon: mdi:magnify
+
+"input_number.*_recent_motions_seconds":
+  friendly_name: Timeout
+  icon: mdi:clock-end
+
 "group.*_scenes":
   control: hidden

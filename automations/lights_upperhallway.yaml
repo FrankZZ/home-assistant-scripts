@@ -9,9 +9,8 @@
   condition:
     condition: and
     conditions:
-      - condition: numeric_state
-        entity_id: 'sensor.upperhallway_motions_lasthalfminute'
-        below: '4'
+      - condition: template
+        value_template: "{{ states('sensor.upperhallway_recent_motions') < states('input_number.upperhallway_recent_motions_treshold') }}"
       - condition: state
         entity_id: 'binary_sensor.upperhallway_dark'
         state: 'on'
@@ -23,15 +22,8 @@
 - alias: "Licht vol aan als er veel beweging is"
   initial_state: on
   trigger:
-    - platform: state
-      entity_id:
-        switch.upperhallway_pir_0,
-        switch.upperhallway_pir_1
-      to: 'on'
-  condition:
-      condition: numeric_state
-      entity_id: 'sensor.upperhallway_motions_lasthalfminute'
-      above: '3'
+  - platform: template
+    value_template: "{{ states('sensor.upperhallway_recent_motions') >= states('input_number.upperhallway_recent_motions_treshold') }}"
   action:
     service: switch.turn_on
     entity_id: switch.hallway_switch_1

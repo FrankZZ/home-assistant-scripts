@@ -156,6 +156,15 @@ input_number:
     max: 600
     step: 10
     unit_of_measurement: sec
+  upperhallway_recent_motions_treshold:
+    min: 1
+    max: 10
+    step: 1
+  upperhallway_recent_motions_seconds:
+    min: 1
+    max: 120
+    step: 1
+    unit_of_measurement: sec
   hallway_brightness_morning:
     min: 0
     max: 100
