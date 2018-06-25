@@ -72,6 +72,23 @@ upperhallway_view:
     - switch.upperhallway_pir_0
     - switch.upperhallway_pir_1
 
+monitoring_view:
+  view: yes
+  entities:
+    - group.nzbget
+
+nzbget:
+  entities:
+    - sensor.nzbget_article_cache
+    - sensor.nzbget_average_speed
+    - sensor.nzbget_disk_free
+    - sensor.nzbget_download_paused
+    - sensor.nzbget_post_processing_paused
+    - sensor.nzbget_queue_size
+    - sensor.nzbget_size
+    - sensor.nzbget_speed
+    - sensor.nzbget_uptime
+
 trash:
   entities:
     - sensor.trash_today
@@ -152,7 +169,7 @@ livingroom_brightness_settings:
     # - input_number.livingroom_brightness_full
     - input_number.livingroom_darkness_treshold
 
-settings:
+settings_view:
   view: yes
   entities:
     - group.upperhallway_timeout_settings

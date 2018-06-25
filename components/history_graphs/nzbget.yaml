@@ -1,0 +1,8 @@
+# nzbget_speed:
+#   entities:
+#     - sensor.nzbget_speed
+
+# nzbget_article_cache:
+#   entities:
+#     - sensor.nzbget_article_cache
+#   refresh: 15

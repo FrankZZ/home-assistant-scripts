@@ -94,8 +94,11 @@ group.upperhallway_scenes:
 group.presence_view:
   icon: mdi:account-multiple
 
-group.settings:
+group.settings_view:
   icon: mdi:wrench
+
+group.monitoring_view:
+  icon: mdi:view-dashboard
 
 group.hallway_timeout_settings:
   friendly_name: Gang Timeout
