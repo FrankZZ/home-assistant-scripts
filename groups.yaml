@@ -169,6 +169,12 @@ livingroom_brightness_settings:
     # - input_number.livingroom_brightness_full
     - input_number.livingroom_darkness_treshold
 
+trash_settings:
+  entities:
+    - input_text.trash_announcement_housenumber
+    - input_text.trash_announcement_zipcode
+    - input_datetime.trash_announcement_time
+
 settings_view:
   view: yes
   entities:
@@ -179,6 +185,7 @@ settings_view:
     - group.hallway_timeout_settings
     - group.livingroom_brightness_settings
     - group.generic_settings
+    - group.trash_settings
     - sun.sun
     - sensor.lux_livingroom
 

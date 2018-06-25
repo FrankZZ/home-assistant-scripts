@@ -109,6 +109,15 @@ group.upperhallway_timeout_settings:
 input_select.timeofday:
   friendly_name: Huidig Dagdeel (Automatisch)
 
+input_datetime.trash_announcement_time:
+  friendly_name: Tijdstip afval melding
+
+input_text.trash_announcement_zipcode:
+  friendly_name: Postcode
+
+input_text.trash_announcement_housenumber:
+  friendly_name: Huisnummer
+
 group.livingroom_view:
   icon: mdi:sofa
 
@@ -121,6 +130,9 @@ group.upperhallway_view:
 group.livingroom_brightness_settings:
   friendly_name: Huiskamer Lichtsterkte
 
+group.trash_settings:
+  friendly_name: Afval
+
 group.hallway_brightness_settings:
   friendly_name: Gang Lichtsterkte
 
@@ -131,7 +143,7 @@ group.upperhallway_searchlight_settings:
   friendly_name: Overloop Zoeklicht
 
 group.generic_settings:
-  friendly_name: Overige Instellingen
+  friendly_name: Algemeen
 
 group.default_view:
   icon: mdi:home-assistant

@@ -1,5 +1,5 @@
-- platform: rest
-  resource: !secret trash_rest_url
+- platform: command_line
+  command: "curl -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
   name: trash_today
   scan_interval: 3600
   value_template: >
@@ -12,8 +12,8 @@
       {% endif %}
     {% endfor %}
 
-- platform: rest
-  resource: !secret trash_rest_url
+- platform: command_line
+  command: "curl -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
   name: trash_tomorrow
   scan_interval: 3600
   value_template: >
