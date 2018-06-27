@@ -290,6 +290,14 @@ ffmpeg:
   ffmpeg_bin: /usr/local/bin/ffmpeg
 
 mqtt:
+  discovery: true
+  discovery_prefix: homeassistant
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
   broker: !secret mqtt_server
 
 telegram_bot:
