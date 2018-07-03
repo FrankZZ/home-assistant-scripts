@@ -46,7 +46,7 @@ logger:
 config:
 
 # Discover some devices automatically
-discovery:
+# discovery:
 
 # Enables support for tracking state changes over time
 history:
@@ -249,7 +249,7 @@ input_datetime:
 
 input_text:
   trash_announcement_zipcode: {}
-  trash_announcement_housenumber: {}  
+  trash_announcement_housenumber: {}
 
 light: !include_dir_merge_list components/lights
 sensor: !include_dir_merge_list components/sensors

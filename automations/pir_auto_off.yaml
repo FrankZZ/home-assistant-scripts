@@ -5,27 +5,27 @@
       entity_id: switch.hallway_pir_0
       to: 'on'
       for:
-        seconds: 1
+        seconds: 2
     - platform: state
       entity_id: switch.hallway_pir_1
       to: 'on'
       for:
-        seconds: 1
+        seconds: 2
     - platform: state
       entity_id: switch.upperhallway_pir_0
       to: 'on'
       for:
-        seconds: 1
+        seconds: 2
     - platform: state
       entity_id: switch.upperhallway_pir_1
       to: 'on'
       for:
-        seconds: 1
+        seconds: 2
     - platform: state
       entity_id: switch.hallway_door_0
       to: 'on'
       for:
-        seconds: 1
+        seconds: 2
     - platform: state
       entity_id: switch.hallway_switch_0
       to: 'on'
