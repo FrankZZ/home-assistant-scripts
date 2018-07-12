@@ -3,7 +3,8 @@
   trigger:
     - platform: state
       entity_id:
-        switch.hallway_pir_0
+        # switch.hallway_pir_0
+        binary_sensor.hallway_pir_0
       to: 'on'
   condition:
     condition: and
@@ -130,7 +131,7 @@
   trigger:
     - platform: state
       entity_id:
-        switch.hallway_pir_0,
+        binary_sensor.hallway_pir_0,
         switch.hallway_door_0,
         remote.livingroom
       to: 'on'
@@ -151,7 +152,8 @@
   trigger:
     - platform: state
       entity_id:
-        switch.hallway_pir_0,
+        # switch.hallway_pir_0,
+        binary_sensor.hallway_pir_0,
         switch.hallway_door_0,
         remote.livingroom # TV is uitgezet
       to: 'off'

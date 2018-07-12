@@ -1,5 +1,7 @@
 homeassistant:
-  # Name of the location where Home Assistant is running
+  customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
+   # Name of the location where Home Assistant is running
   name: !secret name
   # Location required to calculate the time the sun rises and sets
   latitude: !secret latitude
@@ -10,8 +12,6 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: !secret time_zone
-  customize: !include customize.yaml
-  customize_glob: !include customize_glob.yaml
   customize_domain:
     light:
       assumed_state: false
@@ -290,8 +290,8 @@ ffmpeg:
   ffmpeg_bin: /usr/local/bin/ffmpeg
 
 mqtt:
-  discovery: true
-  discovery_prefix: homeassistant
+  # discovery: true
+  # discovery_prefix: homeassistant
   birth_message:
     topic: 'hass/status'
     payload: 'online'

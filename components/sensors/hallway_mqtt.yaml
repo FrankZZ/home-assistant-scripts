@@ -1,0 +1,21 @@
+- platform: "mqtt"
+  name: hallway_switch_0
+  state_topic: "zigbee2mqtt/hallway_switch_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:toggle-switch"
+  value_template: "{{ value_json.click }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+    - "action"
+    - "duration"
+- platform: "mqtt"
+  name: hallway_pir_0_illuminance
+  state_topic: "zigbee2mqtt/hallway_pir_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "lx"
+  icon: "mdi:theme-light-dark"
+  value_template: "{{ value_json.illuminance }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"

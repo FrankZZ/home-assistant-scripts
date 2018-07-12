@@ -2,9 +2,24 @@ switch.hallway_pir_0:
   friendly_name: Gang Voor Beweging
   device_class: motion
 
+binary_sensor.hallway_pir_0:
+  friendly_name: Gang Voor Beweging
+  device_class: motion
+
+sensor.hallway_pir_0_illuminance:
+  friendly_name: Gang Voor Lux
+
 switch.hallway_pir_1:
   friendly_name: Gang Achter Beweging
   device_class: motion
+
+binary_sensor.hallway_pir_1:
+  friendly_name: Gang Achter Beweging
+  device_class: motion
+
+binary_sensor.hallway_smoke_0:
+  friendly_name: Gang Rook
+  device_class: smoke
 
 switch.upperhallway_pir_0:
   friendly_name: Overloop Trap Beweging
@@ -17,6 +32,9 @@ switch.upperhallway_pir_1:
 switch.hallway_door_0:
   friendly_name: Voordeur Deurcontact
   device_class: opening
+
+sensor.hallway_switch_0:
+  friendly_name: Gang Knop
 
 switch.hallway_switch_0:
   friendly_name: Gang Knop

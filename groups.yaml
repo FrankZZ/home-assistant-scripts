@@ -55,9 +55,13 @@ hallway_view:
     - timer.hallway
     - light.hallway_lights
     - switch.hallway_switch_0
+    - sensor.hallway_switch_0
     - group.hallway_scenes
     - switch.hallway_pir_0
+    - binary_sensor.hallway_pir_0
     - switch.hallway_pir_1
+    - binary_sensor.hallway_pir_1
+    - switch.upperhallway_pir_0
     - switch.hallway_door_0
 
 upperhallway_view:
