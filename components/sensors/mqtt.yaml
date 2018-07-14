@@ -10,3 +10,6 @@
   name: "Luchtvochtigheid Livingroom"
   unit_of_measurement: "%"
   state_topic: "zstr/livingroom/humid1"
+- platform: mqtt
+  name: zigbee2mqtt_status
+  state_topic: "zigbee2mqtt/bridge/state"

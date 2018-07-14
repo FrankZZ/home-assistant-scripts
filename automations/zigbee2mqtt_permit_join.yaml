@@ -1,0 +1,23 @@
+- alias: zigbee2mqtt permit_join notification
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: switch.zigbee2mqtt_permit_join
+  action:
+    service: notify.web_frank_s8p
+    data_template:
+      title: Zigbee2MQTT
+      message: "Pairing mode {{ trigger.to_state.state }}."
+
+- alias: zigbee2mqtt permit_join timeout
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: switch.zigbee2mqtt_permit_join
+      to: 'on'
+      for:
+        minutes: 2
+  action:
+    service: switch.turn_off
+    data_template:
+      entity_id: "{{ trigger.entity_id }}"

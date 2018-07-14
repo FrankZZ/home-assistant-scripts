@@ -1,0 +1,9 @@
+- platform: mqtt
+  name: zigbee2mqtt_permit_join
+  state_topic: "zigbee2mqtt/bridge/config/permit_join"
+  command_topic: "zigbee2mqtt/bridge/config/permit_join"
+  payload_on: "true"
+  payload_off: "false"
+  optimistic: false
+  qos: 0
+  retain: true

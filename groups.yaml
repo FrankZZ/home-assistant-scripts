@@ -8,6 +8,7 @@ default_view:
     - camera.woonkamer
     - sun.sun
     - sensor.lux_livingroom
+    - sensor.hallway_pir_0_illuminance
     - timer.hallway
     - timer.upperhallway
     - sensor.plex01
@@ -59,6 +60,7 @@ hallway_view:
     - group.hallway_scenes
     - switch.hallway_pir_0
     - binary_sensor.hallway_pir_0
+    - sensor.hallway_pir_0_illuminance
     - switch.hallway_pir_1
     - binary_sensor.hallway_pir_1
     - switch.upperhallway_pir_0
@@ -80,6 +82,7 @@ monitoring_view:
   view: yes
   entities:
     - group.nzbget
+    - sensor.zigbee2mqtt_status
 
 nzbget:
   entities:
@@ -125,6 +128,8 @@ presence_view:
 generic_settings:
   entities:
     - input_select.timeofday
+    - sensor.zigbee2mqtt_status
+    - switch.zigbee2mqtt_permit_join
 
 upperhallway_timeout_settings:
   entities:
