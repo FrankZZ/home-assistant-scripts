@@ -10,8 +10,8 @@
     - "action"
     - "duration"
 - platform: "mqtt"
-  name: hallway_pir_0_illuminance
-  state_topic: "zigbee2mqtt/hallway_pir_0"
+  name: hallway_pir_1_illuminance
+  state_topic: "zigbee2mqtt/hallway_pir_1"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "lx"
   icon: "mdi:theme-light-dark"

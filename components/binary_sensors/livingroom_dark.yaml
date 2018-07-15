@@ -1,8 +1,10 @@
 - platform: template
   sensors:
     livingroom_dark:
+      delay_on:
+        seconds: 70 # 2 samples
       delay_off:
-        minutes: 10
+        minutes: 10 # 10/11 samples
       value_template: >-
         {%- if states('sensor.lux_livingroom')|default(0)|int <= states('input_number.livingroom_darkness_treshold')|int %}
           True

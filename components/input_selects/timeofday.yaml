@@ -1,0 +1,8 @@
+timeofday:
+  name: Time of day
+  # initial: evening
+  options:
+    - "morning"
+    - "midday"
+    - "evening"
+    - "night"

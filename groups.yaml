@@ -8,7 +8,7 @@ default_view:
     - camera.woonkamer
     - sun.sun
     - sensor.lux_livingroom
-    - sensor.hallway_pir_0_illuminance
+    - sensor.hallway_pir_1_illuminance
     - timer.hallway
     - timer.upperhallway
     - sensor.plex01
@@ -60,7 +60,7 @@ hallway_view:
     - group.hallway_scenes
     - switch.hallway_pir_0
     - binary_sensor.hallway_pir_0
-    - sensor.hallway_pir_0_illuminance
+    - sensor.hallway_pir_1_illuminance
     - switch.hallway_pir_1
     - binary_sensor.hallway_pir_1
     - switch.upperhallway_pir_0
@@ -197,6 +197,7 @@ settings_view:
     - group.trash_settings
     - sun.sun
     - sensor.lux_livingroom
+    - sensor.hallway_pir_1_illuminance
 
 lights:
   entities:
