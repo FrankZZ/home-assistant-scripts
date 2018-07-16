@@ -7,7 +7,11 @@
     condition: template
     value_template: "{{ not is_state('sensor.trash_tomorrow', '') }}"
   action:
-    service: notify.harrie
-    data_template:
-      title: "*Afval morgen: {{ states.sensor.trash_tomorrow.state }}*"
-      message: "Morgen moet het volgende afval aan de straat: _{{ states.sensor.trash_tomorrow.state }}_!"
+    - service: notify.harrie
+      data_template:
+        title: "*Afval morgen: {{ states.sensor.trash_tomorrow.state }}*"
+        message: "Morgen moet het volgende afval aan de straat: _{{ states.sensor.trash_tomorrow.state }}_!"
+    - service: notify.web
+      data_template:
+        title: "*Afval morgen: {{ states.sensor.trash_tomorrow.state }}*"
+        message: "Morgen moet het volgende afval aan de straat: _{{ states.sensor.trash_tomorrow.state }}_!"

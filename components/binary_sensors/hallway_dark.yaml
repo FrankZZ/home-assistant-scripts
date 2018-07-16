@@ -5,4 +5,3 @@
         minutes: 10
       value_template: >-
         {{ states('sensor.lux_livingroom')|default(0)|int <= states('input_number.hallway_darkness_treshold')|int }}
-        # {{ states('sensor.hallway_pir_1_illuminance')|default(0)|int <= states('input_number.hallway_darkness_treshold')|int }}

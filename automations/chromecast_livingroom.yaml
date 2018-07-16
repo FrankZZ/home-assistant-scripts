@@ -108,3 +108,69 @@
     - service: remote.turn_off
       data:
         entity_id: remote.livingroom
+
+- alias: "Turn on audio when somebody connects spotify to chromecast and TV is powered off"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      from: 'idle'
+      to: 'playing'
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      from: 'idle'
+      to: 'paused'
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      from: 'off'
+      to: 'playing'
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      from: 'off'
+      to: 'paused'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: '{{ states.remote.livingroom.attributes.current_activity == "PowerOff" }}'
+      - condition: template
+        value_template: '{{ trigger.to_state.attributes.app_name == "Spotify" }}'
+  action:
+    - service: remote.turn_on
+      data:
+        entity_id: remote.livingroom
+        activity: "Chromecast luisteren"
+
+- alias: "Turn off audio when somebody disconnects spotify to chromecast and audio is turned on"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      from: 'playing'
+      to: 'idle'
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      from: 'paused'
+      to: 'idle'
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      from: 'playing'
+      to: 'off'
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      from: 'paused'
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: '{{ states.remote.livingroom.attributes.current_activity == "Chromecast luisteren" }}'
+      - condition: template
+        value_template: '{{ trigger.from_state.attributes.app_name == "Spotify" }}'
+      - condition: template
+        value_template: '{{ trigger.to_state.attributes.app_name == null }}'
+  action:
+    - service: remote.turn_off
+      data:
+        entity_id: remote.livingroom
+
