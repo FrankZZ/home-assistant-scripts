@@ -1,0 +1,16 @@
+- alias: "Update Last Motion"
+  trigger:
+    - platform: state
+      entity_id:
+        binary_sensor.hallway_pir_0,
+        binary_sensor.hallway_pir_1,
+        switch.hallway_door_0,
+        switch.upperhallway_pir_0,
+        switch.upperhallway_pir_1
+      to: 'on'
+  action:
+    - service: input_text.set_value
+      data:
+        entity_id: input_text.last_motion
+      data_template:
+        value: "{{ trigger.to_state.attributes.friendly_name }}"

@@ -136,6 +136,10 @@ input_text.trash_announcement_zipcode:
 input_text.trash_announcement_housenumber:
   friendly_name: Huisnummer
 
+input_text.last_motion:
+  icon: mdi:map-marker
+  friendly_name: Laatste beweging
+
 group.livingroom_view:
   icon: mdi:sofa
 

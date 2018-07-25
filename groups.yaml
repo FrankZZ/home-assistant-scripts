@@ -4,6 +4,7 @@ default_view:
   entities:
     - binary_sensor.livingroom_dark
     - group.lights
+    - input_text.last_motion
     - group.trash
     - camera.woonkamer
     - sun.sun
@@ -123,6 +124,7 @@ trash:
 presence_view:
   view: yes
   entities:
+    - input_text.last_motion
     - group.all_devices
 
 generic_settings:
