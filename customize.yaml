@@ -1,20 +1,20 @@
 switch.hallway_pir_0:
-  friendly_name: Gang Trap Beweging
+  friendly_name: Gang Trap
   device_class: motion
 
 binary_sensor.hallway_pir_0:
-  friendly_name: Gang Trap Beweging
+  friendly_name: Gang Trap
   device_class: motion
 
 sensor.hallway_pir_1_illuminance:
   friendly_name: Gang Keuken Lux
 
 switch.hallway_pir_1:
-  friendly_name: Gang Keuken Beweging
+  friendly_name: Gang Keuken
   device_class: motion
 
 binary_sensor.hallway_pir_1:
-  friendly_name: Gang Keuken Beweging
+  friendly_name: Gang Keuken
   device_class: motion
 
 binary_sensor.hallway_smoke_0:
@@ -22,15 +22,15 @@ binary_sensor.hallway_smoke_0:
   device_class: smoke
 
 switch.upperhallway_pir_0:
-  friendly_name: Overloop Trap Beweging
+  friendly_name: Overloop Trap
   device_class: motion
 
 switch.upperhallway_pir_1:
-  friendly_name: Overloop Gang Beweging
+  friendly_name: Overloop Gang
   device_class: motion
 
 switch.hallway_door_0:
-  friendly_name: Voordeur Deurcontact
+  friendly_name: Voordeur
   device_class: opening
 
 sensor.hallway_switch_0:
@@ -139,6 +139,9 @@ input_text.trash_announcement_housenumber:
 input_text.last_motion:
   icon: mdi:map-marker
   friendly_name: Laatste beweging
+
+group.default_generic:
+  friendly_name: Algemeen
 
 group.livingroom_view:
   icon: mdi:sofa
