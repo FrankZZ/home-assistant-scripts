@@ -54,7 +54,7 @@ hallway_view:
   view: yes
   entities:
     - binary_sensor.hallway_dark
-    - switch.hallway_smoke_0
+    - binary_sensor.hallway_smoke_0
     - timer.hallway
     - light.hallway_lights
     - switch.hallway_switch_0
