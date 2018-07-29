@@ -68,7 +68,6 @@
   name: hallway_pir_0_linkquality
   state_topic: "zigbee2mqtt/hallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.linkquality }}"
   json_attributes: 
@@ -90,7 +89,6 @@
   name: hallway_pir_1_linkquality
   state_topic: "zigbee2mqtt/hallway_pir_1"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "lx"
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.linkquality }}"
   json_attributes: 
