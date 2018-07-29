@@ -16,7 +16,6 @@
   state_topic: "zigbee2mqtt/hallway_switch_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
-  icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.battery|int }}"
   json_attributes: 
     - "battery"
@@ -26,7 +25,6 @@
   name: hallway_switch_0_linkquality
   state_topic: "zigbee2mqtt/hallway_switch_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.linkquality|int }}"
   json_attributes: 
     - "battery"
@@ -36,7 +34,6 @@
   name: hallway_smoke_0_linkquality
   state_topic: "zigbee2mqtt/hallway_smoke_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.linkquality|int }}"
   json_attributes: 
     - "battery"
@@ -47,7 +44,6 @@
   state_topic: "zigbee2mqtt/hallway_smoke_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
-  icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.battery|int }}"
   json_attributes: 
     - "battery"
@@ -58,7 +54,6 @@
   state_topic: "zigbee2mqtt/hallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
-  icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.battery|int }}"
   json_attributes: 
     - "battery"
@@ -68,7 +63,6 @@
   name: hallway_pir_0_linkquality
   state_topic: "zigbee2mqtt/hallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.linkquality }}"
   json_attributes: 
     - "battery"
@@ -89,7 +83,6 @@
   name: hallway_pir_1_linkquality
   state_topic: "zigbee2mqtt/hallway_pir_1"
   availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.linkquality }}"
   json_attributes: 
     - "battery"
@@ -100,7 +93,6 @@
   state_topic: "zigbee2mqtt/hallway_pir_1"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
-  icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.battery|int }}"
   json_attributes: 
     - "battery"

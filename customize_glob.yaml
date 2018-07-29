@@ -28,6 +28,12 @@
   friendly_name: Nacht
   icon: mdi:weather-night
 
+"*_linkquality":
+  icon: mdi:wifi
+
+"*_battery":
+  icon: mdi:battery
+
 # increase/decrease
 "script.*_livingroom_lights":
   hidden: true
