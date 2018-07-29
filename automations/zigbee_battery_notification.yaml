@@ -5,7 +5,7 @@
         sensor.hallway_pir_0_battery,
         sensor.hallway_switch_0_battery,
         sensor.hallway_pir_1_battery,
-        sensor.hallway_smoke_0_battery,
+        sensor.hallway_smoke_0_battery
       below: 25
   action:
     - service: notify.web_frank_s8p

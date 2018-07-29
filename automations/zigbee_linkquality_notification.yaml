@@ -5,7 +5,7 @@
         sensor.hallway_pir_0_linkquality,
         sensor.hallway_switch_0_linkquality,
         sensor.hallway_pir_1_linkquality,
-        sensor.hallway_smoke_0_linkquality,
+        sensor.hallway_smoke_0_linkquality
       below: 10
   action:
     - service: notify.web_frank_s8p

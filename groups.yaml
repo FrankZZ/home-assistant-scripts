@@ -54,6 +54,7 @@ hallway_view:
   view: yes
   entities:
     - binary_sensor.hallway_dark
+    - switch.hallway_smoke_0
     - timer.hallway
     - light.hallway_lights
     - switch.hallway_switch_0
@@ -84,6 +85,23 @@ monitoring_view:
   entities:
     - group.nzbget
     - sensor.zigbee2mqtt_status
+    - group.zigbee_battery_status
+    - group.zigbee_linkquality_status
+
+zigbee_battery_status:
+  entities:
+    - sensor.hallway_pir_0_battery
+    - sensor.hallway_pir_1_battery
+    - sensor.hallway_switch_0_battery
+    - sensor.hallway_smoke_0_battery
+
+zigbee_linkquality_status:
+  entities:
+    - sensor.hallway_pir_0_linkquality
+    - sensor.hallway_pir_1_linkquality
+    - sensor.hallway_switch_0_linkquality
+    - sensor.hallway_smoke_0_linkquality
+
 
 nzbget:
   entities:
