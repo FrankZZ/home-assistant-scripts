@@ -1,0 +1,14 @@
+- alias: "Notify on battery low for zigbee sensors"
+  trigger:
+    - platform: numeric
+      entity_id:
+        sensor.hallway_pir_0_battery,
+        sensor.hallway_switch_0_battery,
+        sensor.hallway_pir_1_battery,
+        sensor.hallway_smoke_0_battery,
+      below: 25
+  action:
+    - service: notify.web_frank_s8p
+      data_template:
+        title: "Low Battery: {{ trigger.entity_id.split('.')[1][:-8] }}"
+        message: "The battery of {{ trigger.entity_id.split('.')[1][:-8] }} is now {{ trigger.to_state.state }}%."

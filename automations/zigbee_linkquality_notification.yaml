@@ -1,0 +1,14 @@
+- alias: "Notify on low linkquality for zigbee sensors"
+  trigger:
+    - platform: numeric
+      entity_id:
+        sensor.hallway_pir_0_linkquality,
+        sensor.hallway_switch_0_linkquality,
+        sensor.hallway_pir_1_linkquality,
+        sensor.hallway_smoke_0_linkquality,
+      below: 10
+  action:
+    - service: notify.web_frank_s8p
+      data_template:
+        title: "Low Link Quality: {{ trigger.entity_id.split('.')[1][:-12] }}"
+        message: "The link quality of {{ trigger.entity_id.split('.')[1][:-12] }} is now {{ trigger.to_state.state }}."

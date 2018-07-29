@@ -24,6 +24,38 @@ mysensors:
   persistence: true
   version: '2.0'
 
+google_assistant:
+  project_id: !secret google_assistant_project_id
+  client_id: !secret google_assistant_client_id
+  access_token: !secret google_assistant_access_token
+  api_key: !secret google_assistant_homegraph_api_key
+  agent_user_id: !secret google_assistant_agent_user_id
+  exposed_by_default: false
+  exposed_domains:
+    - group
+    - light
+  entity_config:
+    group.milights:
+      expose: true
+      name: Alle lampen
+      aliases:
+        - "all lights"
+    group.livingroom_lights:
+      name: woonkamer lampen
+      expose: true
+      aliases:
+        - "livingroom lights"
+    group.hallway_lights:
+      name: gang lampen
+      expose: true
+      aliases:
+        - "hallway lights"
+    group.upperhallway_lights:
+      name: overloop lampen
+      aliases:
+        - "upperhallway lights"
+      expose: true
+
 # Enables the frontend
 frontend:
 
