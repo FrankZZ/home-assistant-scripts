@@ -1,6 +1,6 @@
 - alias: "Notify on battery low for zigbee sensors"
   trigger:
-    - platform: numeric
+    - platform: numeric_state
       entity_id:
         sensor.hallway_pir_0_battery,
         sensor.hallway_switch_0_battery,
