@@ -244,3 +244,6 @@ sensor.zigbee2mqtt_status:
 
 switch.zigbee2mqtt_permit_join:
   friendly_name: Zigbee2MQTT Permit Join
+
+group.apcupsd_status:
+  friendly_name: UPS Status

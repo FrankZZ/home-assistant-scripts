@@ -87,6 +87,7 @@ monitoring_view:
     - sensor.zigbee2mqtt_status
     - group.zigbee_battery_status
     - group.zigbee_linkquality_status
+    - group.apcupsd_status
 
 zigbee_battery_status:
   entities:
@@ -102,6 +103,21 @@ zigbee_linkquality_status:
     - sensor.hallway_switch_0_linkquality
     - sensor.hallway_smoke_0_linkquality
 
+apcupsd_status:
+  entities:
+    - sensor.ups_battery
+    - sensor.ups_battery_voltage
+    - sensor.ups_input_voltage
+    - sensor.ups_internal_temperature
+    - sensor.ups_last_transfer
+    - sensor.ups_load
+    - sensor.ups_output_voltage
+    - sensor.ups_status
+    - sensor.ups_time_left
+    - sensor.ups_time_on_battery
+    - sensor.ups_transfer_count
+    - sensor.ups_transfer_from_battery
+    - sensor.ups_transfer_to_battery
 
 nzbget:
   entities:
