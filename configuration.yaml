@@ -59,6 +59,9 @@ google_assistant:
 # Enables the frontend
 frontend:
 
+apcupsd:
+  host: !secret apcupsd_host
+
 emulated_hue:
   exposed_domains:
     - script
