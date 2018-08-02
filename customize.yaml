@@ -247,3 +247,21 @@ switch.zigbee2mqtt_permit_join:
 
 group.apcupsd_status:
   friendly_name: UPS Status
+
+group.waze_travel_times:
+  friendly_name: Reistijden
+
+sensor.waze_malissa_home_to_work:
+  friendly_name: Malissa thuis naar werk
+
+sensor.waze_malissa_work_to_home:
+  friendly_name: Malissa werk naar huis
+
+sensor.waze_frank_home_to_work:
+  friendly_name: Frank thuis naar werk
+
+sensor.waze_frank_work_to_home:
+  friendly_name: Frank werk naar huis
+
+sensor.waze_frank_work_to_malissa_work:
+  friendly_name: Frank werk naar Malissa werk
