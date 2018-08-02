@@ -1,4 +1,4 @@
-- alias: "Reminder when Frank gets home and its paid parking"
+- alias: "Notify Malissa traveltime to work"
   trigger:
     - platform: time
       at: '06:15'
@@ -12,16 +12,132 @@
       - condition: state
         entity_id: device_tracker.malissa_g5
         state: 'home'
-      - condition: or
-        conditions:
-          - condition: time
-            weekday:
-              - mon
-              - wed
+      - condition: time
+        weekday:
+          - mon
+          - wed
   action:
     service: notify.web_malissa_g5
     data_template:
       title: "Reistijd naar werk"
       message: "{{ states('sensor.waze_malissa_home_to_work') }} {{ states.sensor.waze_malissa_home_to_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_malissa_home_to_work.attributes.route }}"
       data: 
-        tag: "waze-travel-notification"
+        tag: "waze-travel-home-to-work-notification"
+
+- alias: "Notify Malissa traveltime to home"
+  trigger:
+    - platform: time
+      at: '17:15'
+    - platform: time
+      at: '17:30'
+    - platform: time
+      at: '17:45'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.malissa_g5
+        state: 'not_home'
+      - condition: time
+        weekday:
+          - mon
+          - wed
+  action:
+    service: notify.web_malissa_g5
+    data_template:
+      title: "Reistijd naar huis"
+      message: "{{ states('sensor.waze_malissa_work_to_home') }} {{ states.sensor.waze_malissa_work_to_home.attributes.unit_of_measurement }} via {{ states.sensor.waze_malissa_work_to_home.attributes.route }}"
+      data: 
+        tag: "waze-travel-work-to-home-notification"
+
+- alias: "Notify Frank traveltime to work"
+  trigger:
+    - platform: time
+      at: '06:30'
+    - platform: time
+      at: '06:45'
+    - platform: time
+      at: '07:00'
+    - platform: time
+      at: '07:15'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.frank_s8p
+        state: 'home'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+    service: notify.web_frank_s8p
+    data_template:
+      title: "Reistijd naar werk"
+      message: "{{ states('sensor.waze_frank_home_to_work') }} {{ states.sensor.waze_frank_home_to_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_home_to_work.attributes.route }}"
+      data: 
+        tag: "waze-travel-home-to-work-notification"
+
+- alias: "Notify Frank traveltime to home"
+  trigger:
+    - platform: time
+      at: '16:25'
+    - platform: time
+      at: '16:40'
+    - platform: time
+      at: '16:55'
+    - platform: time
+      at: '17:10'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.frank_s8p
+        state: 'not_home'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+    service: notify.web_frank_s8p
+    data_template:
+      title: "Reistijd naar huis"
+      message: "{{ states('sensor.waze_frank_work_to_home') }} {{ states.sensor.waze_frank_work_to_home.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_work_to_home.attributes.route }}"
+      data: 
+        tag: "waze-travel-work-to-home-notification"
+
+- alias: "Notify Frank traveltime to Malissa"
+  trigger:
+    - platform: time
+      at: '16:25'
+    - platform: time
+      at: '16:40'
+    - platform: time
+      at: '16:55'
+    - platform: time
+      at: '17:10'
+    - platform: time
+      at: '17:25'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.frank_s8p
+        state: 'not_home'
+      - condition: time
+        weekday:
+          - tue
+          - thu
+  action:
+    service: notify.web_frank_s8p
+    data_template:
+      title: "Reistijd naar Malissa Utrecht"
+      message: "{{ states('sensor.waze_frank_work_to_malissa_work') }} {{ states.sensor.waze_frank_work_to_malissa_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_work_to_malissa_work.attributes.route }}"
+      data: 
+        tag: "waze-travel-work-to-malissa-work-notification"
