@@ -2,22 +2,22 @@
   name: waze_frank_work_to_home
   origin: !secret waze_frank_work_address
   destination: !secret waze_home_address
-  region: 'NL'
+  region: 'EU'
 
 - platform: waze_travel_time
   name: waze_frank_home_to_work
   origin: !secret waze_home_address
   destination: !secret waze_frank_work_address
-  region: 'NL'
+  region: 'EU'
 
 - platform: waze_travel_time
   name: waze_frank_work_to_malissa_work
   origin: !secret waze_frank_work_address
   destination: !secret waze_malissa_work_address
-  region: 'NL'
+  region: 'EU'
 
 - platform: waze_travel_time
   name: waze_malissa_home_to_work
   origin: !secret waze_home_address
   destination: !secret waze_malissa_work_address
-  region: 'NL'
+  region: 'EU'
