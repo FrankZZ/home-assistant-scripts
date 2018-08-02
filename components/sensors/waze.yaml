@@ -21,3 +21,9 @@
   origin: !secret waze_home_address
   destination: !secret waze_malissa_work_address
   region: 'EU'
+
+- platform: waze_travel_time
+  name: waze_malissa_work_to_home
+  origin: !secret waze_malissa_work_address
+  destination: !secret waze_home_address
+  region: 'EU'

@@ -1,0 +1,27 @@
+- alias: "Reminder when Frank gets home and its paid parking"
+  trigger:
+    - platform: time
+      at: '06:15'
+    - platform: time
+      at: '06:30'
+    - platform: time
+      at: '06:45'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.malissa_g5
+        state: 'home'
+      - condition: or
+        conditions:
+          - condition: time
+            weekday:
+              - mon
+              - wed
+  action:
+    service: notify.web_malissa_g5
+    data_template:
+      title: "Reistijd naar werk"
+      message: "{{ states('sensor.waze_malissa_home_to_work') }} {{ states.sensor.waze_malissa_home_to_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_malissa_home_to_work.attributes.route }}"
+      data: 
+        tag: "waze-travel-notification"

@@ -84,6 +84,7 @@ monitoring_view:
   view: yes
   entities:
     - group.nzbget
+    - group.waze_travel_times
     - sensor.zigbee2mqtt_status
     - group.zigbee_battery_status
     - group.zigbee_linkquality_status
@@ -118,6 +119,14 @@ apcupsd_status:
     - sensor.ups_transfer_count
     - sensor.ups_transfer_from_battery
     - sensor.ups_transfer_to_battery
+
+waze_travel_times:
+  entities:
+    - sensor.waze_malissa_home_to_work
+    - sensor.waze_malissa_work_to_home
+    - sensor.waze_frank_home_to_work
+    - sensor.waze_frank_work_to_home
+    - sensor.waze_frank_work_to_malissa_work
 
 nzbget:
   entities:
