@@ -149,6 +149,9 @@ device_tracker:
     scan_options: " --host-timeout 5s --privileged -sP "
     new_device_defaults:
       track_new_devices: false
+  - platform: google_maps
+    username: !secret google_maps_devicetracker_user
+    password: !secret google_maps_devicetracker_password
 
 # camera:
 #   - platform: ffmpeg
