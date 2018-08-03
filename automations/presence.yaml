@@ -2,7 +2,7 @@
   initial_state: off
   trigger:
     - platform: state
-      entity_id: device_tracker.frank_n6
+      entity_id: device_tracker.frank_s8p
       from: 'not_home'
       to: 'home'
     - platform: state
@@ -31,7 +31,7 @@
   initial_state: off
   trigger:
     - platform: state
-      entity_id: device_tracker.frank_n6
+      entity_id: device_tracker.frank_s8p
       from: 'home'
       to: 'not_home'
     - platform: state

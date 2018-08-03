@@ -13,35 +13,35 @@
     - platform: time
       at: '09:05'
     - platform: state
-      entity_id: device_tracker.frank_n6
+      entity_id: device_tracker.frank_s8p
       from: 'not_home'
       to: 'home'
     - platform: state
-      entity_id: device_tracker.frank_n6
+      entity_id: device_tracker.frank_s8p
       from: 'not_home'
       to: 'home'
       for:
         minutes: 1
     - platform: state
-      entity_id: device_tracker.frank_n6
+      entity_id: device_tracker.frank_s8p
       from: 'not_home'
       to: 'home'
       for:
         minutes: 2
     - platform: state
-      entity_id: device_tracker.frank_n6
+      entity_id: device_tracker.frank_s8p
       from: 'not_home'
       to: 'home'
       for:
         minutes: 3
     - platform: state
-      entity_id: device_tracker.frank_n6
+      entity_id: device_tracker.frank_s8p
       from: 'not_home'
       to: 'home'
       for:
         minutes: 4
     - platform: state
-      entity_id: device_tracker.frank_n6
+      entity_id: device_tracker.frank_s8p
       from: 'not_home'
       to: 'home'
       for:
@@ -50,7 +50,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: device_tracker.frank_n6
+        entity_id: device_tracker.frank_s8p
         state: 'home'
       - condition: or
         conditions:

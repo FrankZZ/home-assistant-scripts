@@ -36,7 +36,7 @@
   initial_state: off
   trigger:
     - platform: state
-      entity_id: device_tracker.frank_n6
+      entity_id: device_tracker.frank_s8p
       to: 'home'
     - platform: state
       entity_id: device_tracker.ferry_s8
