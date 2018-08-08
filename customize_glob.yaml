@@ -52,3 +52,6 @@
 
 "group.*_scenes":
   control: hidden
+
+"zone.*_work_*":
+  icon: mdi:worker

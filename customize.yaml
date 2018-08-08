@@ -265,3 +265,36 @@ sensor.waze_frank_work_to_home:
 
 sensor.waze_frank_work_to_malissa_work:
   friendly_name: Frank werk naar Malissa werk
+
+zone.frank_work_0:
+  friendly_name: !secret frank_work_0_name
+
+zone.malissa_work_0:
+  friendly_name: !secret malissa_work_0_name
+
+zone.malissa_work_1:
+  friendly_name: !secret malissa_work_1_name
+
+group.all_proximities:
+  friendly_name: Zones
+
+proximity.home:
+  friendly_name: Thuis
+
+proximity.malissa_work_0_frank:
+  friendly_name: "Frank: Maud en Ralf"
+
+proximity.malissa_work_0_malissa:
+  friendly_name: "Malissa: Maud en Ralf"
+
+proximity.malissa_work_1:
+  friendly_name: "Malissa: Tweede Gezin"
+
+proximity.malissa_home:
+  friendly_name: "Malissa: Thuis"
+
+proximity.frank_home:
+  friendly_name: "Frank: Thuis"
+
+proximity.frank_work_0:
+  friendly_name: "Frank: IceMobile"

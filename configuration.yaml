@@ -16,6 +16,8 @@ homeassistant:
     light:
       assumed_state: false
 
+map:
+
 mysensors:
   gateways:
     - device: !secret mysensors_gateway
@@ -134,6 +136,8 @@ media_player: !include_dir_merge_list components/media_players
 script: !include scripts.yaml
 timer: !include_dir_merge_named components/timers
 history_graph: !include_dir_merge_named components/history_graphs
+zone: !include_dir_merge_list components/zones
+proximity: !include_dir_merge_named components/proximities
 
 remote:
   - platform: harmony
@@ -152,6 +156,8 @@ device_tracker:
   - platform: google_maps
     username: !secret google_maps_devicetracker_user
     password: !secret google_maps_devicetracker_password
+    new_device_defaults:
+      track_new_devices: true
 
 # camera:
 #   - platform: ffmpeg

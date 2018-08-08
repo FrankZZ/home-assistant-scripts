@@ -12,3 +12,4 @@ AccessoryInfo.*.json
 IdentifierCache.*.json
 deps/
 components/shell_commands/reboot_ap02.yaml
+known_devices.yaml

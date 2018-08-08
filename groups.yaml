@@ -164,9 +164,20 @@ trash:
 #     - sensor.pws_weather_4n_metric
 #     - sensor.pws_weather_weather
 
+all_proximities:
+  entities:
+    - proximity.home
+    - proximity.frank_home
+    - proximity.malissa_home
+    - proximity.frank_work_0
+    - proximity.malissa_work_0_frank
+    - proximity.malissa_work_0_malissa
+    - proximity.malissa_work_1
+
 presence_view:
   view: yes
   entities:
+    - group.all_proximities
     - group.default_generic
     - group.all_devices
 
