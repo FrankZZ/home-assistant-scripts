@@ -20,9 +20,9 @@
     service: notify.web_malissa_g5
     data_template:
       title: "Reistijd naar werk"
-      message: "{{ states('sensor.waze_malissa_home_to_work') }} {{ states.sensor.waze_malissa_home_to_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_malissa_home_to_work.attributes.route }}"
+      message: "ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_malissa_to_work')|int)*60)) | float | timestamp_custom('%H:%m') }}. {{ states('sensor.waze_malissa_to_work') }} {{ states.sensor.waze_malissa_to_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_malissa_to_work.attributes.route }}"
       data:
-        tag: "waze-travel-home-to-work-notification"
+        tag: "waze-travel-malissa-to-work-notification"
 
 - alias: "Notify Malissa traveltime to home"
   trigger:
@@ -46,20 +46,20 @@
     service: notify.web_malissa_g5
     data_template:
       title: "Reistijd naar huis"
-      message: "{{ states('sensor.waze_malissa_work_to_home') }} {{ states.sensor.waze_malissa_work_to_home.attributes.unit_of_measurement }} via {{ states.sensor.waze_malissa_work_to_home.attributes.route }}"
+      message: "ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_malissa_to_home')|int)*60)) | float | timestamp_custom('%H:%m') }}. {{ states('sensor.waze_malissa_to_home') }} {{ states.sensor.waze_malissa_to_home.attributes.unit_of_measurement }} via {{ states.sensor.waze_malissa_to_home.attributes.route }}"
       data:
         tag: "waze-travel-work-to-home-notification"
 
 - alias: "Notify Frank traveltime to work"
   trigger:
     - platform: time
-      at: '06:30'
+      hours: 06
+      minutes: '/1'
+      seconds: 00
     - platform: time
-      at: '06:45'
-    - platform: time
-      at: '07:00'
-    - platform: time
-      at: '07:15'
+      hours: 07
+      minutes: '/1'
+      seconds: 00
   condition:
     condition: and
     conditions:
@@ -77,20 +77,20 @@
     service: notify.web_frank_s8p
     data_template:
       title: "Reistijd naar werk"
-      message: "{{ states('sensor.waze_frank_home_to_work') }} {{ states.sensor.waze_frank_home_to_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_home_to_work.attributes.route }}"
+      message: "ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_frank_work')|int)*60)) | float | timestamp_custom('%H:%m') }}. {{ states('sensor.waze_frank_to_frank_work') }} {{ states.sensor.waze_frank_to_frank_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_to_frank_work.attributes.route }}"
       data:
         tag: "waze-travel-home-to-work-notification"
 
 - alias: "Notify Frank traveltime to home"
   trigger:
     - platform: time
-      at: '16:25'
+      hours: 16
+      minutes: '/1'
+      seconds: 00
     - platform: time
-      at: '16:40'
-    - platform: time
-      at: '16:55'
-    - platform: time
-      at: '17:10'
+      hours: 17
+      minutes: '/1'
+      seconds: 00
   condition:
     condition: and
     conditions:
@@ -108,28 +108,28 @@
     service: notify.web_frank_s8p
     data_template:
       title: "Reistijd naar huis"
-      message: "{{ states('sensor.waze_frank_work_to_home') }} {{ states.sensor.waze_frank_work_to_home.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_work_to_home.attributes.route }}"
+      message: "ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_home')|int)*60)) | float | timestamp_custom('%H:%m') }}. {{ states('sensor.waze_frank_to_home') }} {{ states.sensor.waze_frank_to_home.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_to_home.attributes.route }}"
       data:
         tag: "waze-travel-work-to-home-notification"
 
 - alias: "Notify Frank traveltime to Malissa"
   trigger:
     - platform: time
-      at: '16:25'
+      hours: 16
+      minutes: '/1'
     - platform: time
-      at: '16:40'
-    - platform: time
-      at: '16:55'
-    - platform: time
-      at: '17:10'
-    - platform: time
-      at: '17:25'
+      hours: 17
+      minutes: '/1'
+      seconds: 00
   condition:
     condition: and
     conditions:
       - condition: state
         entity_id: device_tracker.frank_s8p
         state: 'not_home'
+      - condition: numeric_state
+        entity_id: proximity.malissa_work_0_malissa
+        below: 1
       - condition: time
         weekday:
           - tue
@@ -138,34 +138,27 @@
     service: notify.web_frank_s8p
     data_template:
       title: "Reistijd naar Malissa Utrecht"
-      message: "{{ states('sensor.waze_frank_work_to_malissa_work') }} {{ states.sensor.waze_frank_work_to_malissa_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_work_to_malissa_work.attributes.route }}"
+      message: "ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_malissa_work')|int)*60)) | float | timestamp_custom('%H:%m') }}. {{ states('sensor.waze_frank_to_malissa_work') }} {{ states.sensor.waze_frank_to_malissa_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_to_malissa_work.attributes.route }}"
       data:
         tag: "waze-travel-work-to-malissa-work-notification"
 
 - alias: "Notify Malissa when Frank is at Malissa Work 0"
   trigger:
-    - platform: numeric_state
-      entity_id: proximity.malissa_work_0_frank
-      below: 0.5
+    - platform: zone
+      entity_id: !secret device_tracker_frank_s8p_id
+      zone: zone.malissa_work_0
+      event: enter
   condition:
     condition: and
     conditions:
-      - condition: state
-        entity_id: device_tracker.frank_s8p
-        state: 'not_home'
-      - condition: template
-        value_template: "{{ states.proximity.malissa_work_0_frank.attributes.dir_of_travel != 'away_from' }}"
-      - condition: time
-        after: '16:00:00'
-        before: '19:00:00'
-        weekday:
-          - tue
-          - thu
+      - condition: zone
+        entity_id: !secret device_tracker_malissa_g5_id
+        zone: zone.malissa_work_0
   action:
     service: notify.web_malissa_g5
     data_template:
       title: "Aankomstmelding Frank"
-      message: "Frank staat voor de deur!"
+      message: "Frank staat voor de deur"
       data:
         tag: "waze-travel-frank-work-to-malissa-work-notification"
 
@@ -178,6 +171,9 @@
     conditions:
       - condition: template
         value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'towards' }}"
+      - condition: numeric_state
+        entity_id: proximity.malissa_work_0_malissa
+        below: 1
       - condition: time
         after: '16:00:00'
         before: '19:00:00'
@@ -188,9 +184,33 @@
     service: notify.web_malissa_g5
     data_template:
       title: "Vertrekmelding Frank"
-      message: "Frank is onderweg naar Utrecht. ETA: {{ states('sensor.waze_frank_work_to_malissa_work') }} {{ states.sensor.waze_frank_work_to_malissa_work.attributes.unit_of_measurement }}"
+      message: "Frank is onderweg naar Utrecht. ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_malissa_work')|int)*60)) | float | timestamp_custom('%H:%m') }}"
       data:
-        tag: "waze-travel-frank-work-home-notification"
+        tag: "waze-travel-frank-to-malissa-work-notification"
+
+- alias: "Notify Malissa when Frank is heading Home"
+  trigger:
+    - platform: state
+      entity_id: proximity.frank_home
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'towards' }}"
+      - condition: time
+        after: '16:00:00'
+        before: '19:00:00'
+        weekday:
+          - mon
+          - wed
+          - fri
+  action:
+    service: notify.web_malissa_g5
+    data_template:
+      title: "Vertrekmelding Frank"
+      message: "Frank is onderweg naar Culemborg. ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_home')|int)*60)) | float | timestamp_custom('%H:%m') }}"
+      data:
+        tag: "waze-travel-frank-to-home-notification"
 
 # - alias: "Notify Malissa when Frank is heading home"
 #   trigger:
@@ -212,6 +232,6 @@
 #     service: notify.web_malissa_g5
 #     data_template:
 #       title: "Vertrekmelding Frank"
-#       message: "Frank is onderweg naar huis. ETA: {{ states('sensor.waze_frank_work_to_home') }} {{ states.sensor.waze_frank_work_to_home.attributes.unit_of_measurement }}"
+#       message: "Frank is onderweg naar huis. ETA: {{ states('sensor.waze_frank_to_home') }} {{ states.sensor.waze_frank_to_home.attributes.unit_of_measurement }}"
 #       data:
 #         tag: "waze-travel-frank-work-home-notification"

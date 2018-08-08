@@ -27,3 +27,33 @@
   origin: !secret waze_malissa_work_address
   destination: !secret waze_home_address
   region: 'EU'
+
+- platform: waze_travel_time
+  name: waze_malissa_to_home
+  origin: !secret device_tracker_malissa_g5_id
+  destination: !secret waze_home_address
+  region: 'EU'
+
+- platform: waze_travel_time
+  name: waze_frank_to_home
+  origin: !secret device_tracker_frank_s8p_id
+  destination: !secret waze_home_address
+  region: 'EU'
+
+- platform: waze_travel_time
+  name: waze_frank_to_malissa_work
+  origin: !secret device_tracker_frank_s8p_id
+  destination: !secret waze_malissa_work_address
+  region: 'EU'
+
+- platform: waze_travel_time
+  name: waze_frank_to_frank_work
+  origin: !secret device_tracker_frank_s8p_id
+  destination: !secret waze_frank_work_address
+  region: 'EU'
+
+- platform: waze_travel_time
+  name: waze_malissa_to_malissa_work
+  origin: !secret device_tracker_malissa_g5_id
+  destination: !secret waze_malissa_work_address
+  region: 'EU'
