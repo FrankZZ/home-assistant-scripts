@@ -165,12 +165,14 @@
 - alias: "Notify Malissa when Frank is heading to Malissa Work"
   trigger:
     - platform: state
-      entity_id: proximity.malissa_work_0_frank
+      entity_id: proximity.frank_work_0
   condition:
     condition: and
     conditions:
       - condition: template
-        value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'towards' }}"
+        value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'away_from' }}"
+      - condition: template
+        value_template: "{{ state_attr('proximity.malissa_work_0_frank', 'dir_of_travel') == 'towards' }}"
       - condition: numeric_state
         entity_id: proximity.malissa_work_0_malissa
         below: 1
@@ -191,12 +193,12 @@
 - alias: "Notify Malissa when Frank is heading Home"
   trigger:
     - platform: state
-      entity_id: proximity.frank_home
+      entity_id: proximity.frank_work_0
   condition:
     condition: and
     conditions:
       - condition: template
-        value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'towards' }}"
+        value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'away_from' }}"
       - condition: time
         after: '16:00:00'
         before: '19:00:00'
