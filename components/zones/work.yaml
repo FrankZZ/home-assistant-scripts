@@ -5,8 +5,8 @@
 - name: malissa_work_0
   latitude: !secret malissa_work_0_lat
   longitude: !secret malissa_work_0_long
-  radius: 500
+  radius: 250
 - name: malissa_work_1
   latitude: !secret malissa_work_1_lat
   longitude: !secret malissa_work_1_long
-  radius: 500
+  radius: 250
