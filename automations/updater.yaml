@@ -1,0 +1,9 @@
+- alias: Stuur bericht als er een hass update is
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.web_frank_s8p
+    data_template:
+      title: "Home Assistant Update"
+      message: "New version available: {{ trigger.to_state.state }}"
