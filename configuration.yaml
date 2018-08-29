@@ -18,6 +18,9 @@ homeassistant:
 
 map:
 
+updater:
+  reporting: false
+
 mysensors:
   gateways:
     - device: !secret mysensors_gateway
