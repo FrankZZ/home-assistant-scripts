@@ -1,4 +1,5 @@
 - alias: "Notify on low linkquality for zigbee sensors"
+  initial_state: off
   trigger:
     - platform: numeric_state
       entity_id:
