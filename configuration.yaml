@@ -37,28 +37,19 @@ google_assistant:
   agent_user_id: !secret google_assistant_agent_user_id
   exposed_by_default: false
   exposed_domains:
-    - group
     - light
   entity_config:
     group.milights:
       expose: true
-      name: Alle lampen
-      aliases:
-        - "all lights"
-    group.livingroom_lights:
-      name: woonkamer lampen
+      name: all lights
+    light.livingroom_lights:
+      name: livingroom lights
       expose: true
-      aliases:
-        - "livingroom lights"
-    group.hallway_lights:
-      name: gang lampen
+    light.hallway_lights:
+      name: hallway lights
       expose: true
-      aliases:
-        - "hallway lights"
-    group.upperhallway_lights:
-      name: overloop lampen
-      aliases:
-        - "upperhallway lights"
+    light.upperhallway_lights:
+      name: upperhallway lights
       expose: true
 
 # Enables the frontend
