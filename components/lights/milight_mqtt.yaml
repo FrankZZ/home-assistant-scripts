@@ -34,6 +34,12 @@
   state_topic: milight/states/0x6549/rgbw/3
   <<: *MILIGHT_PARAMS
 
+# group ALL
+- name: "livingroom_lights"
+  command_topic: milight/0x6549/rgbw/0
+  # state_topic: milight/states/0x6549/rgbw/0
+  <<: *MILIGHT_PARAMS
+
 - name: "hallway_frontdoor"
   command_topic: milight/0x6550/rgbw/1
   state_topic: milight/states/0x6550/rgbw/1
@@ -49,6 +55,12 @@
   state_topic: milight/states/0x6550/rgbw/3
   <<: *MILIGHT_PARAMS
 
+# group ALL
+- name: "hallway_lights"
+  command_topic: milight/0x6550/rgbw/0
+  # state_topic: milight/states/0x6550/rgbw/0
+  <<: *MILIGHT_PARAMS
+
 - name: "upperhallway_storage"
   command_topic: milight/0x6551/rgbw/1
   state_topic: milight/states/0x6551/rgbw/1
@@ -57,4 +69,10 @@
 - name: "upperhallway_stairway"
   command_topic: milight/0x6551/rgbw/2
   state_topic: milight/states/0x6551/rgbw/2
+  <<: *MILIGHT_PARAMS
+
+# group ALL
+- name: "upperhallway_lights"
+  command_topic: milight/0x6551/rgbw/0
+  # state_topic: milight/states/0x6551/rgbw/0
   <<: *MILIGHT_PARAMS

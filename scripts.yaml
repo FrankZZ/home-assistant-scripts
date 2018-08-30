@@ -3,7 +3,7 @@ increase_livingroom_lights:
     - service: light.turn_on
       data_template:
         entity_id: light.livingroom_lights
-        brightness: "{{ [(states.light.livingroom_lights.attributes.brightness|default(0))+50, 255]|min }}"
+        brightness: "{{ [(states.light.livingroom_lights.attributes.brightness|default(0))+90, 255]|min }}"
         effect: white_mode
 
 decrease_livingroom_lights:
@@ -11,7 +11,7 @@ decrease_livingroom_lights:
     - service: light.turn_on
       data_template:
         entity_id: light.livingroom_lights
-        brightness: "{{ [(states.light.livingroom_lights.attributes.brightness|default(0))-50, 0]|max }}"
+        brightness: "{{ [(states.light.livingroom_lights.attributes.brightness|default(0))-90, 0]|max }}"
         effect: white_mode
     - condition: template
       value_template: "{{ states('light.livingroom_lights') == 'on' and states.light.livingroom_lights.attributes.brightness == 0 }}"
