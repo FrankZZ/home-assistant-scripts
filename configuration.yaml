@@ -21,13 +21,13 @@ map:
 updater:
   reporting: false
 
-mysensors:
-  gateways:
-    - device: !secret mysensors_gateway
-      tcp_port: 5003
-      persistence_file: !secret mysensors_persistence_file
-  persistence: true
-  version: '2.0'
+# mysensors:
+#   gateways:
+#     - device: !secret mysensors_gateway
+#       tcp_port: 5003
+#       persistence_file: !secret mysensors_persistence_file
+#   persistence: true
+#   version: '2.0'
 
 google_assistant:
   project_id: !secret google_assistant_project_id
@@ -143,9 +143,9 @@ remote:
 device_tracker:
   - platform: nmap_tracker
     hosts: !secret nmap_tracker_hosts
-    home_interval: 10
+    home_interval: 5
     interval_seconds: 30
-    consider_home: 00:20:00
+    consider_home: 00:10:00
     scan_options: " --host-timeout 5s --privileged -sP "
     new_device_defaults:
       track_new_devices: false

@@ -33,6 +33,10 @@ binary_sensor.hallway_smoke_0:
   friendly_name: Gang Rookmelder
   device_class: smoke
 
+binary_sensor.scullery_leak_0:
+  friendly_name: Bijkeuken Watersensor
+  device_class: moisture
+
 switch.upperhallway_pir_0:
   friendly_name: Overloop Trap PIR
   device_class: motion

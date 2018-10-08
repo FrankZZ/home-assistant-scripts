@@ -1,0 +1,10 @@
+- platform: "mqtt"
+  name: scullery_leak_0
+  state_topic: "zigbee2mqtt/scullery_leak_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.water_leak }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"

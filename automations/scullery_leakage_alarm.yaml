@@ -1,0 +1,27 @@
+- alias: scullery leakage notification on
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.scullery_leak_0
+      to: 'on'
+  action:
+    service: notify.web_frank_s8p
+    data:
+      title: Waterlekkage Detectie
+      message: "Waterlekkage in de Bijkeuken gedetecteerd."
+      data:
+        tag: "scullery-leakage-0-notification"
+
+- alias: scullery leakage notification off
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.scullery_leak_0
+      to: 'off'
+  action:
+    service: notify.web_frank_s8p
+    data:
+      title: Waterlekkage Detectie
+      message: "Waterlekkage in de Bijkeuken opgeheven."
+      data:
+        tag: "scullery-leakage-0-notification"

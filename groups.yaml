@@ -14,6 +14,7 @@ default_view:
     - timer.hallway
     - timer.upperhallway
     - sensor.plex01
+    - binary_sensor.scullery_leak_0
 
 livingroom_scenes:
   entities:
