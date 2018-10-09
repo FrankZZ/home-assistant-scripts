@@ -77,14 +77,14 @@
   value_template: >
     {% set data = value.split("\n") %}
     {% set yesterday = strptime(((as_timestamp(now()) - 86400) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
-    {% set dayInTwoWeeks = strptime(((as_timestamp(now())+ (86400 * 14)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %} 
+    {% set dayInOneMonth = strptime(((as_timestamp(now())+ (86400 * 31)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %} 
     {% for row in data %}
       {% set row = row.split(";") %}
       {% if row[0] == "PAPIER" %}
         {% for datestr in row %}
           {% if not loop.first and not loop.last %}
             {% set dateobj = strptime(datestr, "%d-%m-%Y") %}
-            {% if ((dateobj > yesterday) and (dateobj < dayInTwoWeeks)) %}
+            {% if ((dateobj > yesterday) and (dateobj < dayInOneMonth)) %}
               {{ datestr }}
             {% endif %}
           {% endif %}
