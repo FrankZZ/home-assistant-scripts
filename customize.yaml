@@ -226,6 +226,23 @@ group.trash:
   friendly_name: Afval
   icon: mdi:delete-empty
 
+sensor.trash_plastic_nextdate:
+  friendly_name: Plastic
+  icon: mdi:delete-variant
+
+sensor.trash_rest_nextdate:
+  friendly_name: Rest
+  icon: mdi:delete
+
+sensor.trash_gft_nextdate:
+  friendly_name: GFT
+  icon: mdi:tree
+
+sensor.trash_papier_nextdate:
+  friendly_name: Papier
+  icon: mdi:newspaper
+
+
 group.lights:
   control: hidden
   friendly_name: Lampen

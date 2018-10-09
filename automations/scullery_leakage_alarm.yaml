@@ -5,7 +5,7 @@
       entity_id: binary_sensor.scullery_leak_0
       to: 'on'
   action:
-    service: notify.web_frank_s8p
+    service: notify.web
     data:
       title: Waterlekkage Detectie
       message: "Waterlekkage in de Bijkeuken gedetecteerd."
@@ -19,7 +19,7 @@
       entity_id: binary_sensor.scullery_leak_0
       to: 'off'
   action:
-    service: notify.web_frank_s8p
+    service: notify.web
     data:
       title: Waterlekkage Detectie
       message: "Waterlekkage in de Bijkeuken opgeheven."

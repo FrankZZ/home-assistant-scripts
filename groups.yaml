@@ -146,6 +146,10 @@ trash:
   entities:
     - sensor.trash_today
     - sensor.trash_tomorrow
+    - sensor.trash_gft_nextdate
+    - sensor.trash_papier_nextdate
+    - sensor.trash_plastic_nextdate
+    - sensor.trash_rest_nextdate
 
 # daily_forecast_view:
 #   view: yes
