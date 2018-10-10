@@ -15,6 +15,7 @@ default_view:
     - timer.upperhallway
     - sensor.plex01
     - binary_sensor.scullery_leak_0
+    - sensor.hallway_power_0
 
 livingroom_scenes:
   entities:
@@ -69,6 +70,7 @@ hallway_view:
     - binary_sensor.hallway_pir_1
     - switch.upperhallway_pir_0
     - switch.hallway_door_0
+    - sensor.hallway_power_0
 
 upperhallway_view:
   view: yes
@@ -105,6 +107,7 @@ zigbee_linkquality_status:
     - sensor.hallway_pir_1_linkquality
     - sensor.hallway_switch_0_linkquality
     - sensor.hallway_smoke_0_linkquality
+    - sensor.hallway_power_0_linkquality
 
 apcupsd_status:
   entities:

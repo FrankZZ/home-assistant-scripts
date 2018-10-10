@@ -101,14 +101,13 @@ ios:
 
 recorder:
   db_url: !secret recorder_db_url
-  purge_interval: 2
-  purge_keep_days: 5
   exclude:
     domains:
       - automation
       - weblink
       - updater
       - scene
+      - script
 
 # Text to speech
 tts:
