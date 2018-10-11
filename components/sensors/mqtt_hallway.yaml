@@ -1,99 +1,122 @@
-- platform: "mqtt"
+- platform: mqtt
   name: hallway_switch_0
   state_topic: "zigbee2mqtt/hallway_switch_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   icon: "mdi:toggle-switch"
   value_template: "{{ value_json.click }}"
-  json_attributes: 
+  json_attributes:
     - "battery"
     - "voltage"
     - "action"
     - "duration"
     - "linkquality"
 
-- platform: "mqtt"
+- platform: mqtt
   name: hallway_switch_0_battery
   state_topic: "zigbee2mqtt/hallway_switch_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   value_template: "{{ value_json.battery|int }}"
-  json_attributes: 
+  json_attributes:
     - "battery"
     - "voltage"
 
-- platform: "mqtt"
+- platform: mqtt
   name: hallway_switch_0_linkquality
   state_topic: "zigbee2mqtt/hallway_switch_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   value_template: "{{ value_json.linkquality|int }}"
-  json_attributes: 
+  json_attributes:
     - "battery"
     - "voltage"
 
-- platform: "mqtt"
+- platform: mqtt
+  name: hallway_power_0
+  state_topic: "zigbee2mqtt/hallway_power_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "Watt"
+  icon: "mdi:flash"
+  value_template: "{{ value_json.power|int }}"
+  json_attributes:
+    - "voltage"
+    - "temperature"
+    - "consumption"
+    - "current"
+    - "power_factor"
+
+- platform: mqtt
+  name: hallway_power_0_linkquality
+  state_topic: "zigbee2mqtt/hallway_power_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  value_template: "{{ value_json.linkquality|int }}"
+  json_attributes:
+    - "battery"
+    - "voltage"
+
+- platform: mqtt
   name: hallway_smoke_0_linkquality
   state_topic: "zigbee2mqtt/hallway_smoke_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   value_template: "{{ value_json.linkquality|int }}"
-  json_attributes: 
+  json_attributes:
     - "battery"
     - "voltage"
 
-- platform: "mqtt"
+- platform: mqtt
   name: hallway_smoke_0_battery
   state_topic: "zigbee2mqtt/hallway_smoke_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   value_template: "{{ value_json.battery|int }}"
-  json_attributes: 
+  json_attributes:
     - "battery"
     - "voltage"
-  
-- platform: "mqtt"
+
+- platform: mqtt
   name: hallway_pir_0_battery
   state_topic: "zigbee2mqtt/hallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   value_template: "{{ value_json.battery|int }}"
-  json_attributes: 
+  json_attributes:
     - "battery"
     - "voltage"
 
-- platform: "mqtt"
+- platform: mqtt
   name: hallway_pir_0_linkquality
   state_topic: "zigbee2mqtt/hallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   value_template: "{{ value_json.linkquality }}"
-  json_attributes: 
+  json_attributes:
     - "battery"
     - "voltage"
 
-- platform: "mqtt"
+- platform: mqtt
   name: hallway_pir_1_illuminance
   state_topic: "zigbee2mqtt/hallway_pir_1"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "lx"
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.illuminance }}"
-  json_attributes: 
+  json_attributes:
     - "battery"
     - "voltage"
 
-- platform: "mqtt"
+- platform: mqtt
   name: hallway_pir_1_linkquality
   state_topic: "zigbee2mqtt/hallway_pir_1"
   availability_topic: "zigbee2mqtt/bridge/state"
   value_template: "{{ value_json.linkquality }}"
-  json_attributes: 
+  json_attributes:
     - "battery"
     - "voltage"
 
-- platform: "mqtt"
+- platform: mqtt
   name: hallway_pir_1_battery
   state_topic: "zigbee2mqtt/hallway_pir_1"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   value_template: "{{ value_json.battery|int }}"
-  json_attributes: 
+  json_attributes:
     - "battery"
     - "voltage"
