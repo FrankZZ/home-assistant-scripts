@@ -32,6 +32,7 @@
   scan_interval: 3600
   value_template: >
     {% set data = value.split("\n") %}
+    {% set weekDays = ["Ma","Di","Wo","Do","Vr","Za","Zo"] %}
     {% set yesterday = strptime(((as_timestamp(now()) - 86400) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
     {% set dayInTwoWeeks = strptime(((as_timestamp(now())+ (86400 * 14)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %} 
     {% for row in data %}
@@ -41,7 +42,7 @@
           {% if not loop.first and not loop.last %}
             {% set dateobj = strptime(datestr, "%d-%m-%Y") %}
             {% if ((dateobj > yesterday) and (dateobj < dayInTwoWeeks)) %}
-              {{ datestr }}
+              {{ weekDays[dateobj.weekday()] }} {{ datestr }}
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -54,6 +55,7 @@
   scan_interval: 3600
   value_template: >
     {% set data = value.split("\n") %}
+    {% set weekDays = ["Ma","Di","Wo","Do","Vr","Za","Zo"] %}
     {% set yesterday = strptime(((as_timestamp(now()) - 86400) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
     {% set dayInTwoWeeks = strptime(((as_timestamp(now())+ (86400 * 14)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %} 
     {% for row in data %}
@@ -63,7 +65,7 @@
           {% if not loop.first and not loop.last %}
             {% set dateobj = strptime(datestr, "%d-%m-%Y") %}
             {% if ((dateobj > yesterday) and (dateobj < dayInTwoWeeks)) %}
-              {{ datestr }}
+              {{ weekDays[dateobj.weekday()] }} {{ datestr }}
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -76,6 +78,7 @@
   scan_interval: 3600
   value_template: >
     {% set data = value.split("\n") %}
+    {% set weekDays = ["Ma","Di","Wo","Do","Vr","Za","Zo"] %}
     {% set yesterday = strptime(((as_timestamp(now()) - 86400) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
     {% set dayInOneMonth = strptime(((as_timestamp(now())+ (86400 * 31)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %} 
     {% for row in data %}
@@ -85,7 +88,7 @@
           {% if not loop.first and not loop.last %}
             {% set dateobj = strptime(datestr, "%d-%m-%Y") %}
             {% if ((dateobj > yesterday) and (dateobj < dayInOneMonth)) %}
-              {{ datestr }}
+              {{ weekDays[dateobj.weekday()] }} {{ datestr }}
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -98,6 +101,7 @@
   scan_interval: 3600
   value_template: >
     {% set data = value.split("\n") %}
+    {% set weekDays = ["Ma","Di","Wo","Do","Vr","Za","Zo"] %}
     {% set yesterday = strptime(((as_timestamp(now()) - 86400) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
     {% set dayInTwoWeeks = strptime(((as_timestamp(now())+ (86400 * 14)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %} 
     {% for row in data %}
@@ -107,7 +111,7 @@
           {% if not loop.first and not loop.last %}
             {% set dateobj = strptime(datestr, "%d-%m-%Y") %}
             {% if ((dateobj > yesterday) and (dateobj < dayInTwoWeeks)) %}
-              {{ datestr }}
+              {{ weekDays[dateobj.weekday()] }} {{ datestr }}
             {% endif %}
           {% endif %}
         {% endfor %}
