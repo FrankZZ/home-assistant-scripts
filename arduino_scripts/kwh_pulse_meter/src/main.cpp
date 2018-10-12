@@ -52,10 +52,56 @@ void handleNotFound(){
   digitalWrite(LED_BUILTIN, 0);
 }
 
+void watt() {
+  wattpulse = HIGH;
+  counter++;
+}
+
+void debounceInterruptRight() {
+  if((long)(micros() - last_micros_right) >= debouncing_time * 1000) {
+
+    if (pulseDirection == PULSE_RIGHT) {
+
+      if (last_micros_left > last_micros) {
+        watt();
+      }
+
+      last_micros = last_micros_right;
+    } else if (last_micros == last_micros_left) {
+      // the left sensor was the last to sense a pulse, so its turning right now
+      Serial.println("PULSE RIGHT");
+      pulseDirection = PULSE_RIGHT;
+    }
+
+    last_micros_right = micros();
+  }
+}
+
+void debounceInterruptLeft() {
+  if((long)(micros() - last_micros_left) >= debouncing_time * 1000) {
+
+    if (pulseDirection == PULSE_LEFT) {
+
+      if (last_micros_right > last_micros) {
+        watt();
+      }
+
+      last_micros = last_micros_left;
+    } else if (last_micros == last_micros_right) {
+      // the right sensor was the last to sense a pulse, so its turning left now
+      Serial.println("PULSE LEFT");
+      pulseDirection = PULSE_LEFT;
+    }
+
+    last_micros_left = micros();
+
+  }
+}
+
 void setup(void){
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, 0);
-  Serial.begin(115200);
+  Serial.begin(9600);
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   Serial.println("");
@@ -104,50 +150,3 @@ void loop() {
 
   server.handleClient();
 }
-
-void watt() {
-  wattpulse = HIGH;
-  counter++;
-}
-
-void debounceInterruptRight() {
-  if((long)(micros() - last_micros_right) >= debouncing_time * 1000) {
-
-    if (pulseDirection == PULSE_RIGHT) {
-
-      if (last_micros_left > last_micros) {
-        watt();
-      }
-
-      last_micros = last_micros_right;
-    } else if (last_micros == last_micros_left) {
-      // the left sensor was the last to sense a pulse, so its turning right now
-      Serial.println("PULSE RIGHT");
-      pulseDirection = PULSE_RIGHT;
-    }
-
-    last_micros_right = micros();
-  }
-}
-
-void debounceInterruptLeft() {
-  if((long)(micros() - last_micros_left) >= debouncing_time * 1000) {
-
-    if (pulseDirection == PULSE_LEFT) {
-
-      if (last_micros_right > last_micros) {
-        watt();
-      }
-
-      last_micros = last_micros_left;
-    } else if (last_micros == last_micros_right) {
-      // the right sensor was the last to sense a pulse, so its turning left now
-      Serial.println("PULSE LEFT");
-      pulseDirection = PULSE_LEFT;
-    }
-
-    last_micros_left = micros();
-
-  }
-}
-
