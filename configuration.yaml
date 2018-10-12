@@ -31,10 +31,7 @@ updater:
 
 google_assistant:
   project_id: !secret google_assistant_project_id
-  client_id: !secret google_assistant_client_id
-  access_token: !secret google_assistant_access_token
   api_key: !secret google_assistant_homegraph_api_key
-  agent_user_id: !secret google_assistant_agent_user_id
   exposed_by_default: false
   exposed_domains:
     - light
