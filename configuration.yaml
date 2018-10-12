@@ -32,7 +32,7 @@ updater:
 google_assistant:
   project_id: !secret google_assistant_project_id
   api_key: !secret google_assistant_homegraph_api_key
-  exposed_by_default: false
+  expose_by_default: false
   exposed_domains:
     - light
   entity_config:
