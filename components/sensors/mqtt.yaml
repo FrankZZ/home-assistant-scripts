@@ -13,3 +13,25 @@
 - platform: mqtt
   name: zigbee2mqtt_status
   state_topic: "zigbee2mqtt/bridge/state"
+
+- platform: mqtt
+  name: kitchen_temp_0_temperature
+  state_topic: "zigbee2mqtt/kitchen_temp_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  icon: "mdi:temperature-celsius"
+  value_template: "{{ value_json.temperature }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"
+
+- platform: mqtt
+  name: kitchen_temp_0_humidity
+  state_topic: "zigbee2mqtt/kitchen_temp_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  icon: "mdi:water-percent"
+  value_template: "{{ value_json.humidity }}"
+  json_attributes: 
+    - "battery"
+    - "voltage"

@@ -37,6 +37,14 @@ binary_sensor.scullery_leak_0:
   friendly_name: Bijkeuken Watersensor
   device_class: moisture
 
+sensor.kitchen_temp_0_humidity:
+  friendly_name: Keuken Vochtigheid
+  device_class: humidity
+
+sensor.kitchen_temp_0_temperature:
+  friendly_name: Keuken Temperatuur
+  device_class: temperature
+
 switch.upperhallway_pir_0:
   friendly_name: Overloop Trap PIR
   device_class: motion

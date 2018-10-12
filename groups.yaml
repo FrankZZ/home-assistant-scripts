@@ -16,6 +16,8 @@ default_view:
     - sensor.plex01
     - binary_sensor.scullery_leak_0
     - sensor.hallway_power_0
+    - sensor.kitchen_temp_0_humidity
+    - sensor.kitchen_temp_0_temperature
 
 livingroom_scenes:
   entities:
