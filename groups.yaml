@@ -102,6 +102,7 @@ zigbee_battery_status:
     - sensor.hallway_pir_1_battery
     - sensor.hallway_switch_0_battery
     - sensor.hallway_smoke_0_battery
+    - sensor.kitchen_temp_0_battery
 
 zigbee_linkquality_status:
   entities:
@@ -110,6 +111,7 @@ zigbee_linkquality_status:
     - sensor.hallway_switch_0_linkquality
     - sensor.hallway_smoke_0_linkquality
     - sensor.hallway_power_0_linkquality
+    - sensor.kitchen_temp_0_linkquality
 
 apcupsd_status:
   entities:
