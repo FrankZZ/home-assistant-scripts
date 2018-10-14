@@ -42,7 +42,11 @@
           {% if not loop.first and not loop.last %}
             {% set dateobj = strptime(datestr, "%d-%m-%Y") %}
             {% if ((dateobj > yesterday) and (dateobj < dayInTwoWeeks)) %}
-              {{ weekDays[dateobj.weekday()] }} {{ datestr }}
+              {{ weekDays[dateobj.weekday()] }}
+              {%- set weeksUntilTrash = (as_timestamp(dateobj)-as_timestamp(now()))/86400/7 -%}
+              {% if (weeksUntilTrash > 1) -%}
+                 {{ " " }}over {{ (weeksUntilTrash+0.5)|round }} weken
+              {% endif %}
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -65,7 +69,11 @@
           {% if not loop.first and not loop.last %}
             {% set dateobj = strptime(datestr, "%d-%m-%Y") %}
             {% if ((dateobj > yesterday) and (dateobj < dayInTwoWeeks)) %}
-              {{ weekDays[dateobj.weekday()] }} {{ datestr }}
+              {{ weekDays[dateobj.weekday()] }}
+              {%- set weeksUntilTrash = (as_timestamp(dateobj)-as_timestamp(now()))/86400/7 -%}
+              {% if (weeksUntilTrash > 1) -%}
+                 {{ " " }}over {{ (weeksUntilTrash+0.5)|round }} weken
+              {% endif %}
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -88,7 +96,11 @@
           {% if not loop.first and not loop.last %}
             {% set dateobj = strptime(datestr, "%d-%m-%Y") %}
             {% if ((dateobj > yesterday) and (dateobj < dayInOneMonth)) %}
-              {{ weekDays[dateobj.weekday()] }} {{ datestr }}
+              {{ weekDays[dateobj.weekday()] }}
+              {%- set weeksUntilTrash = (as_timestamp(dateobj)-as_timestamp(now()))/86400/7 -%}
+              {% if (weeksUntilTrash > 1) -%}
+                 {{ " " }}over {{ (weeksUntilTrash+0.5)|round }} weken
+              {% endif %}
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -111,7 +123,11 @@
           {% if not loop.first and not loop.last %}
             {% set dateobj = strptime(datestr, "%d-%m-%Y") %}
             {% if ((dateobj > yesterday) and (dateobj < dayInTwoWeeks)) %}
-              {{ weekDays[dateobj.weekday()] }} {{ datestr }}
+              {{ weekDays[dateobj.weekday()] }}
+              {%- set weeksUntilTrash = (as_timestamp(dateobj)-as_timestamp(now()))/86400/7 -%}
+              {% if (weeksUntilTrash > 1) -%}
+                 {{ " " }}over {{ (weeksUntilTrash+0.5)|round }} weken
+              {% endif %}
             {% endif %}
           {% endif %}
         {% endfor %}
