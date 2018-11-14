@@ -36,3 +36,12 @@
   white_value: true
   white_value_command_topic: 'RGBW02/channel/3/set'
   white_value_state_topic: 'RGBW02/channel/3'
+
+# tradfri
+- platform: "mqtt_json"
+  name: livingroom_light_1
+  state_topic: "zigbee2mqtt/livingroom_light_1"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  command_topic: "zigbee2mqtt/livingroom_light_1/set"
