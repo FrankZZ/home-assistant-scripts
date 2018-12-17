@@ -6,6 +6,7 @@ services:
 before_install:
   - docker pull homeassistant/homeassistant:latest
   - docker run homeassistant/homeassistant:latest python -m homeassistant --version
+  - docker run homeassistant/homeassistant:latest python --version
   - mv secrets-empty.yaml secrets.yaml
 
 script:
