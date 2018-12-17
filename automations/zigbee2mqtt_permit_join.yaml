@@ -16,7 +16,7 @@
       entity_id: switch.zigbee2mqtt_permit_join
       to: 'on'
       for:
-        minutes: 2
+        minutes: 5
   action:
     service: switch.turn_off
     data_template:

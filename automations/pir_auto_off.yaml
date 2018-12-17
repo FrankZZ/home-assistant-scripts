@@ -1,42 +1,42 @@
-- alias: auto off fix rflink
-  initial_state: on
-  trigger:
-    - platform: state
-      entity_id: switch.hallway_pir_0
-      to: 'on'
-      for:
-        seconds: 2
-    - platform: state
-      entity_id: switch.hallway_pir_1
-      to: 'on'
-      for:
-        seconds: 2
-    - platform: state
-      entity_id: switch.upperhallway_pir_0
-      to: 'on'
-      for:
-        seconds: 2
-    - platform: state
-      entity_id: switch.upperhallway_pir_1
-      to: 'on'
-      for:
-        seconds: 2
-    - platform: state
-      entity_id: switch.hallway_door_0
-      to: 'on'
-      for:
-        seconds: 2
-    - platform: state
-      entity_id: switch.hallway_switch_0
-      to: 'on'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: switch.hallway_switch_1
-      to: 'on'
-      for:
-        minutes: 10
-  action:
-    service: switch.turn_off
-    data_template:
-      entity_id: "{{ trigger.entity_id }}"
+# - alias: auto off fix rflink
+#   initial_state: on
+#   trigger:
+#     - platform: state
+#       entity_id: switch.hallway_pir_0
+#       to: 'on'
+#       for:
+#         seconds: 2
+#     - platform: state
+#       entity_id: switch.hallway_pir_1
+#       to: 'on'
+#       for:
+#         seconds: 2
+#     - platform: state
+#       entity_id: switch.upperhallway_pir_0
+#       to: 'on'
+#       for:
+#         seconds: 2
+#     - platform: state
+#       entity_id: switch.upperhallway_pir_1
+#       to: 'on'
+#       for:
+#         seconds: 2
+#     - platform: state
+#       entity_id: switch.hallway_door_0
+#       to: 'on'
+#       for:
+#         seconds: 2
+#     - platform: state
+#       entity_id: switch.hallway_switch_0
+#       to: 'on'
+#       for:
+#         minutes: 10
+#     - platform: state
+#       entity_id: switch.hallway_switch_1
+#       to: 'on'
+#       for:
+#         minutes: 10
+#   action:
+#     service: switch.turn_off
+#     data_template:
+#       entity_id: "{{ trigger.entity_id }}"

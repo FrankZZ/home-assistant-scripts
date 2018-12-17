@@ -1,44 +1,44 @@
-- name: livingroom_morning
-  entities:
-    light.livingroom_lights:
-      state: on
-      brightness: 120
-      effect: white_mode
-      # rgb_color: [255,255,255] # white
+# - name: livingroom_morning
+#   entities:
+#     light.livingroom_lights:
+#       state: on
+#       brightness: 120
+#       effect: white_mode
+#       # rgb_color: [255,255,255] # white
 
-- name: livingroom_midday
-  entities:
-    light.livingroom_lights:
-      state: on
-      brightness: 200
-      effect: white_mode
-      # rgb_color: [255,255,255] # white
+# - name: livingroom_midday
+#   entities:
+#     light.livingroom_lights:
+#       state: on
+#       brightness: 200
+#       effect: white_mode
+#       # rgb_color: [255,255,255] # white
 
-- name: livingroom_evening
-  entities:
-    light.livingroom_lights:
-      state: on
-      brightness: 180
-      effect: white_mode
-      # rgb_color: [255,255,255] # white
+# - name: livingroom_evening
+#   entities:
+#     light.livingroom_lights:
+#       state: on
+#       brightness: 180
+#       effect: white_mode
+#       # rgb_color: [255,255,255] # white
 
-- name: livingroom_night
-  entities:
-    light.livingroom_lights:
-      state: on
-      brightness: 50
-      effect: white_mode
-      # rgb_color: [255,255,255] # white
+# - name: livingroom_night
+#   entities:
+#     light.livingroom_lights:
+#       state: on
+#       brightness: 50
+#       effect: white_mode
+#       # rgb_color: [255,255,255] # white
 
-- name: livingroom_full
-  entities:
-    light.livingroom_lights:
-      state: on
-      brightness: 255
-      effect: white_mode
-      # rgb_color: [255,255,255] # white
+# - name: livingroom_full
+#   entities:
+#     light.livingroom_lights:
+#       state: on
+#       brightness: 255
+#       effect: white_mode
+#       # rgb_color: [255,255,255] # white
 
-- name: livingroom_off
-  entities:
-    light.livingroom_lights:
-      state: off
+# - name: livingroom_off
+#   entities:
+#     light.livingroom_lights:
+#       state: off

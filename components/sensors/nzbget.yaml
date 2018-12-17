@@ -1,12 +1,12 @@
-- platform: nzbget
-  host: !secret nzbget_host
-  monitored_variables:
-    - article_cache
-    - average_download_rate
-    - download_paused
-    - download_rate
-    - download_size
-    - free_disk_space
-    - post_paused
-    - remaining_size
-    - uptime
+# - platform: nzbget
+#   host: !secret nzbget_host
+#   monitored_variables:
+#     - article_cache
+#     - average_download_rate
+#     - download_paused
+#     - download_rate
+#     - download_size
+#     - free_disk_space
+#     - post_paused
+#     - remaining_size
+#     - uptime

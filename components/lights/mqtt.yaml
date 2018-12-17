@@ -1,47 +1,88 @@
-- platform: mqtt
-  name: 'RGBW01'
-  state_topic: 'RGBW01/relay/0'
-  command_topic: 'RGBW01/relay/0/set'
-  payload_on: 1
-  payload_off: 0
-  rgb_state_topic: 'RGBW01/color'
-  rgb_command_topic: 'RGBW01/color/set'
-  rgb: true
-  optimistic: false
-  color_temp: true
-  color_temp_command_topic: 'RGBW01/mired/set'
-  brightness: true
-  brightness_scale: 255
-  brightness_command_topic:  'RGBW01/brightness/set'
-  brightness_state_topic: 'RGBW01/brightness'
-  white_value: true
-  white_value_command_topic: 'RGBW01/channel/3/set'
-  white_value_state_topic: 'RGBW01/channel/3'
-- platform: mqtt
-  name: 'RGBW02'
-  state_topic: 'RGBW02/relay/0'
-  command_topic: 'RGBW02/relay/0/set'
-  payload_on: 1
-  payload_off: 0
-  rgb_state_topic: 'RGBW02/color'
-  rgb_command_topic: 'RGBW02/color/set'
-  rgb: true
-  optimistic: false
-  color_temp: true
-  color_temp_command_topic: 'RGBW02/mired/set'
-  brightness: true
-  brightness_scale: 255
-  brightness_command_topic:  'RGBW02/brightness/set'
-  brightness_state_topic: 'RGBW02/brightness'
-  white_value: true
-  white_value_command_topic: 'RGBW02/channel/3/set'
-  white_value_state_topic: 'RGBW02/channel/3'
-
 # tradfri
-- platform: "mqtt_json"
-  name: livingroom_light_1
-  state_topic: "zigbee2mqtt/livingroom_light_1"
+- name: livingroom_light_0
+  state_topic: "zigbee2mqtt/livingroom_light_0"
+  command_topic: "zigbee2mqtt/livingroom_light_0/set"
+  platform: mqtt
+  schema: json
   availability_topic: "zigbee2mqtt/bridge/state"
   brightness: true
+  qos: 1
   color_temp: true
-  command_topic: "zigbee2mqtt/livingroom_light_1/set"
+
+- name: "livingroom_light_1"
+  command_topic: zigbee2mqtt/livingroom_light_1
+  state_topic: zigbee2mqtt/livingroom_light_1
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
+
+- name: "livingroom_light_2"
+  command_topic: zigbee2mqtt/livingroom_light_2
+  state_topic: zigbee2mqtt/livingroom_light_2
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
+
+- name: "livingroom_light_3"
+  command_topic: zigbee2mqtt/livingroom_light_3
+  state_topic: zigbee2mqtt/livingroom_light_3
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
+
+
+- name: "kitchen_light_0"
+  command_topic: zigbee2mqtt/kitchen_light_0
+  state_topic: zigbee2mqtt/kitchen_light_0
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
+
+
+- name: "attichallway_light_0"
+  command_topic: zigbee2mqtt/attichallway_light_0
+  state_topic: zigbee2mqtt/attichallway_light_0
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
+
+
+- name: "closetroom_light_0"
+  command_topic: zigbee2mqtt/closetroom_light_0
+  state_topic: zigbee2mqtt/closetroom_light_0
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
+
+
+- name: "closetroom_light_1"
+  command_topic: zigbee2mqtt/closetroom_light_1
+  state_topic: zigbee2mqtt/closetroom_light_1
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
+
+
+- name: "closetroom_light_2"
+  command_topic: zigbee2mqtt/closetroom_light_2
+  state_topic: zigbee2mqtt/closetroom_light_2
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
+

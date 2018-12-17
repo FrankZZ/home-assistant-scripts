@@ -16,6 +16,8 @@ homeassistant:
     light:
       assumed_state: false
 
+hassio:
+
 map:
 
 updater:
@@ -36,24 +38,27 @@ google_assistant:
   exposed_domains:
     - light
   entity_config:
-    group.milights:
-      expose: true
-      name: all lights
     light.livingroom_lights:
-      name: living room lights
+      name: Woonkamer Lampen
       expose: true
-    light.hallway_lights:
-      name: hallway lights
+    light.hallway_light_0:
+      name: Gang Lamp
       expose: true
-    light.upperhallway_lights:
-      name: upper hallway lights
+    light.closetroom_lights:
+      name: Kastenkamer Lamp
+      expose: true
+    light.upperhallway_light_0:
+      name: Overloop Lamp
+      expose: true
+    light.attichallway_light_0:
+      name: Zolder Lamp
       expose: true
 
 # Enables the frontend
 frontend:
 
-apcupsd:
-  host: !secret apcupsd_host
+# apcupsd:
+#   host: !secret apcupsd_host
 
 emulated_hue:
   exposed_domains:
@@ -61,7 +66,7 @@ emulated_hue:
     - scene
 
 http:
-  api_password: !secret api_password
+  # api_password: !secret api_password
   # base_url: !secret http_base_url
   use_x_forwarded_for: true
   trusted_proxies:
@@ -87,17 +92,11 @@ logbook:
 # Track the sun
 sun:
 
-rflink:
-  port: /dev/ttyACM0
-
-ios:
-
-# weather:
-#   - platform: yweather
-#     name: "Yahoo Weather"
+# rflink:
+#   port: /dev/ttyACM0
 
 recorder:
-  db_url: !secret recorder_db_url
+#  db_url: !secret recorder_db_url
   exclude:
     domains:
       - automation
@@ -156,11 +155,11 @@ device_tracker:
 #     name: !secret cam1_name
 #     input: !secret cam1_input
 
-ffmpeg:
-  ffmpeg_bin: /usr/local/bin/ffmpeg
+# ffmpeg:
+#   ffmpeg_bin: /usr/local/bin/ffmpeg
 
 mqtt:
-  # discovery: true
+  discovery: false
   # discovery_prefix: homeassistant
   birth_message:
     topic: 'hass/status'
@@ -169,11 +168,3 @@ mqtt:
     topic: 'hass/status'
     payload: 'offline'
   broker: !secret mqtt_server
-
-# telegram_bot:
-#   - platform: webhooks
-#     api_key: !secret telegram_bot_api_key
-#     allowed_chat_ids:
-#       - !secret telegram_frank_id
-#       - !secret telegram_malissa_id
-#       - !secret telegram_harrie_id

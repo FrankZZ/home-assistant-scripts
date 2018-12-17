@@ -1,65 +1,48 @@
 # timeouts
+
+  # Use a YAML anchor for common settings so we can just reference
+  # them
 upperhallway_timeout_morning:
-  min: 10
-  max: 300
-  step: 10
-  unit_of_measurement: sec
+  <<: &upperHALLWAY_TIMEOUT_PARAMS
+    min: 10
+    max: 300
+    step: 10
+    unit_of_measurement: sec
+
 upperhallway_timeout_midday:
-  min: 10
-  max: 300
-  step: 10
-  unit_of_measurement: sec
+  <<: *upperHALLWAY_TIMEOUT_PARAMS
+
 upperhallway_timeout_evening:
-  min: 10
-  max: 300
-  step: 10
-  unit_of_measurement: sec
+  <<: *upperHALLWAY_TIMEOUT_PARAMS
+
 upperhallway_timeout_night:
-  min: 10
-  max: 300
-  step: 10
-  unit_of_measurement: sec
+  <<: *upperHALLWAY_TIMEOUT_PARAMS
+
 upperhallway_timeout_full:
-  min: 120
+  min: 60
   max: 600
   step: 10
-  unit_of_measurement: sec
-upperhallway_recent_motions_treshold:
-  min: 1
-  max: 10
-  step: 1
-upperhallway_recent_motions_seconds:
-  min: 1
-  max: 120
-  step: 1
   unit_of_measurement: sec
 
 # brightness
 upperhallway_brightness_morning:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
+  <<: &UPPERHALLWAY_BRIGHTNESS_PARAMS
+    min: 0
+    max: 100
+    step: 1
+    unit_of_measurement: '%'
+
 upperhallway_brightness_midday:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
+  <<: *UPPERHALLWAY_BRIGHTNESS_PARAMS
+
 upperhallway_brightness_evening:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
+  <<: *UPPERHALLWAY_BRIGHTNESS_PARAMS
+
 upperhallway_brightness_night:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
+  <<: *UPPERHALLWAY_BRIGHTNESS_PARAMS
+
 upperhallway_brightness_full:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
+  <<: *UPPERHALLWAY_BRIGHTNESS_PARAMS
 
 upperhallway_darkness_treshold:
   min: 0

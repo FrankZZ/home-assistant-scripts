@@ -10,14 +10,22 @@ default_view:
     - camera.woonkamer
     - sun.sun
     - sensor.lux_livingroom
-    - sensor.hallway_pir_1_illuminance
+    - sensor.closetroom_pir_0_illuminance
+    - sensor.attichallway_pir_0_illuminance
+    - sensor.kitchen_pir_0_illuminance
+    - sensor.livingroom_pir_0_illuminance
+    - sensor.upperhallway_pir_0_illuminance
+    - sensor.hallway_pir_0_illuminance
     - timer.hallway
     - timer.upperhallway
     - sensor.plex01
-    - binary_sensor.scullery_leak_0
-    - sensor.hallway_power_0
-    - sensor.kitchen_temp_0_humidity
-    - sensor.kitchen_temp_0_temperature
+    - binary_sensor.scullery_water_0
+    - binary_sensor.bathroom_water_0
+    - sensor.garage_power_0
+    - sensor.freezer_temp_0_humidity
+    - sensor.freezer_temp_0_temperature
+    - switch.garage_power_0
+    - group.pirs
 
 livingroom_scenes:
   entities:
@@ -103,6 +111,7 @@ zigbee_battery_status:
     - sensor.hallway_switch_0_battery
     - sensor.hallway_smoke_0_battery
     - sensor.kitchen_temp_0_battery
+    - sensor.kitchen_temp_1_battery
 
 zigbee_linkquality_status:
   entities:
@@ -112,6 +121,7 @@ zigbee_linkquality_status:
     - sensor.hallway_smoke_0_linkquality
     - sensor.hallway_power_0_linkquality
     - sensor.kitchen_temp_0_linkquality
+    - sensor.kitchen_temp_1_linkquality
 
 apcupsd_status:
   entities:
@@ -274,16 +284,30 @@ settings_view:
 
 lights:
   entities:
+    - light.closetroom_lights
     - light.livingroom_lights
-    - light.hallway_lights
-    - light.upperhallway_lights
+    - light.livingroom_light_0
+    - light.livingroom_light_1
+    - light.livingroom_light_2
+    - light.livingroom_light_3
+    - light.kitchen_light_0
+    - light.upperhallway_light_0
+    - light.attichallway_light_0
+    - light.hallway_light_0
+
+pirs:
+  entities:
+    - binary_sensor.livingroom_pir_0
+    - binary_sensor.kitchen_pir_0
+    - binary_sensor.hallway_pir_0
+    - binary_sensor.upperhallway_pir_0
+    - binary_sensor.closetroom_pir_0
+    - binary_sensor.attichallway_pir_0
 
 hallway_pirs:
   entities:
     - switch.hallway_pir_0
-    - switch.hallway_pir_1
 
 upperhallway_pirs:
   entities:
     - switch.upperhallway_pir_0
-    - switch.upperhallway_pir_1

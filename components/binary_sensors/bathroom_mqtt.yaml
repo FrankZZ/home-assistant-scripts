@@ -1,10 +1,10 @@
 - platform: "mqtt"
-  name: scullery_water_0
-  qos: 1
-  state_topic: "zigbee2mqtt/scullery_water_0"
+  name: bathroom_water_0
+  state_topic: "zigbee2mqtt/bathroom_water_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   payload_on: true
   payload_off: false
+  qos: 1
   value_template: "{{ value_json.water_leak }}"
   device_class: "moisture"
   json_attributes:

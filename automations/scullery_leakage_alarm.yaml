@@ -2,7 +2,7 @@
   initial_state: on
   trigger:
     - platform: state
-      entity_id: binary_sensor.scullery_leak_0
+      entity_id: binary_sensor.scullery_water_0
       to: 'on'
   action:
     service: notify.web
@@ -16,7 +16,7 @@
   initial_state: on
   trigger:
     - platform: state
-      entity_id: binary_sensor.scullery_leak_0
+      entity_id: binary_sensor.scullery_water_0
       to: 'off'
   action:
     service: notify.web

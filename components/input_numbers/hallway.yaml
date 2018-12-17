@@ -1,24 +1,24 @@
 # timeouts
+  # Use a YAML anchor for common settings so we can just reference
+  # them
+
+
 hallway_timeout_morning:
-  min: 10
-  max: 300
-  step: 10
-  unit_of_measurement: sec
+  <<: &HALLWAY_TIMEOUT_PARAMS
+    min: 10
+    max: 300
+    step: 10
+    unit_of_measurement: sec
+
 hallway_timeout_midday:
-  min: 10
-  max: 300
-  step: 10
-  unit_of_measurement: sec
+  <<: *HALLWAY_TIMEOUT_PARAMS
+
 hallway_timeout_evening:
-  min: 10
-  max: 300
-  step: 10
-  unit_of_measurement: sec
+  <<: *HALLWAY_TIMEOUT_PARAMS
+
 hallway_timeout_night:
-  min: 10
-  max: 300
-  step: 10
-  unit_of_measurement: sec
+  <<: *HALLWAY_TIMEOUT_PARAMS
+
 hallway_timeout_full:
   min: 60
   max: 600
@@ -27,34 +27,26 @@ hallway_timeout_full:
 
 # brightness
 hallway_brightness_morning:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
+  <<: &HALLWAY_BRIGHTNESS_PARAMS
+    min: 0
+    max: 100
+    step: 1
+    unit_of_measurement: '%'
+
 hallway_brightness_midday:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
+  <<: *HALLWAY_BRIGHTNESS_PARAMS
+
 hallway_brightness_evening:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
+  <<: *HALLWAY_BRIGHTNESS_PARAMS
+
 hallway_brightness_night:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
+  <<: *HALLWAY_BRIGHTNESS_PARAMS
+
 hallway_brightness_full:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
+  <<: *HALLWAY_BRIGHTNESS_PARAMS
 
 hallway_darkness_treshold:
   min: 0
   max: 1000
   step: 50
   unit_of_measurement: 'lx'
-

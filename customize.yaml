@@ -1,76 +1,41 @@
-switch.hallway_pir_0:
-  friendly_name: Gang Trap PIR
+# Hallway
+binary_sensor.hallway_pir_0:
+  friendly_name: Gang PIR
   device_class: motion
 
-binary_sensor.hallway_pir_0:
-  friendly_name: Gang Trap PIR
-  device_class: motion
+sensor.hallway_pir_0_illuminance:
+  friendly_name: Gang Lux
 
 sensor.hallway_pir_0_battery:
-  friendly_name: Gang Trap PIR
+  friendly_name: Gang PIR
 
 sensor.hallway_pir_0_linkquality:
-  friendly_name: Gang Trap PIR
+  friendly_name: Gang PIR
 
-sensor.hallway_pir_1_illuminance:
-  friendly_name: Gang Keuken Lux
+sensor.kitchen_pir_0_illuminance:
+  friendly_name: Keuken Lux
 
-sensor.hallway_pir_1_battery:
-  friendly_name: Gang Keuken PIR
+sensor.kitchen_pir_0_battery:
+  friendly_name: Keuken PIR
 
-sensor.hallway_pir_1_linkquality:
-  friendly_name: Gang Keuken PIR
+sensor.kitchen_pir_0_linkquality:
+  friendly_name: Keuken PIR
 
-switch.hallway_pir_1:
-  friendly_name: Gang Keuken PIR
+binary_sensor.kitchen_pir_0:
+  friendly_name: Keuken PIR
   device_class: motion
 
-binary_sensor.hallway_pir_1:
-  friendly_name: Gang Keuken PIR
-  device_class: motion
-
-binary_sensor.hallway_smoke_0:
-  friendly_name: Gang Rookmelder
+binary_sensor.livingroom_smoke_0:
+  friendly_name: Huiskamer Rookmelder
   device_class: smoke
 
-binary_sensor.scullery_leak_0:
+binary_sensor.scullery_water_0:
   friendly_name: Bijkeuken Watersensor
   device_class: moisture
-
-sensor.kitchen_temp_0_humidity:
-  friendly_name: Keuken Vochtigheid
-  device_class: humidity
-
-sensor.kitchen_temp_0_temperature:
-  friendly_name: Keuken Temperatuur
-  device_class: temperature
-
-switch.upperhallway_pir_0:
-  friendly_name: Overloop Trap PIR
-  device_class: motion
-
-switch.upperhallway_pir_1:
-  friendly_name: Overloop Gang PIR
-  device_class: motion
 
 switch.hallway_door_0:
   friendly_name: Voordeur Contact
   device_class: opening
-
-sensor.hallway_switch_0:
-  friendly_name: Gang Knop
-
-sensor.hallway_switch_0_battery:
-  friendly_name: Gang Knop
-
-sensor.hallway_switch_0_linkquality:
-  friendly_name: Gang Knop
-
-switch.hallway_switch_0:
-  friendly_name: Gang Knop
-
-switch.hallway_switch_1:
-  friendly_name: Overloop Knop
 
 sensor.hallway_smoke_0_battery:
   friendly_name: Gang Rookmelder
@@ -78,32 +43,11 @@ sensor.hallway_smoke_0_battery:
 sensor.hallway_smoke_0_linkquality:
   friendly_name: Gang Rookmelder
 
-switch.chromecast_livingroom_power:
-  friendly_name: Chromecast Huiskamer
-
-light.livingroom1:
-  friendly_name: Testlamp
-
-light.livingroom_dinertable:
-  friendly_name: Eettafel
-
-light.livingroom_couch_1:
-  friendly_name: Bank Spiegel
-
-light.livingroom_couch_2:
-  friendly_name: Bank Serre
-
-light.hallway_stairway:
-  friendly_name: Trap Beneden
-
 light.hallway_kitchen:
   friendly_name: Keuken
 
 light.hallway_frontdoor:
   friendly_name: Voordeur
-
-light.upperhallway_storage:
-  friendly_name: Werkkamer
 
 light.upperhallway_stairway:
   friendly_name: Trap Boven
@@ -132,18 +76,6 @@ group.all_devices:
 
 group.all_automations:
   hidden: true
-
-group.livingroom_scenes:
-  friendly_name: Woonkamer Scenes
-  hidden: false
-
-group.hallway_scenes:
-  friendly_name: Gang Scenes
-  hidden: false
-
-group.upperhallway_scenes:
-  friendly_name: Overloop Scenes
-  hidden: false
 
 group.presence_view:
   icon: mdi:account-multiple

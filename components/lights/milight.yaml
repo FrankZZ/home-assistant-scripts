@@ -1,46 +1,18 @@
-# - platform: limitlessled
-#   bridges:
-#   - host: !secret milight_host
-#     version: 5
-#     port: 8800
-#     groups:
-#       - number: 1
-#         type: rgbw
-#         name: livingroom_dinertable
-#         fade: on
-#       - number: 2
-#         type: rgbw
-#         name: livingroom_couch_1
-#         fade: on
-#       - number: 3
-#         type: rgbw
-#         name: livingroom_couch_2
-#         fade: on
-#   - host: !secret milight_host
-#     version: 5
-#     port: 8801
-#     groups:
-#       - number: 1
-#         type: rgbw
-#         name: hallway_frontdoor
-#         fade: off
-#       - number: 2
-#         type: rgbw
-#         name: hallway_stairway
-#         fade: off
-#       - number: 3
-#         type: rgbw
-#         name: hallway_kitchen
-#         fade: off
-#   - host: !secret milight_host
-#     version: 5
-#     port: 8802
-#     groups:
-#       - number: 1
-#         type: rgbw
-#         name: upperhallway_stairway
-#         fade: off
-#       - number: 2
-#         type: rgbw
-#         name: upperhallway_storage
-#         fade: off
+- platform: limitlessled
+  bridges:
+    - host: !secret milight_host
+      version: 5
+      port: 8899
+      groups:
+        - number: 1
+          type: rgbw
+          name: hallway_light_0
+          fade: true
+        - number: 2
+          type: rgbw
+          name: upperhallway_light_0
+          fade: true
+        - number: 4
+          type: rgbw
+          name: attic_light_0
+          fade: true

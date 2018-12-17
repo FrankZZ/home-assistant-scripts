@@ -3,92 +3,90 @@
   trigger:
     - platform: state
       entity_id:
-        binary_sensor.hallway_pir_0,
-        binary_sensor.hallway_pir_1,
-        switch.hallway_door_0
+        binary_sensor.hallway_pir_0
       to: 'on'
-  condition:
-    condition: state
-    entity_id: binary_sensor.hallway_dark
-    state: 'on'
+  # condition:
+  #   condition: state
+  #   entity_id: binary_sensor.hallway_dark
+  #   state: 'on'
   action:
-    service: script.turn_on
+    service: light.turn_on
     data_template:
-      entity_id: "script.hallway_{{ states('input_select.timeofday') }}"
+      entity_id: "light.hallway_light_0"
 
-- alias: "Licht Gang soms een keer aan als er niemand thuis is"
-  initial_state: on
-  trigger:
-    - platform: time
-      minutes: '/10'
-      seconds: 00
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: "{{ is_state('input_select.timeofday', 'evening') }}"
-      - condition: template
-        value_template: "{{ is_state('group.all_devices', 'not_home') }}"
-  action:
-    service: script.turn_on
-    data_template:
-      entity_id: "script.hallway_{{ states('input_select.timeofday') }}"
+# - alias: "Licht Gang soms een keer aan als er niemand thuis is"
+#   initial_state: on
+#   trigger:
+#     - platform: time
+#       minutes: '/10'
+#       seconds: 00
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: template
+#         value_template: "{{ is_state('input_select.timeofday', 'evening') }}"
+#       - condition: template
+#         value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+#   action:
+#     service: script.turn_on
+#     data_template:
+#       entity_id: "script.hallway_{{ states('input_select.timeofday') }}"
 
-- alias: "Licht Gang aan als iemand van de trap af komt"
-  initial_state: on
-  trigger:
-    - platform: state
-      entity_id:
-        switch.upperhallway_pir_0
-      to: 'on'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: binary_sensor.hallway_dark
-        state: 'on'
-      - condition: template
-        value_template: '{{ (as_timestamp(now())-as_timestamp(states.switch.upperhallway_pir_1.last_updated)) < 30 }}'
-  action:
-    service: script.turn_on
-    data_template:
-      entity_id: "script.hallway_{{ states('input_select.timeofday') }}"
+# - alias: "Licht Gang aan als iemand van de trap af komt"
+#   initial_state: on
+#   trigger:
+#     - platform: state
+#       entity_id:
+#         switch.upperhallway_pir_0
+#       to: 'on'
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: state
+#         entity_id: binary_sensor.hallway_dark
+#         state: 'on'
+#       - condition: template
+#         value_template: '{{ (as_timestamp(now())-as_timestamp(states.switch.upperhallway_pir_1.last_updated)) < 30 }}'
+#   action:
+#     service: script.turn_on
+#     data_template:
+#       entity_id: "script.hallway_{{ states('input_select.timeofday') }}"
 
-- alias: "Licht Gang uit als timer stopt"
-  initial_state: on
-  trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.hallway
-  action:
-    service: script.turn_on
-    entity_id: "script.hallway_off"
+# - alias: "Licht Gang uit als timer stopt"
+#   initial_state: on
+#   trigger:
+#     - platform: event
+#       event_type: timer.finished
+#       event_data:
+#         entity_id: timer.hallway
+#   action:
+#     service: script.turn_on
+#     entity_id: "script.hallway_off"
 
-- alias: "Licht Gang volgt dagdeel"
-  initial_state: on
-  trigger:
-  - platform: state
-    entity_id: input_select.timeofday
-  condition:
-    condition: and
-    conditions:
-    - condition: template
-      value_template: "{{ is_state('light.hallway', 'on') }}"
-    - condition: template
-      value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}"
-  action:
-    service: script.turn_on
-    data_template:
-      entity_id: "script.hallway_{{ states('input_select.timeofday') }}"
+# - alias: "Licht Gang volgt dagdeel"
+#   initial_state: on
+#   trigger:
+#   - platform: state
+#     entity_id: input_select.timeofday
+#   condition:
+#     condition: and
+#     conditions:
+#     - condition: template
+#       value_template: "{{ is_state('light.hallway', 'on') }}"
+#     - condition: template
+#       value_template: "{{ is_state('switch.hallway_switch_0', 'off') }}"
+#   action:
+#     service: script.turn_on
+#     data_template:
+#       entity_id: "script.hallway_{{ states('input_select.timeofday') }}"
 
-- alias: "Licht Gang fel aan door muurknop"
-  initial_state: on
-  trigger:
-  - platform: state
-    entity_id: switch.hallway_switch_0
-    to: "on"
-  action:
-    service: script.turn_on
-    data:
-      entity_id: script.hallway_full
+# - alias: "Licht Gang fel aan door muurknop"
+#   initial_state: on
+#   trigger:
+#   - platform: state
+#     entity_id: switch.hallway_switch_0
+#     to: "on"
+#   action:
+#     service: script.turn_on
+#     data:
+#       entity_id: script.hallway_full

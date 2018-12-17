@@ -7,3 +7,12 @@
   optimistic: false
   qos: 0
   retain: true
+
+- platform: "mqtt"
+  state_topic: "zigbee2mqtt/garage_power_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_off: "OFF"
+  payload_on: "ON"
+  qos: 1
+  value_template: "{{ value_json.state }}"
+  command_topic: "zigbee2mqtt/garage_power_0/set"

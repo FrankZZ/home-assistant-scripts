@@ -3,61 +3,81 @@
   trigger:
     - platform: state
       entity_id:
-        switch.upperhallway_pir_0,
-        switch.upperhallway_pir_1
+        binary_sensor.upperhallway_pir_0
       to: 'on'
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: "{{ states('sensor.upperhallway_recent_motions') < states('input_number.upperhallway_recent_motions_treshold') }}"
-      - condition: state
-        entity_id: 'binary_sensor.upperhallway_dark'
-        state: 'on'
+  # condition:
+  #   condition: and
+  #   conditions:
+  #     - condition: template
+  #       value_template: "{{ states('sensor.upperhallway_recent_motions') < states('input_number.upperhallway_recent_motions_treshold') }}"
+  #     - condition: state
+  #       entity_id: 'binary_sensor.upperhallway_dark'
+  #       state: 'on'
   action:
-    service: script.turn_on
+    service: light.turn_on
     data_template:
-      entity_id: "script.upperhallway_{{ states('input_select.timeofday') }}"
+      entity_id: "light.upperhallway_light_0"
 
-- alias: "Licht vol aan als er veel beweging is"
+- alias: "Licht Kastenkamer aan bij beweging"
   initial_state: on
   trigger:
-  - platform: template
-    value_template: "{{ states('sensor.upperhallway_recent_motions') >= states('input_number.upperhallway_recent_motions_treshold') }}"
+    - platform: state
+      entity_id:
+        binary_sensor.closetroom_pir_0
+      to: 'on'
+  # condition:
+  #   condition: and
+  #   conditions:
+  #     - condition: template
+  #       value_template: "{{ states('sensor.upperhallway_recent_motions') < states('input_number.upperhallway_recent_motions_treshold') }}"
+  #     - condition: state
+  #       entity_id: 'binary_sensor.upperhallway_dark'
+  #       state: 'on'
   action:
-    service: switch.turn_on
-    entity_id: switch.hallway_switch_1
-
-- alias: "Licht Overloop uit als timer stopt"
-  initial_state: on
-  trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.upperhallway
-  action:
-    service: script.turn_on
-    entity_id: "script.upperhallway_off"
-
-- alias: "Licht Overloop volgt dagdeel"
-  initial_state: on
-  trigger:
-  - platform: state
-    entity_id: input_select.timeofday
-  condition:
-    condition: template
-    value_template: "{{ is_state('light.upperhallway_lights', 'on') }}"
-  action:
-    service: script.turn_on
+    service: light.turn_on
     data_template:
-      entity_id: "script.upperhallway_{{ states('input_select.timeofday') }}"
+      entity_id: "light.closetroom_lights"
 
-- alias: "Licht Overloop vol aan door muurknop"
-  initial_state: on
-  trigger:
-  - platform: state
-    entity_id: switch.hallway_switch_1
-    to: "on"
-  action:
-    service: script.turn_on
-    entity_id: script.upperhallway_full
+
+# - alias: "Licht vol aan als er veel beweging is"
+#   initial_state: on
+#   trigger:
+#   - platform: template
+#     value_template: "{{ states('sensor.upperhallway_recent_motions') >= states('input_number.upperhallway_recent_motions_treshold') }}"
+#   action:
+#     service: switch.turn_on
+#     entity_id: switch.hallway_switch_1
+
+# - alias: "Licht Overloop uit als timer stopt"
+#   initial_state: on
+#   trigger:
+#     - platform: event
+#       event_type: timer.finished
+#       event_data:
+#         entity_id: timer.upperhallway
+#   action:
+#     service: script.turn_on
+#     entity_id: "script.upperhallway_off"
+
+# - alias: "Licht Overloop volgt dagdeel"
+#   initial_state: on
+#   trigger:
+#   - platform: state
+#     entity_id: input_select.timeofday
+#   condition:
+#     condition: template
+#     value_template: "{{ is_state('light.upperhallway_lights', 'on') }}"
+#   action:
+#     service: script.turn_on
+#     data_template:
+#       entity_id: "script.upperhallway_{{ states('input_select.timeofday') }}"
+
+# - alias: "Licht Overloop vol aan door muurknop"
+#   initial_state: on
+#   trigger:
+#   - platform: state
+#     entity_id: switch.hallway_switch_1
+#     to: "on"
+#   action:
+#     service: script.turn_on
+#     entity_id: script.upperhallway_full
