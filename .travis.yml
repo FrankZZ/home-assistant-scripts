@@ -4,10 +4,10 @@ services:
   - docker
 
 before_install:
-  - docker pull homeassistant/homeassistant:latest
-  - docker run homeassistant/homeassistant:latest python -m homeassistant --version
-  - docker run homeassistant/homeassistant:latest python --version
-  - mv secrets-empty.yaml secrets.yaml
+  - docker pull homeassistant/home-assistant:latest
+  - docker run homeassistant/home-assistant:latest python -m homeassistant --version
+  - docker run homeassistant/home-assistant:latest python --version
+  - mv "${TRAVIS_BUILD_DIR}/secrets-empty.yaml" "${TRAVIS_BUILD_DIR}/secrets.yaml"
 
 script:
-  - docker run -v "${TRAVIS_BUILD_DIR}:/hassconfig" homeassistant/homeassistant:latest python -m homeassistant --script check_config -c /hassconfig
+  - docker run -v "${TRAVIS_BUILD_DIR}:/hassconfig" homeassistant/home-assistant:latest python -m homeassistant --script check_config -c /hassconfig
