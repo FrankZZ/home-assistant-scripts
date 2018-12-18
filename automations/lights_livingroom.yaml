@@ -16,9 +16,13 @@
   #     - condition: template
   #       value_template: "{{ not is_state('light.livingroom_lights', 'on') }}"
   action:
-    service: light.turn_on
-    data_template:
-      entity_id: "light.livingroom_lights"
+    - service: light.turn_on
+      data_template:
+        entity_id: "light.livingroom_lights"
+    - service: switch.turn_on
+      entity_id: "switch.garage_power_0"
+    - service: switch.turn_on
+      entity_id: "switch.christmastree_power_0"
 
 
 - alias: Turn off livingroom light 30 minutes after last movement
@@ -29,8 +33,12 @@
     for:
       minutes: 30
   action:
-    service: light.turn_off
-    entity_id: light.livingroom_lights
+    - service: light.turn_off
+      entity_id: light.livingroom_lights
+    - service: switch.turn_off
+      entity_id: "switch.garage_power_0"
+    - service: switch.turn_off
+      entity_id: "switch.christmastree_power_0"
 
 - alias: "Licht Keuken aan bij beweging in de ochtend"
   initial_state: on
@@ -50,9 +58,9 @@
   #     - condition: template
   #       value_template: "{{ not is_state('light.livingroom_lights', 'on') }}"
   action:
-    service: light.turn_on
-    data_template:
-      entity_id: "light.kitchen_light_0"
+    - service: light.turn_on
+      data_template:
+        entity_id: "light.kitchen_light_0"
 
 - alias: Turn off kitchen light 2 minutes after last movement
   trigger:

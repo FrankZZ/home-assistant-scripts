@@ -92,8 +92,8 @@ logbook:
 # Track the sun
 sun:
 
-# rflink:
-#   port: /dev/ttyACM0
+rflink:
+  port: /dev/ttyACM0
 
 recorder:
 #  db_url: !secret recorder_db_url
@@ -130,10 +130,10 @@ history_graph: !include_dir_merge_named components/history_graphs
 zone: !include_dir_merge_list components/zones
 proximity: !include_dir_merge_named components/proximities
 
-remote:
-  - platform: harmony
-    name: livingroom
-    host: !secret harmony_livingroom_ip
+# remote:
+#   - platform: harmony
+#     name: livingroom
+#     host: !secret harmony_livingroom_ip
 
 device_tracker:
   - platform: nmap_tracker

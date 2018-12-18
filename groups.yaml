@@ -26,6 +26,7 @@ default_view:
     - sensor.freezer_temp_0_temperature
     - switch.garage_power_0
     - group.pirs
+    - switch.christmastree_power_0
 
 livingroom_scenes:
   entities:
