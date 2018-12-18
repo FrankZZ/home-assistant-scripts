@@ -9,6 +9,7 @@
   retain: true
 
 - platform: "mqtt"
+  name: garage_power_0
   state_topic: "zigbee2mqtt/garage_power_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   payload_off: "OFF"

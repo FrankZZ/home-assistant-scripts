@@ -285,6 +285,9 @@ settings_view:
 lights:
   entities:
     - light.closetroom_lights
+    - light.closetroom_light_0
+    - light.closetroom_light_1
+    - light.closetroom_light_2
     - light.livingroom_lights
     - light.livingroom_light_0
     - light.livingroom_light_1
@@ -294,6 +297,7 @@ lights:
     - light.upperhallway_light_0
     - light.attichallway_light_0
     - light.hallway_light_0
+
 
 pirs:
   entities:

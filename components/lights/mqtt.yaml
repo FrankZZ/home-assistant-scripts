@@ -10,7 +10,7 @@
   color_temp: true
 
 - name: "livingroom_light_1"
-  command_topic: zigbee2mqtt/livingroom_light_1
+  command_topic: zigbee2mqtt/livingroom_light_1/set
   state_topic: zigbee2mqtt/livingroom_light_1
   platform: mqtt
   schema: json
@@ -19,7 +19,7 @@
   qos: 1
 
 - name: "livingroom_light_2"
-  command_topic: zigbee2mqtt/livingroom_light_2
+  command_topic: zigbee2mqtt/livingroom_light_2/set
   state_topic: zigbee2mqtt/livingroom_light_2
   platform: mqtt
   schema: json
@@ -28,7 +28,7 @@
   qos: 1
 
 - name: "livingroom_light_3"
-  command_topic: zigbee2mqtt/livingroom_light_3
+  command_topic: zigbee2mqtt/livingroom_light_3/set
   state_topic: zigbee2mqtt/livingroom_light_3
   platform: mqtt
   schema: json
@@ -38,7 +38,7 @@
 
 
 - name: "kitchen_light_0"
-  command_topic: zigbee2mqtt/kitchen_light_0
+  command_topic: zigbee2mqtt/kitchen_light_0/set
   state_topic: zigbee2mqtt/kitchen_light_0
   platform: mqtt
   schema: json
@@ -48,7 +48,7 @@
 
 
 - name: "attichallway_light_0"
-  command_topic: zigbee2mqtt/attichallway_light_0
+  command_topic: zigbee2mqtt/attichallway_light_0/set
   state_topic: zigbee2mqtt/attichallway_light_0
   platform: mqtt
   schema: json
@@ -58,7 +58,7 @@
 
 
 - name: "closetroom_light_0"
-  command_topic: zigbee2mqtt/closetroom_light_0
+  command_topic: zigbee2mqtt/closetroom_light_0/set
   state_topic: zigbee2mqtt/closetroom_light_0
   platform: mqtt
   schema: json
@@ -68,7 +68,7 @@
 
 
 - name: "closetroom_light_1"
-  command_topic: zigbee2mqtt/closetroom_light_1
+  command_topic: zigbee2mqtt/closetroom_light_1/set
   state_topic: zigbee2mqtt/closetroom_light_1
   platform: mqtt
   schema: json
@@ -78,11 +78,10 @@
 
 
 - name: "closetroom_light_2"
-  command_topic: zigbee2mqtt/closetroom_light_2
+  command_topic: zigbee2mqtt/closetroom_light_2/set
   state_topic: zigbee2mqtt/closetroom_light_2
   platform: mqtt
   schema: json
   availability_topic: "zigbee2mqtt/bridge/state"
   brightness: true
   qos: 1
-
