@@ -14,10 +14,12 @@
   #       entity_id: 'binary_sensor.upperhallway_dark'
   #       state: 'on'
   action:
-    service: light.turn_on
-    data_template:
-      entity_id: "light.upperhallway_light_0"
-
+    - service: light.turn_on
+      data_template:
+        entity_id: "light.upperhallway_light_0"
+    - service: light.turn_on
+      data_template:
+        entity_id: "light.livingroom_light_2"
 
 - alias: Turn off upperhallway light 1 minute after last movement
   trigger:
@@ -27,8 +29,12 @@
     for:
       minutes: 1
   action:
-    service: light.turn_off
-    entity_id: light.upperhallway_light_0
+    - service: light.turn_off
+      data_template:
+        entity_id: "light.upperhallway_light_0"
+    - service: light.turn_off
+      data_template:
+        entity_id: "light.livingroom_light_2"
 
 - alias: "Licht Zolder aan bij beweging"
   initial_state: on
