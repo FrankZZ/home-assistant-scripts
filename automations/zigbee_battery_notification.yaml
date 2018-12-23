@@ -9,7 +9,7 @@
         sensor.livingroom_pir_0_battery,
         sensor.livingroom_smoke_0_battery,
         sensor.upperhallway_pir_0_battery,
-        sensor.scullery_smoke_0_battery
+        sensor.attichallway_smoke_0_battery
       below: 25
   action:
     - service: notify.web

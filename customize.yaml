@@ -74,9 +74,6 @@ group.all_devices:
   friendly_name: Aanwezigheid
   hidden: false
 
-group.all_automations:
-  hidden: true
-
 group.presence_view:
   icon: mdi:account-multiple
 

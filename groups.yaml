@@ -27,6 +27,8 @@ default_view:
     - switch.garage_power_0
     - group.pirs
     - switch.christmastree_power_0
+    - binary_sensor.livingroom_smoke_0
+    - binary_sensor.attichallway_smoke_0
 
 livingroom_scenes:
   entities:
@@ -68,7 +70,7 @@ hallway_view:
   view: yes
   entities:
     - binary_sensor.hallway_dark
-    - binary_sensor.hallway_smoke_0
+    - binary_sensor.attichallway_smoke_0
     - timer.hallway
     - light.hallway_lights
     - switch.hallway_switch_0
@@ -108,21 +110,22 @@ monitoring_view:
 zigbee_battery_status:
   entities:
     - sensor.hallway_pir_0_battery
-    - sensor.hallway_pir_1_battery
-    - sensor.hallway_switch_0_battery
-    - sensor.hallway_smoke_0_battery
-    - sensor.kitchen_temp_0_battery
-    - sensor.kitchen_temp_1_battery
+    - sensor.upperhallway_pir_0_battery
+    - sensor.attichallway_pir_0_battery
+    - sensor.livingroom_pir_0_battery
+    - sensor.attichallway_smoke_0_battery
+    - sensor.livingroom_smoke_0_battery
+    - sensor.freezer_temp_0_battery
 
 zigbee_linkquality_status:
   entities:
     - sensor.hallway_pir_0_linkquality
-    - sensor.hallway_pir_1_linkquality
-    - sensor.hallway_switch_0_linkquality
-    - sensor.hallway_smoke_0_linkquality
-    - sensor.hallway_power_0_linkquality
-    - sensor.kitchen_temp_0_linkquality
-    - sensor.kitchen_temp_1_linkquality
+    - sensor.attichallway_pir_0_linkquality
+    - sensor.upperhallway_pir_0_linkquality
+    - sensor.attichallway_smoke_0_linkquality
+    - sensor.livingroom_smoke_0_linkquality
+    - sensor.garage_power_0_linkquality
+    - sensor.freezer_temp_0_linkquality
 
 apcupsd_status:
   entities:
@@ -214,6 +217,7 @@ generic_settings:
     - input_select.timeofday
     - sensor.zigbee2mqtt_status
     - switch.zigbee2mqtt_permit_join
+    - group.all_automations
 
 upperhallway_timeout_settings:
   entities:
@@ -282,6 +286,7 @@ settings_view:
     - sun.sun
     - sensor.lux_livingroom
     - sensor.hallway_pir_1_illuminance
+    - group.all_automations
 
 lights:
   entities:
