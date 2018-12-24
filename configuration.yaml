@@ -92,8 +92,8 @@ logbook:
 # Track the sun
 sun:
 
-rflink:
-  port: /dev/ttyACM0
+# rflink:
+#   port: /dev/ttyACM0
 
 recorder:
 #  db_url: !secret recorder_db_url
@@ -150,13 +150,12 @@ device_tracker:
     new_device_defaults:
       track_new_devices: true
 
-# camera:
-#   - platform: ffmpeg
-#     name: !secret cam1_name
-#     input: !secret cam1_input
+camera:
+  - platform: mjpeg
+    name: !secret cam1_name
+    mjpeg_url: !secret cam1_input
 
 # ffmpeg:
-#   ffmpeg_bin: /usr/local/bin/ffmpeg
 
 mqtt:
   discovery: false

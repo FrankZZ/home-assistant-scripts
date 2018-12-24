@@ -5,7 +5,10 @@
       entity_id:
         binary_sensor.livingroom_pir_0
       to: 'on'
-  # condition:
+  condition:
+    condition: state
+    entity_id: binary_sensor.livingroom_dark
+    state: 'on'
   #   condition: and
   #   conditions:
   #     - condition: template
