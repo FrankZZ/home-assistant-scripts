@@ -47,9 +47,9 @@
   qos: 1
 
 
-- name: "attichallway_light_0"
-  command_topic: zigbee2mqtt/attichallway_light_0/set
-  state_topic: zigbee2mqtt/attichallway_light_0
+- name: "upperhallway_light_0"
+  command_topic: zigbee2mqtt/upperhallway_light_0/set
+  state_topic: zigbee2mqtt/upperhallway_light_0
   platform: mqtt
   schema: json
   availability_topic: "zigbee2mqtt/bridge/state"
