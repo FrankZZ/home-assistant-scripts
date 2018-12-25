@@ -1,4 +1,4 @@
-- alias: "Licht Woonkamer aan bij beweging in de ochtend"
+- alias: "Licht Woonkamer aan als het donker is"
   initial_state: on
   trigger:
     - platform: state
@@ -6,42 +6,46 @@
         binary_sensor.livingroom_pir_0
       to: 'on'
   condition:
-    condition: state
-    entity_id: binary_sensor.livingroom_dark
-    state: 'on'
-  #   condition: and
-  #   conditions:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.livingroom_darkness_treshold')|default(0)|int }}"
+      - condition: template
+        value_template: "{{ not is_state('light.livingroom_lights', 'on') }}"
   #     - condition: template
   #       value_template: "{{ is_state('input_select.timeofday', 'morning') }}"
   #     - condition: state
   #       entity_id: binary_sensor.livingroom_dark
   #       state: 'on'
-  #     - condition: template
-  #       value_template: "{{ not is_state('light.livingroom_lights', 'on') }}"
   action:
     - service: light.turn_on
       data_template:
         entity_id: "light.livingroom_lights"
     - service: switch.turn_on
       entity_id: "switch.garage_power_0"
-    - service: switch.turn_on
-      entity_id: "switch.christmastree_power_0"
 
-
-- alias: Turn off livingroom light 30 minutes after last movement
+- alias: Turn off livingroom light 15 minutes after last movement
   trigger:
     platform: state
     entity_id: binary_sensor.livingroom_pir_0
     to: 'off'
     for:
-      minutes: 30
+      minutes: 15
   action:
     - service: light.turn_off
       entity_id: light.livingroom_lights
     - service: switch.turn_off
       entity_id: "switch.garage_power_0"
+
+- alias: Turn off livingroom light when it's light
+  trigger:
+    platform: template
+    value_template: "{{ (states('sensor.livingroom_pir_0_illuminance')|default(0)|int) > (states('input_number.livingroom_darkness_treshold')|default(0)|int + 5) }}"
+  action:
+    - service: light.turn_off
+      entity_id: light.livingroom_lights
     - service: switch.turn_off
-      entity_id: "switch.christmastree_power_0"
+      entity_id: "switch.garage_power_0"
 
 - alias: "Licht Keuken aan bij beweging in de ochtend"
   initial_state: on

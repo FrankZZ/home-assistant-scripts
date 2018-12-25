@@ -8,6 +8,8 @@
   json_attributes:
     - "battery"
     - "voltage"
+    - "illuminance"
+    - "linkquality"
 
 - platform: "mqtt"
   name: livingroom_pir_0
@@ -19,6 +21,8 @@
   json_attributes:
     - "battery"
     - "voltage"
+    - "illuminance"
+    - "linkquality"
 
 - platform: "mqtt"
   name: upperhallway_pir_0
@@ -30,6 +34,8 @@
   json_attributes:
     - "battery"
     - "voltage"
+    - "illuminance"
+    - "linkquality"
 
 - platform: "mqtt"
   name: closetroom_pir_0
@@ -41,6 +47,8 @@
   json_attributes:
     - "battery"
     - "voltage"
+    - "illuminance"
+    - "linkquality"
 
 - platform: "mqtt"
   name: attichallway_pir_0
@@ -52,6 +60,8 @@
   json_attributes:
     - "battery"
     - "voltage"
+    - "illuminance"
+    - "linkquality"
 
 - platform: "mqtt"
   name: kitchen_pir_0
@@ -63,6 +73,8 @@
   json_attributes:
     - "battery"
     - "voltage"
+    - "illuminance"
+    - "linkquality"
 
 - platform: "mqtt"
   name: livingroom_smoke_0
