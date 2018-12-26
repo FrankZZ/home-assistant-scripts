@@ -31,7 +31,7 @@
     service: timer.start
     data_template:
       entity_id: timer.livingroom
-      duration: "{{ states('input_number.livingroom_timeout')|default(60)|int }}"
+      duration: "{{ (states('input_number.livingroom_timeout')|default(1)|int) * 60 }}"
 
 - alias: "Licht Woonkamer 0 aan als er niemand thuis is"
   initial_state: on

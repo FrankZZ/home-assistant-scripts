@@ -1,7 +1,7 @@
 # timeout
 livingroom_timeout:
     min: 1
-    max: 60
+    max: 120
     step: 1
     unit_of_measurement: mins
 
