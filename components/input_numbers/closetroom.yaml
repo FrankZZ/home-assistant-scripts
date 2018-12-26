@@ -1,0 +1,35 @@
+# timeouts
+
+  # Use a YAML anchor for common settings so we can just reference
+  # them
+closetroom_timeout:
+    min: 10
+    max: 300
+    step: 10
+    unit_of_measurement: sec
+
+# brightness
+closetroom_brightness_morning:
+  <<: &CLOSETROOM_BRIGHTNESS_PARAMS
+    min: 0
+    max: 100
+    step: 1
+    unit_of_measurement: '%'
+
+closetroom_brightness_midday:
+  <<: *CLOSETROOM_BRIGHTNESS_PARAMS
+
+closetroom_brightness_evening:
+  <<: *CLOSETROOM_BRIGHTNESS_PARAMS
+
+closetroom_brightness_night:
+  <<: *CLOSETROOM_BRIGHTNESS_PARAMS
+
+closetroom_brightness_full:
+  <<: *CLOSETROOM_BRIGHTNESS_PARAMS
+
+closetroom_darkness_treshold:
+  min: 0
+  max: 500
+  step: 10
+  unit_of_measurement: 'lx'

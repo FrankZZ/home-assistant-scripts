@@ -16,8 +16,7 @@ default_view:
     - sensor.livingroom_pir_0_illuminance
     - sensor.upperhallway_pir_0_illuminance
     - sensor.hallway_pir_0_illuminance
-    - timer.hallway
-    - timer.upperhallway
+    - group.light_timers
     - sensor.plex01
     - binary_sensor.scullery_water_0
     - binary_sensor.bathroom_water_0
@@ -30,32 +29,14 @@ default_view:
     - binary_sensor.livingroom_smoke_0
     - binary_sensor.attichallway_smoke_0
 
-livingroom_scenes:
+light_timers:
   entities:
-    - scene.livingroom_off
-    - scene.livingroom_morning
-    - scene.livingroom_midday
-    - scene.livingroom_evening
-    - scene.livingroom_night
-    - scene.livingroom_full
-
-hallway_scenes:
-  entities:
-    - script.hallway_off
-    - script.hallway_morning
-    - script.hallway_midday
-    - script.hallway_evening
-    - script.hallway_night
-    - script.hallway_full
-
-upperhallway_scenes:
-  entities:
-    - script.upperhallway_off
-    - script.upperhallway_morning
-    - script.upperhallway_midday
-    - script.upperhallway_evening
-    - script.upperhallway_night
-    - script.upperhallway_full
+    - timer.hallway
+    - timer.upperhallway
+    - timer.livingroom
+    - timer.closetroom
+    - timer.attichallway
+    - timer.kitchen
 
 livingroom_view:
   view: yes
@@ -221,19 +202,7 @@ generic_settings:
 
 upperhallway_timeout_settings:
   entities:
-    - input_number.upperhallway_timeout_morning
-    - input_number.upperhallway_timeout_midday
-    - input_number.upperhallway_timeout_evening
-    - input_number.upperhallway_timeout_night
-    - input_number.upperhallway_timeout_full
-
-hallway_timeout_settings:
-  entities:
-    - input_number.hallway_timeout_morning
-    - input_number.hallway_timeout_midday
-    - input_number.hallway_timeout_evening
-    - input_number.hallway_timeout_night
-    - input_number.hallway_timeout_full
+    - input_number.upperhallway_timeout
 
 upperhallway_brightness_settings:
   entities:
@@ -244,9 +213,22 @@ upperhallway_brightness_settings:
     - input_number.upperhallway_brightness_full
     - input_number.upperhallway_darkness_treshold
 
-upperhallway_searchlight_settings:
-  - input_number.upperhallway_recent_motions_treshold
-  - input_number.upperhallway_recent_motions_seconds
+attichallway_timeout_settings:
+  entities:
+    - input_number.attichallway_timeout
+
+attichallway_brightness_settings:
+  entities:
+    - input_number.attichallway_brightness_morning
+    - input_number.attichallway_brightness_midday
+    - input_number.attichallway_brightness_evening
+    - input_number.attichallway_brightness_night
+    - input_number.attichallway_brightness_full
+    - input_number.attichallway_darkness_treshold
+
+hallway_timeout_settings:
+  entities:
+    - input_number.hallway_timeout
 
 hallway_brightness_settings:
   entities:
@@ -254,8 +236,31 @@ hallway_brightness_settings:
     - input_number.hallway_brightness_midday
     - input_number.hallway_brightness_evening
     - input_number.hallway_brightness_night
-    - input_number.hallway_brightness_full
     - input_number.hallway_darkness_treshold
+
+closetroom_timeout_settings:
+  entities:
+    - input_number.closetroom_timeout
+
+closetroom_brightness_settings:
+  entities:
+    - input_number.closetroom_brightness_morning
+    - input_number.closetroom_brightness_midday
+    - input_number.closetroom_brightness_evening
+    - input_number.closetroom_brightness_night
+    - input_number.closetroom_darkness_treshold
+
+kitchen_timeout_settings:
+  entities:
+    - input_number.kitchen_timeout
+
+kitchen_brightness_settings:
+  entities:
+    - input_number.kitchen_brightness_morning
+    - input_number.kitchen_brightness_midday
+    - input_number.kitchen_brightness_evening
+    - input_number.kitchen_brightness_night
+    - input_number.kitchen_darkness_treshold
 
 livingroom_brightness_settings:
   entities:
@@ -265,6 +270,10 @@ livingroom_brightness_settings:
     # - input_number.livingroom_brightness_night
     # - input_number.livingroom_brightness_full
     - input_number.livingroom_darkness_treshold
+
+livingroom_timeout_settings:
+  entities:
+    - input_number.livingroom_timeout
 
 trash_settings:
   entities:
@@ -277,10 +286,16 @@ settings_view:
   entities:
     - group.upperhallway_timeout_settings
     - group.upperhallway_brightness_settings
-    - group.upperhallway_searchlight_settings
+    - group.attichallway_brightness_settings
+    - group.attichallway_timeout_settings
     - group.hallway_brightness_settings
     - group.hallway_timeout_settings
     - group.livingroom_brightness_settings
+    - group.livingroom_timeout_settings
+    - group.kitchen_brightness_settings
+    - group.kitchen_timeout_settings
+    - group.closetroom_brightness_settings
+    - group.closetroom_timeout_settings
     - group.generic_settings
     - group.trash_settings
     - sun.sun
@@ -299,11 +314,10 @@ lights:
     - light.livingroom_light_1
     - light.livingroom_light_2
     - light.livingroom_light_3
-    - light.kitchen_light_0
-    - light.upperhallway_light_0
-    - light.attichallway_light_0
-    - light.hallway_light_0
-
+    - light.kitchen_lights
+    - light.upperhallway_lights
+    - light.attichallway_lights
+    - light.hallway_lights
 
 pirs:
   entities:
@@ -313,11 +327,3 @@ pirs:
     - binary_sensor.upperhallway_pir_0
     - binary_sensor.closetroom_pir_0
     - binary_sensor.attichallway_pir_0
-
-hallway_pirs:
-  entities:
-    - switch.hallway_pir_0
-
-upperhallway_pirs:
-  entities:
-    - switch.upperhallway_pir_0

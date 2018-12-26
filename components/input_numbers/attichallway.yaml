@@ -1,0 +1,36 @@
+# timeouts
+
+  # Use a YAML anchor for common settings so we can just reference
+  # them
+attichallway_timeout:
+  <<: &atticHALLWAY_TIMEOUT_PARAMS
+    min: 10
+    max: 300
+    step: 10
+    unit_of_measurement: sec
+
+# brightness
+attichallway_brightness_morning:
+  <<: &atticHALLWAY_BRIGHTNESS_PARAMS
+    min: 0
+    max: 100
+    step: 1
+    unit_of_measurement: '%'
+
+attichallway_brightness_midday:
+  <<: *atticHALLWAY_BRIGHTNESS_PARAMS
+
+attichallway_brightness_evening:
+  <<: *atticHALLWAY_BRIGHTNESS_PARAMS
+
+attichallway_brightness_night:
+  <<: *atticHALLWAY_BRIGHTNESS_PARAMS
+
+attichallway_brightness_full:
+  <<: *atticHALLWAY_BRIGHTNESS_PARAMS
+
+attichallway_darkness_treshold:
+  min: 0
+  max: 500
+  step: 10
+  unit_of_measurement: 'lx'

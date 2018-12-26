@@ -27,14 +27,17 @@
   entities:
     - light.kitchen_light_0
 
-# - platform: group
-#   name: hallway_lights
-#   entities:
-#     - light.hallway_stairway
-#     - light.hallway_kitchen
-#     - light.hallway_frontdoor
-
 - platform: group
   name: upperhallway_lights
   entities:
     - light.upperhallway_light_0
+
+- platform: group
+  name: hallway_lights
+  entities:
+    - light.hallway_light_0
+
+- platform: group
+  name: attichallway_lights
+  entities:
+    - light.attichallway_light_0

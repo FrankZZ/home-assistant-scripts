@@ -1,143 +1,92 @@
-- alias: "Licht Overloop aan bij beweging"
+- alias: "Licht Overloop aan bij beweging als het donker is buiten"
   initial_state: on
   trigger:
     - platform: state
       entity_id:
         binary_sensor.upperhallway_pir_0
       to: 'on'
-  # condition:
-  #   condition: and
-  #   conditions:
-  #     - condition: template
-  #       value_template: "{{ states('sensor.upperhallway_recent_motions') < states('input_number.upperhallway_recent_motions_treshold') }}"
-  #     - condition: state
-  #       entity_id: 'binary_sensor.upperhallway_dark'
-  #       state: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.upperhallway_darkness_treshold')|default(0)|int }}"
   action:
     - service: light.turn_on
       data_template:
-        entity_id: "light.upperhallway_light_0"
+        entity_id: "light.upperhallway_lights"
+        brightness_pct: "{{ states('input_number.upperhallway_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
     - service: light.turn_on
       data_template:
         entity_id: "light.livingroom_light_2"
+        brightness_pct: "{{ states('input_number.upperhallway_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
+    - service: timer.cancel
+      entity_id: timer.upperhallway
 
-- alias: Turn off upperhallway light 1 minute after last movement
+- alias: Licht Overloop uit na configurabele tijd geen beweging
   trigger:
     platform: state
     entity_id: binary_sensor.upperhallway_pir_0
     to: 'off'
-    for:
-      minutes: 1
+  action:
+    service: timer.start
+    data_template:
+      entity_id: timer.upperhallway
+      duration: "{{ states('input_number.upperhallway_timeout')|default(60)|int }}"
+
+- alias: "Licht Overloop soms een keer aan als er niemand thuis is"
+  initial_state: on
+  trigger:
+    - platform: time
+      minutes: '/9'
+      seconds: 00
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('input_select.timeofday', 'evening') }}"
+      - condition: template
+        value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: "light.upperhallway_lights"
+        brightness_pct: 100
+    - service: timer.start
+      data:
+        entity_id: timer.upperhallway
+        duration: 42
+
+- alias: "Licht Overloop uit als timer stopt"
+  initial_state: on
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.upperhallway
   action:
     - service: light.turn_off
-      data_template:
-        entity_id: "light.upperhallway_light_0"
+      data:
+        entity_id: light.upperhallway_lights
     - service: light.turn_off
       data_template:
         entity_id: "light.livingroom_light_2"
 
-- alias: "Licht Zolder aan bij beweging"
+
+- alias: "Licht Overloop volgt dagdeel"
   initial_state: on
   trigger:
-    - platform: state
-      entity_id:
-        binary_sensor.attichallway_pir_0
-      to: 'on'
-  # condition:
-  #   condition: and
-  #   conditions:
-  #     - condition: template
-  #       value_template: "{{ states('sensor.upperhallway_recent_motions') < states('input_number.upperhallway_recent_motions_treshold') }}"
-  #     - condition: state
-  #       entity_id: 'binary_sensor.upperhallway_dark'
-  #       state: 'on'
+  - platform: state
+    entity_id: input_select.timeofday
+  condition:
+    condition: state
+    entity_id: light.upperhallway_lights
+    state: 'on'
   action:
-    service: light.turn_on
-    data_template:
-      entity_id: "light.attichallway_light_0"
-
-
-- alias: Turn off attichallway light 1 minute after last movement
-  trigger:
-    platform: state
-    entity_id: binary_sensor.attichallway_pir_0
-    to: 'off'
-    for:
-      minutes: 1
-  action:
-    service: light.turn_off
-    entity_id: light.attichallway_light_0
-
-- alias: "Licht Kastenkamer aan bij beweging"
-  initial_state: on
-  trigger:
-    - platform: state
-      entity_id:
-        binary_sensor.closetroom_pir_0
-      to: 'on'
-  # condition:
-  #   condition: and
-  #   conditions:
-  #     - condition: template
-  #       value_template: "{{ states('sensor.upperhallway_recent_motions') < states('input_number.upperhallway_recent_motions_treshold') }}"
-  #     - condition: state
-  #       entity_id: 'binary_sensor.upperhallway_dark'
-  #       state: 'on'
-  action:
-    service: light.turn_on
-    data_template:
-      entity_id: "light.closetroom_lights"
-
-- alias: Turn off closetroom lights 3 minutes after last movement
-  trigger:
-    platform: state
-    entity_id: binary_sensor.closetroom_pir_0
-    to: 'off'
-    for:
-      minutes: 3
-  action:
-    service: light.turn_off
-    entity_id: light.closetroom_lights
-
-# - alias: "Licht vol aan als er veel beweging is"
-#   initial_state: on
-#   trigger:
-#   - platform: template
-#     value_template: "{{ states('sensor.upperhallway_recent_motions') >= states('input_number.upperhallway_recent_motions_treshold') }}"
-#   action:
-#     service: switch.turn_on
-#     entity_id: switch.hallway_switch_1
-
-# - alias: "Licht Overloop uit als timer stopt"
-#   initial_state: on
-#   trigger:
-#     - platform: event
-#       event_type: timer.finished
-#       event_data:
-#         entity_id: timer.upperhallway
-#   action:
-#     service: script.turn_on
-#     entity_id: "script.upperhallway_off"
-
-# - alias: "Licht Overloop volgt dagdeel"
-#   initial_state: on
-#   trigger:
-#   - platform: state
-#     entity_id: input_select.timeofday
-#   condition:
-#     condition: template
-#     value_template: "{{ is_state('light.upperhallway_lights', 'on') }}"
-#   action:
-#     service: script.turn_on
-#     data_template:
-#       entity_id: "script.upperhallway_{{ states('input_select.timeofday') }}"
-
-# - alias: "Licht Overloop vol aan door muurknop"
-#   initial_state: on
-#   trigger:
-#   - platform: state
-#     entity_id: switch.hallway_switch_1
-#     to: "on"
-#   action:
-#     service: script.turn_on
-#     entity_id: script.upperhallway_full
+    - service: light.turn_on
+      data_template:
+        entity_id: "light.upperhallway_lights"
+        brightness_pct: "{{ states('input_number.upperhallway_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
+    - service: light.turn_on
+      data_template:
+        entity_id: "light.livingroom_light_2"
+        brightness_pct: "{{ states('input_number.upperhallway_brightness_' + states('input_select.timeofday'))|default(100)|int }}"

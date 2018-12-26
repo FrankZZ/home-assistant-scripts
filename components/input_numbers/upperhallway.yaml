@@ -2,27 +2,11 @@
 
   # Use a YAML anchor for common settings so we can just reference
   # them
-upperhallway_timeout_morning:
-  <<: &upperHALLWAY_TIMEOUT_PARAMS
-    min: 10
+upperhallway_timeout:
+    min: 60
     max: 300
     step: 10
     unit_of_measurement: sec
-
-upperhallway_timeout_midday:
-  <<: *upperHALLWAY_TIMEOUT_PARAMS
-
-upperhallway_timeout_evening:
-  <<: *upperHALLWAY_TIMEOUT_PARAMS
-
-upperhallway_timeout_night:
-  <<: *upperHALLWAY_TIMEOUT_PARAMS
-
-upperhallway_timeout_full:
-  min: 60
-  max: 600
-  step: 10
-  unit_of_measurement: sec
 
 # brightness
 upperhallway_brightness_morning:
@@ -46,6 +30,6 @@ upperhallway_brightness_full:
 
 upperhallway_darkness_treshold:
   min: 0
-  max: 1000
-  step: 50
+  max: 500
+  step: 10
   unit_of_measurement: 'lx'

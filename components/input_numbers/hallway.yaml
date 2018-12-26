@@ -3,27 +3,11 @@
   # them
 
 
-hallway_timeout_morning:
-  <<: &HALLWAY_TIMEOUT_PARAMS
-    min: 10
+hallway_timeout:
+    min: 60
     max: 300
     step: 10
     unit_of_measurement: sec
-
-hallway_timeout_midday:
-  <<: *HALLWAY_TIMEOUT_PARAMS
-
-hallway_timeout_evening:
-  <<: *HALLWAY_TIMEOUT_PARAMS
-
-hallway_timeout_night:
-  <<: *HALLWAY_TIMEOUT_PARAMS
-
-hallway_timeout_full:
-  min: 60
-  max: 600
-  step: 10
-  unit_of_measurement: sec
 
 # brightness
 hallway_brightness_morning:
@@ -42,11 +26,8 @@ hallway_brightness_evening:
 hallway_brightness_night:
   <<: *HALLWAY_BRIGHTNESS_PARAMS
 
-hallway_brightness_full:
-  <<: *HALLWAY_BRIGHTNESS_PARAMS
-
 hallway_darkness_treshold:
   min: 0
-  max: 1000
-  step: 50
+  max: 500
+  step: 10
   unit_of_measurement: 'lx'
