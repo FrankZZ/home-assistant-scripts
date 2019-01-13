@@ -13,6 +13,7 @@
   name: livingroom_smoke_0_linkquality
   state_topic: "zigbee2mqtt/livingroom_smoke_0"
   availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
   value_template: "{{ value_json.linkquality|int }}"
   json_attributes:
     - "battery"
@@ -44,6 +45,7 @@
   name: attichallway_smoke_0_linkquality
   state_topic: "zigbee2mqtt/attichallway_smoke_0"
   availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
   value_template: "{{ value_json.linkquality|int }}"
   json_attributes:
     - "battery"
