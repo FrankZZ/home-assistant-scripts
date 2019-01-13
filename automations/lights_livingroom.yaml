@@ -3,7 +3,8 @@
   trigger:
     - platform: state
       entity_id:
-        binary_sensor.livingroom_pir_0
+        sensor.livingroom_pir_0
+      from: 'off'
       to: 'on'
   condition:
     condition: and
@@ -25,7 +26,7 @@
 - alias: Licht Woonkamer uit na configurabele tijd geen beweging
   trigger:
     platform: state
-    entity_id: binary_sensor.livingroom_pir_0
+    entity_id: sensor.livingroom_pir_0
     to: 'off'
   action:
     service: timer.start
@@ -73,30 +74,40 @@
   action:
     - service: light.turn_off
       entity_id: light.livingroom_lights
+    - service: switch.turn_off
+      entity_id: switch.garage_power_0
 
-- alias: "Licht Woonkamer volgt dagdeel"
-  initial_state: on
-  trigger:
-  - platform: state
-    entity_id: input_select.timeofday
-  condition:
-    condition: state
-    entity_id: light.livingroom_lights
-    state: 'on'
-  action:
-    - service: light.turn_on
-      data_template:
-        entity_id: "light.livingroom_lights"
-        brightness_pct: "{{ states('input_number.livingroom_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
+# - alias: "Licht Woonkamer volgt dagdeel"
+#   initial_state: on
+#   trigger:
+#   - platform: state
+#     entity_id: input_select.timeofday
+#   condition:
+#     condition: state
+#     entity_id: light.livingroom_lights
+#     state: 'on'
+#   action:
+#     - service: light.turn_on
+#       data_template:
+#         entity_id: "light.livingroom_lights"
+#         brightness_pct: "{{ states('input_number.livingroom_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
 
 - alias: Turn off livingroom light when it's light
   trigger:
-    platform: template
-    value_template: "{{ (states('sensor.livingroom_pir_0_illuminance')|default(0)|int) > (states('input_number.livingroom_darkness_treshold')|default(0)|int + 5) }}"
+    - platform: state
+      entity_id:
+        sensor.livingroom_pir_0
+  # trigger:
+  #   platform: template
+  #   value_template: "{{ (states('sensor.livingroom_pir_0_illuminance')|default(0)|int) > (states('input_number.livingroom_darkness_treshold')|default(0)|int + 5) }}"
   condition:
-    condition: state
-    entity_id: light.livingroom_lights
-    state: 'on'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.livingroom_lights
+        state: 'on'
+      - condition: template
+        value_template: "{{ (trigger.to_state.attributes.illuminance|default(0)|int) > (states('input_number.livingroom_darkness_treshold')|default(0)|int + 5) }}"
   action:
     - service: light.turn_off
       entity_id: light.livingroom_lights

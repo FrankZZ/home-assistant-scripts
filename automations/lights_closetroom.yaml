@@ -3,7 +3,7 @@
   trigger:
     - platform: state
       entity_id:
-        binary_sensor.closetroom_pir_0
+        sensor.closetroom_pir_0
       to: 'on'
   condition:
     condition: and
@@ -23,7 +23,7 @@
 - alias: Licht Kastenkamer uit na configurabele tijd geen beweging
   trigger:
     platform: state
-    entity_id: binary_sensor.closetroom_pir_0
+    entity_id: sensor.closetroom_pir_0
     to: 'off'
   action:
     service: timer.start

@@ -3,7 +3,7 @@
   trigger:
     - platform: state
       entity_id:
-        binary_sensor.attichallway_pir_0
+        sensor.attichallway_pir_0
       to: 'on'
   condition:
     condition: and
@@ -21,7 +21,7 @@
 - alias: Licht Zolderoverloop uit na configurabele tijd geen beweging
   trigger:
     platform: state
-    entity_id: binary_sensor.attichallway_pir_0
+    entity_id: sensor.attichallway_pir_0
     to: 'off'
   action:
     service: timer.start

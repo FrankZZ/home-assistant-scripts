@@ -3,7 +3,7 @@ default_view:
   view: yes
   entities:
     - updater.updater
-    - binary_sensor.livingroom_dark
+    - sensor.livingroom_dark
     - group.lights
     - group.default_generic
     - group.trash
@@ -21,13 +21,19 @@ default_view:
     - binary_sensor.scullery_water_0
     - binary_sensor.bathroom_water_0
     - sensor.garage_power_0
-    - sensor.freezer_temp_0_humidity
-    - sensor.freezer_temp_0_temperature
+    - group.temperature_sensors
     - switch.garage_power_0
     - group.pirs
     - switch.christmastree_power_0
-    - binary_sensor.livingroom_smoke_0
-    - binary_sensor.attichallway_smoke_0
+    - sensor.livingroom_smoke_0
+    - sensor.attichallway_smoke_0
+
+temperature_sensors:
+  entities:
+    - sensor.freezer_temp_0_humidity
+    - sensor.freezer_temp_0_temperature
+    - sensor.bathroom_temp_0_humidity
+    - sensor.bathroom_temp_0_temperature
 
 light_timers:
   entities:
@@ -41,7 +47,7 @@ light_timers:
 livingroom_view:
   view: yes
   entities:
-    - binary_sensor.livingroom_dark
+    - sensor.livingroom_dark
     - light.livingroom_lights
     - sensor.harmony_livingroom
     - group.livingroom_scenes
@@ -50,18 +56,18 @@ livingroom_view:
 hallway_view:
   view: yes
   entities:
-    - binary_sensor.hallway_dark
-    - binary_sensor.attichallway_smoke_0
+    - sensor.hallway_dark
+    - sensor.attichallway_smoke_0
     - timer.hallway
     - light.hallway_lights
     - switch.hallway_switch_0
     - sensor.hallway_switch_0
     - group.hallway_scenes
     - switch.hallway_pir_0
-    - binary_sensor.hallway_pir_0
+    - sensor.hallway_pir_0
     - sensor.hallway_pir_1_illuminance
     - switch.hallway_pir_1
-    - binary_sensor.hallway_pir_1
+    - sensor.hallway_pir_1
     - switch.upperhallway_pir_0
     - switch.hallway_door_0
     - sensor.hallway_power_0
@@ -70,7 +76,7 @@ upperhallway_view:
   view: yes
   entities:
     - sensor.upperhallway_recent_motions
-    - binary_sensor.upperhallway_dark
+    - sensor.upperhallway_dark
     - timer.upperhallway
     - light.upperhallway_lights
     - switch.hallway_switch_1
@@ -87,9 +93,34 @@ monitoring_view:
     - group.zigbee_battery_status
     - group.zigbee_linkquality_status
     - group.apcupsd_status
+    - group.buienradar
+
+buienradar:
+  entities:
+    - sensor.buienradar_home_station_name
+    - sensor.buienradar_home_condition_code
+    - sensor.buienradar_home_condition
+    - sensor.buienradar_home_condition_detailed
+    - sensor.buienradar_home_condition_exact
+    - sensor.buienradar_home_symbol
+    - sensor.buienradar_home_humidity
+    - sensor.buienradar_home_temperature
+    - sensor.buienradar_home_ground_temperature
+    - sensor.buienradar_home_wind_speed
+    - sensor.buienradar_home_wind_force
+    - sensor.buienradar_home_wind_direction
+    - sensor.buienradar_home_wind_azimuth
+    - sensor.buienradar_home_pressure
+    - sensor.buienradar_home_visibility
+    - sensor.buienradar_home_wind_gust
+    - sensor.buienradar_home_precipitation
+    - sensor.buienradar_home_irradiance
+    - sensor.buienradar_home_precipitation_forecast_average
+    - sensor.buienradar_home_precipitation_forecast_total
 
 zigbee_battery_status:
   entities:
+    - sensor.kitchen_pir_0_battery
     - sensor.hallway_pir_0_battery
     - sensor.upperhallway_pir_0_battery
     - sensor.attichallway_pir_0_battery
@@ -97,9 +128,14 @@ zigbee_battery_status:
     - sensor.attichallway_smoke_0_battery
     - sensor.livingroom_smoke_0_battery
     - sensor.freezer_temp_0_battery
+    - sensor.bathroom_temp_0_battery
+    - sensor.closetroom_pir_0_battery
+    - sensor.scullery_water_0_battery
+    - sensor.bathroom_water_0_battery
 
 zigbee_linkquality_status:
   entities:
+    - sensor.kitchen_pir_0_linkquality
     - sensor.hallway_pir_0_linkquality
     - sensor.attichallway_pir_0_linkquality
     - sensor.upperhallway_pir_0_linkquality
@@ -107,6 +143,10 @@ zigbee_linkquality_status:
     - sensor.livingroom_smoke_0_linkquality
     - sensor.garage_power_0_linkquality
     - sensor.freezer_temp_0_linkquality
+    - sensor.bathroom_temp_0_linkquality
+    - sensor.scullery_water_0_linkquality
+    - sensor.bathroom_water_0_linkquality
+    - sensor.closetroom_pir_0_linkquality
 
 apcupsd_status:
   entities:
@@ -321,9 +361,9 @@ lights:
 
 pirs:
   entities:
-    - binary_sensor.livingroom_pir_0
-    - binary_sensor.kitchen_pir_0
-    - binary_sensor.hallway_pir_0
-    - binary_sensor.upperhallway_pir_0
-    - binary_sensor.closetroom_pir_0
-    - binary_sensor.attichallway_pir_0
+    - sensor.livingroom_pir_0
+    - sensor.kitchen_pir_0
+    - sensor.hallway_pir_0
+    - sensor.upperhallway_pir_0
+    - sensor.closetroom_pir_0
+    - sensor.attichallway_pir_0

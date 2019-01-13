@@ -1,0 +1,21 @@
+- platform: "mqtt"
+  name: livingroom_smoke_0
+  state_topic: "zigbee2mqtt/livingroom_smoke_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ 'on' if value_json.smoke else 'off' }}"
+  json_attributes:
+    - "battery"
+    - "voltage"
+
+- platform: "mqtt"
+  name: attichallway_smoke_0
+  state_topic: "zigbee2mqtt/attichallway_smoke_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ 'on' if value_json.smoke else 'off' }}"
+  json_attributes:
+    - "battery"
+    - "voltage"

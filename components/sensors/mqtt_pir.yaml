@@ -1,0 +1,77 @@
+- platform: "mqtt"
+  name: hallway_pir_0
+  state_topic: "zigbee2mqtt/hallway_pir_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  json_attributes:
+    - "battery"
+    - "voltage"
+    - "illuminance"
+    - "linkquality"
+
+- platform: "mqtt"
+  name: livingroom_pir_0
+  state_topic: "zigbee2mqtt/livingroom_pir_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  json_attributes:
+    - "battery"
+    - "voltage"
+    - "illuminance"
+    - "linkquality"
+
+- platform: "mqtt"
+  name: upperhallway_pir_0
+  state_topic: "zigbee2mqtt/upperhallway_pir_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  json_attributes:
+    - "battery"
+    - "voltage"
+    - "illuminance"
+    - "linkquality"
+
+- platform: "mqtt"
+  name: closetroom_pir_0
+  state_topic: "zigbee2mqtt/closetroom_pir_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  json_attributes:
+    - "battery"
+    - "voltage"
+    - "illuminance"
+    - "linkquality"
+
+- platform: "mqtt"
+  name: attichallway_pir_0
+  state_topic: "zigbee2mqtt/attichallway_pir_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  json_attributes:
+    - "battery"
+    - "voltage"
+    - "illuminance"
+    - "linkquality"
+
+- platform: "mqtt"
+  name: kitchen_pir_0
+  state_topic: "zigbee2mqtt/kitchen_pir_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  json_attributes:
+    - "battery"
+    - "voltage"
+    - "illuminance"
+    - "linkquality"

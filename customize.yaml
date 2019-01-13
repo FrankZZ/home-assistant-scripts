@@ -1,5 +1,5 @@
 # Hallway
-binary_sensor.hallway_pir_0:
+sensor.hallway_pir_0:
   friendly_name: Gang PIR
   device_class: motion
 
@@ -21,11 +21,11 @@ sensor.kitchen_pir_0_battery:
 sensor.kitchen_pir_0_linkquality:
   friendly_name: Keuken PIR
 
-binary_sensor.kitchen_pir_0:
+sensor.kitchen_pir_0:
   friendly_name: Keuken PIR
   device_class: motion
 
-binary_sensor.livingroom_smoke_0:
+sensor.livingroom_smoke_0:
   friendly_name: Huiskamer Rookmelder
   device_class: smoke
 
@@ -185,13 +185,13 @@ group.lights:
   friendly_name: Lampen
   icon: mdi:light
 
-binary_sensor.livingroom_dark:
+sensor.livingroom_dark:
   friendly_name: Woonkamer Donker
 
-binary_sensor.hallway_dark:
+sensor.hallway_dark:
   friendly_name: Gang Donker
 
-binary_sensor.upperhallway_dark:
+sensor.upperhallway_dark:
   friendly_name: Overloop Donker
 
 sensor.upperhallway_recent_motions:

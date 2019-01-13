@@ -3,7 +3,7 @@
   entities:
     - light.livingroom_light_0
     - light.livingroom_light_1
-    - light.livingroom_light_2
+    # - light.livingroom_light_2 # this is the light for the stairs
     - light.livingroom_light_3
 
 - platform: group

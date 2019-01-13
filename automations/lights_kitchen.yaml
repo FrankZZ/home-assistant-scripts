@@ -3,7 +3,7 @@
   trigger:
     - platform: state
       entity_id:
-        binary_sensor.kitchen_pir_0
+        sensor.kitchen_pir_0
       to: 'on'
   condition:
     condition: and
@@ -23,7 +23,7 @@
 - alias: Licht Keuken uit na configurabele tijd geen beweging
   trigger:
     platform: state
-    entity_id: binary_sensor.kitchen_pir_0
+    entity_id: sensor.kitchen_pir_0
     to: 'off'
   action:
     service: timer.start

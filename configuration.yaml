@@ -141,7 +141,7 @@ device_tracker:
     home_interval: 5
     interval_seconds: 30
     consider_home: 00:10:00
-    scan_options: " --host-timeout 5s --privileged -sP "
+    scan_options: " --privileged --host-timeout 5s -sP "
     new_device_defaults:
       track_new_devices: false
   # - platform: google_maps

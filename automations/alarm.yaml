@@ -25,8 +25,8 @@
   trigger:
     - platform: state
       entity_id:
-        binary_sensor.livingroom_smoke_0,
-        binary_sensor.attichallway_smoke_0
+        sensor.livingroom_smoke_0,
+        sensor.attichallway_smoke_0
       to: 'on'
   action:
     service: notify.web
