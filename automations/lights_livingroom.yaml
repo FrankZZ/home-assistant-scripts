@@ -23,18 +23,25 @@
     - service: timer.cancel
       entity_id: timer.livingroom
 
-- alias: Licht Woonkamer uit na configurabele tijd geen beweging
+- alias: Licht Woonkamer uit na configurabele tijd geen beweging behalve savonds
   trigger:
     platform: state
     entity_id: sensor.livingroom_pir_0
     to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ not is_state('input_select.timeofday', 'evening') }}"
+      # - condition: template
+      #   value_template: "{{ not is_state('light.livingroom_lights', 'on') }}"
   action:
     service: timer.start
     data_template:
       entity_id: timer.livingroom
       duration: "{{ (states('input_number.livingroom_timeout')|default(1)|int) * 60 }}"
 
-- alias: "Licht Woonkamer 0 aan als er niemand thuis is"
+- alias: "Licht Woonkamer 0 aan savonds als er niemand thuis is"
   initial_state: on
   trigger:
     - platform: state
@@ -47,8 +54,6 @@
   action:
     - service: light.turn_on
       entity_id: "light.livingroom_light_0"
-      data:
-        brightness_pct: 30
 
 - alias: "Licht Woonkamer 0 uit als er niemand thuis is als het nacht is geworden"
   initial_state: on

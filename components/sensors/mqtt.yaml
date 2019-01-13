@@ -34,8 +34,8 @@
   name: garage_power_0_linkquality
   state_topic: "zigbee2mqtt/garage_power_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.linkquality|int }}"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes:
     - "voltage"
 
@@ -54,8 +54,8 @@
   name: hallway_pir_0_linkquality
   state_topic: "zigbee2mqtt/hallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.linkquality }}"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes:
     - "battery"
     - "voltage"
@@ -76,8 +76,8 @@
   name: upperhallway_pir_0_linkquality
   state_topic: "zigbee2mqtt/upperhallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.linkquality }}"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes:
     - "battery"
     - "voltage"
@@ -109,8 +109,8 @@
   name: closetroom_pir_0_linkquality
   state_topic: "zigbee2mqtt/closetroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.linkquality }}"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes:
     - "battery"
     - "voltage"
@@ -142,8 +142,8 @@
   name: attichallway_pir_0_linkquality
   state_topic: "zigbee2mqtt/attichallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.linkquality }}"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes:
     - "battery"
     - "voltage"
@@ -175,8 +175,8 @@
   name: livingroom_pir_0_linkquality
   state_topic: "zigbee2mqtt/livingroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.linkquality }}"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes:
     - "battery"
     - "voltage"
@@ -208,8 +208,8 @@
   name: kitchen_pir_0_linkquality
   state_topic: "zigbee2mqtt/kitchen_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.linkquality }}"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes:
     - "battery"
     - "voltage"
@@ -261,8 +261,8 @@
   name: freezer_temp_0_linkquality
   state_topic: "zigbee2mqtt/freezer_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.linkquality|int }}"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes:
     - "battery"
     - "voltage"
@@ -303,8 +303,8 @@
   name: bathroom_temp_0_linkquality
   state_topic: "zigbee2mqtt/bathroom_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.linkquality|int }}"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes:
     - "battery"
     - "voltage"
@@ -323,8 +323,8 @@
   name: bathroom_water_0_linkquality
   state_topic: "zigbee2mqtt/bathroom_water_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.linkquality|int }}"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes:
     - "battery"
     - "voltage"
@@ -343,8 +343,8 @@
   name: scullery_water_0_linkquality
   state_topic: "zigbee2mqtt/scullery_water_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.linkquality|int }}"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes:
     - "battery"
     - "voltage"
