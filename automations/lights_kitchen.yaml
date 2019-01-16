@@ -81,16 +81,16 @@
         entity_id: "light.kitchen_lights"
         brightness_pct: "{{ states('input_number.kitchen_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
 
-- alias: Turn off kitchen light when it's light
-  trigger:
-    platform: template
-    value_template: "{{ (states('sensor.kitchen_pir_0_illuminance')|default(0)|int) > (states('input_number.kitchen_darkness_treshold')|default(0)|int + 5) }}"
-  condition:
-    condition: state
-    entity_id: light.kitchen_lights
-    state: 'on'
-  action:
-    - service: light.turn_off
-      entity_id: light.kitchen_lights
-    - service: timer.cancel
-      entity_id: timer.kitchen
+# - alias: Turn off kitchen light when it's light
+#   trigger:
+#     platform: template
+#     value_template: "{{ (states('sensor.kitchen_pir_0_illuminance')|default(0)|int) > (states('input_number.kitchen_darkness_treshold')|default(0)|int + 5) }}"
+#   condition:
+#     condition: state
+#     entity_id: light.kitchen_lights
+#     state: 'on'
+#   action:
+#     - service: light.turn_off
+#       entity_id: light.kitchen_lights
+#     - service: timer.cancel
+#       entity_id: timer.kitchen
