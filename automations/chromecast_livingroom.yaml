@@ -67,6 +67,9 @@
       data_template:
         message: "Aankomstmelding, {{ states.device_tracker[trigger.entity_id.split('.')[1]].attributes.friendly_name }} komt thuis."
         language: 'nl'
+    - service: media_player.turn_off
+      data:
+        entity_id: !secret google_home_woonkamer_entity_id
 
 # - alias: "Announce trash today when person passes motion first in morning"
 #   trigger:

@@ -21,7 +21,6 @@
 #       message: "Onverwachte activiteit gedetecteerd!"
 
 - alias: "Stuur bericht bij brand"
-  initial_state: off
   trigger:
     - platform: state
       entity_id:

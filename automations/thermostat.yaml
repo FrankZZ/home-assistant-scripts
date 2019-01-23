@@ -2,29 +2,32 @@
   trigger:
   - platform: numeric_state
     entity_id: proximity.home
-    below: 40
+    below: 18
   condition:
     condition: and
     conditions:
       - condition: template
         value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'towards' }}"
+      - condition: template
+        value_template: "{{ not states('input_select.timeofday') == 'night' }}"
   action:
     - service: notify.web
-      data:
-        title: Thermostaat Woonkamer
-        message: "Het huis is aan het opwarmen."
+      data_template:
+        title: Verwarming ingeschakeld
+        message: "{{ trigger.to_state.attributes.split(', ')[0] }} is onderweg naar huis"
         data:
           tag: "heating-0-notification"
     - service: climate.set_temperature
       data_template:
-        temperature: 20.5
-        operation_mode: "Manual"
+        temperature: 21
+        entity_id: climate.woonkamer
+        operation_mode: "Tado mode"
 
 - alias: "Thermostaat Woonkamer omlaag als we toch niet naar huis gaan"
   trigger:
   - platform: numeric_state
     entity_id: proximity.home
-    above: 40
+    above: 18
   condition:
     condition: and
     conditions:
@@ -35,13 +38,14 @@
   action:
     - service: notify.web
       data:
-        title: Thermostaat Woonkamer
-        message: "Niemand is (meer) onderweg naar huis. De thermostaat gaat naar beneden."
+        title: Verwarming uitgeschakeld
+        message: "Niemand is (meer) onderweg naar huis"
         data:
           tag: "heating-0-notification"
     - service: climate.set_temperature
       data_template:
-        temperature: 17
+        temperature: 18
+        entity_id: climate.woonkamer
         operation_mode: "Manual"
 
 - alias: "Thermostaat Woonkamer omlaag als we van huis weg gaan"
@@ -58,11 +62,38 @@
   action:
     - service: notify.web
       data:
-        title: Thermostaat Woonkamer
-        message: "Iedereen heeft het huis verlaten. De thermostaat gaat naar beneden."
+        title: Verwarming uitgeschakeld
+        message: "Iedereen heeft het huis verlaten."
         data:
           tag: "heating-0-notification"
     - service: climate.set_temperature
       data_template:
-        temperature: 17
+        temperature: 18
+        entity_id: climate.woonkamer
         operation_mode: "Manual"
+
+- alias: "Thermostaat Woonkamer omhoog als we thuis komen en hij is nog niet aan"
+  trigger:
+  - platform: state
+    entity_id: group.all_devices
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ not states('input_select.timeofday') == 'night' }}"
+      - condition: template
+        value_template: "{{ not state_attr('climate.woonkamer', 'temperature') == 21 }}"
+  action:
+    - service: notify.web
+      data_template:
+        title: Verwarming ingeschakeld
+        message: "Bewoners in het huis gedetecteerd"
+        data:
+          tag: "heating-0-notification"
+    - service: climate.set_temperature
+      data_template:
+        temperature: 21
+        entity_id: climate.woonkamer
+        operation_mode: "Tado mode"
