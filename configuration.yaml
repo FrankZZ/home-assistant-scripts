@@ -60,6 +60,14 @@ frontend:
 apcupsd:
   host: !secret apcupsd_host
 
+# zigbee2mqtt_networkmap:
+
+# panel_iframe:
+#    networkmap:
+#      title: 'Zigbee Map'
+#      url: '/local/zigbee2mqtt_networkmap/map.html'
+#      icon: 'mdi:graphql'
+
 emulated_hue:
   exposed_domains:
     - script
@@ -75,13 +83,17 @@ http:
   login_attempts_threshold: 3
 
 logger:
-  default: warn
+  default: warning
+  logs:
+    homeassistant.components.homekit_controller: debug
 
 # Enables configuration UI
 config:
 
 # Discover some devices automatically
-# discovery:
+discovery:
+  enable:
+    - homekit
 
 # Enables support for tracking state changes over time
 history:
@@ -167,3 +179,7 @@ mqtt:
     topic: 'hass/status'
     payload: 'offline'
   broker: !secret mqtt_server
+
+tado:
+  username: !secret tado_username
+  password: !secret tado_password

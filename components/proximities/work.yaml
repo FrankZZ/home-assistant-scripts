@@ -1,46 +1,46 @@
 home:
   devices:
-    - !secret device_tracker_frank_s8p_id
-    - !secret device_tracker_malissa_g5_id
+    - device_tracker.frank_s8p
+    - device_tracker.malissa_s9
   tolerance: 50
   unit_of_measurement: km
 
 frank_home:
   devices:
-    - !secret device_tracker_frank_s8p_id
+    - device_tracker.frank_s8p
   tolerance: 50
   unit_of_measurement: km
 
 malissa_home:
   devices:
-    - !secret device_tracker_malissa_g5_id
+    - device_tracker.malissa_s9
   tolerance: 50
   unit_of_measurement: km
 
 frank_work_0:
   zone: frank_work_0
   devices:
-    - !secret device_tracker_frank_s8p_id
+    - device_tracker.frank_s8p
   tolerance: 50
   unit_of_measurement: km
 
 malissa_work_0_malissa:
   zone: malissa_work_0
   devices:
-    - !secret device_tracker_malissa_g5_id
+    - device_tracker.malissa_s9
   tolerance: 50
   unit_of_measurement: km
 
 malissa_work_0_frank:
   zone: malissa_work_0
   devices:
-    - !secret device_tracker_frank_s8p_id
+    - device_tracker.frank_s8p
   tolerance: 50
   unit_of_measurement: km
 
 malissa_work_1:
   zone: malissa_work_1
   devices:
-    - !secret device_tracker_malissa_g5_id
+    - device_tracker.malissa_s9
   tolerance: 50
   unit_of_measurement: km

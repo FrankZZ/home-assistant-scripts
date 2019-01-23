@@ -1,0 +1,68 @@
+- alias: "Thermostaat Woonkamer omhoog als we naar huis gaan"
+  trigger:
+  - platform: numeric_state
+    entity_id: proximity.home
+    below: 40
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'towards' }}"
+  action:
+    - service: notify.web
+      data:
+        title: Thermostaat Woonkamer
+        message: "Het huis is aan het opwarmen."
+        data:
+          tag: "heating-0-notification"
+    - service: climate.set_temperature
+      data_template:
+        temperature: 20.5
+        operation_mode: "Manual"
+
+- alias: "Thermostaat Woonkamer omlaag als we toch niet naar huis gaan"
+  trigger:
+  - platform: numeric_state
+    entity_id: proximity.home
+    above: 40
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'away_from' }}"
+      - condition: template
+        value_template: "{{ not state_attr('climate.woonkamer', 'temperature')|int == 17 }}"
+  action:
+    - service: notify.web
+      data:
+        title: Thermostaat Woonkamer
+        message: "Niemand is (meer) onderweg naar huis. De thermostaat gaat naar beneden."
+        data:
+          tag: "heating-0-notification"
+    - service: climate.set_temperature
+      data_template:
+        temperature: 17
+        operation_mode: "Manual"
+
+- alias: "Thermostaat Woonkamer omlaag als we van huis weg gaan"
+  trigger:
+  - platform: state
+    entity_id: group.all_devices
+    from: 'home'
+    to: 'not_home'
+  # condition:
+  #   condition: and
+  #   conditions:
+  #     - condition: template
+  #       value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'away_from' }}"
+  action:
+    - service: notify.web
+      data:
+        title: Thermostaat Woonkamer
+        message: "Iedereen heeft het huis verlaten. De thermostaat gaat naar beneden."
+        data:
+          tag: "heating-0-notification"
+    - service: climate.set_temperature
+      data_template:
+        temperature: 17
+        operation_mode: "Manual"

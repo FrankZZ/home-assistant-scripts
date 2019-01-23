@@ -3,6 +3,7 @@ default_view:
   view: yes
   entities:
     - updater.updater
+    - sensor.solar_power_production
     - sensor.livingroom_dark
     - group.lights
     - group.default_generic
@@ -147,6 +148,115 @@ zigbee_linkquality_status:
     - sensor.scullery_water_0_linkquality
     - sensor.bathroom_water_0_linkquality
     - sensor.closetroom_pir_0_linkquality
+
+climate_view:
+  view: yes
+  entities:
+    - group.climate_hot_water
+    - group.climate_bijkeuken
+    - group.climate_hal
+    - group.climate_woonkamer
+    - group.climate_kastenkamer
+    - group.climate_slaapkamer
+    - group.climate_zolder
+    - group.climate_logeerkamer
+    - group.climate_badkamer
+
+climate_hot_water:
+  entities:
+    - climate.hot_water
+    - sensor.hot_water_link
+    - sensor.hot_water_overlay
+    - sensor.hot_water_power
+    - sensor.hot_water_tado_mode
+
+climate_hal:
+  entities:
+    - climate.hal
+    - sensor.hal_heating
+    - sensor.hal_humidity
+    - sensor.hal_link
+    - sensor.hal_overlay
+    - sensor.hal_power
+    - sensor.hal_tado_mode
+    - sensor.hal_temperature
+
+climate_woonkamer:
+  entities:
+    - climate.woonkamer
+    - sensor.woonkamer_heating
+    - sensor.woonkamer_humidity
+    - sensor.woonkamer_link
+    - sensor.woonkamer_overlay
+    - sensor.woonkamer_power
+    - sensor.woonkamer_tado_mode
+    - sensor.woonkamer_temperature
+
+climate_kastenkamer:
+  entities:
+    - climate.kastenkamer
+    - sensor.kastenkamer_heating
+    - sensor.kastenkamer_humidity
+    - sensor.kastenkamer_link
+    - sensor.kastenkamer_overlay
+    - sensor.kastenkamer_power
+    - sensor.kastenkamer_tado_mode
+    - sensor.kastenkamer_temperature
+
+climate_slaapkamer:
+  entities:
+    - climate.slaapkamer
+    - sensor.slaapkamer_heating
+    - sensor.slaapkamer_humidity
+    - sensor.slaapkamer_link
+    - sensor.slaapkamer_overlay
+    - sensor.slaapkamer_power
+    - sensor.slaapkamer_tado_mode
+    - sensor.slaapkamer_temperature
+
+climate_badkamer:
+  entities:
+    - climate.badkamer
+    - sensor.badkamer_heating
+    - sensor.badkamer_humidity
+    - sensor.badkamer_link
+    - sensor.badkamer_overlay
+    - sensor.badkamer_power
+    - sensor.badkamer_tado_mode
+    - sensor.badkamer_temperature
+
+climate_logeerkamer:
+  entities:
+    - climate.logeerkamer
+    - sensor.logeerkamer_heating
+    - sensor.logeerkamer_humidity
+    - sensor.logeerkamer_link
+    - sensor.logeerkamer_overlay
+    - sensor.logeerkamer_power
+    - sensor.logeerkamer_tado_mode
+    - sensor.logeerkamer_temperature
+
+climate_zolder:
+  entities:
+    - climate.zolder
+    - sensor.zolder_heating
+    - sensor.zolder_humidity
+    - sensor.zolder_link
+    - sensor.zolder_overlay
+    - sensor.zolder_power
+    - sensor.zolder_tado_mode
+    - sensor.zolder_temperature
+
+climate_bijkeuken:
+  entities:
+    - climate.bijkeuken
+    - sensor.bijkeuken_heating
+    - sensor.bijkeuken_humidity
+    - sensor.bijkeuken_link
+    - sensor.bijkeuken_overlay
+    - sensor.bijkeuken_power
+    - sensor.bijkeuken_tado_mode
+    - sensor.bijkeuken_temperature
 
 apcupsd_status:
   entities:

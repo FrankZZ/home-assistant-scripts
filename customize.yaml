@@ -77,6 +77,9 @@ group.all_devices:
 group.presence_view:
   icon: mdi:account-multiple
 
+group.climate_view:
+  icon: mdi:thermostat
+
 group.settings_view:
   icon: mdi:wrench
 
@@ -184,6 +187,10 @@ group.lights:
   control: hidden
   friendly_name: Lampen
   icon: mdi:light
+
+sensor.solar_power_production:
+  friendly_name: Opbrengst Zonnepanelen
+  icon: mdi:solar-power
 
 sensor.livingroom_dark:
   friendly_name: Woonkamer Donker
