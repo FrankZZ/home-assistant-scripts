@@ -10,6 +10,7 @@
     - "voltage"
 
 - platform: mqtt
+  schema: json
   name: livingroom_smoke_0_linkquality
   state_topic: "zigbee2mqtt/livingroom_smoke_0"
   availability_topic: "zigbee2mqtt/bridge/state"
@@ -20,6 +21,7 @@
     - "voltage"
 
 - platform: mqtt
+  schema: json
   name: livingroom_smoke_0_battery
   state_topic: "zigbee2mqtt/livingroom_smoke_0"
   availability_topic: "zigbee2mqtt/bridge/state"
@@ -42,6 +44,7 @@
     - "voltage"
 
 - platform: mqtt
+  schema: json
   name: attichallway_smoke_0_linkquality
   state_topic: "zigbee2mqtt/attichallway_smoke_0"
   availability_topic: "zigbee2mqtt/bridge/state"
@@ -52,6 +55,7 @@
     - "voltage"
 
 - platform: mqtt
+  schema: json
   name: attichallway_smoke_0_battery
   state_topic: "zigbee2mqtt/attichallway_smoke_0"
   availability_topic: "zigbee2mqtt/bridge/state"
