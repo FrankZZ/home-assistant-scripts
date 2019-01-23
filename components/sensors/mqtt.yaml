@@ -1,15 +1,15 @@
 # - platform: mqtt
-  schema: json
+  # schema: json
 #   name: "Lux Livingroom"
 #   state_topic: "zstr/livingroom/lux1"
 #   unit_of_measurement: "lx"
 # - platform: mqtt
-  schema: json
+  # schema: json
 #   name: "Temperature Livingroom"
 #   state_topic: "zstr/livingroom/temp1"
 #   unit_of_measurement: "°C"
 # - platform: mqtt
-  schema: json
+  # schema: json
 #   name: "Luchtvochtigheid Livingroom"
 #   unit_of_measurement: "%"
 #   state_topic: "zstr/livingroom/humid1"
