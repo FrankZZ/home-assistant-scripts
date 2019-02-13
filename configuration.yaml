@@ -218,3 +218,29 @@ influxdb:
   tags_attributes:
     - friendly_name
     - entity_id
+  component_config_glob:
+    'sensor.*_temperature':
+      override_measurement: 'temperature'
+    'sensor.*_humidity':
+      override_measurement: 'humidity'
+    'sensor.*_linkquality':
+      override_measurement: 'linkquality'
+    'sensor.*_battery':
+      override_measurement: 'battery'
+    'sensor.*_heating':
+      override_measurement: 'heating'
+    'sensor.*_illuminance':
+      override_measurement: 'illuminance'
+    'sensor.trash_*':
+      override_measurement: 'trash'
+    'sensor.ups_*':
+      override_measurement: 'ups'
+    'sensor.waze_*':
+      override_measurement: 'waze'
+    'sensor.*_link':
+      override_measurement: 'link'
+    'sensor.*_dark':
+      override_measurement: 'dark'
+  component_config_domain:
+    'climate':
+      override_measurement: 'climate'
