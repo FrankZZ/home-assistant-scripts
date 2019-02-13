@@ -34,7 +34,7 @@
 - alias: "Licht Keuken soms een keer aan als er niemand thuis is"
   initial_state: on
   trigger:
-    - platform: time
+    - platform: time_pattern
       minutes: '/16'
       seconds: 00
   condition:

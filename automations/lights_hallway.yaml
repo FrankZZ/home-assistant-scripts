@@ -34,7 +34,7 @@
 - alias: "Licht Gang soms een keer aan als er niemand thuis is"
   initial_state: on
   trigger:
-    - platform: time
+    - platform: time_pattern
       minutes: '/6'
       seconds: 00
   condition:

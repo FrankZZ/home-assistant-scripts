@@ -7,6 +7,4 @@
   payload_off: false
   value_template: "{{ value_json.water_leak }}"
   device_class: "moisture"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/scullery_water_0"

@@ -1,3 +1,12 @@
+- platform: mqtt
+  name: main_power_usage
+  state_topic: "sensor/power_meter/watt"
+  unit_of_measurement: "W"
+
+- platform: mqtt
+  name: main_power_direction
+  state_topic: "sensor/power_meter/direction"
+
 # - platform: mqtt
   # schema: json
 #   name: "Lux Livingroom"
@@ -15,12 +24,10 @@
 #   state_topic: "zstr/livingroom/humid1"
 
 - platform: mqtt
-  schema: json
   name: zigbee2mqtt_status
   state_topic: "zigbee2mqtt/bridge/state"
 
 - platform: mqtt
-  schema: json
   name: garage_power_0
   state_topic: "zigbee2mqtt/garage_power_0"
   availability_topic: "zigbee2mqtt/bridge/state"
@@ -28,48 +35,34 @@
   qos: 1
   icon: "mdi:flash"
   value_template: "{{ value_json.power|int }}"
-  json_attributes:
-    - "voltage"
-    - "temperature"
-    - "consumption"
-    - "current"
-    - "power_factor"
+  json_attributes_topic: "zigbee2mqtt/garage_power_0"
 
 - platform: mqtt
-  schema: json
   name: garage_power_0_linkquality
   state_topic: "zigbee2mqtt/garage_power_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes:
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/garage_power_0"
 
 - platform: mqtt
-  schema: json
   name: hallway_pir_0_battery
   state_topic: "zigbee2mqtt/hallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   qos: 1
   value_template: "{{ value_json.battery|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/hallway_pir_0"
 
 - platform: mqtt
-  schema: json
   name: hallway_pir_0_linkquality
   state_topic: "zigbee2mqtt/hallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/hallway_pir_0"
 
 - platform: mqtt
-  schema: json
   name: upperhallway_pir_0_illuminance
   state_topic: "zigbee2mqtt/upperhallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
@@ -77,35 +70,26 @@
   qos: 1
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.illuminance }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/upperhallway_pir_0"
 
 - platform: mqtt
-  schema: json
   name: upperhallway_pir_0_linkquality
   state_topic: "zigbee2mqtt/upperhallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/upperhallway_pir_0"
 
 - platform: mqtt
-  schema: json
   name: upperhallway_pir_0_battery
   state_topic: "zigbee2mqtt/upperhallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   qos: 1
   value_template: "{{ value_json.battery|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/upperhallway_pir_0"
 
 - platform: mqtt
-  schema: json
   name: closetroom_pir_0_illuminance
   state_topic: "zigbee2mqtt/closetroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
@@ -113,35 +97,26 @@
   qos: 1
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.illuminance }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/closetroom_pir_0"
 
 - platform: mqtt
-  schema: json
   name: closetroom_pir_0_linkquality
   state_topic: "zigbee2mqtt/closetroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/closetroom_pir_0"
 
 - platform: mqtt
-  schema: json
   name: closetroom_pir_0_battery
   state_topic: "zigbee2mqtt/closetroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   qos: 1
   value_template: "{{ value_json.battery|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/closetroom_pir_0"
 
 - platform: mqtt
-  schema: json
   name: attichallway_pir_0_illuminance
   state_topic: "zigbee2mqtt/attichallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
@@ -149,35 +124,26 @@
   qos: 1
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.illuminance }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/attichallway_pir_0"
 
 - platform: mqtt
-  schema: json
   name: attichallway_pir_0_linkquality
   state_topic: "zigbee2mqtt/attichallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/attichallway_pir_0"
 
 - platform: mqtt
-  schema: json
   name: attichallway_pir_0_battery
   state_topic: "zigbee2mqtt/attichallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   qos: 1
   value_template: "{{ value_json.battery|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/attichallway_pir_0"
 
 - platform: mqtt
-  schema: json
   name: livingroom_pir_0_illuminance
   state_topic: "zigbee2mqtt/livingroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
@@ -185,35 +151,26 @@
   qos: 1
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.illuminance }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/livingroom_pir_0"
 
 - platform: mqtt
-  schema: json
   name: livingroom_pir_0_linkquality
   state_topic: "zigbee2mqtt/livingroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/livingroom_pir_0"
 
 - platform: mqtt
-  schema: json
   name: livingroom_pir_0_battery
   state_topic: "zigbee2mqtt/livingroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   qos: 1
   value_template: "{{ value_json.battery|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/livingroom_pir_0"
 
 - platform: mqtt
-  schema: json
   name: kitchen_pir_0_illuminance
   state_topic: "zigbee2mqtt/kitchen_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
@@ -221,165 +178,121 @@
   qos: 1
   icon: "mdi:theme-light-dark"
   value_template: "{{ value_json.illuminance }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/kitchen_pir_0"
 
 - platform: mqtt
-  schema: json
   name: kitchen_pir_0_linkquality
   state_topic: "zigbee2mqtt/kitchen_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/kitchen_pir_0"
 
 - platform: mqtt
-  schema: json
   name: kitchen_pir_0_battery
   state_topic: "zigbee2mqtt/kitchen_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   qos: 1
   value_template: "{{ value_json.battery|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/kitchen_pir_0"
 
 - platform: mqtt
-  schema: json
   name: freezer_temp_0_temperature
   state_topic: "zigbee2mqtt/freezer_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
   icon: "mdi:temperature-celsius"
   value_template: "{{ value_json.temperature }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/freezer_temp_0"
 
 - platform: mqtt
-  schema: json
   name: freezer_temp_0_humidity
   state_topic: "zigbee2mqtt/freezer_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   icon: "mdi:water-percent"
   value_template: "{{ value_json.humidity }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/freezer_temp_0"
 
 - platform: mqtt
-  schema: json
   name: freezer_temp_0_battery
   state_topic: "zigbee2mqtt/freezer_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   value_template: "{{ value_json.battery|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/freezer_temp_0"
 
 - platform: mqtt
-  schema: json
   name: freezer_temp_0_linkquality
   state_topic: "zigbee2mqtt/freezer_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/freezer_temp_0"
 
 - platform: mqtt
-  schema: json
   name: bathroom_temp_0_temperature
   state_topic: "zigbee2mqtt/bathroom_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
   icon: "mdi:temperature-celsius"
   value_template: "{{ value_json.temperature }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/bathroom_temp_0"
 
 - platform: mqtt
-  schema: json
   name: bathroom_temp_0_humidity
   state_topic: "zigbee2mqtt/bathroom_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   icon: "mdi:water-percent"
   value_template: "{{ value_json.humidity }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/bathroom_temp_0"
 
 - platform: mqtt
-  schema: json
   name: bathroom_temp_0_battery
   state_topic: "zigbee2mqtt/bathroom_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   value_template: "{{ value_json.battery|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/bathroom_temp_0"
 
 - platform: mqtt
-  schema: json
   name: bathroom_temp_0_linkquality
   state_topic: "zigbee2mqtt/bathroom_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/bathroom_temp_0"
 
 - platform: mqtt
-  schema: json
   name: bathroom_water_0_battery
   state_topic: "zigbee2mqtt/bathroom_water_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   value_template: "{{ value_json.battery|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/bathroom_water_0"
 
 - platform: mqtt
-  schema: json
   name: bathroom_water_0_linkquality
   state_topic: "zigbee2mqtt/bathroom_water_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/bathroom_water_0"
 
 - platform: mqtt
-  schema: json
   name: scullery_water_0_battery
   state_topic: "zigbee2mqtt/scullery_water_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   value_template: "{{ value_json.battery|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/scullery_water_0"
 
 - platform: mqtt
-  schema: json
   name: scullery_water_0_linkquality
   state_topic: "zigbee2mqtt/scullery_water_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
+  json_attributes_topic: "zigbee2mqtt/scullery_water_0"

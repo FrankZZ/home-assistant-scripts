@@ -1,0 +1,4 @@
+- platform: webostv
+  host: !secret tv_livingroom_ip
+  name: livingroom_tv
+  filename: webostv0.conf

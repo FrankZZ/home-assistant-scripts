@@ -2,6 +2,6 @@
   resource: !secret solar_power_production_url
   name: solar_power_production
   select: "electricity_point_meter > [directionality=\"produced\"]"
-  unit_of_measurement: "Wh"
+  unit_of_measurement: "W"
   value_template: "{{ value|int }}"
   scan_interval: 10

@@ -16,6 +16,8 @@ homeassistant:
     light:
       assumed_state: false
 
+system_health:
+
 hassio:
 
 map:
@@ -35,23 +37,32 @@ google_assistant:
   project_id: !secret google_assistant_project_id
   api_key: !secret google_assistant_homegraph_api_key
   expose_by_default: false
-  exposed_domains:
-    - light
+  # exposed_domains:
+  #   - light
   entity_config:
     light.livingroom_lights:
-      name: Woonkamer Lampen
+      name: De Woonkamer Lampen
       expose: true
-    light.hallway_light_0:
-      name: Gang Lamp
+    light.hallway_lights:
+      name: De Gang Lamp
       expose: true
     light.closetroom_lights:
-      name: Kastenkamer Lamp
+      name: De Kastenkamer Lamp
       expose: true
     light.upperhallway_light_0:
-      name: Overloop Lamp
+      name: De Overloop Lamp
       expose: true
     light.attichallway_light_0:
-      name: Zolder Lamp
+      name: De Zolder Lamp
+      expose: true
+    light.kitchen_lights:
+      name: De Keuken Lamp
+      expose: true
+    script.closetroom_heating_on:
+      name: De Kastenkamerverwarming
+      expose: true
+    script.bathroom_heating_on:
+      name: De Badkamerverwarming
       expose: true
 
 # Enables the frontend
@@ -60,7 +71,7 @@ frontend:
 apcupsd:
   host: !secret apcupsd_host
 
-# zigbee2mqtt_networkmap:
+zigbee2mqtt_networkmap:
 
 # panel_iframe:
 #    networkmap:
@@ -86,6 +97,7 @@ logger:
   default: warning
   logs:
     homeassistant.components.homekit_controller: debug
+    homeassistant.components.climate.tado: debug
 
 # Enables configuration UI
 config:
@@ -152,7 +164,7 @@ device_tracker:
     hosts: !secret nmap_tracker_hosts
     home_interval: 5
     interval_seconds: 30
-    consider_home: 00:10:00
+    consider_home: 00:30:00
     scan_options: " --privileged --host-timeout 5s -sP "
     new_device_defaults:
       track_new_devices: false
@@ -183,3 +195,26 @@ mqtt:
 tado:
   username: !secret tado_username
   password: !secret tado_password
+
+# utility_meter:
+#   daily_energy:
+#     source: sensor.main_power_usage
+#     cycle: daily
+#   weekly_energy:
+#     source: sensor.main_power_usage
+#     cycle: weekly
+#   monthly_energy:
+#     source: sensor.main_power_usage
+#     cycle: monthly
+
+xiaomi_aqara:
+  gateways:
+    - host: !secret aqara_gateway_ip
+      key: !secret aqara_gateway_key
+
+influxdb:
+  host: !secret influxdb_host
+  max_retries: 5
+  tags_attributes:
+    - friendly_name
+    - entity_id

@@ -1,83 +1,41 @@
 - platform: "mqtt"
-  schema: json
   name: hallway_pir_0
   state_topic: "zigbee2mqtt/hallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  payload_on: true
-  payload_off: false
   value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
-    - "illuminance"
-    - "linkquality"
+  json_attributes_topic: "zigbee2mqtt/hallway_pir_0"
 
 - platform: "mqtt"
-  schema: json
   name: livingroom_pir_0
   state_topic: "zigbee2mqtt/livingroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  payload_on: true
-  payload_off: false
   value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
-    - "illuminance"
-    - "linkquality"
+  json_attributes_topic: "zigbee2mqtt/livingroom_pir_0"
 
 - platform: "mqtt"
-  schema: json
   name: upperhallway_pir_0
   state_topic: "zigbee2mqtt/upperhallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  payload_on: true
-  payload_off: false
   value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
-    - "illuminance"
-    - "linkquality"
+  json_attributes_topic: "zigbee2mqtt/upperhallway_pir_0"
 
 - platform: "mqtt"
-  schema: json
   name: closetroom_pir_0
   state_topic: "zigbee2mqtt/closetroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  payload_on: true
-  payload_off: false
   value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
-    - "illuminance"
-    - "linkquality"
+  json_attributes_topic: "zigbee2mqtt/closetroom_pir_0"
 
 - platform: "mqtt"
-  schema: json
   name: attichallway_pir_0
   state_topic: "zigbee2mqtt/attichallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  payload_on: true
-  payload_off: false
   value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
-    - "illuminance"
-    - "linkquality"
+  json_attributes_topic: "zigbee2mqtt/attichallway_pir_0"
 
 - platform: "mqtt"
-  schema: json
   name: kitchen_pir_0
   state_topic: "zigbee2mqtt/kitchen_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  payload_on: true
-  payload_off: false
   value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
-  json_attributes:
-    - "battery"
-    - "voltage"
-    - "illuminance"
-    - "linkquality"
+  json_attributes_topic: "zigbee2mqtt/kitchen_pir_0"

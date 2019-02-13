@@ -17,6 +17,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.scullery_water_0
+      from: 'on'
       to: 'off'
   action:
     service: notify.web

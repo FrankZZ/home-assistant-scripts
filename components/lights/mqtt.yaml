@@ -85,3 +85,23 @@
   availability_topic: "zigbee2mqtt/bridge/state"
   brightness: true
   qos: 1
+
+- name: "porch_light_0"
+  platform: "mqtt"
+  state_topic: "zigbee2mqtt/porch_light_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  xy: true
+  schema: "json"
+  command_topic: "zigbee2mqtt/porch_light_0/set"
+
+- name: "porch_light_1"
+  platform: "mqtt"
+  state_topic: "zigbee2mqtt/porch_light_1"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  xy: true
+  schema: "json"
+  command_topic: "zigbee2mqtt/porch_light_1/set"

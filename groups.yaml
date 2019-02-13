@@ -3,7 +3,10 @@ default_view:
   view: yes
   entities:
     - updater.updater
+    - sensor.doorbell
     - sensor.solar_power_production
+    - sensor.main_power_usage
+    - sensor.main_power_direction
     - sensor.livingroom_dark
     - group.lights
     - group.default_generic
@@ -332,6 +335,16 @@ all_proximities:
     - proximity.malissa_work_0_malissa
     - proximity.malissa_work_1
 
+energy_view:
+  view: yes
+  entities:
+    - sensor.daily_energy
+    - sensor.weekly_energy
+    - sensor.monthly_energy
+    - sensor.solar_power_production
+    - sensor.main_power_usage
+    - sensor.main_power_direction
+
 presence_view:
   view: yes
   entities:
@@ -455,6 +468,8 @@ settings_view:
 
 lights:
   entities:
+    - light.porch_light_0
+    - light.porch_light_1
     - light.closetroom_lights
     - light.closetroom_light_0
     - light.closetroom_light_1

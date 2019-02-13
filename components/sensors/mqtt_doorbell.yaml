@@ -1,0 +1,5 @@
+- platform: mqtt
+  name: doorbell
+  state_topic: "sensor/doorbell"
+  icon: mdi:alarm-bell
+  expire_after: 60
