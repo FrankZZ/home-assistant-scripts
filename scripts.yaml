@@ -4,7 +4,7 @@ increase_livingroom_lights:
       data_template:
         entity_id: light.livingroom_light_0
         transition: 1
-        brightness: "{{ [(states.light.livingroom_light_0.attributes.brightness|default(0))+90, 255]|min }}"
+        brightness: "{{ [(state_attr('light.livingroom_light_0',  'brightness')|default(0))+90, 255]|min }}"
 
 decrease_livingroom_lights:
   sequence:
@@ -12,9 +12,9 @@ decrease_livingroom_lights:
       data_template:
         entity_id: light.livingroom_light_0
         transition: 1
-        brightness: "{{ [(states.light.livingroom_lights.attributes.brightness|default(0))-90, 0]|max }}"
+        brightness: "{{ [(state_attr('light.livingroom_light_0',  'brightness')|default(0))-90, 0]|max }}"
     - condition: template
-      value_template: "{{ states('light.livingroom_light_0') == 'on' and states.light.livingroom_light_0.attributes.brightness == 0 }}"
+      value_template: "{{ states('light.livingroom_light_0') == 'on' and state_attr('light.livingroom_light_0', 'brightness') == 0 }}"
     - service: light.turn_off
       entity_id: light.livingroom_light_0
 

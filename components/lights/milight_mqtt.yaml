@@ -4,25 +4,25 @@
 
   # # Use a YAML anchor for common settings so we can just reference
   # # them for other lights.
-  # <<: &MILIGHT_PARAMS
-  #   platform: mqtt_json
-  #   rgb: true
-  #   brightness: true
-  #   retain: true
-  #   qos: 1
-  #   effect: true
-  #   effect_list:
-  #     - white_mode
-  #     - night_mode
-  #     - 0 # rainbow disco
-  #     - 1 # white glow
-  #     - 2 # RGB glow
-  #     - 3 # color cycle
-  #     - 4 # RGB cycle
-  #     - 5 # red flash
-  #     - 6 # green flash
-  #     - 7 # blue flash
-  #     - 8 # loop all effects
+  <<: &MILIGHT_PARAMS
+    platform: mqtt_json
+    rgb: true
+    brightness: true
+    retain: true
+    qos: 1
+    effect: true
+    effect_list:
+      - white_mode
+      - night_mode
+      - 0 # rainbow disco
+      - 1 # white glow
+      - 2 # RGB glow
+      - 3 # color cycle
+      - 4 # RGB cycle
+      - 5 # red flash
+      - 6 # green flash
+      - 7 # blue flash
+      - 8 # loop all effects
 
 # - name: "livingroom_couch_1"
 #   command_topic: milight/0x6549/rgbw/2

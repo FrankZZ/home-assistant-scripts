@@ -1,0 +1,5 @@
+- platform: statistics
+  name: bathroom_humidity_stats
+  entity_id: sensor.bathroom_temp_0_humidity
+  max_age:
+    minutes: 30

@@ -1,0 +1,45 @@
+- alias: "badkamer fan start"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_humidity_rising
+      from: 'off'
+      to: 'on'
+    # - platform: state
+    #   entity_id: binary_sensor.bathroom_occupancy
+    #   from: 'off'
+    #   to: 'on'
+  # condition:
+  #     condition: and
+  #     conditions:
+  #       - condition: state
+  #         entity_id: binary_sensor.bathroom_humidity_rising
+  #         state: 'on'
+  #       - condition: time
+  #         after: '05:30:00'
+  #         before: '21:30:00'
+  action:
+    service: switch.turn_on
+    entity_id: switch.bathroom_fan_0
+
+- alias: "badkamer fan stop"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_humidity_normal
+      from: 'off'
+      to: 'on'
+    # - platform: state
+    #   entity_id: binary_sensor.bathroom_occupancy
+    #   from: 'off'
+    #   to: 'on'
+  # condition:
+  #     condition: and
+  #     conditions:
+  #       - condition: state
+  #         entity_id: binary_sensor.bathroom_humidity_rising
+  #         state: 'on'
+  #       - condition: time
+  #         after: '05:30:00'
+  #         before: '21:30:00'
+  action:
+    service: switch.turn_off
+    entity_id: switch.bathroom_fan_0

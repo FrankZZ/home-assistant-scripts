@@ -10,7 +10,7 @@
         sensor.attichallway_smoke_0_linkquality,
         sensor.livingroom_smoke_0_linkquality,
         sensor.garage_power_0_linkquality,
-        sensor.freezer_temp_0_linkquality,
+        sensor.bathroom_temp_0_linkquality,
         sensor.bathroom_temp_0_linkquality,
         sensor.scullery_water_0_linkquality,
         sensor.bathroom_water_0_linkquality,

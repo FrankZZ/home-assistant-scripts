@@ -17,3 +17,12 @@
   qos: 1
   value_template: "{{ value_json.state }}"
   command_topic: "zigbee2mqtt/garage_power_0/set"
+
+- platform: "mqtt"
+  name: bathroom_fan_0
+  state_topic: !secret bathroom_fan_mqtt_state_topic
+  # availability_topic: !secret bathroom_fan_mqtt_availability_topic
+  payload_off: "off"
+  payload_on: "on"
+  qos: 1
+  command_topic: !secret bathroom_fan_mqtt_command_topic

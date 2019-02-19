@@ -29,13 +29,14 @@ default_view:
     - switch.garage_power_0
     - group.pirs
     - switch.christmastree_power_0
+    - sensor.kitchen_door_0
     - sensor.livingroom_smoke_0
     - sensor.attichallway_smoke_0
 
 temperature_sensors:
   entities:
-    - sensor.freezer_temp_0_humidity
-    - sensor.freezer_temp_0_temperature
+    - sensor.bathroom_temp_0_humidity
+    - sensor.bathroom_temp_0_temperature
     - sensor.bathroom_temp_0_humidity
     - sensor.bathroom_temp_0_temperature
 
@@ -125,13 +126,14 @@ buienradar:
 zigbee_battery_status:
   entities:
     - sensor.kitchen_pir_0_battery
+    - sensor.kitchen_door_0_battery
     - sensor.hallway_pir_0_battery
     - sensor.upperhallway_pir_0_battery
     - sensor.attichallway_pir_0_battery
     - sensor.livingroom_pir_0_battery
     - sensor.attichallway_smoke_0_battery
     - sensor.livingroom_smoke_0_battery
-    - sensor.freezer_temp_0_battery
+    - sensor.bathroom_temp_0_battery
     - sensor.bathroom_temp_0_battery
     - sensor.closetroom_pir_0_battery
     - sensor.scullery_water_0_battery
@@ -140,13 +142,14 @@ zigbee_battery_status:
 zigbee_linkquality_status:
   entities:
     - sensor.kitchen_pir_0_linkquality
+    - sensor.kitchen_door_0_linkquality
     - sensor.hallway_pir_0_linkquality
     - sensor.attichallway_pir_0_linkquality
     - sensor.upperhallway_pir_0_linkquality
     - sensor.attichallway_smoke_0_linkquality
     - sensor.livingroom_smoke_0_linkquality
     - sensor.garage_power_0_linkquality
-    - sensor.freezer_temp_0_linkquality
+    - sensor.bathroom_temp_0_linkquality
     - sensor.bathroom_temp_0_linkquality
     - sensor.scullery_water_0_linkquality
     - sensor.bathroom_water_0_linkquality
@@ -349,6 +352,8 @@ presence_view:
   view: yes
   entities:
     - group.all_proximities
+    - sensor.frank_home_direction
+    - sensor.malissa_home_direction
     - group.default_generic
     - group.all_devices
 
@@ -465,7 +470,17 @@ settings_view:
     - sensor.lux_livingroom
     - sensor.hallway_pir_1_illuminance
     - group.all_automations
+    - group.bathroom_fan_settings
 
+bathroom_fan_settings:
+  entities:
+    - switch.bathroom_fan_0
+    - sensor.bathroom_humidity_stats
+    - sensor.bathroom_humidity_stats_mean
+    - binary_sensor.bathroom_humidity_rising
+    - binary_sensor.bathroom_humidity_normal
+    - input_number.bathroom_fan_off
+    - input_number.bathroom_fan_on
 lights:
   entities:
     - light.porch_light_0

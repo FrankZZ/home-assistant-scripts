@@ -1,11 +1,15 @@
 - alias: "Thermostaat Woonkamer omhoog als iemand naar huis gaat"
   trigger:
-    - platform: numeric_state
-      entity_id: proximity.frank_home
-      below: 45
-    - platform: numeric_state
-      entity_id: proximity.malissa_home
-      below: 18
+    - platform: state
+      entity_id: sensor.frank_home_direction
+      to: 'towards'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: sensor.malissa_home_direction
+      to: 'towards'
+      for:
+        minutes: 5
   condition:
     condition: and
     conditions:

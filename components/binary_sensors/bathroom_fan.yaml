@@ -1,0 +1,11 @@
+- platform: template
+  sensors:
+    bathroom_humidity_rising:
+      friendly_name: "Badkamer Luchtvochtigheid stijging"
+      value_template: >-
+        {{ (state_attr('sensor.bathroom_humidity_stats_mean', 'max_value') | float - state_attr('sensor.bathroom_humidity_stats_mean', 'min_value') | float) > states('input_number.bathroom_fan_on') | int }}
+
+    bathroom_humidity_normal:
+      friendly_name: "Badkamer Luchtvochtigheid normaal"
+      value_template: >-
+        {{ (state_attr('sensor.bathroom_humidity_stats_mean', 'max_value') | float - state_attr('sensor.bathroom_humidity_stats_mean', 'min_value') | float) < states('input_number.bathroom_fan_off') | int }}
