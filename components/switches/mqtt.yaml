@@ -7,3 +7,37 @@
   optimistic: false
   qos: 0
   retain: true
+
+- platform: "mqtt"
+  name: garage_power_0
+  state_topic: "zigbee2mqtt/garage_power_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_off: "OFF"
+  payload_on: "ON"
+  qos: 1
+  value_template: "{{ value_json.state }}"
+  command_topic: "zigbee2mqtt/garage_power_0/set"
+
+- platform: "mqtt"
+  name: bathroom_fan_low
+  state_topic: "switch/bathroomfan/stat/POWER1"
+  command_topic: "switch/bathroomfan/cmnd/POWER1"
+  availability_topic: "switch/bathroomfan/tele/LWT"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  retain: true
+
+- platform: "mqtt"
+  name: bathroom_fan_high
+  state_topic: "switch/bathroomfan/stat/POWER2"
+  command_topic: "switch/bathroomfan/cmnd/POWER2"
+  availability_topic: "switch/bathroomfan/tele/LWT"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  retain: true

@@ -55,3 +55,6 @@
 
 "zone.*_work_*":
   icon: mdi:worker
+
+"*_pir_*":
+  device_class: motion

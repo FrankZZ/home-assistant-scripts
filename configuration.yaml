@@ -16,6 +16,10 @@ homeassistant:
     light:
       assumed_state: false
 
+system_health:
+
+hassio:
+
 map:
 
 updater:
@@ -33,20 +37,32 @@ google_assistant:
   project_id: !secret google_assistant_project_id
   api_key: !secret google_assistant_homegraph_api_key
   expose_by_default: false
-  exposed_domains:
-    - light
+  # exposed_domains:
+  #   - light
   entity_config:
-    group.milights:
-      expose: true
-      name: all lights
     light.livingroom_lights:
-      name: living room lights
+      name: De Woonkamer Lampen
       expose: true
     light.hallway_lights:
-      name: hallway lights
+      name: De Gang Lamp
       expose: true
-    light.upperhallway_lights:
-      name: upper hallway lights
+    light.closetroom_lights:
+      name: De Kastenkamer Lamp
+      expose: true
+    light.upperhallway_light_0:
+      name: De Overloop Lamp
+      expose: true
+    light.attichallway_light_0:
+      name: De Zolder Lamp
+      expose: true
+    light.kitchen_lights:
+      name: De Keuken Lamp
+      expose: true
+    script.closetroom_heating_on:
+      name: De Kastenkamerverwarming
+      expose: true
+    script.bathroom_heating_on:
+      name: De Badkamerverwarming
       expose: true
 
 # Enables the frontend
@@ -55,13 +71,21 @@ frontend:
 apcupsd:
   host: !secret apcupsd_host
 
+zigbee2mqtt_networkmap:
+
+# panel_iframe:
+#    networkmap:
+#      title: 'Zigbee Map'
+#      url: '/local/zigbee2mqtt_networkmap/map.html'
+#      icon: 'mdi:graphql'
+
 emulated_hue:
   exposed_domains:
     - script
     - scene
 
 http:
-  api_password: !secret api_password
+  # api_password: !secret api_password
   # base_url: !secret http_base_url
   use_x_forwarded_for: true
   trusted_proxies:
@@ -70,13 +94,18 @@ http:
   login_attempts_threshold: 3
 
 logger:
-  default: warn
+  default: warning
+  logs:
+    homeassistant.components.homekit_controller: debug
+    homeassistant.components.climate.tado: debug
 
 # Enables configuration UI
 config:
 
 # Discover some devices automatically
-# discovery:
+discovery:
+  enable:
+    - homekit
 
 # Enables support for tracking state changes over time
 history:
@@ -87,17 +116,11 @@ logbook:
 # Track the sun
 sun:
 
-rflink:
-  port: /dev/ttyACM0
-
-ios:
-
-# weather:
-#   - platform: yweather
-#     name: "Yahoo Weather"
+# rflink:
+#   port: /dev/ttyACM0
 
 recorder:
-  db_url: !secret recorder_db_url
+#  db_url: !secret recorder_db_url
   exclude:
     domains:
       - automation
@@ -131,36 +154,35 @@ history_graph: !include_dir_merge_named components/history_graphs
 zone: !include_dir_merge_list components/zones
 proximity: !include_dir_merge_named components/proximities
 
-remote:
-  - platform: harmony
-    name: livingroom
-    host: !secret harmony_livingroom_ip
+# remote:
+#   - platform: harmony
+#     name: livingroom
+#     host: !secret harmony_livingroom_ip
 
 device_tracker:
   - platform: nmap_tracker
     hosts: !secret nmap_tracker_hosts
     home_interval: 5
     interval_seconds: 30
-    consider_home: 00:10:00
-    scan_options: " --host-timeout 5s --privileged -sP "
+    consider_home: 00:30:00
+    scan_options: " --privileged --host-timeout 5s -sP "
     new_device_defaults:
       track_new_devices: false
-  - platform: google_maps
-    username: !secret google_maps_devicetracker_user
-    password: !secret google_maps_devicetracker_password
-    new_device_defaults:
-      track_new_devices: true
+  # - platform: google_maps
+  #   username: !secret google_maps_devicetracker_user
+  #   password: !secret google_maps_devicetracker_password
+  #   new_device_defaults:
+  #     track_new_devices: true
 
-# camera:
-#   - platform: ffmpeg
-#     name: !secret cam1_name
-#     input: !secret cam1_input
+camera:
+  - platform: mjpeg
+    name: !secret cam1_name
+    mjpeg_url: !secret cam1_input
 
-ffmpeg:
-  ffmpeg_bin: /usr/local/bin/ffmpeg
+# ffmpeg:
 
 mqtt:
-  # discovery: true
+  discovery: false
   # discovery_prefix: homeassistant
   birth_message:
     topic: 'hass/status'
@@ -170,10 +192,55 @@ mqtt:
     payload: 'offline'
   broker: !secret mqtt_server
 
-# telegram_bot:
-#   - platform: webhooks
-#     api_key: !secret telegram_bot_api_key
-#     allowed_chat_ids:
-#       - !secret telegram_frank_id
-#       - !secret telegram_malissa_id
-#       - !secret telegram_harrie_id
+tado:
+  username: !secret tado_username
+  password: !secret tado_password
+
+# utility_meter:
+#   daily_energy:
+#     source: sensor.main_power_usage
+#     cycle: daily
+#   weekly_energy:
+#     source: sensor.main_power_usage
+#     cycle: weekly
+#   monthly_energy:
+#     source: sensor.main_power_usage
+#     cycle: monthly
+
+xiaomi_aqara:
+  gateways:
+    - host: !secret aqara_gateway_ip
+      key: !secret aqara_gateway_key
+
+influxdb:
+  host: !secret influxdb_host
+  max_retries: 5
+  tags_attributes:
+    - friendly_name
+    - entity_id
+  component_config_glob:
+    'sensor.*_temperature':
+      override_measurement: 'temperature'
+    'sensor.*_humidity':
+      override_measurement: 'humidity'
+    'sensor.*_linkquality':
+      override_measurement: 'linkquality'
+    'sensor.*_battery':
+      override_measurement: 'battery'
+    'sensor.*_heating':
+      override_measurement: 'heating'
+    'sensor.*_illuminance':
+      override_measurement: 'illuminance'
+    'sensor.trash_*':
+      override_measurement: 'trash'
+    'sensor.ups_*':
+      override_measurement: 'ups'
+    'sensor.waze_*':
+      override_measurement: 'waze'
+    'sensor.*_link':
+      override_measurement: 'link'
+    'sensor.*_dark':
+      override_measurement: 'dark'
+  component_config_domain:
+    'climate':
+      override_measurement: 'climate'

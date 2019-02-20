@@ -1,7 +1,7 @@
-- platform: history_stats
-  name: upperhallway_recent_motions
-  entity_id: group.upperhallway_pirs
-  state: 'on'
-  type: count
-  start: "{{ as_timestamp(now())|int - states('input_number.upperhallway_recent_motions_seconds')|int }}"
-  end: '{{ now() }}'
+# - platform: history_stats
+#   name: upperhallway_recent_motions
+#   entity_id: group.upperhallway_pirs
+#   state: 'on'
+#   type: count
+#   start: "{{ as_timestamp(now())|int - states('input_number.upperhallway_recent_motions_seconds')|int }}"
+#   end: '{{ now() }}'

@@ -1,80 +1,80 @@
-- alias: "Reminder when Frank gets home and its paid parking"
-  trigger:
-    - platform: time
-      at: '09:00'
-    - platform: time
-      at: '09:01'
-    - platform: time
-      at: '09:02'
-    - platform: time
-      at: '09:03'
-    - platform: time
-      at: '09:04'
-    - platform: time
-      at: '09:05'
-    - platform: state
-      entity_id: device_tracker.frank_s8p
-      from: 'not_home'
-      to: 'home'
-    - platform: state
-      entity_id: device_tracker.frank_s8p
-      from: 'not_home'
-      to: 'home'
-      for:
-        minutes: 1
-    - platform: state
-      entity_id: device_tracker.frank_s8p
-      from: 'not_home'
-      to: 'home'
-      for:
-        minutes: 2
-    - platform: state
-      entity_id: device_tracker.frank_s8p
-      from: 'not_home'
-      to: 'home'
-      for:
-        minutes: 3
-    - platform: state
-      entity_id: device_tracker.frank_s8p
-      from: 'not_home'
-      to: 'home'
-      for:
-        minutes: 4
-    - platform: state
-      entity_id: device_tracker.frank_s8p
-      from: 'not_home'
-      to: 'home'
-      for:
-        minutes: 5
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: device_tracker.frank_s8p
-        state: 'home'
-      - condition: or
-        conditions:
-          - condition: time
-            after: '08:59'
-            before: '18:01'
-            weekday:
-              - mon
-              - tue
-              - wed
-              - thu
-              - fri
-          - condition: time
-            after: '17:59'
-            before: '21:01'
-            weekday:
-              - fri
-          - condition: time
-            after: '08:59'
-            before: '17:01'
-            weekday:
-              - sat
-  action:
-    service: notify.web_frank_s8p
-    data:
-      title: "Betaald Parkeren"
-      message: "Vergeet niet betaald parkeren aan te zetten!"
+# - alias: "Reminder when Frank gets home and its paid parking"
+#   trigger:
+#     - platform: time
+#       at: '09:00'
+#     - platform: time
+#       at: '09:01'
+#     - platform: time
+#       at: '09:02'
+#     - platform: time
+#       at: '09:03'
+#     - platform: time
+#       at: '09:04'
+#     - platform: time
+#       at: '09:05'
+#     - platform: state
+#       entity_id: device_tracker.frank_s8p
+#       from: 'not_home'
+#       to: 'home'
+#     - platform: state
+#       entity_id: device_tracker.frank_s8p
+#       from: 'not_home'
+#       to: 'home'
+#       for:
+#         minutes: 1
+#     - platform: state
+#       entity_id: device_tracker.frank_s8p
+#       from: 'not_home'
+#       to: 'home'
+#       for:
+#         minutes: 2
+#     - platform: state
+#       entity_id: device_tracker.frank_s8p
+#       from: 'not_home'
+#       to: 'home'
+#       for:
+#         minutes: 3
+#     - platform: state
+#       entity_id: device_tracker.frank_s8p
+#       from: 'not_home'
+#       to: 'home'
+#       for:
+#         minutes: 4
+#     - platform: state
+#       entity_id: device_tracker.frank_s8p
+#       from: 'not_home'
+#       to: 'home'
+#       for:
+#         minutes: 5
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: state
+#         entity_id: device_tracker.frank_s8p
+#         state: 'home'
+#       - condition: or
+#         conditions:
+#           - condition: time
+#             after: '08:59'
+#             before: '18:01'
+#             weekday:
+#               - mon
+#               - tue
+#               - wed
+#               - thu
+#               - fri
+#           - condition: time
+#             after: '17:59'
+#             before: '21:01'
+#             weekday:
+#               - fri
+#           - condition: time
+#             after: '08:59'
+#             before: '17:01'
+#             weekday:
+#               - sat
+#   action:
+#     service: notify.web_frank_s8p
+#     data:
+#       title: "Betaald Parkeren"
+#       message: "Vergeet niet betaald parkeren aan te zetten!"

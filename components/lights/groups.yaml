@@ -1,32 +1,43 @@
 - platform: group
-  name: milights
+  name: livingroom_lights
   entities:
-    - light.livingroom_dinertable
-    - light.livingroom_couch_1
-    - light.livingroom_couch_2
+    - light.livingroom_light_0
     - light.livingroom_light_1
-    - light.hallway_frontdoor
-    - light.hallway_stairway
-    - light.hallway_kitchen
-    - light.upperhallway_stairway
-    - light.upperhallway_storage
+    # - light.livingroom_light_2 # this is the light for the stairs
+    - light.livingroom_light_3
 
-# - platform: group
-#   name: livingroom_lights
-#   entities:
-#     - light.livingroom_dinertable
-#     - light.livingroom_couch_1
-#     - light.livingroom_couch_2
+- platform: group
+  name: closetroom_lights
+  entities:
+    - light.closetroom_light_0
+    - light.closetroom_light_1
+    - light.closetroom_light_2
 
-# - platform: group
-#   name: hallway_lights
-#   entities:
-#     - light.hallway_stairway
-#     - light.hallway_kitchen
-#     - light.hallway_frontdoor
+- platform: group
+  name: mainfloor_lights
+  entities:
+    - light.livingroom_light_0
+    - light.livingroom_light_1
+    - light.livingroom_light_2
+    - light.livingroom_light_3
+    - light.kitchen_light_0
 
-# - platform: group
-#   name: upperhallway_lights
-#   entities:
-#     - light.upperhallway_stairway
-#     - light.upperhallway_storage
+- platform: group
+  name: kitchen_lights
+  entities:
+    - light.kitchen_light_0
+
+- platform: group
+  name: upperhallway_lights
+  entities:
+    - light.upperhallway_light_0
+
+- platform: group
+  name: hallway_lights
+  entities:
+    - light.hallway_light_0
+
+- platform: group
+  name: attichallway_lights
+  entities:
+    - light.attichallway_light_0

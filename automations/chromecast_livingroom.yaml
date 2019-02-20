@@ -1,39 +1,38 @@
-- alias: "Power-cycle Chromecast when started from harmony hub"
-  trigger:
-    platform: state
-    entity_id: remote.livingroom
-  condition:
-    condition: template
-    value_template: '{{ trigger.to_state.attributes.current_activity == "Chromecast kijken" }}'
-  action:
-    - service: switch.turn_off
-      entity_id: switch.chromecast_livingroom_power
-    - delay: 00:00:01
-    - service: switch.turn_on
-      entity_id: switch.chromecast_livingroom_power
+# # - alias: "Power-cycle Chromecast when started from harmony hub"
+# #   trigger:
+# #     platform: state
+# #     entity_id: remote.livingroom
+# #   condition:
+# #     condition: template
+# #     value_template: '{{ trigger.to_state.attributes.current_activity == "Chromecast kijken" }}'
+# #   action:
+# #     - service: switch.turn_off
+# #       entity_id: switch.chromecast_livingroom_power
+# #     - delay: 00:00:01
+# #     - service: switch.turn_on
+# #       entity_id: switch.chromecast_livingroom_power
 
-- alias: "TV uit als chromecast 15 minuten idle is"
-  trigger:
-    - platform: state
-      entity_id: media_player.woonkamer_tv
-      to: 'idle'
-      for:
-        minutes: 15
-    - platform: state
-      entity_id: media_player.woonkamer_tv
-      to: 'off'
-      for:
-        minutes: 15
-  condition:
-    condition: template
-    value_template: '{{ states.remote.livingroom.attributes.current_activity == "Chromecast kijken" }}'
-  action:
-    - service: remote.turn_off
-      data:
-        entity_id: remote.livingroom
+# - alias: "TV uit als chromecast 15 minuten idle is"
+#   trigger:
+#     - platform: state
+#       entity_id: media_player.woonkamer_tv
+#       to: 'idle'
+#       for:
+#         minutes: 15
+#     - platform: state
+#       entity_id: media_player.woonkamer_tv
+#       to: 'off'
+#       for:
+#         minutes: 15
+#   condition:
+#     condition: template
+#     value_template: '{{ states.remote.livingroom.attributes.current_activity == "Chromecast kijken" }}'
+#   action:
+#     - service: remote.turn_off
+#       data:
+#         entity_id: remote.livingroom
 
-- alias: "Greet when someone gets home and the TV is powered off"
-  initial_state: off
+- alias: "Greet when someone gets home and the google home is not used"
   trigger:
     - platform: state
       entity_id: device_tracker.frank_s8p
@@ -45,132 +44,130 @@
       entity_id: device_tracker.annemieke_s7
       to: 'home'
     - platform: state
-      entity_id: device_tracker.malissa_g5
+      entity_id: device_tracker.malissa_s9
       to: 'home'
     - platform: state
       entity_id: device_tracker.harrie_iphone5
       to: 'home'
   condition:
-    condition: template
-    value_template: '{{ states.remote.livingroom.attributes.current_activity == "PowerOff" }}'
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
+      - condition: state
+        entity_id: !secret google_home_woonkamer_entity_id
+        state: 'off'
   action:
-    - service: media_player.turn_on
-      entity_id: media_player.woonkamer_tv
-    - service: remote.turn_on
+    - service: media_player.volume_set
       data:
-        entity_id: remote.livingroom
-        activity: "Chromecast luisteren"
-    - delay: "00:00:10"
+        entity_id: !secret google_home_woonkamer_entity_id
+        volume_level: 0.7
     - service: tts.google_say
-      entity_id: media_player.woonkamer_tv
+      entity_id: !secret google_home_woonkamer_entity_id
       data_template:
-        message: "Hallo, {{ states.device_tracker[trigger.entity_id.split('.')[1]].attributes.friendly_name }}. Fijne feestdagen toegewenst van Wam Media!"
+        message: "Aankomstmelding, {{ states.device_tracker[trigger.entity_id.split('.')[1]].attributes.friendly_name }} komt thuis."
         language: 'nl'
-    - delay: "00:00:20"
     - service: media_player.turn_off
-      entity_id: media_player.woonkamer_tv
-    - service: remote.turn_off
       data:
-        entity_id: remote.livingroom
+        entity_id: !secret google_home_woonkamer_entity_id
 
-- alias: "Announce trash today when person passes motion first in morning"
-  initial_state: off
-  trigger:
-    - platform: state
-      entity_id:
-        switch.hallway_pir_0
-      to: 'on'
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: '{{ is_state("input_select.timeofday", "morning") }}'
-      - condition: template
-        value_template: '{{ states.remote.livingroom.attributes.current_activity == "PowerOff" }}'
-      - condition: template
-        value_template: '{{ not is_state("sensor.trash_today", None) }}'
-  action:
-    - service: media_player.turn_on
-      entity_id: media_player.woonkamer_tv
-    - service: remote.turn_on
-      data:
-        entity_id: remote.livingroom
-        activity: "Chromecast luisteren"
-    # - delay: "00:00:05"
-    - service: tts.google_say
-      entity_id: media_player.woonkamer_tv
-      data_template:
-        message: "Goedemorgen. Vandaag moet er afval aan de straat worden gezet, namelijk: {{ states('sensor.trash_today') }}."
-        language: 'nl'
-    - delay: "00:00:20"
-    - service: media_player.turn_off
-      entity_id: media_player.woonkamer_tv
-    - service: remote.turn_off
-      data:
-        entity_id: remote.livingroom
+# - alias: "Announce trash today when person passes motion first in morning"
+#   trigger:
+#     - platform: state
+#       entity_id:
+#         switch.livingroom_pir_0
+#       to: 'on'
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: template
+#         value_template: '{{ is_state("input_select.timeofday", "morning") }}'
+#       - condition: template
+#         value_template: '{{ states.remote.livingroom.attributes.current_activity == "PowerOff" }}'
+#       - condition: template
+#         value_template: '{{ not is_state("sensor.trash_today", None) }}'
+#   action:
+#     - service: media_player.turn_on
+#       entity_id: media_player.woonkamer_tv
+#     - service: remote.turn_on
+#       data:
+#         entity_id: remote.livingroom
+#         activity: "Chromecast luisteren"
+#     # - delay: "00:00:05"
+#     - service: tts.google_say
+#       entity_id: media_player.woonkamer_tv
+#       data_template:
+#         message: "Goedemorgen. Vandaag moet er afval aan de straat worden gezet, namelijk: {{ states('sensor.trash_today') }}."
+#         language: 'nl'
+#     - delay: "00:00:20"
+#     - service: media_player.turn_off
+#       entity_id: media_player.woonkamer_tv
+#     - service: remote.turn_off
+#       data:
+#         entity_id: remote.livingroom
 
-- alias: "Turn on audio when somebody connects spotify to chromecast and TV is powered off"
-  initial_state: on
-  trigger:
-    - platform: state
-      entity_id: media_player.woonkamer_tv
-      from: 'idle'
-      to: 'playing'
-    - platform: state
-      entity_id: media_player.woonkamer_tv
-      from: 'idle'
-      to: 'paused'
-    - platform: state
-      entity_id: media_player.woonkamer_tv
-      from: 'off'
-      to: 'playing'
-    - platform: state
-      entity_id: media_player.woonkamer_tv
-      from: 'off'
-      to: 'paused'
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: '{{ states.remote.livingroom.attributes.current_activity == "PowerOff" }}'
-      - condition: template
-        value_template: '{{ trigger.to_state.attributes.app_name == "Spotify" }}'
-  action:
-    - service: remote.turn_on
-      data:
-        entity_id: remote.livingroom
-        activity: "Chromecast luisteren"
+# # - alias: "Turn on audio when somebody connects spotify to chromecast and TV is powered off"
+# #   initial_state: on
+# #   trigger:
+# #     - platform: state
+# #       entity_id: media_player.woonkamer_tv
+# #       from: 'idle'
+# #       to: 'playing'
+# #     - platform: state
+# #       entity_id: media_player.woonkamer_tv
+# #       from: 'idle'
+# #       to: 'paused'
+# #     - platform: state
+# #       entity_id: media_player.woonkamer_tv
+# #       from: 'off'
+# #       to: 'playing'
+# #     - platform: state
+# #       entity_id: media_player.woonkamer_tv
+# #       from: 'off'
+# #       to: 'paused'
+# #   condition:
+# #     condition: and
+# #     conditions:
+# #       - condition: template
+# #         value_template: '{{ states.remote.livingroom.attributes.current_activity == "PowerOff" }}'
+# #       - condition: template
+# #         value_template: '{{ trigger.to_state.attributes.app_name == "Spotify" }}'
+# #   action:
+# #     - service: remote.turn_on
+# #       data:
+# #         entity_id: remote.livingroom
+# #         activity: "Chromecast luisteren"
 
-- alias: "Turn off audio when somebody disconnects spotify to chromecast and audio is turned on"
-  initial_state: on
-  trigger:
-    - platform: state
-      entity_id: media_player.woonkamer_tv
-      from: 'playing'
-      to: 'idle'
-    - platform: state
-      entity_id: media_player.woonkamer_tv
-      from: 'paused'
-      to: 'idle'
-    - platform: state
-      entity_id: media_player.woonkamer_tv
-      from: 'playing'
-      to: 'off'
-    - platform: state
-      entity_id: media_player.woonkamer_tv
-      from: 'paused'
-      to: 'off'
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: '{{ states.remote.livingroom.attributes.current_activity == "Chromecast luisteren" }}'
-      - condition: template
-        value_template: '{{ trigger.from_state.attributes.app_name == "Spotify" }}'
-      - condition: template
-        value_template: '{{ trigger.to_state.attributes.app_name == null }}'
-  action:
-    - service: remote.turn_off
-      data:
-        entity_id: remote.livingroom
+# # - alias: "Turn off audio when somebody disconnects spotify to chromecast and audio is turned on"
+# #   initial_state: on
+# #   trigger:
+# #     - platform: state
+# #       entity_id: media_player.woonkamer_tv
+# #       from: 'playing'
+# #       to: 'idle'
+# #     - platform: state
+# #       entity_id: media_player.woonkamer_tv
+# #       from: 'paused'
+# #       to: 'idle'
+# #     - platform: state
+# #       entity_id: media_player.woonkamer_tv
+# #       from: 'playing'
+# #       to: 'off'
+# #     - platform: state
+# #       entity_id: media_player.woonkamer_tv
+# #       from: 'paused'
+# #       to: 'off'
+# #   condition:
+# #     condition: and
+# #     conditions:
+# #       - condition: template
+# #         value_template: '{{ states.remote.livingroom.attributes.current_activity == "Chromecast luisteren" }}'
+# #       - condition: template
+# #         value_template: '{{ trigger.from_state.attributes.app_name == "Spotify" }}'
+# #       - condition: template
+# #         value_template: '{{ trigger.to_state.attributes.app_name == null }}'
+# #   action:
+# #     - service: remote.turn_off
+# #       data:
+# #         entity_id: remote.livingroom
 

@@ -1,8 +1,8 @@
 - alias: Stuur bericht als er afval aan de straat moet de volgende dag
   initial_state: on
   trigger:
-    platform: time
-    at: '18:00:00'
+    - platform: template
+      value_template: "{{ (states('sensor.time') + ':00') == states('input_datetime.trash_announcement_time') }}"
   condition:
     condition: template
     value_template: "{{ not is_state('sensor.trash_tomorrow', '') }}"

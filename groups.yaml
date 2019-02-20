@@ -3,53 +3,56 @@ default_view:
   view: yes
   entities:
     - updater.updater
-    - binary_sensor.livingroom_dark
+    - sensor.doorbell
+    - sensor.solar_power_production
+    - sensor.main_power_usage
+    - sensor.main_power_direction
+    - sensor.livingroom_dark
     - group.lights
     - group.default_generic
     - group.trash
     - camera.woonkamer
     - sun.sun
     - sensor.lux_livingroom
-    - sensor.hallway_pir_1_illuminance
+    - sensor.closetroom_pir_0_illuminance
+    - sensor.attichallway_pir_0_illuminance
+    - sensor.kitchen_pir_0_illuminance
+    - sensor.livingroom_pir_0_illuminance
+    - sensor.upperhallway_pir_0_illuminance
+    - sensor.hallway_pir_0_illuminance
+    - group.light_timers
+    - sensor.plex01
+    - binary_sensor.scullery_water_0
+    - binary_sensor.bathroom_water_0
+    - sensor.garage_power_0
+    - group.temperature_sensors
+    - switch.garage_power_0
+    - group.pirs
+    - switch.christmastree_power_0
+    - sensor.kitchen_door_0
+    - sensor.livingroom_smoke_0
+    - sensor.attichallway_smoke_0
+
+temperature_sensors:
+  entities:
+    - sensor.bathroom_temp_0_humidity
+    - sensor.bathroom_temp_0_temperature
+    - sensor.bathroom_temp_0_humidity
+    - sensor.bathroom_temp_0_temperature
+
+light_timers:
+  entities:
     - timer.hallway
     - timer.upperhallway
-    - sensor.plex01
-    - binary_sensor.scullery_leak_0
-    - sensor.hallway_power_0
-    - sensor.kitchen_temp_0_humidity
-    - sensor.kitchen_temp_0_temperature
-
-livingroom_scenes:
-  entities:
-    - scene.livingroom_off
-    - scene.livingroom_morning
-    - scene.livingroom_midday
-    - scene.livingroom_evening
-    - scene.livingroom_night
-    - scene.livingroom_full
-
-hallway_scenes:
-  entities:
-    - script.hallway_off
-    - script.hallway_morning
-    - script.hallway_midday
-    - script.hallway_evening
-    - script.hallway_night
-    - script.hallway_full
-
-upperhallway_scenes:
-  entities:
-    - script.upperhallway_off
-    - script.upperhallway_morning
-    - script.upperhallway_midday
-    - script.upperhallway_evening
-    - script.upperhallway_night
-    - script.upperhallway_full
+    - timer.livingroom
+    - timer.closetroom
+    - timer.attichallway
+    - timer.kitchen
 
 livingroom_view:
   view: yes
   entities:
-    - binary_sensor.livingroom_dark
+    - sensor.livingroom_dark
     - light.livingroom_lights
     - sensor.harmony_livingroom
     - group.livingroom_scenes
@@ -58,18 +61,18 @@ livingroom_view:
 hallway_view:
   view: yes
   entities:
-    - binary_sensor.hallway_dark
-    - binary_sensor.hallway_smoke_0
+    - sensor.hallway_dark
+    - sensor.attichallway_smoke_0
     - timer.hallway
     - light.hallway_lights
     - switch.hallway_switch_0
     - sensor.hallway_switch_0
     - group.hallway_scenes
     - switch.hallway_pir_0
-    - binary_sensor.hallway_pir_0
+    - sensor.hallway_pir_0
     - sensor.hallway_pir_1_illuminance
     - switch.hallway_pir_1
-    - binary_sensor.hallway_pir_1
+    - sensor.hallway_pir_1
     - switch.upperhallway_pir_0
     - switch.hallway_door_0
     - sensor.hallway_power_0
@@ -78,7 +81,7 @@ upperhallway_view:
   view: yes
   entities:
     - sensor.upperhallway_recent_motions
-    - binary_sensor.upperhallway_dark
+    - sensor.upperhallway_dark
     - timer.upperhallway
     - light.upperhallway_lights
     - switch.hallway_switch_1
@@ -95,23 +98,171 @@ monitoring_view:
     - group.zigbee_battery_status
     - group.zigbee_linkquality_status
     - group.apcupsd_status
+    - group.buienradar
+
+buienradar:
+  entities:
+    - sensor.buienradar_home_station_name
+    - sensor.buienradar_home_condition_code
+    - sensor.buienradar_home_condition
+    - sensor.buienradar_home_condition_detailed
+    - sensor.buienradar_home_condition_exact
+    - sensor.buienradar_home_symbol
+    - sensor.buienradar_home_humidity
+    - sensor.buienradar_home_temperature
+    - sensor.buienradar_home_ground_temperature
+    - sensor.buienradar_home_wind_speed
+    - sensor.buienradar_home_wind_force
+    - sensor.buienradar_home_wind_direction
+    - sensor.buienradar_home_wind_azimuth
+    - sensor.buienradar_home_pressure
+    - sensor.buienradar_home_visibility
+    - sensor.buienradar_home_wind_gust
+    - sensor.buienradar_home_precipitation
+    - sensor.buienradar_home_irradiance
+    - sensor.buienradar_home_precipitation_forecast_average
+    - sensor.buienradar_home_precipitation_forecast_total
 
 zigbee_battery_status:
   entities:
+    - sensor.kitchen_pir_0_battery
+    - sensor.kitchen_door_0_battery
     - sensor.hallway_pir_0_battery
-    - sensor.hallway_pir_1_battery
-    - sensor.hallway_switch_0_battery
-    - sensor.hallway_smoke_0_battery
-    - sensor.kitchen_temp_0_battery
+    - sensor.upperhallway_pir_0_battery
+    - sensor.attichallway_pir_0_battery
+    - sensor.livingroom_pir_0_battery
+    - sensor.attichallway_smoke_0_battery
+    - sensor.livingroom_smoke_0_battery
+    - sensor.bathroom_temp_0_battery
+    - sensor.bathroom_temp_0_battery
+    - sensor.closetroom_pir_0_battery
+    - sensor.scullery_water_0_battery
+    - sensor.bathroom_water_0_battery
 
 zigbee_linkquality_status:
   entities:
+    - sensor.kitchen_pir_0_linkquality
+    - sensor.kitchen_door_0_linkquality
     - sensor.hallway_pir_0_linkquality
-    - sensor.hallway_pir_1_linkquality
-    - sensor.hallway_switch_0_linkquality
-    - sensor.hallway_smoke_0_linkquality
-    - sensor.hallway_power_0_linkquality
-    - sensor.kitchen_temp_0_linkquality
+    - sensor.attichallway_pir_0_linkquality
+    - sensor.upperhallway_pir_0_linkquality
+    - sensor.attichallway_smoke_0_linkquality
+    - sensor.livingroom_smoke_0_linkquality
+    - sensor.garage_power_0_linkquality
+    - sensor.bathroom_temp_0_linkquality
+    - sensor.bathroom_temp_0_linkquality
+    - sensor.scullery_water_0_linkquality
+    - sensor.bathroom_water_0_linkquality
+    - sensor.closetroom_pir_0_linkquality
+
+climate_view:
+  view: yes
+  entities:
+    - group.climate_hot_water
+    - group.climate_bijkeuken
+    - group.climate_hal
+    - group.climate_woonkamer
+    - group.climate_kastenkamer
+    - group.climate_slaapkamer
+    - group.climate_zolder
+    - group.climate_logeerkamer
+    - group.climate_badkamer
+
+climate_hot_water:
+  entities:
+    - climate.hot_water
+    - sensor.hot_water_link
+    - sensor.hot_water_overlay
+    - sensor.hot_water_power
+    - sensor.hot_water_tado_mode
+
+climate_hal:
+  entities:
+    - climate.hal
+    - sensor.hal_heating
+    - sensor.hal_humidity
+    - sensor.hal_link
+    - sensor.hal_overlay
+    - sensor.hal_power
+    - sensor.hal_tado_mode
+    - sensor.hal_temperature
+
+climate_woonkamer:
+  entities:
+    - climate.woonkamer
+    - sensor.woonkamer_heating
+    - sensor.woonkamer_humidity
+    - sensor.woonkamer_link
+    - sensor.woonkamer_overlay
+    - sensor.woonkamer_power
+    - sensor.woonkamer_tado_mode
+    - sensor.woonkamer_temperature
+
+climate_kastenkamer:
+  entities:
+    - climate.kastenkamer
+    - sensor.kastenkamer_heating
+    - sensor.kastenkamer_humidity
+    - sensor.kastenkamer_link
+    - sensor.kastenkamer_overlay
+    - sensor.kastenkamer_power
+    - sensor.kastenkamer_tado_mode
+    - sensor.kastenkamer_temperature
+
+climate_slaapkamer:
+  entities:
+    - climate.slaapkamer
+    - sensor.slaapkamer_heating
+    - sensor.slaapkamer_humidity
+    - sensor.slaapkamer_link
+    - sensor.slaapkamer_overlay
+    - sensor.slaapkamer_power
+    - sensor.slaapkamer_tado_mode
+    - sensor.slaapkamer_temperature
+
+climate_badkamer:
+  entities:
+    - climate.badkamer
+    - sensor.badkamer_heating
+    - sensor.badkamer_humidity
+    - sensor.badkamer_link
+    - sensor.badkamer_overlay
+    - sensor.badkamer_power
+    - sensor.badkamer_tado_mode
+    - sensor.badkamer_temperature
+
+climate_logeerkamer:
+  entities:
+    - climate.logeerkamer
+    - sensor.logeerkamer_heating
+    - sensor.logeerkamer_humidity
+    - sensor.logeerkamer_link
+    - sensor.logeerkamer_overlay
+    - sensor.logeerkamer_power
+    - sensor.logeerkamer_tado_mode
+    - sensor.logeerkamer_temperature
+
+climate_zolder:
+  entities:
+    - climate.zolder
+    - sensor.zolder_heating
+    - sensor.zolder_humidity
+    - sensor.zolder_link
+    - sensor.zolder_overlay
+    - sensor.zolder_power
+    - sensor.zolder_tado_mode
+    - sensor.zolder_temperature
+
+climate_bijkeuken:
+  entities:
+    - climate.bijkeuken
+    - sensor.bijkeuken_heating
+    - sensor.bijkeuken_humidity
+    - sensor.bijkeuken_link
+    - sensor.bijkeuken_overlay
+    - sensor.bijkeuken_power
+    - sensor.bijkeuken_tado_mode
+    - sensor.bijkeuken_temperature
 
 apcupsd_status:
   entities:
@@ -187,10 +338,22 @@ all_proximities:
     - proximity.malissa_work_0_malissa
     - proximity.malissa_work_1
 
+energy_view:
+  view: yes
+  entities:
+    - sensor.daily_energy
+    - sensor.weekly_energy
+    - sensor.monthly_energy
+    - sensor.solar_power_production
+    - sensor.main_power_usage
+    - sensor.main_power_direction
+
 presence_view:
   view: yes
   entities:
     - group.all_proximities
+    - sensor.frank_home_direction
+    - sensor.malissa_home_direction
     - group.default_generic
     - group.all_devices
 
@@ -203,22 +366,11 @@ generic_settings:
     - input_select.timeofday
     - sensor.zigbee2mqtt_status
     - switch.zigbee2mqtt_permit_join
+    - group.all_automations
 
 upperhallway_timeout_settings:
   entities:
-    - input_number.upperhallway_timeout_morning
-    - input_number.upperhallway_timeout_midday
-    - input_number.upperhallway_timeout_evening
-    - input_number.upperhallway_timeout_night
-    - input_number.upperhallway_timeout_full
-
-hallway_timeout_settings:
-  entities:
-    - input_number.hallway_timeout_morning
-    - input_number.hallway_timeout_midday
-    - input_number.hallway_timeout_evening
-    - input_number.hallway_timeout_night
-    - input_number.hallway_timeout_full
+    - input_number.upperhallway_timeout
 
 upperhallway_brightness_settings:
   entities:
@@ -229,9 +381,22 @@ upperhallway_brightness_settings:
     - input_number.upperhallway_brightness_full
     - input_number.upperhallway_darkness_treshold
 
-upperhallway_searchlight_settings:
-  - input_number.upperhallway_recent_motions_treshold
-  - input_number.upperhallway_recent_motions_seconds
+attichallway_timeout_settings:
+  entities:
+    - input_number.attichallway_timeout
+
+attichallway_brightness_settings:
+  entities:
+    - input_number.attichallway_brightness_morning
+    - input_number.attichallway_brightness_midday
+    - input_number.attichallway_brightness_evening
+    - input_number.attichallway_brightness_night
+    - input_number.attichallway_brightness_full
+    - input_number.attichallway_darkness_treshold
+
+hallway_timeout_settings:
+  entities:
+    - input_number.hallway_timeout
 
 hallway_brightness_settings:
   entities:
@@ -239,8 +404,31 @@ hallway_brightness_settings:
     - input_number.hallway_brightness_midday
     - input_number.hallway_brightness_evening
     - input_number.hallway_brightness_night
-    - input_number.hallway_brightness_full
     - input_number.hallway_darkness_treshold
+
+closetroom_timeout_settings:
+  entities:
+    - input_number.closetroom_timeout
+
+closetroom_brightness_settings:
+  entities:
+    - input_number.closetroom_brightness_morning
+    - input_number.closetroom_brightness_midday
+    - input_number.closetroom_brightness_evening
+    - input_number.closetroom_brightness_night
+    - input_number.closetroom_darkness_treshold
+
+kitchen_timeout_settings:
+  entities:
+    - input_number.kitchen_timeout
+
+kitchen_brightness_settings:
+  entities:
+    - input_number.kitchen_brightness_morning
+    - input_number.kitchen_brightness_midday
+    - input_number.kitchen_brightness_evening
+    - input_number.kitchen_brightness_night
+    - input_number.kitchen_darkness_treshold
 
 livingroom_brightness_settings:
   entities:
@@ -250,6 +438,10 @@ livingroom_brightness_settings:
     # - input_number.livingroom_brightness_night
     # - input_number.livingroom_brightness_full
     - input_number.livingroom_darkness_treshold
+
+livingroom_timeout_settings:
+  entities:
+    - input_number.livingroom_timeout
 
 trash_settings:
   entities:
@@ -262,28 +454,56 @@ settings_view:
   entities:
     - group.upperhallway_timeout_settings
     - group.upperhallway_brightness_settings
-    - group.upperhallway_searchlight_settings
+    - group.attichallway_brightness_settings
+    - group.attichallway_timeout_settings
     - group.hallway_brightness_settings
     - group.hallway_timeout_settings
     - group.livingroom_brightness_settings
+    - group.livingroom_timeout_settings
+    - group.kitchen_brightness_settings
+    - group.kitchen_timeout_settings
+    - group.closetroom_brightness_settings
+    - group.closetroom_timeout_settings
     - group.generic_settings
     - group.trash_settings
     - sun.sun
     - sensor.lux_livingroom
     - sensor.hallway_pir_1_illuminance
+    - group.all_automations
+    - group.bathroom_fan_settings
 
+bathroom_fan_settings:
+  entities:
+    - input_number.bathroom_fan_speed
+    - sensor.bathroom_humidity_stats
+    - sensor.bathroom_humidity_stats_mean
+    - binary_sensor.bathroom_humidity_rising
+    - binary_sensor.bathroom_humidity_normal
+    - input_number.bathroom_fan_off
+    - input_number.bathroom_fan_on
 lights:
   entities:
+    - light.porch_light_0
+    - light.porch_light_1
+    - light.closetroom_lights
+    - light.closetroom_light_0
+    - light.closetroom_light_1
+    - light.closetroom_light_2
     - light.livingroom_lights
-    - light.hallway_lights
+    - light.livingroom_light_0
+    - light.livingroom_light_1
+    - light.livingroom_light_2
+    - light.livingroom_light_3
+    - light.kitchen_lights
     - light.upperhallway_lights
+    - light.attichallway_lights
+    - light.hallway_lights
 
-hallway_pirs:
+pirs:
   entities:
-    - switch.hallway_pir_0
-    - switch.hallway_pir_1
-
-upperhallway_pirs:
-  entities:
-    - switch.upperhallway_pir_0
-    - switch.upperhallway_pir_1
+    - sensor.livingroom_pir_0
+    - sensor.kitchen_pir_0
+    - sensor.hallway_pir_0
+    - sensor.upperhallway_pir_0
+    - sensor.closetroom_pir_0
+    - sensor.attichallway_pir_0

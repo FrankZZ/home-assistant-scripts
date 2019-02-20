@@ -3,11 +3,19 @@
   trigger:
     - platform: numeric_state
       entity_id:
+        sensor.kitchen_pir_0_linkquality,
         sensor.hallway_pir_0_linkquality,
-        sensor.hallway_switch_0_linkquality,
-        sensor.hallway_pir_1_linkquality,
-        sensor.hallway_smoke_0_linkquality
-      below: 10
+        sensor.attichallway_pir_0_linkquality,
+        sensor.upperhallway_pir_0_linkquality,
+        sensor.attichallway_smoke_0_linkquality,
+        sensor.livingroom_smoke_0_linkquality,
+        sensor.garage_power_0_linkquality,
+        sensor.bathroom_temp_0_linkquality,
+        sensor.bathroom_temp_0_linkquality,
+        sensor.scullery_water_0_linkquality,
+        sensor.bathroom_water_0_linkquality,
+        sensor.closetroom_pir_0_linkquality
+      below: 5
   action:
     - service: notify.web_frank_s8p
       data_template:

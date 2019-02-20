@@ -1,0 +1,78 @@
+- alias: "Licht Zolderoverloop aan bij beweging als het donker is buiten"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id:
+        sensor.attichallway_pir_0
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.attichallway_darkness_treshold')|default(0)|int }}"
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: "light.attichallway_lights"
+        brightness_pct: "{{ states('input_number.attichallway_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
+    - service: timer.cancel
+      entity_id: timer.attichallway
+
+- alias: Licht Zolderoverloop uit na configurabele tijd geen beweging
+  trigger:
+    platform: state
+    entity_id: sensor.attichallway_pir_0
+    to: 'off'
+  action:
+    service: timer.start
+    data_template:
+      entity_id: timer.attichallway
+      duration: "{{ states('input_number.attichallway_timeout')|default(60)|int }}"
+
+# - alias: "Licht Zolderoverloop soms een keer aan als er niemand thuis is"
+#   initial_state: on
+#   trigger:
+#     - platform: time
+#       minutes: '/9'
+#       seconds: 00
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: template
+#         value_template: "{{ is_state('input_select.timeofday', 'evening') }}"
+#       - condition: template
+#         value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+#   action:
+#     - service: light.turn_on
+#       entity_id: "light.attichallway_lights"
+#       brightness_pct: 100
+#     - service: timer.start
+#       entity_id: timer.attichallway
+#       duration: 42
+
+- alias: "Licht Zolderoverloop uit als timer stopt"
+  initial_state: on
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.attichallway
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.attichallway_lights
+
+- alias: "Licht Zolderoverloop volgt dagdeel"
+  initial_state: on
+  trigger:
+  - platform: state
+    entity_id: input_select.timeofday
+  condition:
+    condition: state
+    entity_id: light.attichallway_lights
+    state: 'on'
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: "light.attichallway_lights"
+        brightness_pct: "{{ states('input_number.attichallway_brightness_' + states('input_select.timeofday'))|default(100)|int }}"

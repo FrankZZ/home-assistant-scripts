@@ -1,0 +1,18 @@
+bathroom_fan_speed:
+  name: Ventilatie snelheid
+  min: 0
+  max: 2
+  step: 1
+  icon: "mdi:fan"
+
+bathroom_fan_on:
+  min: 0
+  max: 100
+  step: 1
+  unit_of_measurement: '%'
+
+bathroom_fan_off:
+  min: 0
+  max: 100
+  step: 1
+  unit_of_measurement: '%'

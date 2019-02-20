@@ -19,3 +19,16 @@
 #     data_template:
 #       title: "*ALARM: {{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }}*"
 #       message: "Onverwachte activiteit gedetecteerd!"
+
+- alias: "Stuur bericht bij brand"
+  trigger:
+    - platform: state
+      entity_id:
+        sensor.livingroom_smoke_0,
+        sensor.attichallway_smoke_0
+      to: 'on'
+  action:
+    service: notify.web
+    data_template:
+      title: "*ALARM: {{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }}*"
+      message: "Rook gedetecteerd!"

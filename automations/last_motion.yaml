@@ -2,11 +2,12 @@
   trigger:
     - platform: state
       entity_id:
-        binary_sensor.hallway_pir_0,
-        binary_sensor.hallway_pir_1,
-        switch.hallway_door_0,
-        switch.upperhallway_pir_0,
-        switch.upperhallway_pir_1
+        sensor.attichallway_pir_0,
+        sensor.closetroom_pir_0,
+        sensor.hallway_pir_0,
+        sensor.kitchen_pir_0,
+        sensor.livingroom_pir_0,
+        sensor.upperhallway_pir_0
       to: 'on'
   action:
     - service: input_text.set_value

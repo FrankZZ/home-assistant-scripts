@@ -10,3 +10,7 @@
   latitude: !secret malissa_work_1_lat
   longitude: !secret malissa_work_1_long
   radius: 250
+- name: home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  radius: 250

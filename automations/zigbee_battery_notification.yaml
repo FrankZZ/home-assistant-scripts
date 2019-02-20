@@ -2,13 +2,21 @@
   trigger:
     - platform: numeric_state
       entity_id:
+        sensor.closetroom_pir_0_battery,
+        sensor.kitchen_pir_0_battery,
         sensor.hallway_pir_0_battery,
-        sensor.hallway_switch_0_battery,
-        sensor.hallway_pir_1_battery,
-        sensor.hallway_smoke_0_battery
+        sensor.upperhallway_pir_0_battery,
+        sensor.attichallway_pir_0_battery,
+        sensor.livingroom_pir_0_battery,
+        sensor.attichallway_smoke_0_battery,
+        sensor.livingroom_smoke_0_battery,
+        sensor.bathroom_temp_0_battery,
+        sensor.bathroom_temp_0_battery,
+        sensor.scullery_water_0_battery,
+        sensor.bathroom_water_0_battery
       below: 25
   action:
-    - service: notify.web_frank_s8p
+    - service: notify.web
       data_template:
         title: "Low Battery: {{ trigger.entity_id.split('.')[1][:-8] }}"
         message: "The battery of {{ trigger.entity_id.split('.')[1][:-8] }} is now {{ trigger.to_state.state }}%."

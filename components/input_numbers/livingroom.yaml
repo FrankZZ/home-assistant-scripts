@@ -1,32 +1,32 @@
+# timeout
+livingroom_timeout:
+    min: 1
+    max: 120
+    step: 1
+    unit_of_measurement: mins
+
 # brightness
-livingroom_brightness_morning:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
-livingroom_brightness_midday:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
-livingroom_brightness_evening:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
-livingroom_brightness_night:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
-livingroom_brightness_full:
-  min: 0
-  max: 100
-  step: 1
-  unit_of_measurement: '%'
+# livingroom_brightness_morning:
+#   <<: &LIVINGROOM_BRIGHTNESS_PARAMS
+#     min: 0
+#     max: 100
+#     step: 1
+#     unit_of_measurement: '%'
+
+# livingroom_brightness_midday:
+#   <<: *LIVINGROOM_BRIGHTNESS_PARAMS
+
+# livingroom_brightness_evening:
+#   <<: *LIVINGROOM_BRIGHTNESS_PARAMS
+
+# livingroom_brightness_night:
+#   <<: *LIVINGROOM_BRIGHTNESS_PARAMS
+
+# livingroom_brightness_full:
+#   <<: *LIVINGROOM_BRIGHTNESS_PARAMS
 
 livingroom_darkness_treshold:
   min: 0
-  max: 1000
-  step: 50
+  max: 500
+  step: 10
   unit_of_measurement: 'lx'

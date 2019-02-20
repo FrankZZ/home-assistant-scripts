@@ -1,90 +1,90 @@
-- alias: "Reset all milights on startup"
-  initial_state: off
-  trigger:
-    - platform: homeassistant
-      event: start
-  action:
-    - service: light.turn_on
-      data:
-        rgb_color: [255,255,255] # white
-        brightness_pct: 1
-        entity_id: group.milights
-    - service: light.turn_off
+# - alias: "Reset all milights on startup"
+#   initial_state: off
+#   trigger:
+#     - platform: homeassistant
+#       event: start
+#   action:
+#     - service: light.turn_on
+#       data:
+#         rgb_color: [255,255,255] # white
+#         brightness_pct: 1
+#         entity_id: group.milights
+#     - service: light.turn_off
 
-- alias: Livingroom - Sync Milight group command to all lights
-  trigger:
-    - platform: mqtt
-      topic: 'milight/0x6549/rgbw/0'
-  action:
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6549/rgbw/1'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6549/rgbw/2'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6549/rgbw/3'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6549/rgbw/4'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
+# # - alias: Livingroom - Sync Milight group command to all lights
+# #   trigger:
+# #     - platform: mqtt
+# #       topic: 'milight/0x6549/rgbw/0'
+# #   action:
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6549/rgbw/1'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6549/rgbw/2'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6549/rgbw/3'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6549/rgbw/4'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true
 
-- alias: Hallway - Sync Milight group command to all lights
-  trigger:
-    - platform: mqtt
-      topic: 'milight/0x6550/rgbw/0'
-  action:
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6550/rgbw/1'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6550/rgbw/2'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6550/rgbw/3'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6550/rgbw/4'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
+# # - alias: Hallway - Sync Milight group command to all lights
+# #   trigger:
+# #     - platform: mqtt
+# #       topic: 'milight/0x6550/rgbw/0'
+# #   action:
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6550/rgbw/1'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6550/rgbw/2'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6550/rgbw/3'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6550/rgbw/4'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true
 
-- alias: Upperhallway - Sync Milight group command to all lights
-  trigger:
-    - platform: mqtt
-      topic: 'milight/0x6551/rgbw/0'
-  action:
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6551/rgbw/1'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6551/rgbw/2'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6551/rgbw/3'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
-    - service: mqtt.publish
-      data_template:
-        topic: 'milight/states/0x6551/rgbw/4'
-        payload_template: '{{ trigger.payload }}'
-        retain: true
+# # - alias: Upperhallway - Sync Milight group command to all lights
+# #   trigger:
+# #     - platform: mqtt
+# #       topic: 'milight/0x6551/rgbw/0'
+# #   action:
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6551/rgbw/1'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6551/rgbw/2'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6551/rgbw/3'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true
+# #     - service: mqtt.publish
+# #       data_template:
+# #         topic: 'milight/states/0x6551/rgbw/4'
+# #         payload_template: '{{ trigger.payload }}'
+# #         retain: true

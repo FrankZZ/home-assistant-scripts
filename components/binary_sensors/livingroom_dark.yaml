@@ -1,15 +1,13 @@
 - platform: template
   sensors:
     livingroom_dark:
-      delay_on:
-        seconds: 70 # 2 samples
       delay_off:
         minutes: 10 # 10/11 samples
       value_template: >-
-        {%- if states('sensor.lux_livingroom')|default(0)|int <= states('input_number.livingroom_darkness_treshold')|int %}
+        {%- if states('sensor.livingroom_pir_0_illuminance')|default(0)|int <= states('input_number.livingroom_darkness_treshold')|int %}
           True
-        {%- else %} # if its brighter than lux limit + 50 its not dark anymore
-          {%- if states('sensor.lux_livingroom')|default(0)|int >= (states('input_number.livingroom_darkness_treshold')|int + 50) %}
+        {%- else %} # if its brighter than lux limit + 5 its not dark anymore
+          {%- if states('sensor.livingroom_pir_0_illuminance')|default(0)|int >= (states('input_number.livingroom_darkness_treshold')|int + 5) %}
             False
           {%- else %}
             True

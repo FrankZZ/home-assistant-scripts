@@ -1,0 +1,90 @@
+# - alias: "Stuur bericht bij beweging maar niemand is thuis"
+#   initial_state: off
+#   trigger:
+#     - platform: state
+#       entity_id:
+#         switch.upper_hallway_pir_0,
+#         switch.upper_hallway_pir_1,
+#         switch.hallway_pir_0,
+#         switch.hallway_pir_1,
+#         switch.hallway_door_0
+#       to: 'on'
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: template
+#         value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+#   action:
+#     service: notify.frank
+#     data_template:
+#       title: "*ALARM: {{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }}*"
+#       message: "Onverwachte activiteit gedetecteerd!"
+
+- alias: "Stuur bericht bij aanbellen voordeur"
+  id: doorbell_pressed
+  trigger:
+    - platform: state
+      entity_id: sensor.doorbell
+      from: 'not_pressed'
+      to: 'pressed'
+  condition:
+    condition: template
+    value_template: "{{ as_timestamp(now()) - as_timestamp(state_attr('automation.stuur_bericht_bij_aanbellen_voordeur', 'last_triggered')) | int > 10 }}"
+  action:
+    - service: notify.web
+      data:
+        title: "Deurbel"
+        message: "Er staat iemand voor de deur!"
+        data:
+          tag: "doorbell-0-notification"
+          renotify: true
+    - service: light.turn_on
+      data:
+        entity_id: !secret aqara_gateway_light
+        brightness_pct: 100
+        color_name: blue
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 10
+        ringtone_vol: 30
+    - service: notify.livingroom_tv
+      data:
+        message: "Er staat iemand voor de deur!"
+    - delay:
+        seconds: 5
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 10
+        ringtone_vol: 30
+
+- alias: "Zet deurbel lamp uit na 60 seconden"
+  trigger:
+    - platform: state
+      entity_id: sensor.doorbell
+      from: 'pressed'
+      to: 'not_pressed'
+      for:
+        seconds: 60
+  action:
+    - service: light.turn_off
+      entity_id: !secret aqara_gateway_light
+
+- alias: "Stuur bericht bij voordeur bel offline"
+  trigger:
+    - platform: state
+      entity_id: sensor.doorbell
+      to: 'unknown'
+      for:
+        minutes: 3
+  action:
+    - service: notify.web
+      data:
+        title: "Storing"
+        message: "De deurbel is offline."
+        data:
+          tag: "doorbell-1-notification"
+    - service: notify.livingroom_tv
+      data:
+        message: "Storing: deurbel offline"
