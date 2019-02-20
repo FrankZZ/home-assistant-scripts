@@ -1,45 +1,87 @@
-- alias: "badkamer fan start"
+- alias: "badkamer fan start slow humidity"
   trigger:
     - platform: state
       entity_id: binary_sensor.bathroom_humidity_rising
-      from: 'off'
-      to: 'on'
-    # - platform: state
-    #   entity_id: binary_sensor.bathroom_occupancy
-    #   from: 'off'
-    #   to: 'on'
-  # condition:
-  #     condition: and
-  #     conditions:
-  #       - condition: state
-  #         entity_id: binary_sensor.bathroom_humidity_rising
-  #         state: 'on'
-  #       - condition: time
-  #         after: '05:30:00'
-  #         before: '21:30:00'
+      from: "off"
+      to: "on"
   action:
-    service: switch.turn_on
-    entity_id: switch.bathroom_fan_0
+    service: input_number.set_value
+    data:
+      entity_id: input_number.bathroom_fan_speed
+      value: "1"
+
+- alias: "badkamer fan delayed high humidity"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_humidity_rising
+      from: "off"
+      to: "on"
+      for:
+        minutes: 20
+  action:
+    service: input_number.set_value
+    data:
+      entity_id: input_number.bathroom_fan_speed
+      value: "2"
 
 - alias: "badkamer fan stop"
   trigger:
     - platform: state
       entity_id: binary_sensor.bathroom_humidity_normal
-      from: 'off'
-      to: 'on'
-    # - platform: state
-    #   entity_id: binary_sensor.bathroom_occupancy
-    #   from: 'off'
-    #   to: 'on'
-  # condition:
-  #     condition: and
-  #     conditions:
-  #       - condition: state
-  #         entity_id: binary_sensor.bathroom_humidity_rising
-  #         state: 'on'
-  #       - condition: time
-  #         after: '05:30:00'
-  #         before: '21:30:00'
+      from: "off"
+      to: "on"
   action:
-    service: switch.turn_off
-    entity_id: switch.bathroom_fan_0
+    service: input_number.set_value
+    data:
+      entity_id: input_number.bathroom_fan_speed
+      value: "0"
+
+- alias: "Sonoff Power state on HA start-up"
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "sonoffs/cmnd/state"
+        payload: ""
+
+- alias: "badkamer fan off input_number"
+  trigger:
+    - platform: numeric_state
+      entity_id: input_number.bathroom_fan_speed
+      below: 1
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.bathroom_fan_low
+    - service: switch.turn_off
+      data:
+        entity_id: switch.bathroom_fan_high
+
+- alias: "badkamer fan low input_number"
+  trigger:
+    - platform: numeric_state
+      entity_id: input_number.bathroom_fan_speed
+      below: 2
+      above: 0
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.bathroom_fan_high
+    - service: switch.turn_on
+      data:
+        entity_id: switch.bathroom_fan_low
+
+- alias: "badkamer fan high input_number"
+  trigger:
+    - platform: numeric_state
+      entity_id: input_number.bathroom_fan_speed
+      above: 1
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.bathroom_fan_low
+    - service: switch.turn_on
+      data:
+        entity_id: switch.bathroom_fan_high

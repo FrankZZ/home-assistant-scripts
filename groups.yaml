@@ -474,7 +474,7 @@ settings_view:
 
 bathroom_fan_settings:
   entities:
-    - switch.bathroom_fan_0
+    - input_number.bathroom_fan_speed
     - sensor.bathroom_humidity_stats
     - sensor.bathroom_humidity_stats_mean
     - binary_sensor.bathroom_humidity_rising
