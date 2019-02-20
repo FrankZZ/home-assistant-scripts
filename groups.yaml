@@ -479,8 +479,8 @@ bathroom_fan_settings:
     - sensor.bathroom_humidity_stats_mean
     - binary_sensor.bathroom_humidity_rising
     - binary_sensor.bathroom_humidity_normal
-    - input_number.bathroom_fan_off
-    - input_number.bathroom_fan_on
+    - input_number.bathroom_fan_on_diff
+    - input_number.bathroom_fan_off_diff
 lights:
   entities:
     - light.porch_light_0

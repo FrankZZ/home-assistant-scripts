@@ -4,11 +4,19 @@
       entity_id: binary_sensor.bathroom_humidity_rising
       from: "off"
       to: "on"
+  condition:
+    condition: state
+    entity_id: input_number.bathroom_fan_speed
+    state: "0"
   action:
-    service: input_number.set_value
-    data:
-      entity_id: input_number.bathroom_fan_speed
-      value: "1"
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.bathroom_fan_last_on_humidity
+        value: "{{ states('sensor.bathroom_temp_0_humidity') | int }}"
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.bathroom_fan_speed
+        value: "1"
 
 - alias: "badkamer fan delayed high humidity"
   trigger:
@@ -17,7 +25,7 @@
       from: "off"
       to: "on"
       for:
-        minutes: 20
+        minutes: 15
   action:
     service: input_number.set_value
     data:
@@ -30,11 +38,17 @@
       entity_id: binary_sensor.bathroom_humidity_normal
       from: "off"
       to: "on"
+      for:
+        minutes: 10
   action:
-    service: input_number.set_value
-    data:
-      entity_id: input_number.bathroom_fan_speed
-      value: "0"
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.bathroom_fan_last_on_humidity
+        value: "0"
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.bathroom_fan_speed
+        value: "0"
 
 - alias: "Sonoff Power state on HA start-up"
   trigger:

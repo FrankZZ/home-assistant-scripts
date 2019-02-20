@@ -150,6 +150,30 @@ group.generic_settings:
 group.default_view:
   icon: mdi:home-assistant
 
+group.bathroom_fan_settings:
+  friendly_name: Mechanische Ventilatie
+
+sensor.bathroom_humidity_stats_mean:
+  friendly_name: Gemiddelde luchtvochtigheid
+
+sensor.bathroom_humidity_rising:
+  friendly_name: Luchtvochtigheid stijgend
+
+sensor.bathroom_humidity_normaal:
+  friendly_name: Luchtvochtigheid gestabiliseerd
+
+input_number.bathroom_fan_speed:
+  friendly_name: Stand
+  icon: "mdi:fan"
+
+input_number.bathroom_fan_on_diff:
+  friendly_name: Aan bij verschil
+  icon: mdi:fan
+
+input_number.bathroom_fan_off_diff:
+  friendly_name: Uit bij verschil
+  icon: mdi:fan-off
+
 sensor.lux_livingroom:
   friendly_name: Lichtintensiteit Voor
 
