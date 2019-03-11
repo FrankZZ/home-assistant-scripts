@@ -32,6 +32,8 @@ default_view:
     - sensor.kitchen_door_0
     - sensor.livingroom_smoke_0
     - sensor.scullery_smoke_0
+    - sensor.attic_gasco_0_gas
+    - sensor.attic_gasco_0_co
     - group.bathroom_fan_settings
 
 temperature_sensors:
