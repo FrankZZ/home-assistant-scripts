@@ -1,8 +1,13 @@
-- platform: template
-  sensors:
-    frank_home_direction:
-      friendly_name: "Frank richting Home"
-      value_template: "{{ state_attr('proximity.frank_home', 'dir_of_travel') }}"
-    malissa_home_direction:
-      friendly_name: "Malissa richting Home"
-      value_template: "{{ state_attr('proximity.malissa_home', 'dir_of_travel') }}"
+- platform: statistics
+  name: proximity_frank_home_stats
+  entity_id: proximity.frank_home
+  max_age:
+    minutes: 30
+  precision: 1
+
+- platform: statistics
+  name: proximity_malissa_home_stats
+  entity_id: proximity.malissa_home
+  max_age:
+    minutes: 30
+  precision: 1

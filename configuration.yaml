@@ -97,7 +97,7 @@ logger:
   default: warning
   logs:
     homeassistant.components.homekit_controller: debug
-    homeassistant.components.climate.tado: debug
+    # homeassistant.components.tado: info
 
 # Enables configuration UI
 config:

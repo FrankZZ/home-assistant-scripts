@@ -8,10 +8,17 @@
   condition:
     condition: and
     conditions:
-      - condition: template
-        value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.kitchen_darkness_treshold')|default(0)|int }}"
-      # - condition: template
-      #   value_template: "{{ not is_state('light.kitchen_lights', 'on') }}"
+      - condition: state
+        entity_id: light.kitchen_lights
+        state: 'off'
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{{ is_state('input_select.timeofday', 'evening') }}"
+          - condition: template
+            value_template: "{{ is_state('input_select.timeofday', 'night') }}"
+          - condition: template
+            value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.kitchen_darkness_treshold')|default(0)|int }}"
   action:
     - service: light.turn_on
       data_template:
@@ -19,6 +26,25 @@
         brightness_pct: "{{ states('input_number.kitchen_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
     - service: switch.turn_on
       entity_id: "switch.garage_power_0"
+    - service: timer.cancel
+      entity_id: timer.kitchen
+
+- alias: "Licht Keuken blijft aan bij beweging als het donker is buiten"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id:
+        sensor.kitchen_pir_0
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.kitchen_lights
+        state: 'on'
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.kitchen_darkness_treshold')|default(0)|int+10 }}"
+  action:
     - service: timer.cancel
       entity_id: timer.kitchen
 

@@ -29,6 +29,10 @@ sensor.livingroom_smoke_0:
   friendly_name: Huiskamer Rookmelder
   device_class: smoke
 
+sensor.scullery_smoke_0:
+  friendly_name: Bijkeuken Rookmelder
+  device_class: smoke
+
 binary_sensor.scullery_water_0:
   friendly_name: Bijkeuken Watersensor
   device_class: moisture
@@ -37,11 +41,11 @@ switch.hallway_door_0:
   friendly_name: Voordeur Contact
   device_class: opening
 
-sensor.hallway_smoke_0_battery:
-  friendly_name: Gang Rookmelder
+sensor.scullery_smoke_0_battery:
+  friendly_name: Bijkeuken Rookmelder
 
-sensor.hallway_smoke_0_linkquality:
-  friendly_name: Gang Rookmelder
+sensor.scullery_smoke_0_linkquality:
+  friendly_name: Bijkeuken Rookmelder
 
 light.hallway_kitchen:
   friendly_name: Keuken
@@ -153,14 +157,20 @@ group.default_view:
 group.bathroom_fan_settings:
   friendly_name: Mechanische Ventilatie
 
+sensor.bathroom_fan_last_on_humidity:
+  friendly_name: Gestart bij luchtvochtigheid
+
 sensor.bathroom_humidity_stats_mean:
   friendly_name: Gemiddelde luchtvochtigheid
 
-sensor.bathroom_humidity_rising:
+binary_sensor.bathroom_humidity_rising:
   friendly_name: Luchtvochtigheid stijgend
 
-sensor.bathroom_humidity_normaal:
+binary_sensor.bathroom_humidity_normal:
   friendly_name: Luchtvochtigheid gestabiliseerd
+
+sensor.bathroom_temp_0_humidity:
+  friendly_name: Luchtvochtigheid
 
 input_number.bathroom_fan_speed:
   friendly_name: Stand

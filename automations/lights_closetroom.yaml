@@ -8,10 +8,11 @@
   condition:
     condition: and
     conditions:
+      - condition: state
+        entity_id: light.closetroom_lights
+        state: 'off'
       - condition: template
         value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.closetroom_darkness_treshold')|default(0)|int }}"
-      # - condition: template
-      #   value_template: "{{ not is_state('light.closetroom_lights', 'on') }}"
   action:
     - service: light.turn_on
       data_template:
@@ -20,10 +21,30 @@
     - service: timer.cancel
       entity_id: timer.closetroom
 
+- alias: "Licht Kastenkamer blijft aan bij beweging als het donker is buiten"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id:
+        sensor.closetroom_pir_0
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.closetroom_lights
+        state: 'on'
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.closetroom_darkness_treshold')|default(0)|int+10 }}"
+  action:
+    - service: timer.cancel
+      entity_id: timer.closetroom
+
 - alias: Licht Kastenkamer uit na configurabele tijd geen beweging
   trigger:
     platform: state
     entity_id: sensor.closetroom_pir_0
+    from: 'on'
     to: 'off'
   action:
     service: timer.start
@@ -79,12 +100,24 @@
         entity_id: "light.closetroom_lights"
         brightness_pct: "{{ states('input_number.closetroom_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
 
-# - alias: Turn off closetroom light when it's light
-#   trigger:
-#     platform: template
-#     value_template: "{{ (states('sensor.closetroom_pir_0_illuminance')|default(0)|int) > (states('input_number.closetroom_darkness_treshold')|default(0)|int + 5) }}"
-#   action:
-#     - service: light.turn_off
-#       entity_id: light.closetroom_lights
-#     - service: timer.cancel
-#       entity_id: timer.closetroom
+- alias: Turn off closetroom light when it's light
+  trigger:
+    platform: template
+    value_template: "{{ (states('sensor.closetroom_pir_0_illuminance')|default(0)|int) > (states('input_number.closetroom_darkness_treshold')|default(0)|int + 10) }}"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.closetroom_lights
+        state: 'on'
+      - condition: template
+        value_template: "{{ (trigger.to_state.attributes.illuminance|default(0)|int) > (states('input_number.closetroom_darkness_treshold')|default(0)|int + 5) }}"
+      - condition: template
+        value_template: "{{ not is_state('input_select.timeofday', 'evening') }}"
+      - condition: template
+        value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
+  action:
+    - service: light.turn_off
+      entity_id: light.closetroom_lights
+    - service: timer.cancel
+      entity_id: timer.closetroom

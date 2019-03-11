@@ -31,14 +31,15 @@ default_view:
     - switch.christmastree_power_0
     - sensor.kitchen_door_0
     - sensor.livingroom_smoke_0
-    - sensor.attichallway_smoke_0
+    - sensor.scullery_smoke_0
+    - group.bathroom_fan_settings
 
 temperature_sensors:
   entities:
     - sensor.bathroom_temp_0_humidity
     - sensor.bathroom_temp_0_temperature
-    - sensor.bathroom_temp_0_humidity
-    - sensor.bathroom_temp_0_temperature
+    - sensor.freezer_temp_0_humidity
+    - sensor.freezer_temp_0_temperature
 
 light_timers:
   entities:
@@ -49,45 +50,45 @@ light_timers:
     - timer.attichallway
     - timer.kitchen
 
-livingroom_view:
-  view: yes
-  entities:
-    - sensor.livingroom_dark
-    - light.livingroom_lights
-    - sensor.harmony_livingroom
-    - group.livingroom_scenes
-    - media_player.woonkamer_tv
+# livingroom_view:
+#   view: yes
+#   entities:
+#     - sensor.livingroom_dark
+#     - light.livingroom_lights
+#     - sensor.harmony_livingroom
+#     - group.livingroom_scenes
+#     - media_player.woonkamer_tv
 
-hallway_view:
-  view: yes
-  entities:
-    - sensor.hallway_dark
-    - sensor.attichallway_smoke_0
-    - timer.hallway
-    - light.hallway_lights
-    - switch.hallway_switch_0
-    - sensor.hallway_switch_0
-    - group.hallway_scenes
-    - switch.hallway_pir_0
-    - sensor.hallway_pir_0
-    - sensor.hallway_pir_1_illuminance
-    - switch.hallway_pir_1
-    - sensor.hallway_pir_1
-    - switch.upperhallway_pir_0
-    - switch.hallway_door_0
-    - sensor.hallway_power_0
+# hallway_view:
+#   view: yes
+#   entities:
+#     - sensor.hallway_dark
+#     - sensor.scullery_smoke_0
+#     - timer.hallway
+#     - light.hallway_lights
+#     - switch.hallway_switch_0
+#     - sensor.hallway_switch_0
+#     - group.hallway_scenes
+#     - switch.hallway_pir_0
+#     - sensor.hallway_pir_0
+#     - sensor.hallway_pir_1_illuminance
+#     - switch.hallway_pir_1
+#     - sensor.hallway_pir_1
+#     - switch.upperhallway_pir_0
+#     - switch.hallway_door_0
+#     - sensor.hallway_power_0
 
-upperhallway_view:
-  view: yes
-  entities:
-    - sensor.upperhallway_recent_motions
-    - sensor.upperhallway_dark
-    - timer.upperhallway
-    - light.upperhallway_lights
-    - switch.hallway_switch_1
-    - group.upperhallway_scenes
-    - switch.upperhallway_pir_0
-    - switch.upperhallway_pir_1
+# upperhallway_view:
+#   view: yes
+#   entities:
+#     - sensor.upperhallway_recent_motions
+#     - sensor.upperhallway_dark
+#     - timer.upperhallway
+#     - light.upperhallway_lights
+#     - switch.hallway_switch_1
+#     - group.upperhallway_scenes
+#     - switch.upperhallway_pir_0
+#     - switch.upperhallway_pir_1
 
 monitoring_view:
   view: yes
@@ -131,7 +132,7 @@ zigbee_battery_status:
     - sensor.upperhallway_pir_0_battery
     - sensor.attichallway_pir_0_battery
     - sensor.livingroom_pir_0_battery
-    - sensor.attichallway_smoke_0_battery
+    - sensor.scullery_smoke_0_battery
     - sensor.livingroom_smoke_0_battery
     - sensor.bathroom_temp_0_battery
     - sensor.bathroom_temp_0_battery
@@ -146,7 +147,7 @@ zigbee_linkquality_status:
     - sensor.hallway_pir_0_linkquality
     - sensor.attichallway_pir_0_linkquality
     - sensor.upperhallway_pir_0_linkquality
-    - sensor.attichallway_smoke_0_linkquality
+    - sensor.scullery_smoke_0_linkquality
     - sensor.livingroom_smoke_0_linkquality
     - sensor.garage_power_0_linkquality
     - sensor.bathroom_temp_0_linkquality
@@ -158,6 +159,8 @@ zigbee_linkquality_status:
 climate_view:
   view: yes
   entities:
+    - binary_sensor.kettle_heating
+    - binary_sensor.kettle_cooled_down
     - group.climate_hot_water
     - group.climate_bijkeuken
     - group.climate_hal
@@ -352,8 +355,10 @@ presence_view:
   view: yes
   entities:
     - group.all_proximities
-    - sensor.frank_home_direction
-    - sensor.malissa_home_direction
+    - sensor.proximity_frank_home_stats_mean
+    - sensor.proximity_malissa_home_stats_mean
+    - binary_sensor.frank_home_direction
+    - binary_sensor.malissa_home_direction
     - group.default_generic
     - group.all_devices
 
@@ -475,25 +480,27 @@ settings_view:
 bathroom_fan_settings:
   entities:
     - input_number.bathroom_fan_speed
-    - sensor.bathroom_humidity_stats
+    - sensor.bathroom_temp_0_humidity
     - sensor.bathroom_humidity_stats_mean
+    - sensor.bathroom_fan_last_on_humidity
     - binary_sensor.bathroom_humidity_rising
     - binary_sensor.bathroom_humidity_normal
+    - binary_sensor.toilet_occupied
     - input_number.bathroom_fan_on_diff
     - input_number.bathroom_fan_off_diff
 lights:
   entities:
-    - light.porch_light_0
-    - light.porch_light_1
+    # - light.porch_light_0
+    # - light.porch_light_1
     - light.closetroom_lights
-    - light.closetroom_light_0
-    - light.closetroom_light_1
-    - light.closetroom_light_2
+    # - light.closetroom_light_0
+    # - light.closetroom_light_1
+    # - light.closetroom_light_2
     - light.livingroom_lights
     - light.livingroom_light_0
-    - light.livingroom_light_1
-    - light.livingroom_light_2
-    - light.livingroom_light_3
+    # - light.livingroom_light_1
+    # - light.livingroom_light_2
+    # - light.livingroom_light_3
     - light.kitchen_lights
     - light.upperhallway_lights
     - light.attichallway_lights
@@ -507,3 +514,4 @@ pirs:
     - sensor.upperhallway_pir_0
     - sensor.closetroom_pir_0
     - sensor.attichallway_pir_0
+    - sensor.toilet_pir_0

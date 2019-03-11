@@ -46,3 +46,10 @@
   availability_topic: "zigbee2mqtt/bridge/state"
   value_template: "{{ 'closed' if value_json.contact else 'open' }}"
   json_attributes_topic: "zigbee2mqtt/kitchen_door_0"
+
+- platform: "mqtt"
+  name: toilet_pir_0
+  state_topic: "zigbee2mqtt/toilet_pir_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  json_attributes_topic: "zigbee2mqtt/toilet_pir_0"

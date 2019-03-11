@@ -27,9 +27,9 @@
       entity_id: sensor.doorbell
       from: 'not_pressed'
       to: 'pressed'
-  condition:
-    condition: template
-    value_template: "{{ as_timestamp(now()) - as_timestamp(state_attr('automation.stuur_bericht_bij_aanbellen_voordeur', 'last_triggered')) | int > 10 }}"
+  # condition:
+  #   condition: template
+  #   value_template: "{{ as_timestamp(now()) - as_timestamp(state_attr('automation.stuur_bericht_bij_aanbellen_voordeur', 'last_triggered')) | int > 10 }}"
   action:
     - service: notify.web
       data:
@@ -47,7 +47,7 @@
       data:
         gw_mac: !secret aqara_gateway_mac
         ringtone_id: 10
-        ringtone_vol: 30
+        ringtone_vol: 40
     - service: notify.livingroom_tv
       data:
         message: "Er staat iemand voor de deur!"
@@ -57,7 +57,7 @@
       data:
         gw_mac: !secret aqara_gateway_mac
         ringtone_id: 10
-        ringtone_vol: 30
+        ringtone_vol: 40
 
 - alias: "Zet deurbel lamp uit na 60 seconden"
   trigger:

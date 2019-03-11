@@ -36,6 +36,14 @@
   brightness: true
   qos: 1
 
+- name: "livingroom_lights"
+  command_topic: zigbee2mqtt/livingroom_lights/set
+  # state_topic: zigbee2mqtt/livingroom_lights
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
 
 - name: "kitchen_light_0"
   command_topic: zigbee2mqtt/kitchen_light_0/set
@@ -45,7 +53,6 @@
   availability_topic: "zigbee2mqtt/bridge/state"
   brightness: true
   qos: 1
-
 
 - name: "upperhallway_light_0"
   command_topic: zigbee2mqtt/upperhallway_light_0/set
@@ -66,7 +73,6 @@
   brightness: true
   qos: 1
 
-
 - name: "closetroom_light_1"
   command_topic: zigbee2mqtt/closetroom_light_1/set
   state_topic: zigbee2mqtt/closetroom_light_1
@@ -76,10 +82,18 @@
   brightness: true
   qos: 1
 
-
 - name: "closetroom_light_2"
   command_topic: zigbee2mqtt/closetroom_light_2/set
   state_topic: zigbee2mqtt/closetroom_light_2
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
+
+- name: "closetroom_lights"
+  command_topic: zigbee2mqtt/closetroom_lights/set
+  # state_topic: zigbee2mqtt/closetroom_lights
   platform: mqtt
   schema: json
   availability_topic: "zigbee2mqtt/bridge/state"

@@ -259,38 +259,38 @@
   json_attributes_topic: "zigbee2mqtt/bathroom_temp_0"
 
 - platform: mqtt
-  name: bathroom_temp_0_temperature
-  state_topic: "zigbee2mqtt/bathroom_temp_0"
+  name: freezer_temp_0_temperature
+  state_topic: "zigbee2mqtt/freezer_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
   icon: "mdi:temperature-celsius"
   value_template: "{{ value_json.temperature }}"
-  json_attributes_topic: "zigbee2mqtt/bathroom_temp_0"
+  json_attributes_topic: "zigbee2mqtt/freezer_temp_0"
 
 - platform: mqtt
-  name: bathroom_temp_0_humidity
-  state_topic: "zigbee2mqtt/bathroom_temp_0"
+  name: freezer_temp_0_humidity
+  state_topic: "zigbee2mqtt/freezer_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   icon: "mdi:water-percent"
   value_template: "{{ value_json.humidity }}"
-  json_attributes_topic: "zigbee2mqtt/bathroom_temp_0"
+  json_attributes_topic: "zigbee2mqtt/freezer_temp_0"
 
 - platform: mqtt
-  name: bathroom_temp_0_battery
-  state_topic: "zigbee2mqtt/bathroom_temp_0"
+  name: freezer_temp_0_battery
+  state_topic: "zigbee2mqtt/freezer_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "%"
   value_template: "{{ value_json.battery|int }}"
-  json_attributes_topic: "zigbee2mqtt/bathroom_temp_0"
+  json_attributes_topic: "zigbee2mqtt/freezer_temp_0"
 
 - platform: mqtt
-  name: bathroom_temp_0_linkquality
-  state_topic: "zigbee2mqtt/bathroom_temp_0"
+  name: freezer_temp_0_linkquality
+  state_topic: "zigbee2mqtt/freezer_temp_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
-  json_attributes_topic: "zigbee2mqtt/bathroom_temp_0"
+  json_attributes_topic: "zigbee2mqtt/freezer_temp_0"
 
 - platform: mqtt
   name: bathroom_water_0_battery

@@ -1,5 +1,4 @@
 - platform: buienradar
-  name: buienradar_home
   monitored_conditions:
     - stationname
     - conditioncode

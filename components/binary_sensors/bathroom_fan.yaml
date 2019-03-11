@@ -3,16 +3,20 @@
     bathroom_humidity_rising:
       entity_id:
         - sensor.bathroom_humidity_stats_mean
+        - sensor.bathroom_temp_0_humidity
         - input_number.bathroom_fan_on_diff
-      friendly_name: "Badkamer Luchtvochtigheid stijging"
       value_template: >-
-        {{ (state_attr('sensor.bathroom_humidity_stats_mean', 'max_value') | default(0) | int - state_attr('sensor.bathroom_humidity_stats_mean', 'min_value') | default(0) | int) > states('input_number.bathroom_fan_on_diff') | default(0) | int }}
+        {{ (state_attr('sensor.bathroom_humidity_stats_mean', 'max_value') | default(0) | int - state_attr('sensor.bathroom_humidity_stats_mean', 'min_value') | default(0) | int) > states('input_number.bathroom_fan_on_diff') | default(0) | int and state_attr('sensor.bathroom_humidity_stats_mean', 'change') | int >= 0 }}
 
     bathroom_humidity_normal:
       entity_id:
         - input_number.bathroom_fan_off_diff
         - input_number.bathroom_fan_last_on_humidity
         - sensor.bathroom_temp_0_humidity
-      friendly_name: "Badkamer Luchtvochtigheid normaal"
       value_template: >-
-        {{ is_state('input_number.bathroom_fan_last_on_humidity', '0.0') or ((states('sensor.bathroom_temp_0_humidity') | default(0) | int - states('input_number.bathroom_fan_last_on_humidity') | default(0) | int) < states('input_number.bathroom_fan_off_diff') | default(0) | int) }}
+        {{ is_state('input_number.bathroom_fan_last_on_humidity', '0.0') or ((states('sensor.bathroom_temp_0_humidity') | default(0) | int - states('input_number.bathroom_fan_last_on_humidity') | default(0) | int) <= states('input_number.bathroom_fan_off_diff') | default(0) | int) }}
+
+    toilet_occupied:
+      delay_off:
+        minutes: 5
+      value_template: "{{ is_state('sensor.toilet_pir_0', 'on') }}"

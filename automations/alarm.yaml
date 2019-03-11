@@ -25,10 +25,45 @@
     - platform: state
       entity_id:
         sensor.livingroom_smoke_0,
-        sensor.attichallway_smoke_0
+        sensor.scullery_smoke_0
       to: 'on'
   action:
-    service: notify.web
-    data_template:
-      title: "*ALARM: {{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }}*"
-      message: "Rook gedetecteerd!"
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.bathroom_fan_speed
+        value: "2"
+    - service: notify.web
+      data_template:
+        title: "ROOKALARM: {{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }}"
+        message: "Rook gedetecteerd!"
+    - service: light.turn_on
+      data:
+        entity_id: !secret aqara_gateway_light
+        brightness_pct: 100
+        color_name: red
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 2
+        ringtone_vol: 100
+    - delay:
+        seconds: 10
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 2
+        ringtone_vol: 100
+    - delay:
+        seconds: 10
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 2
+        ringtone_vol: 100
+    - delay:
+        seconds: 10
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 2
+        ringtone_vol: 100

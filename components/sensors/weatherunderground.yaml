@@ -1,24 +1,24 @@
-- platform: wunderground
-  api_key: !secret wunderground_api_key
-  pws_id: !secret wunderground_pws_id
-  lang: !secret wunderground_lang
-  monitored_conditions:
-    - solarradiation
-    # - location
-    # - weather_1d_metric
-    # - weather_1n_metric
-    # - weather_2d_metric
-    # - weather_2n_metric
-    # - weather_3d_metric
-    # - weather_3n_metric
-    # - weather_4d_metric
-    # - weather_4n_metric
-    # - weather
+# - platform: wunderground
+#   api_key: !secret wunderground_api_key
+#   pws_id: !secret wunderground_pws_id
+#   lang: !secret wunderground_lang
+#   monitored_conditions:
+#     - solarradiation
+#     # - location
+#     # - weather_1d_metric
+#     # - weather_1n_metric
+#     # - weather_2d_metric
+#     # - weather_2n_metric
+#     # - weather_3d_metric
+#     # - weather_3n_metric
+#     # - weather_4d_metric
+#     # - weather_4n_metric
+#     # - weather
 
-- platform: template
-  sensors:
-    solarradiation:
-      friendly_name: "Solar Radiation"
-      entity_id: sensor.pws_solarradiation
-      unit_of_measurement: 'w/m2'
-      value_template: "{{ states.sensor.pws_solarradiation.state | int }}"
+# - platform: template
+#   sensors:
+#     solarradiation:
+#       friendly_name: "Solar Radiation"
+#       entity_id: sensor.pws_solarradiation
+#       unit_of_measurement: 'w/m2'
+#       value_template: "{{ states.sensor.pws_solarradiation.state | int }}"

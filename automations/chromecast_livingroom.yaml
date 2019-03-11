@@ -33,6 +33,7 @@
 #         entity_id: remote.livingroom
 
 - alias: "Greet when someone gets home and the google home is not used"
+  initial_state: off
   trigger:
     - platform: state
       entity_id: device_tracker.frank_s8p

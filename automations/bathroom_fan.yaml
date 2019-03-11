@@ -5,14 +5,17 @@
       from: "off"
       to: "on"
   condition:
-    condition: state
-    entity_id: input_number.bathroom_fan_speed
-    state: "0"
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('input_number.bathroom_fan_last_on_humidity', '0.0') }}"
+      - condition: template
+        value_template: "{{ is_state('input_number.bathroom_fan_speed', '0.0') }}"
   action:
     - service: input_number.set_value
       data_template:
         entity_id: input_number.bathroom_fan_last_on_humidity
-        value: "{{ states('sensor.bathroom_temp_0_humidity') | int }}"
+        value: "{{ state_attr('sensor.bathroom_humidity_stats_mean', 'min_value') | int }}"
     - service: input_number.set_value
       data:
         entity_id: input_number.bathroom_fan_speed
@@ -26,6 +29,13 @@
       to: "on"
       for:
         minutes: 15
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ not is_state('input_number.bathroom_fan_last_on_humidity', '0.0') }}"
+      - condition: template
+        value_template: "{{ not is_state('input_number.bathroom_fan_speed', '0.0') }}"
   action:
     service: input_number.set_value
     data:
@@ -39,12 +49,47 @@
       from: "off"
       to: "on"
       for:
-        minutes: 10
+        seconds: 10
+  condition:
+    condition: template
+    value_template: "{{ is_state('binary_sensor.toilet_occupied', 'off') }}"
   action:
     - service: input_number.set_value
       data:
         entity_id: input_number.bathroom_fan_last_on_humidity
         value: "0"
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.bathroom_fan_speed
+        value: "0"
+
+- alias: "toilet fan start"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.toilet_occupied
+      from: "off"
+      to: "on"
+      for:
+        seconds: 10
+  condition:
+    condition: template
+    value_template: "{{ is_state('input_number.bathroom_fan_last_on_humidity', '0.0') }}"
+  action:
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.bathroom_fan_speed
+        value: "1"
+
+- alias: "toilet fan stop"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.toilet_occupied
+      from: "on"
+      to: "off"
+  condition:
+    condition: template
+    value_template: "{{ is_state('input_number.bathroom_fan_last_on_humidity', '0.0') }}"
+  action:
     - service: input_number.set_value
       data:
         entity_id: input_number.bathroom_fan_speed

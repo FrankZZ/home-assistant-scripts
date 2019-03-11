@@ -22,6 +22,16 @@ heating_away:
   sequence:
     - service: climate.set_temperature
       data:
+        entity_id: climate.bijkeuken
+        temperature: 21
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.bijkeuken
+        operation_mode: "Manual"
+    - delay:
+        seconds: 1
+    - service: climate.set_temperature
+      data:
         entity_id: climate.woonkamer
         temperature: 15
     - service: climate.set_operation_mode
@@ -71,26 +81,38 @@ heating_home:
       data:
         entity_id: climate.woonkamer
         operation_mode: "Smart schedule"
+    - delay:
+        seconds: 1
     - service: climate.set_operation_mode
       data:
         entity_id: climate.hal
         operation_mode: "Smart schedule"
+    - delay:
+        seconds: 1
     - service: climate.set_operation_mode
       data:
         entity_id: climate.badkamer
         operation_mode: "Smart schedule"
+    - delay:
+        seconds: 1
     - service: climate.set_operation_mode
       data:
         entity_id: climate.slaapkamer
         operation_mode: "Smart schedule"
+    - delay:
+        seconds: 1
     - service: climate.set_operation_mode
       data:
         entity_id: climate.kastenkamer
         operation_mode: "Smart schedule"
+    - delay:
+        seconds: 1
     - service: climate.set_operation_mode
       data:
         entity_id: climate.zolder
         operation_mode: "Smart schedule"
+    - delay:
+        seconds: 1
     - service: climate.set_operation_mode
       data:
         entity_id: climate.logeerkamer
@@ -117,182 +139,3 @@ closetroom_heating_on:
       data:
         entity_id: climate.kastenkamer
         operation_mode: "Timer"
-
-# hallway_morning:
-#   sequence:
-#     - service: timer.start
-#       data_template:
-#         entity_id: timer.hallway
-#         duration: "{{ states('input_number.hallway_timeout_morning')|default(60)|int }}"
-#     - condition: state
-#       entity_id: light.hallway_lights
-#       state: 'off'
-#     - service: light.turn_on
-#       data_template:
-#         entity_id: light.hallway_lights
-#         brightness_pct: "{{ states('input_number.hallway_brightness_morning')|int }}"
-#         effect: white_mode
-# #         rgb_color: [255,255,255] # white
-
-# hallway_midday:
-#   sequence:
-#     - service: timer.start
-#       data_template:
-#         entity_id: timer.hallway
-#         duration: "{{ states('input_number.hallway_timeout_midday')|default(60)|int }}"
-#     - condition: state
-#       entity_id: light.hallway_lights
-#       state: 'off'
-#     - service: light.turn_on
-#       data_template:
-#         entity_id: light.hallway_lights
-#         brightness_pct: "{{ states('input_number.hallway_brightness_midday')|int }}"
-#         effect: white_mode
-# #         rgb_color: [255,255,255] # white
-
-# hallway_evening:
-#   sequence:
-#     - service: timer.start
-#       data_template:
-#         entity_id: timer.hallway
-#         duration: "{{ states('input_number.hallway_timeout_evening')|default(60)|int }}"
-#     - condition: state
-#       entity_id: light.hallway_lights
-#       state: 'off'
-#     - service: light.turn_on
-#       data_template:
-#         entity_id: light.hallway_lights
-#         brightness_pct: "{{ states('input_number.hallway_brightness_evening')|int }}"
-#         effect: white_mode
-# #         rgb_color: [255,255,255] # white
-
-# hallway_night:
-#   sequence:
-#     - service: timer.start
-#       data_template:
-#         entity_id: timer.hallway
-#         duration: "{{ states('input_number.hallway_timeout_night')|default(60)|int }}"
-#     - condition: state
-#       entity_id: light.hallway_lights
-#       state: 'off'
-#     - service: light.turn_on
-#       data_template:
-#         entity_id: light.hallway_lights
-#         # effect: 'night'
-#         brightness_pct: "{{ states('input_number.hallway_brightness_night')|int }}"
-#         effect: white_mode
-# #         rgb_color: [255,255,255] # white
-
-# hallway_full:
-#   sequence:
-#     - service: timer.start
-#       data_template:
-#         entity_id: timer.hallway
-#         duration: "{{ states('input_number.hallway_timeout_full')|default(60)|int }}"
-#     - service: light.turn_on
-#       data_template:
-#         entity_id: light.hallway_lights
-#         brightness_pct: "{{ states('input_number.hallway_brightness_full')|int }}"
-#         effect: white_mode
-# #         rgb_color: [255,255,255] # white
-
-# hallway_off:
-#   sequence:
-#     - service: light.turn_off
-#       data:
-#         entity_id: light.hallway_lights
-
-# upperhallway_morning:
-#   sequence:
-#     - condition: state
-#       entity_id: switch.hallway_switch_1
-#       state: 'off'
-#     - service: timer.start
-#       data_template:
-#         entity_id: timer.upperhallway
-#         duration: "{{ states('input_number.upperhallway_timeout_morning')|default(60)|int }}"
-#     - condition: state
-#       entity_id: light.upperhallway_lights
-#       state: 'off'
-#     - service: light.turn_on
-#       data_template:
-#         entity_id: light.upperhallway_lights
-#         brightness_pct: "{{ states('input_number.upperhallway_brightness_morning')|int }}"
-#         effect: white_mode
-# #         rgb_color: [255,255,255] # white
-
-# upperhallway_midday:
-#   sequence:
-#     - condition: state
-#       entity_id: switch.hallway_switch_1
-#       state: 'off'
-#     - service: timer.start
-#       data_template:
-#         entity_id: timer.upperhallway
-#         duration: "{{ states('input_number.upperhallway_timeout_midday')|default(60)|int }}"
-#     - condition: state
-#       entity_id: light.upperhallway_storage
-#       state: 'off'
-#     - service: light.turn_on
-#       data_template:
-#         entity_id: light.upperhallway_storage
-#         brightness_pct: "{{ states('input_number.upperhallway_brightness_midday')|int }}"
-#         effect: white_mode
-# #         rgb_color: [255,255,255] # white
-
-# upperhallway_evening:
-#   sequence:
-#     - condition: state
-#       entity_id: switch.hallway_switch_1
-#       state: 'off'
-#     - service: timer.start
-#       data_template:
-#         entity_id: timer.upperhallway
-#         duration: "{{ states('input_number.upperhallway_timeout_evening')|default(60)|int }}"
-#     - condition: state
-#       entity_id: light.upperhallway_lights
-#       state: 'off'
-#     - service: light.turn_on
-#       data_template:
-#         entity_id: light.upperhallway_lights
-#         brightness_pct: "{{ states('input_number.upperhallway_brightness_evening')|int }}"
-#         effect: white_mode
-# #         rgb_color: [255,255,255] # white
-
-# upperhallway_night:
-#   sequence:
-#     - condition: state
-#       entity_id: switch.hallway_switch_1
-#       state: 'off'
-#     - service: timer.start
-#       data_template:
-#         entity_id: timer.upperhallway
-#         duration: "{{ states('input_number.upperhallway_timeout_night')|default(60)|int }}"
-#     - condition: state
-#       entity_id: light.upperhallway_lights
-#       state: 'off'
-#     - service: light.turn_on
-#       data_template:
-#         entity_id: light.upperhallway_lights
-#         brightness_pct: "{{ states('input_number.upperhallway_brightness_night')|int }}"
-#         effect: white_mode
-# #         rgb_color: [255,255,255] # white
-
-# upperhallway_full:
-#   sequence:
-#     - service: timer.start
-#       data_template:
-#         entity_id: timer.upperhallway
-#         duration: "{{ states('input_number.upperhallway_timeout_full')|default(60)|int }}"
-#     - service: light.turn_on
-#       data_template:
-#         entity_id: light.upperhallway_lights
-#         brightness_pct: "{{ states('input_number.upperhallway_brightness_full')|int }}"
-#         effect: white_mode
-# #         rgb_color: [255,255,255] # white
-
-# upperhallway_off:
-#   sequence:
-#     - service: light.turn_off
-#       data:
-#         entity_id: light.upperhallway_lights

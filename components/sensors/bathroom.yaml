@@ -1,6 +1,13 @@
 - platform: statistics
   name: bathroom_humidity_stats
   entity_id: sensor.bathroom_temp_0_humidity
-  sampling_size: 10
+  sampling_size: 50
+  precision: 0
   max_age:
     minutes: 30
+
+- platform: template
+  sensors:
+    bathroom_fan_last_on_humidity:
+      value_template: "{{ states('input_number.bathroom_fan_last_on_humidity') }}"
+      unit_of_measurement: "%H"
