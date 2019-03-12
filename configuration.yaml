@@ -107,11 +107,6 @@ discovery:
   enable:
     - homekit
 
-# Enables support for tracking state changes over time
-history:
-
-# View all events in a logbook
-logbook:
 
 # Track the sun
 sun:
@@ -120,7 +115,7 @@ sun:
 #   port: /dev/ttyACM0
 
 recorder:
-#  db_url: !secret recorder_db_url
+  db_url: !secret recorder_db_url
   exclude:
     domains:
       - automation
@@ -128,6 +123,12 @@ recorder:
       - updater
       - scene
       - script
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
 
 # Text to speech
 tts:
