@@ -9,7 +9,9 @@
         sensor.livingroom_pir_0,
         sensor.upperhallway_pir_0,
         sensor.toilet_pir_0,
-        sensor.kitchen_door_0
+        sensor.kitchen_door_0,
+        sensor.bed_tilt_0,
+        sensor.bed_tilt_1
       to: 'on'
   action:
     - service: input_text.set_value

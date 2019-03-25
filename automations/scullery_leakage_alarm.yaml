@@ -26,3 +26,32 @@
       message: "Waterlekkage in de Bijkeuken opgeheven."
       data:
         tag: "scullery-leakage-0-notification"
+
+- alias: scullery leakage notification on
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_water_0
+      to: 'on'
+  action:
+    service: notify.web
+    data:
+      title: Waterlekkage Detectie
+      message: "Waterlekkage in de Badkamer gedetecteerd."
+      data:
+        tag: "bathroom-leakage-0-notification"
+
+- alias: bathroom leakage notification off
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_water_0
+      from: 'on'
+      to: 'off'
+  action:
+    service: notify.web
+    data:
+      title: Waterlekkage Detectie
+      message: "Waterlekkage in de Badkamer opgeheven."
+      data:
+        tag: "bathroom-leakage-0-notification"

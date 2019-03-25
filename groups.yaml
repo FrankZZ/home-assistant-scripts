@@ -3,7 +3,6 @@ default_view:
   view: yes
   entities:
     - updater.updater
-    - sensor.doorbell
     - sensor.solar_power_production
     - sensor.main_power_usage
     - sensor.main_power_direction
@@ -12,7 +11,7 @@ default_view:
     - group.default_generic
     - group.trash
     - camera.woonkamer
-    - sun.sun
+    # - sun.sun
     - sensor.lux_livingroom
     - sensor.closetroom_pir_0_illuminance
     - sensor.attichallway_pir_0_illuminance
@@ -20,15 +19,14 @@ default_view:
     - sensor.livingroom_pir_0_illuminance
     - sensor.upperhallway_pir_0_illuminance
     - sensor.hallway_pir_0_illuminance
-    - group.light_timers
+    # - group.light_timers
     - sensor.plex01
     - binary_sensor.scullery_water_0
     - binary_sensor.bathroom_water_0
-    - sensor.garage_power_0
+    # - sensor.garage_power_0
     - group.temperature_sensors
     - switch.garage_power_0
     - group.pirs
-    - switch.christmastree_power_0
     - sensor.kitchen_door_0
     - sensor.livingroom_smoke_0
     - sensor.scullery_smoke_0
@@ -141,6 +139,8 @@ zigbee_battery_status:
     - sensor.closetroom_pir_0_battery
     - sensor.scullery_water_0_battery
     - sensor.bathroom_water_0_battery
+    - sensor.bed_tilt_0_battery
+    - sensor.bed_tilt_1_battery
 
 zigbee_linkquality_status:
   entities:
@@ -157,6 +157,8 @@ zigbee_linkquality_status:
     - sensor.scullery_water_0_linkquality
     - sensor.bathroom_water_0_linkquality
     - sensor.closetroom_pir_0_linkquality
+    - sensor.bed_tilt_0_linkquality
+    - sensor.bed_tilt_1_linkquality
 
 climate_view:
   view: yes
@@ -367,6 +369,11 @@ presence_view:
 default_generic:
   entities:
     - input_text.last_motion
+    - sensor.doorbell
+    - sensor.last_doorbell
+    - sensor.doorbellticks
+    - sensor.bed_tilt_0
+    - sensor.bed_tilt_1
 
 generic_settings:
   entities:

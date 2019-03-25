@@ -323,3 +323,52 @@
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes_topic: "zigbee2mqtt/scullery_water_0"
+
+- platform: "mqtt"
+  name: bed_tilt_0
+  state_topic: "zigbee2mqtt/bed_tilt_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:gesture-double-tap"
+  value_template: "{{ value_json.action }}"
+  json_attributes_topic: "zigbee2mqtt/bed_tilt_0"
+  # expire_after: 1
+
+- platform: mqtt
+  name: bed_tilt_0_battery
+  state_topic: "zigbee2mqtt/bed_tilt_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  value_template: "{{ value_json.battery|int }}"
+  json_attributes_topic: "zigbee2mqtt/bed_tilt_0"
+
+- platform: mqtt
+  name: bed_tilt_0_linkquality
+  state_topic: "zigbee2mqtt/bed_tilt_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
+  json_attributes_topic: "zigbee2mqtt/bed_tilt_0"
+
+- platform: "mqtt"
+  name: bed_tilt_1
+  state_topic: "zigbee2mqtt/bed_tilt_1"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:gesture-double-tap"
+  value_template: "{{ value_json.action }}"
+  # expire_after: 1
+
+- platform: mqtt
+  name: bed_tilt_1_battery
+  state_topic: "zigbee2mqtt/bed_tilt_1"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  value_template: "{{ value_json.battery|int }}"
+  json_attributes_topic: "zigbee2mqtt/bed_tilt_1"
+
+- platform: mqtt
+  name: bed_tilt_1_linkquality
+  state_topic: "zigbee2mqtt/bed_tilt_1"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
+  json_attributes_topic: "zigbee2mqtt/bed_tilt_1"

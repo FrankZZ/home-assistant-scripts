@@ -43,5 +43,5 @@
             states('sensor.slaapkamer_heating'),
             states('sensor.logeerkamer_heating'),
             states('sensor.zolder_heating')
-          ] | max | int > 10
+          ] | max | int > 5
         }}

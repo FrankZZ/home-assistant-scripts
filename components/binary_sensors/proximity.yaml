@@ -2,15 +2,15 @@
   sensors:
     frank_home_direction:
       friendly_name: "Frank richting Home"
-      value_template: "{{ state_attr('sensor.proximity_frank_home_stats_mean', 'change') | float < -0.5 }}"
-      delay_on:
-        minutes: 5
+      value_template: "{{ (state_attr('sensor.proximity_frank_home_stats_mean', 'change')|int < -5) and (as_timestamp(state_attr('sensor.proximity_frank_home_stats_mean', 'max_age')) > as_timestamp(now()) - (15*60) or states('proximity.frank_home')|int < 2) }}"
+      # delay_on:
+      #   minutes: 5
       delay_off:
         minutes: 15
     malissa_home_direction:
       friendly_name: "Malissa richting Home"
-      value_template: "{{ state_attr('sensor.proximity_malissa_home_stats_mean', 'change') | float < -0.5 }}"
-      delay_on:
-        minutes: 5
+      value_template: "{{ (state_attr('sensor.proximity_malissa_home_stats_mean', 'change')|int < -5) and (as_timestamp(state_attr('sensor.proximity_malissa_home_stats_mean', 'max_age')) > as_timestamp(now()) - (15*60) or states('proximity.malissa_home')|int < 2) }}"
+      # delay_on:
+      #   minutes: 5
       delay_off:
         minutes: 15

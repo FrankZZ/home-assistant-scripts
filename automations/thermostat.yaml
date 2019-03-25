@@ -16,26 +16,26 @@
       - condition: template
         value_template: "{{ not states('input_select.timeofday') == 'night' }}"
       - condition: template
-        value_template: "{{ not state_attr('climate.woonkamer', 'operation_mode') == 'Smart schedule' }}"
+        value_template: "{{ is_state('sensor.woonkamer_overlay', 'True') and state_attr('climate.woonkamer', 'temperature') == 15.0 }}"
   action:
-    - service: notify.web
-      data:
-        title: Verwarming ingeschakeld
-        message: "Hoppa, de verwarming staat alvast aan!"
-        data:
-          tag: "heating-0-notification"
     - service: climate.set_operation_mode
       data:
         entity_id: climate.woonkamer
         operation_mode: "Smart schedule"
     - delay:
-        seconds: 1
+        seconds: 2
     - service: climate.set_operation_mode
       data:
         entity_id: climate.hal
         operation_mode: "Smart schedule"
     # - service: script.turn_on
     #   entity_id: script.heating_home
+    - service: notify.web
+      data:
+        title: Verwarming ingeschakeld
+        message: "Hoppa, de verwarming staat alvast aan!"
+        data:
+          tag: "heating-0-notification"
 
 - alias: "Thermostaat Woonkamer omlaag als we toch niet naar huis gaan"
   trigger:
@@ -65,14 +65,14 @@
       - condition: template
         value_template: "{{ state_attr('climate.woonkamer', 'operating_mode') == 'Smart schedule' }}"
   action:
+    - service: script.turn_on
+      entity_id: script.heating_away
     - service: notify.web
       data:
         title: Verwarming uitgeschakeld
         message: "Niemand is (meer) onderweg naar huis"
         data:
           tag: "heating-0-notification"
-    - service: script.turn_on
-      entity_id: script.heating_away
 
 - alias: "Thermostaat Woonkamer omlaag als we van huis weg gaan"
   trigger:
@@ -80,20 +80,31 @@
     entity_id: group.all_devices
     from: 'home'
     to: 'not_home'
-  # condition:
-    # condition: and
-    # conditions:
-    #   - condition: template
-    #     value_template: "{{ states('proximity.home') | float > 2 }}"
+  - platform: numeric_state
+    entity_id: proximity.home
+    above: 5
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ states('proximity.home') | float >= 5 }}"
+      - condition: state
+        entity_id: binary_sensor.frank_home_direction
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.malissa_home_direction
+        state: 'off'
+      - condition: template
+        value_template: "{{ is_state('sensor.woonkamer_overlay', 'False') or state_attr('climate.woonkamer', 'temperature') > 15.0 }}"
   action:
+    - service: script.turn_on
+      entity_id: script.heating_away
     - service: notify.web
       data:
         title: Verwarming uitgeschakeld
         message: "Iedereen heeft het huis verlaten."
         data:
           tag: "heating-0-notification"
-    - service: script.turn_on
-      entity_id: script.heating_away
 
 - alias: "Thermostaat Woonkamer omhoog als we thuis komen en hij staat nog niet aan"
   trigger:
@@ -107,22 +118,24 @@
       # - condition: template
       #   value_template: "{{ not states('input_select.timeofday') == 'night' }}"
       - condition: template
-        value_template: "{{ not state_attr('climate.woonkamer', 'operation_mode') == 'Smart schedule' }}"
+        value_template: "{{ is_state('sensor.woonkamer_overlay', 'True') and state_attr('climate.woonkamer', 'temperature') == 15.0 }}"
   action:
+    - service: climate.set_operation_mode
+      entity_id: climate.woonkamer
+      data:
+        operation_mode: "Smart schedule"
+    - delay:
+        seconds: 2
+    - service: climate.set_operation_mode
+      entity_id: climate.hal
+      data:
+        operation_mode: "Smart schedule"
     - service: notify.web
       data_template:
         title: Verwarming Woonkamer ingeschakeld
         message: "Hoppa, de verwarming staat aan!"
         data:
           tag: "heating-0-notification"
-    - service: climate.set_operation_mode
-      entity_id: climate.woonkamer
-      data:
-        operation_mode: "Smart schedule"
-    - service: climate.set_operation_mode
-      entity_id: climate.hal
-      data:
-        operation_mode: "Smart schedule"
 
 - alias: "Thermostaat Rest omhoog als we thuis komen en ze staan nog niet aan"
   trigger:
@@ -138,16 +151,16 @@
       # - condition: template
       #   value_template: "{{ not states('input_select.timeofday') == 'night' }}"
       - condition: template
-        value_template: "{{ not state_attr('climate.kastenkamer', 'operation_mode') == 'Smart schedule' }}"
+        value_template: "{{ not state_attr('climate.logeerkamer', 'operation_mode') == 'Smart schedule' }}"
   action:
+    - service: script.turn_on
+      entity_id: script.heating_home
     - service: notify.web
       data_template:
         title: Verwarming ingeschakeld
         message: "Bewoners in het huis gedetecteerd"
         data:
           tag: "heating-0-notification"
-    - service: script.turn_on
-      entity_id: script.heating_home
 
 - alias: "Thermostaat Bijkeuken omhoog als de verwarming uit gaat"
   trigger:

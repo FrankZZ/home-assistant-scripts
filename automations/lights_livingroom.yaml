@@ -4,15 +4,17 @@
     - platform: state
       entity_id:
         sensor.livingroom_pir_0
-      to: 'on'
   condition:
     condition: and
     conditions:
       - condition: template
         value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.livingroom_darkness_treshold')|default(0)|int }}"
       - condition: state
-        entity_id: light.livingroom_light_1
+        entity_id: light.livingroom_lights
         state: 'off'
+      - condition: state
+        entity_id: sensor.livingroom_pir_0
+        state: 'on'
   action:
     - service: light.turn_on
       data_template:
@@ -107,9 +109,17 @@
       entity_id: input_select.timeofday
       to: 'night'
   condition:
-    condition: state
-    entity_id: remote.harmony_hub
-    state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: remote.harmony_hub
+        state: 'off'
+      - condition: state
+        entity_id: sensor.livingroom_pir_0
+        state: 'off'
+      - condition: state
+        entity_id: timer.livingroom
+        state: 'idle'
   action:
     - service: light.turn_off
       entity_id: light.livingroom_lights
@@ -151,7 +161,7 @@
         entity_id: light.livingroom_lights
         state: 'on'
       - condition: template
-        value_template: "{{ (trigger.to_state.attributes.illuminance|default(0)|int) > (states('input_number.livingroom_darkness_treshold')|default(0)|int + 10) }}"
+        value_template: "{{ (trigger.to_state.attributes.illuminance|default(0)|int) > (states('input_number.livingroom_darkness_treshold')|default(0)|int + 20) }}"
       - condition: template
         value_template: "{{ not is_state('input_select.timeofday', 'evening') }}"
       - condition: template

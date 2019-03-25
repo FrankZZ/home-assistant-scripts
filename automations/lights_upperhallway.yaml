@@ -65,7 +65,7 @@
   initial_state: on
   trigger:
     - platform: time_pattern
-      minutes: '/21'
+      minutes: '/41'
       seconds: 00
   condition:
     condition: and
@@ -82,7 +82,7 @@
     - service: timer.start
       data:
         entity_id: timer.upperhallway
-        duration: 42
+        duration: 120
 
 - alias: "Licht Overloop uit als timer stopt"
   initial_state: on

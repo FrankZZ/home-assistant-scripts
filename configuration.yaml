@@ -129,6 +129,11 @@ history:
 
 # View all events in a logbook
 logbook:
+  include:
+    domains:
+      - device_tracker
+      - media_player
+      - remote
 
 # Text to speech
 tts:

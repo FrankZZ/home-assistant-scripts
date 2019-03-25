@@ -2,12 +2,12 @@
   name: proximity_frank_home_stats
   entity_id: proximity.frank_home
   max_age:
-    minutes: 30
-  precision: 1
+    minutes: 15
+  precision: 0
 
 - platform: statistics
   name: proximity_malissa_home_stats
   entity_id: proximity.malissa_home
   max_age:
-    minutes: 30
-  precision: 1
+    minutes: 15
+  precision: 0

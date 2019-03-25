@@ -21,6 +21,29 @@
     - service: timer.cancel
       entity_id: timer.closetroom
 
+- alias: "Licht Kastenkamer soms een keer aan als er niemand thuis is"
+  initial_state: on
+  trigger:
+    - platform: time_pattern
+      minutes: '/53'
+      seconds: 00
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ is_state('input_select.timeofday', 'evening') }}"
+      - condition: template
+        value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: "light.closetroom_lights"
+        brightness_pct: 10
+    - service: timer.start
+      data:
+        entity_id: timer.closetroom
+        duration: 300
+
 - alias: "Licht Kastenkamer blijft aan bij beweging als het donker is buiten"
   initial_state: on
   trigger:

@@ -40,43 +40,91 @@ heating_away:
         operation_mode: "Manual"
     - delay:
         seconds: 1
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.hal
+        temperature: 5
     - service: climate.set_operation_mode
       data:
         entity_id: climate.hal
-        operation_mode: "Off"
+        operation_mode: "Manual"
     - delay:
         seconds: 1
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.badkamer
+        temperature: 5
     - service: climate.set_operation_mode
       data:
         entity_id: climate.badkamer
-        operation_mode: "Off"
+        operation_mode: "Manual"
     - delay:
         seconds: 1
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.slaapkamer
+        temperature: 5
     - service: climate.set_operation_mode
       data:
         entity_id: climate.slaapkamer
-        operation_mode: "Off"
+        operation_mode: "Manual"
+    - delay:
+        seconds: 1
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.kastenkamer
+        temperature: 5
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.kastenkamer
+        operation_mode: "Manual"
+    - delay:
+        seconds: 1
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.zolder
+        temperature: 5
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.zolder
+        operation_mode: "Manual"
+    - delay:
+        seconds: 1
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.logeerkamer
+        temperature: 5
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.logeerkamer
+        operation_mode: "Manual"
+
+heating_home:
+  sequence:
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.slaapkamer
+        operation_mode: "Smart schedule"
     - delay:
         seconds: 1
     - service: climate.set_operation_mode
       data:
         entity_id: climate.kastenkamer
-        operation_mode: "Off"
+        operation_mode: "Smart schedule"
+    - delay:
+        seconds: 1
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.badkamer
+        operation_mode: "Smart schedule"
     - delay:
         seconds: 1
     - service: climate.set_operation_mode
       data:
         entity_id: climate.zolder
-        operation_mode: "Off"
+        operation_mode: "Smart schedule"
     - delay:
         seconds: 1
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.logeerkamer
-        operation_mode: "Off"
-
-heating_home:
-  sequence:
     - service: climate.set_operation_mode
       data:
         entity_id: climate.woonkamer
@@ -91,30 +139,6 @@ heating_home:
         seconds: 1
     - service: climate.set_operation_mode
       data:
-        entity_id: climate.badkamer
-        operation_mode: "Smart schedule"
-    - delay:
-        seconds: 1
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.slaapkamer
-        operation_mode: "Smart schedule"
-    - delay:
-        seconds: 1
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.kastenkamer
-        operation_mode: "Smart schedule"
-    - delay:
-        seconds: 1
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.zolder
-        operation_mode: "Smart schedule"
-    - delay:
-        seconds: 1
-    - service: climate.set_operation_mode
-      data:
         entity_id: climate.logeerkamer
         operation_mode: "Smart schedule"
 
@@ -123,7 +147,7 @@ bathroom_heating_on:
     - service: climate.set_temperature
       data:
         entity_id: climate.badkamer
-        temperature: 21
+        temperature: 23
     - service: climate.set_operation_mode
       data:
         entity_id: climate.badkamer
