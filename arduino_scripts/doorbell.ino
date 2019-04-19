@@ -1,12 +1,9 @@
-int DOORBELL_PRESSED_SENSOR_PIN = D5;
-int DOORBELL_RELEASED_SENSOR_PIN = D6;
-long debouncing_time = 10 * 1000; //Debouncing Time in Milliseconds
+int DOORBELL_PRESSED_SENSOR_PIN = D8;
 volatile unsigned int doorbellPushed = LOW;
-volatile unsigned int lastDoorbellPushed = -1;
+unsigned int lastDoorbellPushed = -1;
+unsigned long doorbellPushedTicks = 0;
 
 unsigned int heartbeatDuration = 55 * 1000; // in ms
-
-volatile unsigned long lastBell = 0;
 
 #include <ESP8266WiFi.h>
 #include <Wire.h>
@@ -18,13 +15,13 @@ volatile unsigned long lastBell = 0;
 #define wifi_ssid "xxx"
 #define wifi_password "xxx"
 
-#define mqtt_server "x"
+#define mqtt_server "1.1.1.1"
 #define mqtt_user ""
 #define mqtt_password ""
 
 #define ota_password "xxx"
 
-#define doorbell_topic "x/x"
+#define doorbell_topic "sensor/doorbell"
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -38,11 +35,9 @@ void setup() {
     reconnect();
   }
 
-  pinMode(DOORBELL_PRESSED_SENSOR_PIN, INPUT_PULLUP); // circuit broken -> go HIGH
-  pinMode(DOORBELL_RELEASED_SENSOR_PIN, INPUT_PULLUP); // circuit broken -> go HIGH
-  attachInterrupt(digitalPinToInterrupt(DOORBELL_PRESSED_SENSOR_PIN), debounceInterruptBellPressed, FALLING);
-  attachInterrupt(digitalPinToInterrupt(DOORBELL_RELEASED_SENSOR_PIN), debounceInterruptBellReleased, RISING);
-  doorbellPushed = !digitalRead(DOORBELL_PRESSED_SENSOR_PIN); // can be also released pin
+  pinMode(DOORBELL_PRESSED_SENSOR_PIN, INPUT);
+  doorbellPushed = digitalRead(DOORBELL_PRESSED_SENSOR_PIN); // can be also released pin
+  client.publish("sensor/doorbellticks", String(doorbellPushedTicks).c_str(), true);
 }
 
 void setup_wifi() {
@@ -72,10 +67,6 @@ void setup_wifi() {
 
   // No authentication by default
    ArduinoOTA.setPassword(ota_password);
-
-  // Password can be set with it's md5 value as well
-  // MD5(admin) = 21232f297a57a5a743894a0e4a801fc3
-  // ArduinoOTA.setPasswordHash("21232f297a57a5a743894a0e4a801fc3");
 
   ArduinoOTA.onStart([]() {
     String type;
@@ -126,8 +117,8 @@ void reconnect() {
   }
 }
 
-long lastMsg = 0;
-
+unsigned long lastMsg = 0;
+unsigned long lastHeartbeat = 0;
 void loop() {
   ArduinoOTA.handle();
   if (!client.connected()) {
@@ -135,12 +126,32 @@ void loop() {
   }
   client.loop();
   unsigned long now = millis();
-  unsigned int currentDoorbellPushed = doorbellPushed;
-  if (((now - lastMsg > 1000 && lastDoorbellPushed != currentDoorbellPushed)) || now - lastMsg > heartbeatDuration) {
+  unsigned int currentDoorbellPushed = digitalRead(DOORBELL_PRESSED_SENSOR_PIN);
+  if (currentDoorbellPushed == HIGH) {
+    doorbellPushedTicks++;
+  } else if (lastDoorbellPushed == HIGH) {
+    if (doorbellPushedTicks > 0) {
+      client.publish("sensor/doorbellticks", String(doorbellPushedTicks).c_str(), true);
+    }
+    doorbellPushedTicks = 0;
+  }
+
+  if ((now - lastMsg > (10*1000) && lastDoorbellPushed != currentDoorbellPushed && (doorbellPushedTicks > 20 || lastDoorbellPushed == HIGH))) {
     lastMsg = now;
+    lastHeartbeat = now;
     lastDoorbellPushed = currentDoorbellPushed;
 
-    if (currentDoorbellPushed == HIGH) {
+    publishDoorbell(currentDoorbellPushed);
+
+  } else if (now - lastHeartbeat > heartbeatDuration) {
+    lastHeartbeat = now;
+    lastDoorbellPushed = currentDoorbellPushed;
+    publishDoorbell(currentDoorbellPushed);
+  }
+}
+
+void publishDoorbell(unsigned int currentDoorbellPushed) {
+  if (currentDoorbellPushed == HIGH) {
       // lets push a message to MQTT
       Serial.println("publishing pressed");
       client.publish(doorbell_topic, String("pressed").c_str(), true);
@@ -149,28 +160,4 @@ void loop() {
       Serial.println("publishing not_pressed");
       client.publish(doorbell_topic, String("not_pressed").c_str(), true);
     }
-  }
-}
-
-void doorbell(unsigned int val) {
-  Serial.println("doorbell()");
-  doorbellPushed = val;
-}
-
-void debounceInterruptBellReleased() {
-//  Serial.println("interruptDoorbell");
-//  volatile unsigned long currMillis = millis();
-//  if((long)(currMillis - lastBell) >= debouncing_time) {
-//  lastBell = currMillis;
-  doorbell(LOW);
-//  }
-}
-
-void debounceInterruptBellPressed() {
-//  Serial.println("interruptDoorbell");
-  volatile unsigned long currMillis = millis();
-  if((long)(currMillis - lastBell) >= debouncing_time) {
-    lastBell = currMillis;
-    doorbell(HIGH);
-  }
 }
