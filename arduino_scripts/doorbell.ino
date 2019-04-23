@@ -1,8 +1,5 @@
 int DOORBELL_PRESSED_SENSOR_PIN = D8;
-volatile unsigned int doorbellPushed = LOW;
 unsigned int lastDoorbellPushed = -1;
-unsigned long doorbellPushedTicks = 0;
-
 unsigned int heartbeatDuration = 55 * 1000; // in ms
 
 #include <ESP8266WiFi.h>
@@ -15,9 +12,12 @@ unsigned int heartbeatDuration = 55 * 1000; // in ms
 #define wifi_ssid "xxx"
 #define wifi_password "xxx"
 
-#define mqtt_server "1.1.1.1"
-#define mqtt_user ""
-#define mqtt_password ""
+#define mqtt_server "xxx"
+#define mqtt_clientid "ESP8266Doorbell"
+
+// Uncomment following lines if you are using user/pass
+// #define mqtt_user ""
+// #define mqtt_password ""
 
 #define ota_password "xxx"
 
@@ -36,8 +36,7 @@ void setup() {
   }
 
   pinMode(DOORBELL_PRESSED_SENSOR_PIN, INPUT);
-  doorbellPushed = digitalRead(DOORBELL_PRESSED_SENSOR_PIN); // can be also released pin
-  client.publish("sensor/doorbellticks", String(doorbellPushedTicks).c_str(), true);
+  lastDoorbellPushed = digitalRead(DOORBELL_PRESSED_SENSOR_PIN); // can be also released pin
 }
 
 void setup_wifi() {
@@ -63,10 +62,10 @@ void setup_wifi() {
   //ArduinoOTA.setPort(8266);
 
   // Hostname defaults to esp8266-[ChipID]
-   ArduinoOTA.setHostname("DOORBELL");
+  ArduinoOTA.setHostname("DOORBELL");
 
   // No authentication by default
-   ArduinoOTA.setPassword(ota_password);
+  ArduinoOTA.setPassword(ota_password);
 
   ArduinoOTA.onStart([]() {
     String type;
@@ -103,9 +102,11 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    // If you do not want to use a username and password, change next line to
-    // if (client.connect("ESP8266Client")) {
-    if (client.connect("ESP8266Doorbell")) {
+#ifdef mqtt_user
+    if (client.connect(mqtt_clientid, mqtt_user, mqtt_password)) {
+#else
+    if (client.connect(mqtt_clientid)) {
+#endif
       Serial.println("connected");
     } else {
       Serial.print("failed, rc=");
@@ -119,6 +120,7 @@ void reconnect() {
 
 unsigned long lastMsg = 0;
 unsigned long lastHeartbeat = 0;
+unsigned long doorbellPushedTicks = 0;
 void loop() {
   ArduinoOTA.handle();
   if (!client.connected()) {
@@ -127,26 +129,17 @@ void loop() {
   client.loop();
   unsigned long now = millis();
   unsigned int currentDoorbellPushed = digitalRead(DOORBELL_PRESSED_SENSOR_PIN);
-  if (currentDoorbellPushed == HIGH) {
-    doorbellPushedTicks++;
-  } else if (lastDoorbellPushed == HIGH) {
-    if (doorbellPushedTicks > 0) {
-      client.publish("sensor/doorbellticks", String(doorbellPushedTicks).c_str(), true);
-    }
-    doorbellPushedTicks = 0;
-  }
-
-  if ((now - lastMsg > (10*1000) && lastDoorbellPushed != currentDoorbellPushed && (doorbellPushedTicks > 20 || lastDoorbellPushed == HIGH))) {
+  doorbellPushedTicks++;
+  if (now - lastMsg > (10*1000) && lastDoorbellPushed != currentDoorbellPushed && (doorbellPushedTicks > 20 || lastDoorbellPushed == HIGH)) {
     lastMsg = now;
     lastHeartbeat = now;
     lastDoorbellPushed = currentDoorbellPushed;
-
+    doorbellPushedTicks = 0;
     publishDoorbell(currentDoorbellPushed);
 
   } else if (now - lastHeartbeat > heartbeatDuration) {
     lastHeartbeat = now;
-    lastDoorbellPushed = currentDoorbellPushed;
-    publishDoorbell(currentDoorbellPushed);
+    publishDoorbell(lastDoorbellPushed);
   }
 }
 
