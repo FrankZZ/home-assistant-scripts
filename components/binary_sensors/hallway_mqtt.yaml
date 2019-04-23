@@ -1,0 +1,35 @@
+- platform: "mqtt"
+  name: livingroom_smoke_0
+  state_topic: "zigbee2mqtt/livingroom_smoke_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.smoke }}"
+  json_attributes_topic: "zigbee2mqtt/livingroom_smoke_0"
+
+- platform: "mqtt"
+  name: scullery_smoke_0
+  state_topic: "zigbee2mqtt/scullery_smoke_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.smoke }}"
+  json_attributes_topic: "zigbee2mqtt/scullery_smoke_0"
+
+- platform: "mqtt"
+  name: attic_gasco_0_gas
+  state_topic: "zigbee2mqtt/attic_gasco_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.gas }}"
+  json_attributes_topic: "zigbee2mqtt/attic_gasco_0"
+
+- platform: "mqtt"
+  name: attic_gasco_0_co
+  state_topic: "zigbee2mqtt/attic_gasco_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.carbon_monoxide }}"
+  json_attributes_topic: "zigbee2mqtt/attic_gasco_0"

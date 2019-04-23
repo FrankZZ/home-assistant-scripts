@@ -5,3 +5,4 @@
     seconds: 00
   action:
     service: zigbee2mqtt_networkmap.update
+

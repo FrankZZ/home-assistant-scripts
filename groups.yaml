@@ -27,11 +27,10 @@ default_view:
     - group.temperature_sensors
     - switch.garage_power_0
     - group.pirs
-    - sensor.kitchen_door_0
-    - sensor.livingroom_smoke_0
-    - sensor.scullery_smoke_0
-    - sensor.attic_gasco_0_gas
-    - sensor.attic_gasco_0_co
+    - binary_sensor.livingroom_smoke_0
+    - binary_sensor.scullery_smoke_0
+    - binary_sensor.attic_gasco_0_gas
+    - binary_sensor.attic_gasco_0_co
     - group.bathroom_fan_settings
 
 temperature_sensors:
@@ -63,14 +62,14 @@ light_timers:
 #   view: yes
 #   entities:
 #     - sensor.hallway_dark
-#     - sensor.scullery_smoke_0
+#     - binary_sensor.scullery_smoke_0
 #     - timer.hallway
 #     - light.hallway_lights
 #     - switch.hallway_switch_0
 #     - sensor.hallway_switch_0
 #     - group.hallway_scenes
 #     - switch.hallway_pir_0
-#     - sensor.hallway_pir_0
+#     - binary_sensor.hallway_pir_0
 #     - sensor.hallway_pir_1_illuminance
 #     - switch.hallway_pir_1
 #     - sensor.hallway_pir_1
@@ -127,7 +126,7 @@ buienradar:
 zigbee_battery_status:
   entities:
     - sensor.kitchen_pir_0_battery
-    - sensor.kitchen_door_0_battery
+    - binary_sensor.kitchen_door_0_battery
     - sensor.hallway_pir_0_battery
     - sensor.upperhallway_pir_0_battery
     - sensor.attichallway_pir_0_battery
@@ -145,7 +144,7 @@ zigbee_battery_status:
 zigbee_linkquality_status:
   entities:
     - sensor.kitchen_pir_0_linkquality
-    - sensor.kitchen_door_0_linkquality
+    - binary_sensor.kitchen_door_0_linkquality
     - sensor.hallway_pir_0_linkquality
     - sensor.attichallway_pir_0_linkquality
     - sensor.upperhallway_pir_0_linkquality
@@ -355,6 +354,11 @@ energy_view:
     - sensor.main_power_usage
     - sensor.main_power_direction
 
+all_persons:
+  entities:
+    - person.frank
+    - person.malissa
+
 presence_view:
   view: yes
   entities:
@@ -364,7 +368,7 @@ presence_view:
     - binary_sensor.frank_home_direction
     - binary_sensor.malissa_home_direction
     - group.default_generic
-    - group.all_devices
+    - group.all_persons
 
 default_generic:
   entities:
@@ -374,6 +378,8 @@ default_generic:
     - sensor.doorbellticks
     - sensor.bed_tilt_0
     - sensor.bed_tilt_1
+    - sensor.harmony_livingroom
+    - calendar.malissa_frank
 
 generic_settings:
   entities:
@@ -517,10 +523,17 @@ lights:
 
 pirs:
   entities:
-    - sensor.livingroom_pir_0
-    - sensor.kitchen_pir_0
-    - sensor.hallway_pir_0
-    - sensor.upperhallway_pir_0
-    - sensor.closetroom_pir_0
-    - sensor.attichallway_pir_0
-    - sensor.toilet_pir_0
+    - binary_sensor.livingroom_pir_0
+    - binary_sensor.kitchen_pir_0
+    - binary_sensor.kitchen_door_0
+    - binary_sensor.hallway_pir_0
+    - binary_sensor.upperhallway_pir_0
+    - binary_sensor.closetroom_pir_0
+    - binary_sensor.attichallway_pir_0
+    - binary_sensor.toilet_pir_0
+
+camera_view:
+  view: yes
+  entities:
+    - camera.woonkamer
+

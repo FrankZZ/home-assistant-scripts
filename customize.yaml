@@ -1,6 +1,18 @@
 # Hallway
-sensor.hallway_pir_0:
+binary_sensor.hallway_pir_0:
   friendly_name: Gang PIR
+  device_class: motion
+
+binary_sensor.closetroom_pir_0:
+  device_class: motion
+
+binary_sensor.upperhallway_pir_0:
+  device_class: motion
+
+binary_sensor.attichallway_pir_0:
+  device_class: motion
+
+binary_sensor.toilet_pir_0:
   device_class: motion
 
 sensor.hallway_pir_0_illuminance:
@@ -21,31 +33,47 @@ sensor.kitchen_pir_0_battery:
 sensor.kitchen_pir_0_linkquality:
   friendly_name: Keuken PIR
 
-sensor.kitchen_pir_0:
+binary_sensor.kitchen_pir_0:
   friendly_name: Keuken PIR
   device_class: motion
 
-sensor.livingroom_smoke_0:
-  friendly_name: Huiskamer Rookmelder
+binary_sensor.livingroom_pir_0:
+  friendly_name: Woonkamer PIR
+  device_class: motion
+
+binary_sensor.livingroom_smoke_0:
+  friendly_name: Huiskamer Rook
   device_class: smoke
 
-sensor.scullery_smoke_0:
-  friendly_name: Bijkeuken Rookmelder
+binary_sensor.attic_gasco_0_co:
+  friendly_name: Zolder CO
+  device_class: gas
+
+binary_sensor.attic_gasco_0_gas:
+  friendly_name: Zolder Gas
+  device_class: gas
+
+binary_sensor.scullery_smoke_0:
+  friendly_name: Bijkeuken Rook
   device_class: smoke
 
 binary_sensor.scullery_water_0:
-  friendly_name: Bijkeuken Watersensor
+  friendly_name: Bijkeuken Water
   device_class: moisture
 
-switch.hallway_door_0:
-  friendly_name: Voordeur Contact
-  device_class: opening
+binary_sensor.bathroom_water_0:
+  friendly_name: Badkamer Water
+  device_class: moisture
+
+binary_sensor.kitchen_door_0:
+  friendly_name: Keukendeur
+  device_class: door
 
 sensor.scullery_smoke_0_battery:
-  friendly_name: Bijkeuken Rookmelder
+  friendly_name: Bijkeuken Rook
 
 sensor.scullery_smoke_0_linkquality:
-  friendly_name: Bijkeuken Rookmelder
+  friendly_name: Bijkeuken Rook
 
 light.hallway_kitchen:
   friendly_name: Keuken
@@ -74,7 +102,7 @@ timer.upperhallway:
 media_player.woonkamer_tv:
   friendly_name: Chromecast Woonkamer
 
-group.all_devices:
+group.all_persons:
   friendly_name: Aanwezigheid
   hidden: false
 
@@ -123,6 +151,9 @@ input_text.last_motion:
 
 group.default_generic:
   friendly_name: Algemeen
+
+group.camera_view:
+  icon: mdi:cctv
 
 group.livingroom_view:
   icon: mdi:sofa

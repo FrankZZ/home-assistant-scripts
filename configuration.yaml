@@ -33,6 +33,18 @@ updater:
 #   persistence: true
 #   version: '2.0'
 
+person:
+  - name: Malissa
+    id: malissa
+    device_trackers:
+      - device_tracker.malissa_router
+      - device_tracker.malissa_gps
+  - name: Frank
+    id: frank
+    device_trackers:
+      - device_tracker.frank_router
+      - device_tracker.frank_gps
+
 google_assistant:
   project_id: !secret google_assistant_project_id
   api_key: !secret google_assistant_homegraph_api_key
@@ -93,6 +105,11 @@ http:
   ip_ban_enabled: true
   login_attempts_threshold: 3
 
+#calendar
+google:
+  client_id: !secret gcal_client_id
+  client_secret: !secret gcal_client_secret
+
 logger:
   default: warning
   logs:
@@ -134,6 +151,8 @@ logbook:
       - device_tracker
       - media_player
       - remote
+      - binary_sensor
+      - input_text
 
 # Text to speech
 tts:
@@ -160,10 +179,10 @@ history_graph: !include_dir_merge_named components/history_graphs
 zone: !include_dir_merge_list components/zones
 proximity: !include_dir_merge_named components/proximities
 
-# remote:
-#   - platform: harmony
-#     name: livingroom
-#     host: !secret harmony_livingroom_ip
+remote:
+  - platform: harmony
+    name: livingroom
+    host: !secret harmony_livingroom_ip
 
 device_tracker:
   - platform: nmap_tracker

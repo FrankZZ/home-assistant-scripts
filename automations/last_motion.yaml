@@ -2,17 +2,17 @@
   trigger:
     - platform: state
       entity_id:
-        sensor.attichallway_pir_0,
-        sensor.closetroom_pir_0,
-        sensor.hallway_pir_0,
-        sensor.kitchen_pir_0,
-        sensor.livingroom_pir_0,
-        sensor.upperhallway_pir_0,
-        sensor.toilet_pir_0,
-        sensor.kitchen_door_0,
+        binary_sensor.attichallway_pir_0,
+        binary_sensor.closetroom_pir_0,
+        binary_sensor.hallway_pir_0,
+        binary_sensor.kitchen_pir_0,
+        binary_sensor.livingroom_pir_0,
+        binary_sensor.upperhallway_pir_0,
+        binary_sensor.toilet_pir_0,
+        binary_sensor.kitchen_door_0,
         sensor.bed_tilt_0,
         sensor.bed_tilt_1
-      to: 'on'
+      to: 'On'
   action:
     - service: input_text.set_value
       data:

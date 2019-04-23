@@ -13,7 +13,7 @@
 #     condition: and
 #     conditions:
 #       - condition: template
-#         value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+#         value_template: "{{ is_state('group.all_persons', 'not_home') }}"
 #   action:
 #     service: notify.frank
 #     data_template:
@@ -46,23 +46,25 @@
   #   condition: template
   #   value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
   action:
-    - service: light.turn_on
-      data:
-        entity_id: !secret aqara_gateway_light
-        brightness_pct: 100
-        color_name: blue
     - service: xiaomi_aqara.play_ringtone
       data:
         gw_mac: !secret aqara_gateway_mac
         ringtone_id: 10
         ringtone_vol: 50
-    - service: notify.web
+    - service: light.turn_on
       data:
+        entity_id: !secret aqara_gateway_light
+        brightness_pct: 100
+        color_name: blue
+    - service: notify.web
+      data_template:
         title: "Deurbel"
         message: "Er staat iemand voor de deur!"
         data:
           tag: "doorbell-0-notification"
           renotify: true
+          url: "{{ state_attr('camera.woonkamer', 'entity_picture')|replace('/camera_proxy/', '/camera_proxy_stream/') }}"
+          image: "{{ state_attr('camera.woonkamer', 'entity_picture') }}"
     - service: notify.livingroom_tv
       data:
         message: "Er staat iemand voor de deur!"

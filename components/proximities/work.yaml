@@ -1,46 +1,46 @@
 home:
   devices:
-    - device_tracker.frank_s8p
-    - device_tracker.malissa_s9
+    - device_tracker.frank_gps
+    - device_tracker.malissa_gps
   tolerance: 50
   unit_of_measurement: km
 
 frank_home:
   devices:
-    - device_tracker.frank_s8p
+    - device_tracker.frank_gps
   tolerance: 50
   unit_of_measurement: km
 
 malissa_home:
   devices:
-    - device_tracker.malissa_s9
+    - device_tracker.malissa_gps
   tolerance: 50
   unit_of_measurement: km
 
 frank_work_0:
   zone: frank_work_0
   devices:
-    - device_tracker.frank_s8p
+    - device_tracker.frank_gps
   tolerance: 50
   unit_of_measurement: km
 
 malissa_work_0_malissa:
   zone: malissa_work_0
   devices:
-    - device_tracker.malissa_s9
+    - device_tracker.malissa_gps
   tolerance: 50
   unit_of_measurement: km
 
 malissa_work_0_frank:
   zone: malissa_work_0
   devices:
-    - device_tracker.frank_s8p
+    - device_tracker.frank_gps
   tolerance: 50
   unit_of_measurement: km
 
 malissa_work_1:
   zone: malissa_work_1
   devices:
-    - device_tracker.malissa_s9
+    - device_tracker.malissa_gps
   tolerance: 50
   unit_of_measurement: km

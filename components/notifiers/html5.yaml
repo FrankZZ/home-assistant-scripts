@@ -1,4 +1,7 @@
 - name: web
   platform: html5
-  gcm_api_key: !secret html5_gcm_api_key
-  gcm_sender_id: !secret html5_gcm_sender_id
+  vapid_pub_key: !secret html5_vapid_pub_key
+  vapid_prv_key: !secret html5_vapid_prv_key
+  vapid_email: !secret html5_vapid_email
+#   gcm_api_key: !secret html5_gcm_api_key
+#   gcm_sender_id: !secret html5_gcm_sender_id

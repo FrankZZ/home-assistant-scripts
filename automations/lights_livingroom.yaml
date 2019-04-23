@@ -3,7 +3,7 @@
   trigger:
     - platform: state
       entity_id:
-        sensor.livingroom_pir_0
+        binary_sensor.livingroom_pir_0
   condition:
     condition: and
     conditions:
@@ -13,7 +13,7 @@
         entity_id: light.livingroom_lights
         state: 'off'
       - condition: state
-        entity_id: sensor.livingroom_pir_0
+        entity_id: binary_sensor.livingroom_pir_0
         state: 'on'
   action:
     - service: light.turn_on
@@ -28,7 +28,7 @@
   trigger:
     - platform: state
       entity_id:
-        sensor.livingroom_pir_0
+        binary_sensor.livingroom_pir_0
       to: 'on'
   condition:
     condition: and
@@ -45,7 +45,7 @@
 - alias: Licht Woonkamer uit na configurabele tijd geen beweging behalve savonds
   trigger:
     platform: state
-    entity_id: sensor.livingroom_pir_0
+    entity_id: binary_sensor.livingroom_pir_0
     to: 'off'
   condition:
     condition: and
@@ -68,7 +68,7 @@
       to: 'evening'
   condition:
     condition: state
-    entity_id: group.all_devices
+    entity_id: group.all_persons
     state: 'home'
   action:
     - service: light.turn_on
@@ -82,7 +82,7 @@
       to: 'evening'
   condition:
     condition: state
-    entity_id: group.all_devices
+    entity_id: group.all_persons
     state: 'not_home'
   action:
     - service: light.turn_on
@@ -96,7 +96,7 @@
       to: 'night'
   condition:
     condition: state
-    entity_id: group.all_devices
+    entity_id: group.all_persons
     state: 'not_home'
   action:
     - service: light.turn_off
@@ -115,7 +115,7 @@
         entity_id: remote.harmony_hub
         state: 'off'
       - condition: state
-        entity_id: sensor.livingroom_pir_0
+        entity_id: binary_sensor.livingroom_pir_0
         state: 'off'
       - condition: state
         entity_id: timer.livingroom
@@ -153,7 +153,7 @@
 - alias: Turn off livingroom light when it's light
   trigger:
     - platform: state
-      entity_id: sensor.livingroom_pir_0
+      entity_id: binary_sensor.livingroom_pir_0
   condition:
     condition: and
     conditions:
@@ -171,3 +171,33 @@
       entity_id: light.livingroom_lights
     - service: timer.cancel
       entity_id: timer.livingroom
+
+- alias: Livingroom light dim when TV goes on
+  trigger:
+    - platform: state
+      entity_id: sensor.harmony_livingroom
+      from: "PowerOff"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.livingroom_light_0
+        state: 'on'
+      - condition: template
+        value_template: "{{ is_state('input_select.timeofday', 'evening') or is_state('input_select.timeofday', 'night') }}"
+  action:
+    - service: script.decrease_livingroom_lights
+
+- alias: Livingroom light brighter when TV goes off
+  trigger:
+    - platform: state
+      entity_id: sensor.harmony_livingroom
+      to: "PowerOff"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.livingroom_light_0
+        state: 'on'
+  action:
+    - service: script.increase_livingroom_lights

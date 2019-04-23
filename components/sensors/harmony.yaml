@@ -1,4 +1,4 @@
 - platform: template
   sensors:
     harmony_livingroom:
-      value_template: '{{ states.remote.livingroom.attributes.current_activity }}'
+      value_template: "{{ state_attr('remote.livingroom', 'current_activity') }}"

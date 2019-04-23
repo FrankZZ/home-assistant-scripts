@@ -1,10 +1,3 @@
-- platform: "mqtt"
-  name: livingroom_smoke_0
-  state_topic: "zigbee2mqtt/livingroom_smoke_0"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'on' if value_json.smoke else 'off' }}"
-  json_attributes_topic: "zigbee2mqtt/livingroom_smoke_0"
-
 - platform: mqtt
   name: livingroom_smoke_0_linkquality
   state_topic: "zigbee2mqtt/livingroom_smoke_0"
@@ -21,13 +14,7 @@
   qos: 1
   value_template: "{{ value_json.battery|int }}"
   json_attributes_topic: "zigbee2mqtt/livingroom_smoke_0"
-
-- platform: "mqtt"
-  name: scullery_smoke_0
-  state_topic: "zigbee2mqtt/scullery_smoke_0"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'on' if value_json.smoke else 'off' }}"
-  json_attributes_topic: "zigbee2mqtt/scullery_smoke_0"
+  expire_after: 3600
 
 - platform: mqtt
   name: scullery_smoke_0_linkquality
@@ -45,20 +32,6 @@
   qos: 1
   value_template: "{{ value_json.battery|int }}"
   json_attributes_topic: "zigbee2mqtt/scullery_smoke_0"
-
-- platform: "mqtt"
-  name: attic_gasco_0_gas
-  state_topic: "zigbee2mqtt/attic_gasco_0"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'on' if value_json.gas else 'off' }}"
-  json_attributes_topic: "zigbee2mqtt/attic_gasco_0"
-
-- platform: "mqtt"
-  name: attic_gasco_0_co
-  state_topic: "zigbee2mqtt/attic_gasco_0"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'on' if value_json.co else 'off' }}"
-  json_attributes_topic: "zigbee2mqtt/attic_gasco_0"
 
 - platform: mqtt
   name: attic_gasco_0_linkquality

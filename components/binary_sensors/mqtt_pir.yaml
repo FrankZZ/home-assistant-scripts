@@ -2,54 +2,70 @@
   name: hallway_pir_0
   state_topic: "zigbee2mqtt/hallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.occupancy }}"
   json_attributes_topic: "zigbee2mqtt/hallway_pir_0"
 
 - platform: "mqtt"
   name: livingroom_pir_0
   state_topic: "zigbee2mqtt/livingroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.occupancy }}"
   json_attributes_topic: "zigbee2mqtt/livingroom_pir_0"
 
 - platform: "mqtt"
   name: upperhallway_pir_0
   state_topic: "zigbee2mqtt/upperhallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.occupancy }}"
   json_attributes_topic: "zigbee2mqtt/upperhallway_pir_0"
 
 - platform: "mqtt"
   name: closetroom_pir_0
   state_topic: "zigbee2mqtt/closetroom_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.occupancy }}"
   json_attributes_topic: "zigbee2mqtt/closetroom_pir_0"
 
 - platform: "mqtt"
   name: attichallway_pir_0
   state_topic: "zigbee2mqtt/attichallway_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.occupancy }}"
   json_attributes_topic: "zigbee2mqtt/attichallway_pir_0"
 
 - platform: "mqtt"
   name: kitchen_pir_0
   state_topic: "zigbee2mqtt/kitchen_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.occupancy }}"
   json_attributes_topic: "zigbee2mqtt/kitchen_pir_0"
 
 - platform: "mqtt"
   name: kitchen_door_0
   state_topic: "zigbee2mqtt/kitchen_door_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'closed' if value_json.contact else 'open' }}"
+  payload_on: false
+  payload_off: true
+  value_template: "{{ value_json.contact }}"
   json_attributes_topic: "zigbee2mqtt/kitchen_door_0"
 
 - platform: "mqtt"
   name: toilet_pir_0
   state_topic: "zigbee2mqtt/toilet_pir_0"
   availability_topic: "zigbee2mqtt/bridge/state"
-  value_template: "{{ 'on' if value_json.occupancy else 'off' }}"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.occupancy }}"
   json_attributes_topic: "zigbee2mqtt/toilet_pir_0"

@@ -3,7 +3,7 @@
   trigger:
     - platform: state
       entity_id:
-        sensor.closetroom_pir_0
+        binary_sensor.closetroom_pir_0
       to: 'on'
   condition:
     condition: and
@@ -33,7 +33,7 @@
       - condition: template
         value_template: "{{ is_state('input_select.timeofday', 'evening') }}"
       - condition: template
-        value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+        value_template: "{{ is_state('group.all_persons', 'not_home') }}"
   action:
     - service: light.turn_on
       data:
@@ -49,7 +49,7 @@
   trigger:
     - platform: state
       entity_id:
-        sensor.closetroom_pir_0
+        binary_sensor.closetroom_pir_0
       to: 'on'
   condition:
     condition: and
@@ -66,7 +66,7 @@
 - alias: Licht Kastenkamer uit na configurabele tijd geen beweging
   trigger:
     platform: state
-    entity_id: sensor.closetroom_pir_0
+    entity_id: binary_sensor.closetroom_pir_0
     from: 'on'
     to: 'off'
   action:
@@ -87,7 +87,7 @@
 #       - condition: template
 #         value_template: "{{ is_state('input_select.timeofday', 'evening') }}"
 #       - condition: template
-#         value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+#         value_template: "{{ is_state('group.all_persons', 'not_home') }}"
 #   action:
 #     - service: light.turn_on
 #       entity_id: "light.closetroom_lights"

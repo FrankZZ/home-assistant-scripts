@@ -13,7 +13,7 @@
 #     condition: and
 #     conditions:
 #       - condition: template
-#         value_template: "{{ is_state('group.all_devices', 'not_home') }}"
+#         value_template: "{{ is_state('group.all_persons', 'not_home') }}"
 #   action:
 #     service: notify.frank
 #     data_template:
@@ -25,9 +25,17 @@
   trigger:
     - platform: state
       entity_id:
-        sensor.kitchen_door_0
+        binary_sensor.kitchen_door_0
       from: 'closed'
       to: 'open'
+  condition:
+    condition: or
+    conditions:
+      - condition: template
+        value_template: "{{ not is_state('input_text.last_motion', 'Woonkamer PIR') and not is_state('input_text.last_motion', 'Keuken PIR')}}"
+      - condition: state
+        entity_id: group.all_persons
+        state: 'not_home'
   action:
     - service: notify.web
       data_template:
@@ -41,12 +49,17 @@
   trigger:
     - platform: state
       entity_id:
-        sensor.kitchen_door_0
+        binary_sensor.kitchen_door_0
       from: 'closed'
       to: 'open'
   condition:
-    condition: template
-    value_template: "{{ is_state('input_select.timeofday', 'midday') }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_select.timeofday
+        state: midday
+      - condition: template
+        value_template: "{{ not is_state('input_text.last_motion', 'Woonkamer PIR') and not is_state('input_text.last_motion', 'Keuken PIR')}}"
   action:
     - service: xiaomi_aqara.play_ringtone
       data:
@@ -58,8 +71,8 @@
   trigger:
     - platform: state
       entity_id:
-        sensor.livingroom_smoke_0,
-        sensor.scullery_smoke_0
+        binary_sensor.livingroom_smoke_0,
+        binary_sensor.scullery_smoke_0
       to: 'on'
   action:
     - service: input_number.set_value
@@ -75,6 +88,48 @@
         entity_id: !secret aqara_gateway_light
         brightness_pct: 100
         color_name: red
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 2
+        ringtone_vol: 100
+    - delay:
+        seconds: 10
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 2
+        ringtone_vol: 100
+    - delay:
+        seconds: 10
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 2
+        ringtone_vol: 100
+    - delay:
+        seconds: 10
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 2
+        ringtone_vol: 100
+    - delay:
+        seconds: 10
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 2
+        ringtone_vol: 100
+    - delay:
+        seconds: 10
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 2
+        ringtone_vol: 100
+    - delay:
+        seconds: 10
     - service: xiaomi_aqara.play_ringtone
       data:
         gw_mac: !secret aqara_gateway_mac

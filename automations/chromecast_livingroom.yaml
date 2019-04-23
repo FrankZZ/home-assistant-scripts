@@ -36,19 +36,10 @@
   initial_state: off
   trigger:
     - platform: state
-      entity_id: device_tracker.frank_s8p
+      entity_id: person.frank
       to: 'home'
     - platform: state
-      entity_id: device_tracker.ferry_s8
-      to: 'home'
-    - platform: state
-      entity_id: device_tracker.annemieke_s7
-      to: 'home'
-    - platform: state
-      entity_id: device_tracker.malissa_s9
-      to: 'home'
-    - platform: state
-      entity_id: device_tracker.harrie_iphone5
+      entity_id: person.malissa
       to: 'home'
   condition:
     condition: and

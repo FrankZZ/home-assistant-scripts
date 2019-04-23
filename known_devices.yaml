@@ -1,39 +1,21 @@
-frank_s8p:
-  name: Frank
+frank_router:
+  name: Frank Router
   hide_if_away: false
-  icon:
   mac: !secret device_frank_mac
-  picture:
   track: true
 
-ferry_s8:
-  name: Ferry
+frank_gps:
+  name: Frank GPS
   hide_if_away: false
-  icon:
-  mac: !secret device_ferry_mac
-  picture:
   track: true
 
-annemieke_s7:
-  name: Annemieke
+malissa_router:
+  name: Malissa Router
   hide_if_away: false
-  icon:
-  mac: !secret device_annemieke_mac
-  picture:
-  track: true
-
-harrie_iphone5:
-  name: Harrie
-  hide_if_away: false
-  icon:
-  mac:
-  picture:
-  track: true
-
-malissa_g5:
-  name: Malissa
-  hide_if_away: false
-  icon:
   mac: !secret device_malissa_mac
-  picture:
+  track: true
+
+malissa_gps:
+  name: Malissa GPS
+  hide_if_away: false
   track: true
