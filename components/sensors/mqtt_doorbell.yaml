@@ -4,12 +4,6 @@
   icon: mdi:alarm-bell
   expire_after: 60
 
-- platform: mqtt
-  name: doorbellticks
-  state_topic: "sensor/doorbellticks"
-  # icon: mdi:alarm-bell
-  # expire_after: 60
-
 - platform: template
   sensors:
     last_doorbell:

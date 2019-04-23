@@ -375,7 +375,6 @@ default_generic:
     - input_text.last_motion
     - sensor.doorbell
     - sensor.last_doorbell
-    - sensor.doorbellticks
     - sensor.bed_tilt_0
     - sensor.bed_tilt_1
     - sensor.harmony_livingroom
