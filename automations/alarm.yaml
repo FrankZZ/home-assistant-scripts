@@ -26,8 +26,8 @@
     - platform: state
       entity_id:
         binary_sensor.kitchen_door_0
-      from: 'closed'
-      to: 'open'
+      from: 'off'
+      to: 'on'
   condition:
     condition: or
     conditions:
@@ -50,8 +50,8 @@
     - platform: state
       entity_id:
         binary_sensor.kitchen_door_0
-      from: 'closed'
-      to: 'open'
+      from: 'off'
+      to: 'on'
   condition:
     condition: and
     conditions:
