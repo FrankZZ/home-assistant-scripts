@@ -129,7 +129,14 @@ void loop() {
   client.loop();
   unsigned long now = millis();
   unsigned int currentDoorbellPushed = digitalRead(DOORBELL_PRESSED_SENSOR_PIN);
-  doorbellPushedTicks++;
+
+  if (currentDoorbellPushed == HIGH) {
+      doorbellPushedTicks++;
+  }
+  else {
+      doorbellPushedTicks = 0;
+  }
+
   if (now - lastMsg > (10*1000) && lastDoorbellPushed != currentDoorbellPushed && (doorbellPushedTicks > 20 || lastDoorbellPushed == HIGH)) {
     lastMsg = now;
     lastHeartbeat = now;
