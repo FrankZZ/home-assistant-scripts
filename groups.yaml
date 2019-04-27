@@ -37,11 +37,11 @@ plants:
   entities:
     - sensor.livingroom_plant_yucca_battery
     - sensor.livingroom_plant_yucca_moisture
-    - sensor.livingroom_plant_yucca_light
+    - sensor.livingroom_plant_yucca_light_intensity
     - sensor.livingroom_plant_yucca_conductivity
     - sensor.kitchen_plant_pancake_battery
     - sensor.kitchen_plant_pancake_moisture
-    - sensor.kitchen_plant_pancake_light
+    - sensor.kitchen_plant_pancake_light_intensity
     - sensor.kitchen_plant_pancake_conductivity
 
 temperature_sensors:

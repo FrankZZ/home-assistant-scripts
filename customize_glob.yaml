@@ -47,6 +47,12 @@
   icon: mdi:sprout
   unit_of_measure: "μS/cm"
 
+"*_plant_yucca_*":
+  friendly_name: "Yucca"
+
+"*_plant_pancake_*":
+  friendly_name: "Pancake Plant"
+
 # increase/decrease
 "script.*_livingroom_lights":
   hidden: true
