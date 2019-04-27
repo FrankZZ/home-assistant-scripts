@@ -1,0 +1,21 @@
+- platform: miflora
+  name: livingroom_plant_yucca
+  mac: !secret livingroom_plant_yucca_mac
+  median: 3
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - conductivity
+    - battery
+
+- platform: miflora
+  name: kitchen_plant_pancake
+  mac: !secret kitchen_plant_pancake_mac
+  median: 3
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - conductivity
+    - battery

@@ -32,7 +32,20 @@
   icon: mdi:wifi
 
 "*_battery":
-  icon: mdi:battery
+  device_class: battery
+
+"*_plant_*_light":
+  device_class: illuminance
+
+"*_plant_*_temperature":
+  device_class: temperature
+
+"*_plant_*_moisture":
+  device_class: humidity
+
+"*_plant_*_conductivity":
+  icon: mdi:sprout
+  unit_of_measure: "μS/cm"
 
 # increase/decrease
 "script.*_livingroom_lights":
@@ -58,3 +71,5 @@
 
 "*_pir_*":
   device_class: motion
+"":
+  device_class: 

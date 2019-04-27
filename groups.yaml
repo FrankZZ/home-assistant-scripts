@@ -27,11 +27,22 @@ default_view:
     - group.temperature_sensors
     - switch.garage_power_0
     - group.pirs
+    - group.plants
     - binary_sensor.livingroom_smoke_0
     - binary_sensor.scullery_smoke_0
     - binary_sensor.attic_gasco_0_gas
     - binary_sensor.attic_gasco_0_co
     - group.bathroom_fan_settings
+plants:
+  entities:
+    - sensor.livingroom_plant_yucca_battery
+    - sensor.livingroom_plant_yucca_moisture
+    - sensor.livingroom_plant_yucca_light
+    - sensor.livingroom_plant_yucca_conductivity
+    - sensor.kitchen_plant_pancake_battery
+    - sensor.kitchen_plant_pancake_moisture
+    - sensor.kitchen_plant_pancake_light
+    - sensor.kitchen_plant_pancake_conductivity
 
 temperature_sensors:
   entities:

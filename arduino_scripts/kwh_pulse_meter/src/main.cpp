@@ -8,9 +8,12 @@ int PULSE_LEFT = LOW;
 int PULSE_RIGHT = HIGH;
 
 int LEFT_SENSOR_PIN = D5;
-int RIGHT_SENSOR_PIN = D6;
+int RIGHT_SENSOR_PIN = D7;
 
 int W = 0;                     // variable to store value watt
+long WTotal = 0;
+unsigned long WReturned = 0;
+unsigned long WUsed = 0;
 unsigned long starttime;       // variable to store starttime of puls
 unsigned long duration;        // variable to store duration value
 volatile int wattpulse = LOW;
@@ -19,10 +22,10 @@ volatile int pulseDirection = -1;
 
 int counter = 0;
 
-long debouncing_time = 20; //Debouncing Time in Milliseconds
+long debouncing_time = 50; //Debouncing Time in Milliseconds
 volatile unsigned long last_micros_left;
 volatile unsigned long last_micros_right;
-volatile unsigned long last_micros;
+volatile unsigned long last_micros_full_pulse;
 
 const char* ssid = "...";
 const char* password = "...";
@@ -31,7 +34,19 @@ ESP8266WebServer server(80);
 
 void handleRoot() {
   digitalWrite(LED_BUILTIN, 1);
-  server.send(200, "text/plain", "hello from esp8266!");
+  String message = "";
+  message += "{\"total_kwh\":";
+  message += WTotal;
+  message += ",\"total_kwh_used\":";
+  message += WUsed;
+  message += ",\"total_kwh_returned\":"; 
+  message += WReturned;
+  message += ",\"currentW\":"; 
+  message += W;
+  message += ",\"pulseDirection\":"; 
+  message += pulseDirection == PULSE_LEFT ? "left" : "right";
+  message += "}";
+  server.send(200, "application/json", message);
   digitalWrite(LED_BUILTIN, 0);
 }
 
@@ -62,12 +77,28 @@ void debounceInterruptRight() {
 
     if (pulseDirection == PULSE_RIGHT) {
 
-      if (last_micros_left > last_micros) {
+      if (last_micros_left > last_micros_full_pulse) {
+        last_micros_full_pulse = last_micros_right;
+        Serial.println("one pulse right");
         watt();
+      } else {
+        String msg = "";
+        Serial.println("Detected a double pulse right");
+        msg = "last_micros_right: ";
+        msg += last_micros_right;
+        Serial.println(msg);
+
+        msg = "last_micros_left: ";
+        msg += last_micros_left;
+        Serial.println(msg);
+
+        msg = "last_micros_full_pulse: ";
+        msg += last_micros_full_pulse;
+        Serial.println(msg);
+
       }
 
-      last_micros = last_micros_right;
-    } else if (last_micros == last_micros_left) {
+    } else if (last_micros_full_pulse == last_micros_left) {
       // the left sensor was the last to sense a pulse, so its turning right now
       Serial.println("PULSE RIGHT");
       pulseDirection = PULSE_RIGHT;
@@ -82,12 +113,26 @@ void debounceInterruptLeft() {
 
     if (pulseDirection == PULSE_LEFT) {
 
-      if (last_micros_right > last_micros) {
+      if (last_micros_right > last_micros_full_pulse) {
+        Serial.println("one pulse left");
+        last_micros_full_pulse = last_micros_left;
         watt();
-      }
+      } else {
+        String msg = "";
+        Serial.println("Detected a double pulse left");
+        msg = "last_micros_right: ";
+        msg += last_micros_right;
+        Serial.println(msg);
 
-      last_micros = last_micros_left;
-    } else if (last_micros == last_micros_right) {
+        msg = "last_micros_left: ";
+        msg += last_micros_left;
+        Serial.println(msg);
+
+        msg = "last_micros_full_pulse: ";
+        msg += last_micros_full_pulse;
+        Serial.println(msg);
+      }
+    } else if (last_micros_full_pulse == last_micros_right) {
       // the right sensor was the last to sense a pulse, so its turning left now
       Serial.println("PULSE LEFT");
       pulseDirection = PULSE_LEFT;
@@ -130,6 +175,8 @@ void setup(void){
   Serial.println("HTTP server started");
 
   // Sensors for kWh
+  pinMode(LEFT_SENSOR_PIN, INPUT);
+  pinMode(RIGHT_SENSOR_PIN, INPUT);
   attachInterrupt(LEFT_SENSOR_PIN, debounceInterruptLeft, RISING);
   attachInterrupt(RIGHT_SENSOR_PIN, debounceInterruptRight, RISING);
   starttime = millis();
@@ -142,8 +189,14 @@ void loop() {
     starttime = millis();
     W = 3600000000 / (CYCLES_PER_KWH * duration); // calculate current power usage
     if (pulseDirection == PULSE_LEFT) {
+      WReturned += W;
       W = -W;
+    } else {
+      WUsed += W;
     }
+
+    WTotal += W;
+
     Serial.println(W);
     wattpulse = LOW;
   }
