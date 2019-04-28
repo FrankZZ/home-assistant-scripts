@@ -1,19 +1,19 @@
 - alias: "Stuur bericht bij plant aandacht nodig"
   trigger:
     - platform: state
-      entity_id: livingroom_planthealth_yucca_moisture
+      entity_id: binary_sensor.livingroom_planthealth_yucca_moisture
       from: 'on'
       to: 'off'
     - platform: state
-      entity_id: livingroom_planthealth_yucca_conductivity
+      entity_id: binary_sensor.livingroom_planthealth_yucca_conductivity
       from: 'on'
       to: 'off'
     - platform: state
-      entity_id: kitchen_planthealth_pancake_moisture
+      entity_id: binary_sensor.kitchen_planthealth_pancake_moisture
       from: 'on'
       to: 'off'
     - platform: state
-      entity_id: kitchen_planthealth_pancake_conductivity
+      entity_id: binary_sensor.kitchen_planthealth_pancake_conductivity
       from: 'on'
       to: 'off'
   action:
