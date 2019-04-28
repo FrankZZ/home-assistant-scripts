@@ -33,16 +33,27 @@ default_view:
     - binary_sensor.attic_gasco_0_gas
     - binary_sensor.attic_gasco_0_co
     - group.bathroom_fan_settings
+
 plants:
   entities:
     - sensor.livingroom_plant_yucca_battery
     - sensor.livingroom_plant_yucca_moisture
     - sensor.livingroom_plant_yucca_light_intensity
     - sensor.livingroom_plant_yucca_conductivity
+    - binary_sensor.livingroom_planthealth_yucca_conductivity
     - sensor.kitchen_plant_pancake_battery
     - sensor.kitchen_plant_pancake_moisture
     - sensor.kitchen_plant_pancake_light_intensity
     - sensor.kitchen_plant_pancake_conductivity
+    - binary_sensor.kitchen_planthealth_pancake_conductivity
+
+plants_settings:
+  name: Planten
+  entities:
+    - input_number.livingroom_plant_yucca_moisture_minimum
+    - input_number.livingroom_plant_yucca_conductivity_minimum
+    - input_number.kitchen_plant_pancake_moisture_minimum
+    - input_number.kitchen_plant_pancake_conductivity_minimum
 
 temperature_sensors:
   entities:
@@ -482,6 +493,14 @@ trash_settings:
 settings_view:
   view: yes
   entities:
+    - group.generic_settings
+    - group.trash_settings
+    - group.plants_settings
+    - sun.sun
+    - sensor.lux_livingroom
+    - sensor.hallway_pir_1_illuminance
+    - group.all_automations
+    - group.bathroom_fan_settings
     - group.upperhallway_timeout_settings
     - group.upperhallway_brightness_settings
     - group.attichallway_brightness_settings
@@ -494,13 +513,6 @@ settings_view:
     - group.kitchen_timeout_settings
     - group.closetroom_brightness_settings
     - group.closetroom_timeout_settings
-    - group.generic_settings
-    - group.trash_settings
-    - sun.sun
-    - sensor.lux_livingroom
-    - sensor.hallway_pir_1_illuminance
-    - group.all_automations
-    - group.bathroom_fan_settings
 
 bathroom_fan_settings:
   entities:

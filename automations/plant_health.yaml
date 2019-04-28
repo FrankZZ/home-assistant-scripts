@@ -1,0 +1,23 @@
+- alias: "Stuur bericht bij plant aandacht nodig"
+  trigger:
+    - platform: state
+      entity_id: livingroom_planthealth_yucca_moisture
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: livingroom_planthealth_yucca_conductivity
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: kitchen_planthealth_pancake_moisture
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: kitchen_planthealth_pancake_conductivity
+      from: 'on'
+      to: 'off'
+  action:
+    - service: notify.web
+      data_template:
+        title: "Plant Monitoring"
+        message: "De {{ trigger.to_state.friendly_name.split(' ')[0] }} heeft {{ trigger.to_state.friendly_name.split(' ')[1] }} nodig."
