@@ -36,13 +36,11 @@ default_view:
 
 plants:
   entities:
-    - sensor.livingroom_plant_yucca_battery
     - sensor.livingroom_plant_yucca_moisture
     - sensor.livingroom_plant_yucca_light_intensity
     - sensor.livingroom_plant_yucca_conductivity
     - binary_sensor.livingroom_planthealth_yucca_moisture
     - binary_sensor.livingroom_planthealth_yucca_conductivity
-    - sensor.kitchen_plant_pancake_battery
     - sensor.kitchen_plant_pancake_moisture
     - sensor.kitchen_plant_pancake_light_intensity
     - sensor.kitchen_plant_pancake_conductivity

@@ -2,20 +2,20 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.livingroom_planthealth_yucca_moisture
-      from: 'on'
-      to: 'off'
+      from: 'off'
+      to: 'on'
     - platform: state
       entity_id: binary_sensor.livingroom_planthealth_yucca_conductivity
-      from: 'on'
-      to: 'off'
+      from: 'off'
+      to: 'on'
     - platform: state
       entity_id: binary_sensor.kitchen_planthealth_pancake_moisture
-      from: 'on'
-      to: 'off'
+      from: 'off'
+      to: 'on'
     - platform: state
       entity_id: binary_sensor.kitchen_planthealth_pancake_conductivity
-      from: 'on'
-      to: 'off'
+      from: 'off'
+      to: 'on'
   action:
     - service: notify.web
       data_template:

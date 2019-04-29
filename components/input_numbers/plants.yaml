@@ -1,37 +1,27 @@
 livingroom_plant_yucca_moisture_minimum:
-  name: "Yucca min. Moisture"
-  min: 1
+  name: "Yucca min. water"
+  min: 0
   max: 100
   step: 5
   unit_of_measurement: '%'
 
 livingroom_plant_yucca_conductivity_minimum:
-  name: "Yucca min. Fertility"
-  min: 300
-  max: 2000
+  name: "Yucca min. voeding"
+  min: 0
+  max: 3000
   step: 50
   unit_of_measurement: 'μS/cm'
 
 kitchen_plant_pancake_moisture_minimum:
-  name: "Pancake Plant min. Moisture"
-  min: 1
+  name: "Pannenkoekenplant min. water"
+  min: 0
   max: 100
   step: 5
   unit_of_measurement: '%'
 
 kitchen_plant_pancake_conductivity_minimum:
-  name: "Pancake Plant min. Fertility"
-  min: 300
-  max: 2000
+  name: "Pannenkoekenplant min. voeding"
+  min: 0
+  max: 3000
   step: 50
   unit_of_measurement: 'μS/cm'
-
-    # - sensor.livingroom_plant_yucca_battery
-    # - sensor.livingroom_plant_yucca_moisture
-    # - sensor.livingroom_plant_yucca_light_intensity
-    # - sensor.livingroom_plant_yucca_conductivity
-    # - sensor.kitchen_plant_pancake_battery
-    # - sensor.kitchen_plant_pancake_moisture
-    # - sensor.kitchen_plant_pancake_light_intensity
-    # - sensor.kitchen_plant_pancake_conductivity
-
