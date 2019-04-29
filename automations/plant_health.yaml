@@ -20,4 +20,4 @@
     - service: notify.web
       data_template:
         title: "Plant Monitoring"
-        message: "De {{ trigger.to_state.friendly_name.split(' ')[0] }} heeft {{ trigger.to_state.friendly_name.split(' ')[1] }} nodig."
+        message: "De {{ trigger.to_state.attributes.friendly_name.split(' ')[0] }} heeft {{ trigger.to_state.attributes.friendly_name.split(' ')[1] }} nodig."
