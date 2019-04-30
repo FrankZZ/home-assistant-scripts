@@ -1,3 +1,9 @@
+- platform: waze_travel_time
+  name: waze_frank_to_home
+  origin: person.frank
+  destination: zone.home
+  region: 'EU'
+
 # - platform: waze_travel_time
 #   name: waze_frank_work_to_home
 #   origin: !secret waze_frank_work_address

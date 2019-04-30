@@ -190,50 +190,27 @@
 #       data:
 #         tag: "waze-travel-frank-to-malissa-work-notification"
 
-# - alias: "Notify Malissa when Frank is heading Home"
-#   trigger:
-#     - platform: state
-#       entity_id: proximity.frank_work_0
-#   condition:
-#     condition: and
-#     conditions:
-#       - condition: template
-#         value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'away_from' }}"
-#       - condition: time
-#         after: '16:00:00'
-#         before: '19:00:00'
-#         weekday:
-#           - mon
-#           - wed
-#           - fri
-#   action:
-#     service: notify.web_malissa_g5
-#     data_template:
-#       title: "Vertrekmelding Frank"
-#       message: "Frank is onderweg naar Culemborg. ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_home')|int)*60)) | float | timestamp_custom('%H:%M') }}"
-#       data:
-#         tag: "waze-travel-frank-to-home-notification"
-
-# # - alias: "Notify Malissa when Frank is heading home"
-# #   trigger:
-# #     - platform: state
-# #       entity_id: proximity.frank_home
-# #   condition:
-# #     condition: and
-# #     conditions:
-# #       - condition: template
-# #         value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'towards' }}"
-# #       - condition: time
-# #         after: '16:30:00'
-# #         before: '19:00:00'
-# #         weekday:
-# #           - mon
-# #           - wed
-# #           - fri
-# #   action:
-# #     service: notify.web_malissa_g5
-# #     data_template:
-# #       title: "Vertrekmelding Frank"
-# #       message: "Frank is onderweg naar huis. ETA: {{ states('sensor.waze_frank_to_home') }} {{ states.sensor.waze_frank_to_home.attributes.unit_of_measurement }}"
-# #       data:
-# #         tag: "waze-travel-frank-work-home-notification"
+- alias: "Notify Malissa when Frank is heading Home"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.frank_home_direction
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '16:00:00'
+        before: '20:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+    service: notify.web_malissa_s9
+    data_template:
+      title: "Vertrekmelding Frank"
+      message: "Frank is onderweg naar huis. ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_home')|int)*60)) | float | timestamp_custom('%H:%M') }}"
+      data:
+        tag: "waze-travel-frank-to-home-notification"
