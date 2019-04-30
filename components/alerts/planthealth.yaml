@@ -1,8 +1,10 @@
 livingroom_planthealth_yucca_moisture:
   name: Plant Monitoring
   entity_id: binary_sensor.livingroom_planthealth_yucca_moisture
-  repeat: 300 # 5 hours
-  skip_first: false
+  repeat:
+    - 60
+    - 300 # 5 hours
+  skip_first: true
   message: "De Yucca heeft water nodig."
   done_message: De Yucca heeft genoeg water.
   notifiers:
@@ -11,8 +13,10 @@ livingroom_planthealth_yucca_moisture:
 kitchen_planthealth_pancake_moisture:
   name: Plant Monitoring
   entity_id: binary_sensor.kitchen_planthealth_pancake_moisture
-  repeat: 300 # 5 hours
-  skip_first: false
+  repeat:
+    - 60
+    - 300 # 5 hours
+  skip_first: true
   message: "De Pannenkoekenplant heeft water nodig."
   done_message: De Pannenkoekenplant heeft genoeg water.
   notifiers:
