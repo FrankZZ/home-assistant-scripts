@@ -5,7 +5,7 @@
       entity_id:
         - sensor.livingroom_plant_yucca_moisture
         - input_number.livingroom_plant_yucca_moisture_minimum
-      value_template: "{{ states('sensor.livingroom_plant_yucca_moisture')|int <= states('input_number.livingroom_plant_yucca_moisture_minimum')|int }}"
+      value_template: "{{ states('sensor.livingroom_plant_yucca_moisture')|int < states('input_number.livingroom_plant_yucca_moisture_minimum')|int }}"
       icon_template: "{{ 'mdi:check-circle' if is_state('binary_sensor.livingroom_planthealth_yucca_moisture', 'off') else 'mdi:alert-circle' }}"
 
     livingroom_planthealth_yucca_conductivity:
@@ -13,7 +13,7 @@
       entity_id:
         - sensor.livingroom_plant_yucca_conductivity
         - input_number.livingroom_plant_yucca_conductivity_minimum
-      value_template: "{{ states('sensor.livingroom_plant_yucca_conductivity')|int <= states('input_number.livingroom_plant_yucca_conductivity_minimum')|int }}"
+      value_template: "{{ states('sensor.livingroom_plant_yucca_conductivity')|int < states('input_number.livingroom_plant_yucca_conductivity_minimum')|int }}"
       icon_template: "{{ 'mdi:check-circle' if is_state('binary_sensor.livingroom_planthealth_yucca_conductivity', 'off') else 'mdi:alert-circle' }}"
 
     kitchen_planthealth_pancake_moisture:
@@ -21,7 +21,7 @@
       entity_id:
         - sensor.kitchen_plant_pancake_moisture
         - input_number.kitchen_plant_pancake_moisture_minimum
-      value_template: "{{ states('sensor.kitchen_plant_pancake_moisture')|int <= states('input_number.kitchen_plant_pancake_moisture_minimum')|int }}"
+      value_template: "{{ states('sensor.kitchen_plant_pancake_moisture')|int < states('input_number.kitchen_plant_pancake_moisture_minimum')|int }}"
       icon_template: "{{ 'mdi:check-circle' if is_state('binary_sensor.kitchen_planthealth_pancake_moisture', 'off') else 'mdi:alert-circle' }}"
 
     kitchen_planthealth_pancake_conductivity:
@@ -29,5 +29,5 @@
       entity_id:
         - sensor.kitchen_plant_pancake_conductivity
         - input_number.kitchen_plant_pancake_conductivity_minimum
-      value_template: "{{ states('sensor.kitchen_plant_pancake_conductivity')|int <= states('input_number.kitchen_plant_pancake_conductivity_minimum')|int }}"
+      value_template: "{{ states('sensor.kitchen_plant_pancake_conductivity')|int < states('input_number.kitchen_plant_pancake_conductivity_minimum')|int }}"
       icon_template: "{{ 'mdi:check-circle' if is_state('binary_sensor.kitchen_planthealth_pancake_conductivity', 'off') else 'mdi:alert-circle' }}"
