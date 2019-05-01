@@ -147,11 +147,22 @@ history:
 # View all events in a logbook
 logbook:
   include:
+    entities:
+      - binary_sensor.frank_home_direction
+      - binary_sensor.malissa_home_direction
+      - sun.sun
+      - light.kitchen_lights
+      - light.hallway_lights
+      - light.attichallway_lights
+      - light.upperhallway_lights
+      - sensor.doorbell
+      - input_text.last_motion
+      - binary_sensor.livingroom_planthealth_yucca_moisture
+      - binary_sensor.kitchen_planthealth_pancake_moisture
     domains:
       - device_tracker
       - media_player
       - remote
-      - binary_sensor
       - input_text
 
 # Text to speech
