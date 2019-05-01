@@ -1,16 +1,11 @@
 homeassistant:
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
-   # Name of the location where Home Assistant is running
   name: !secret name
-  # Location required to calculate the time the sun rises and sets
   latitude: !secret latitude
   longitude: !secret longitude
-  # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 1
-  # metric for Metric, imperial for Imperial
   unit_system: metric
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: !secret time_zone
   customize_domain:
     light:
@@ -24,14 +19,6 @@ map:
 
 updater:
   reporting: false
-
-# mysensors:
-#   gateways:
-#     - device: !secret mysensors_gateway
-#       tcp_port: 5003
-#       persistence_file: !secret mysensors_persistence_file
-#   persistence: true
-#   version: '2.0'
 
 person:
   - name: Malissa
@@ -84,12 +71,6 @@ apcupsd:
   host: !secret apcupsd_host
 
 zigbee2mqtt_networkmap:
-
-# panel_iframe:
-#    networkmap:
-#      title: 'Zigbee Map'
-#      url: '/local/zigbee2mqtt_networkmap/map.html'
-#      icon: 'mdi:graphql'
 
 emulated_hue:
   exposed_domains:
@@ -154,14 +135,15 @@ logbook:
       - light.kitchen_lights
       - light.hallway_lights
       - light.attichallway_lights
+      - light.livingroom_lights
       - light.upperhallway_lights
+      - light.closetroom_lights
       - sensor.doorbell
-      - input_text.last_motion
       - binary_sensor.livingroom_planthealth_yucca_moisture
       - binary_sensor.kitchen_planthealth_pancake_moisture
       - input_number.bathroom_fan_speed
     domains:
-      - device_tracker
+      - person
       - media_player
       - remote
       - input_text
@@ -233,17 +215,6 @@ mqtt:
 tado:
   username: !secret tado_username
   password: !secret tado_password
-
-# utility_meter:
-#   daily_energy:
-#     source: sensor.main_power_usage
-#     cycle: daily
-#   weekly_energy:
-#     source: sensor.main_power_usage
-#     cycle: weekly
-#   monthly_energy:
-#     source: sensor.main_power_usage
-#     cycle: monthly
 
 xiaomi_aqara:
   gateways:

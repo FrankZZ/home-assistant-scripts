@@ -199,7 +199,7 @@
     condition: and
     conditions:
       - condition: time
-        after: '16:00:00'
+        after: '15:00:00'
         before: '20:00:00'
         weekday:
           - mon

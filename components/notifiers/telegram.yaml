@@ -4,6 +4,3 @@
 # - name: malissa
 #   platform: telegram
 #   chat_id: !secret telegram_malissa_id
-# - name: harrie
-#   platform: telegram
-#   chat_id: !secret telegram_harrie_id

@@ -1,17 +1,3 @@
-# # - alias: "Power-cycle Chromecast when started from harmony hub"
-# #   trigger:
-# #     platform: state
-# #     entity_id: remote.livingroom
-# #   condition:
-# #     condition: template
-# #     value_template: '{{ trigger.to_state.attributes.current_activity == "Chromecast kijken" }}'
-# #   action:
-# #     - service: switch.turn_off
-# #       entity_id: switch.chromecast_livingroom_power
-# #     - delay: 00:00:01
-# #     - service: switch.turn_on
-# #       entity_id: switch.chromecast_livingroom_power
-
 # - alias: "TV uit als chromecast 15 minuten idle is"
 #   trigger:
 #     - platform: state
@@ -32,36 +18,36 @@
 #       data:
 #         entity_id: remote.livingroom
 
-- alias: "Greet when someone gets home and the google home is not used"
-  initial_state: off
-  trigger:
-    - platform: state
-      entity_id: person.frank
-      to: 'home'
-    - platform: state
-      entity_id: person.malissa
-      to: 'home'
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
-      - condition: state
-        entity_id: !secret google_home_woonkamer_entity_id
-        state: 'off'
-  action:
-    - service: media_player.volume_set
-      data:
-        entity_id: !secret google_home_woonkamer_entity_id
-        volume_level: 0.7
-    - service: tts.google_say
-      entity_id: !secret google_home_woonkamer_entity_id
-      data_template:
-        message: "Aankomstmelding, {{ states.device_tracker[trigger.entity_id.split('.')[1]].attributes.friendly_name }} komt thuis."
-        language: 'nl'
-    - service: media_player.turn_off
-      data:
-        entity_id: !secret google_home_woonkamer_entity_id
+# - alias: "Greet when someone gets home and the google home is not used"
+#   initial_state: off
+#   trigger:
+#     - platform: state
+#       entity_id: person.frank
+#       to: 'home'
+#     - platform: state
+#       entity_id: person.malissa
+#       to: 'home'
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: template
+#         value_template: "{{ not is_state('input_select.timeofday', 'night') }}"
+#       - condition: state
+#         entity_id: !secret google_home_woonkamer_entity_id
+#         state: 'off'
+#   action:
+#     - service: media_player.volume_set
+#       data:
+#         entity_id: !secret google_home_woonkamer_entity_id
+#         volume_level: 0.7
+#     - service: tts.google_say
+#       entity_id: !secret google_home_woonkamer_entity_id
+#       data_template:
+#         message: "Aankomstmelding, {{ states.device_tracker[trigger.entity_id.split('.')[1]].attributes.friendly_name }} komt thuis."
+#         language: 'nl'
+#     - service: media_player.turn_off
+#       data:
+#         entity_id: !secret google_home_woonkamer_entity_id
 
 # - alias: "Announce trash today when person passes motion first in morning"
 #   trigger:
