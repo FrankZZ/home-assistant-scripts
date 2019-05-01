@@ -159,6 +159,7 @@ logbook:
       - input_text.last_motion
       - binary_sensor.livingroom_planthealth_yucca_moisture
       - binary_sensor.kitchen_planthealth_pancake_moisture
+      - input_number.bathroom_fan_speed
     domains:
       - device_tracker
       - media_player
