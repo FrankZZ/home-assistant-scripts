@@ -253,3 +253,10 @@ influxdb:
   component_config_domain:
     'climate':
       override_measurement: 'climate'
+
+telegram_bot:
+  - platform: webhooks
+    api_key: !secret telegram_bot_api_key
+    allowed_chat_ids:
+      - !secret telegram_frank_id
+      - !secret telegram_malissa_id
