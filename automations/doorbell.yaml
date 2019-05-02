@@ -62,7 +62,7 @@
         message: "Er staat iemand voor de deur!"
         data:
           photo:
-            - url: "{{ states('sensor.http_base_url') }}/{{ state_attr('camera.woonkamer', 'entity_picture') }}"
+            - url: "{{ states('sensor.http_base_url') }}{{ state_attr('camera.woonkamer', 'entity_picture') }}"
     - service: notify.livingroom_tv
       data:
         message: "Er staat iemand voor de deur!"
