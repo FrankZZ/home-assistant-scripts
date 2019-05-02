@@ -56,13 +56,10 @@
         entity_id: !secret aqara_gateway_light
         brightness_pct: 100
         color_name: blue
-    - service: notify.telegram
+    - service: telegram_bot.send_photo
       data_template:
-        title: "Deurbel"
-        message: "Er staat iemand voor de deur!"
-        data:
-          photo:
-            - url: "{{ states('sensor.http_base_url') }}{{ state_attr('camera.woonkamer', 'entity_picture') }}"
+        url: "{{ states('sensor.http_base_url') }}{{ state_attr('camera.woonkamer', 'entity_picture') }}"
+        caption: "Deurbel - Er staat iemand voor de deur!"
     - service: notify.livingroom_tv
       data:
         message: "Er staat iemand voor de deur!"
