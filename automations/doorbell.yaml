@@ -60,6 +60,9 @@
       data_template:
         url: "{{ states('sensor.http_base_url') }}{{ state_attr('camera.woonkamer', 'entity_picture') }}"
         caption: "Deurbel - Er staat iemand voor de deur!"
+        target:
+          - !secret telegram_frank_id
+          - !secret telegram_malissa_id
     - service: notify.livingroom_tv
       data:
         message: "Er staat iemand voor de deur!"
