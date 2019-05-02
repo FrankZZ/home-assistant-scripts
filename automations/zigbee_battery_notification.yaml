@@ -18,7 +18,7 @@
         sensor.kitchen_plant_pancake_battery
       below: 40
   action:
-    - service: notify.web
+    - service: notify.telegram
       data_template:
         title: "Low Battery: {{ trigger.entity_id.split('.')[1][:-8] }}"
         message: "The battery of {{ trigger.entity_id.split('.')[1][:-8] }} is now {{ trigger.to_state.state }}%."

@@ -56,15 +56,13 @@
         entity_id: !secret aqara_gateway_light
         brightness_pct: 100
         color_name: blue
-    - service: notify.web
+    - service: notify.telegram
       data_template:
         title: "Deurbel"
         message: "Er staat iemand voor de deur!"
         data:
-          tag: "doorbell-0-notification"
-          renotify: true
-          url: "{{ state_attr('camera.woonkamer', 'entity_picture')|replace('/camera_proxy/', '/camera_proxy_stream/') }}"
-          image: "{{ state_attr('camera.woonkamer', 'entity_picture') }}"
+          photo:
+            - url: "{{ states('sensor.http_base_url') }}/{{ state_attr('camera.woonkamer', 'entity_picture') }}"
     - service: notify.livingroom_tv
       data:
         message: "Er staat iemand voor de deur!"
@@ -96,12 +94,10 @@
       for:
         minutes: 3
   action:
-    - service: notify.web
+    - service: notify.telegram
       data:
         title: "Storing"
         message: "De deurbel is offline."
-        data:
-          tag: "doorbell-1-notification"
     - service: notify.livingroom_tv
       data:
         message: "Storing: deurbel offline"

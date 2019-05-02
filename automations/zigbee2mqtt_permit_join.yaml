@@ -4,7 +4,7 @@
     - platform: state
       entity_id: switch.zigbee2mqtt_permit_join
   action:
-    service: notify.web_frank_s8p
+    service: notify.telegram_frank
     data_template:
       title: Zigbee2MQTT
       message: "Pairing mode {{ trigger.to_state.state }}."

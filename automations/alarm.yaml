@@ -37,13 +37,10 @@
         entity_id: group.all_persons
         state: 'not_home'
   action:
-    - service: notify.web
+    - service: notify.telegram
       data_template:
         title: "Deur geopend"
         message: "De achterdeur is geopend"
-        data:
-          tag: "backdooropen-0-notification"
-          renotify: true
 
 - alias: "Geluid bij achterdeur open"
   trigger:
@@ -79,7 +76,7 @@
       data:
         entity_id: input_number.bathroom_fan_speed
         value: "2"
-    - service: notify.web
+    - service: notify.telegram
       data_template:
         title: "ROOKALARM: {{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }}"
         message: "Rook gedetecteerd!"

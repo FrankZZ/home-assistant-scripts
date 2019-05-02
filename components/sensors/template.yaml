@@ -1,0 +1,3 @@
+- platform: template
+  name: base_url
+  value_template: !secret http_base_url

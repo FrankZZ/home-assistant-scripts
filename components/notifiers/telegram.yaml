@@ -1,6 +1,11 @@
-- name: frank
+- name: telegram_frank
   platform: telegram
   chat_id: !secret telegram_frank_id
-- name: malissa
+- name: telegram_malissa
   platform: telegram
   chat_id: !secret telegram_malissa_id
+- name: telegram
+  platform: group
+  services:
+    - service: telegram_frank
+    - service: telegram_malissa

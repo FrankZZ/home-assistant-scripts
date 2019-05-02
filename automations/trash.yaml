@@ -11,7 +11,7 @@
     #   data_template:
     #     title: "*Afval morgen: {{ states.sensor.trash_tomorrow.state }}*"
     #     message: "Morgen moet het volgende afval aan de straat: _{{ states.sensor.trash_tomorrow.state }}_!"
-    - service: notify.web
+    - service: notify.telegram
       data_template:
         title: "Afval morgen: {{ states.sensor.trash_tomorrow.state }}"
         message: "Morgen moet het volgende afval aan de straat: {{ states.sensor.trash_tomorrow.state }}"

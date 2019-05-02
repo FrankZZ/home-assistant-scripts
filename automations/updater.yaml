@@ -3,7 +3,7 @@
     platform: state
     entity_id: updater.updater
   action:
-    service: notify.web_frank_s8p
+    service: notify.telegram_frank
     data_template:
       title: "Home Assistant Update"
       message: "New version available: {{ trigger.to_state.state }}"

@@ -74,7 +74,7 @@
 #             weekday:
 #               - sat
 #   action:
-#     service: notify.web_frank_s8p
+#     service: notify.telegram_frank_s8p
 #     data:
 #       title: "Betaald Parkeren"
 #       message: "Vergeet niet betaald parkeren aan te zetten!"

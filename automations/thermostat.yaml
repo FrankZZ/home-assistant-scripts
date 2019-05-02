@@ -30,12 +30,10 @@
         operation_mode: "Smart schedule"
     # - service: script.turn_on
     #   entity_id: script.heating_home
-    - service: notify.web
+    - service: notify.telegram
       data:
         title: Verwarming ingeschakeld
         message: "Hoppa, de verwarming staat alvast aan!"
-        data:
-          tag: "heating-0-notification"
 
 - alias: "Thermostaat Woonkamer omlaag als we toch niet naar huis gaan"
   trigger:
@@ -67,12 +65,10 @@
   action:
     - service: script.turn_on
       entity_id: script.heating_away
-    - service: notify.web
+    - service: notify.telegram
       data:
         title: Verwarming uitgeschakeld
         message: "Niemand is (meer) onderweg naar huis"
-        data:
-          tag: "heating-0-notification"
 
 - alias: "Thermostaat Woonkamer omlaag als we van huis weg gaan"
   trigger:
@@ -107,12 +103,10 @@
   action:
     - service: script.turn_on
       entity_id: script.heating_away
-    - service: notify.web
+    - service: notify.telegram
       data:
         title: Verwarming uitgeschakeld
         message: "Iedereen heeft het huis verlaten."
-        data:
-          tag: "heating-0-notification"
 
 - alias: "Thermostaat Woonkamer omhoog als we thuis komen en hij staat nog niet aan"
   trigger:
@@ -138,12 +132,10 @@
       entity_id: climate.hal
       data:
         operation_mode: "Smart schedule"
-    - service: notify.web
+    - service: notify.telegram
       data_template:
         title: Verwarming Woonkamer ingeschakeld
         message: "Hoppa, de verwarming staat aan!"
-        data:
-          tag: "heating-0-notification"
 
 - alias: "Thermostaat Rest omhoog als we thuis komen en ze staan nog niet aan"
   trigger:
@@ -163,12 +155,10 @@
   action:
     - service: script.turn_on
       entity_id: script.heating_home
-    - service: notify.web
+    - service: notify.telegram
       data_template:
         title: Verwarming ingeschakeld
         message: "Bewoners in het huis gedetecteerd"
-        data:
-          tag: "heating-0-notification"
 
 - alias: "Thermostaat Bijkeuken omhoog als de verwarming uit gaat"
   trigger:

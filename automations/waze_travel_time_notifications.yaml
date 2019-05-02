@@ -17,7 +17,7 @@
 #           - mon
 #           - wed
 #   action:
-#     service: notify.web_malissa_g5
+#     service: notify.telegram_malissa_g5
 #     data_template:
 #       title: "Reistijd naar werk"
 #       message: "ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_malissa_to_malissa_work')|int)*60)) | float | timestamp_custom('%H:%M') }}. {{ states('sensor.waze_malissa_to_malissa_work') }} {{ states.sensor.waze_malissa_to_malissa_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_malissa_to_malissa_work.attributes.route }}"
@@ -43,7 +43,7 @@
 #           - mon
 #           - wed
 #   action:
-#     service: notify.web_malissa_g5
+#     service: notify.telegram_malissa_g5
 #     data_template:
 #       title: "Reistijd naar huis"
 #       message: "ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_malissa_to_home')|int)*60)) | float | timestamp_custom('%H:%M') }}. {{ states('sensor.waze_malissa_to_home') }} {{ states.sensor.waze_malissa_to_home.attributes.unit_of_measurement }} via {{ states.sensor.waze_malissa_to_home.attributes.route }}"
@@ -74,7 +74,7 @@
 #           - thu
 #           - fri
 #   action:
-#     service: notify.web_frank_s8p
+#     service: notify.telegram_frank_s8p
 #     data_template:
 #       title: "Reistijd naar werk"
 #       message: "ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_frank_work')|int)*60)) | float | timestamp_custom('%H:%M') }}. {{ states('sensor.waze_frank_to_frank_work') }} {{ states.sensor.waze_frank_to_frank_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_to_frank_work.attributes.route }}"
@@ -105,7 +105,7 @@
 #           - thu
 #           - fri
 #   action:
-#     service: notify.web_frank_s8p
+#     service: notify.telegram_frank_s8p
 #     data_template:
 #       title: "Reistijd naar huis"
 #       message: "ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_home')|int)*60)) | float | timestamp_custom('%H:%M') }}. {{ states('sensor.waze_frank_to_home') }} {{ states.sensor.waze_frank_to_home.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_to_home.attributes.route }}"
@@ -135,7 +135,7 @@
 #           - tue
 #           - thu
 #   action:
-#     service: notify.web_frank_s8p
+#     service: notify.telegram_frank_s8p
 #     data_template:
 #       title: "Reistijd naar Malissa Utrecht"
 #       message: "ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_malissa_work')|int)*60)) | float | timestamp_custom('%H:%M') }}. {{ states('sensor.waze_frank_to_malissa_work') }} {{ states.sensor.waze_frank_to_malissa_work.attributes.unit_of_measurement }} via {{ states.sensor.waze_frank_to_malissa_work.attributes.route }}"
@@ -155,7 +155,7 @@
 #         entity_id: !secret device_tracker_malissa_g5_id
 #         zone: zone.malissa_work_0
 #   action:
-#     service: notify.web_malissa_g5
+#     service: notify.telegram_malissa_g5
 #     data_template:
 #       title: "Aankomstmelding Frank"
 #       message: "Frank staat voor de deur"
@@ -183,7 +183,7 @@
 #           - tue
 #           - thu
 #   action:
-#     service: notify.web_malissa_g5
+#     service: notify.telegram_malissa_g5
 #     data_template:
 #       title: "Vertrekmelding Frank"
 #       message: "Frank is onderweg naar Utrecht. ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_malissa_work')|int)*60)) | float | timestamp_custom('%H:%M') }}"
@@ -208,9 +208,7 @@
           - thu
           - fri
   action:
-    service: notify.web_malissa_s9
+    service: notify.telegram
     data_template:
       title: "Vertrekmelding Frank"
       message: "Frank is onderweg naar huis. ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_home')|int)*60)) | float | timestamp_custom('%H:%M') }}"
-      data:
-        tag: "waze-travel-frank-to-home-notification"
