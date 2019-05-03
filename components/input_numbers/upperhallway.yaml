@@ -30,6 +30,6 @@ upperhallway_brightness_full:
 
 upperhallway_darkness_treshold:
   min: 0
-  max: 500
-  step: 10
+  max: 100
+  step: 5
   unit_of_measurement: 'lx'
