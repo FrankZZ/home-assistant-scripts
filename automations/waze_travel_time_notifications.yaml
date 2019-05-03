@@ -193,11 +193,16 @@
 - alias: "Notify Malissa when Frank is heading Home"
   trigger:
     - platform: state
-      entity_id: binary_sensor.frank_home_direction
-      to: 'on'
+      entity_id: sensor.waze_frank_to_home
   condition:
     condition: and
     conditions:
+      - platform: state
+        entity_id: binary_sensor.frank_home_direction
+        state: 'on'
+        # wait for a waze update after binary_sensor.frank_home_direction turned true
+      - platform: template
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.frank_home_direction.last_changed) | int > as_timestamp(now()) - as_timestamp(states.sensor.waze_frank_to_home.last_updated)|int }}'
       - condition: time
         after: '15:00:00'
         before: '20:00:00'
