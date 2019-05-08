@@ -1,0 +1,152 @@
+title: wammes
+views:
+  - icon: mdi:television
+    title: Entertainment
+    id: entertainment
+    cards:
+      - type: entities
+        entities:
+          - input_select.livingroom_activity
+      - type: vertical-stack
+        cards:
+          - type: picture-glance
+            title: Woonkamer TV
+            entities:
+              - entity: switch.livingroom_tv_input_cable
+                icon: mdi:television-classic
+              - entity: switch.livingroom_tv_input_chromecast
+                icon: mdi:cast
+              - entity: switch.livingroom_tv_input_ps4
+                icon: mdi:playstation
+            state_image:
+              "PowerOff": "/local/images/power_off.png"
+              "PS4": "/local/images/playstation_logo.png"
+              "Chromecast": "/local/images/chromecast_logo.png"
+              "TV": "/local/images/cable_logo.jpg"
+            entity: sensor.harmony_livingroom
+          - type: conditional
+            conditions:
+              - entity: sensor.harmony_livingroom
+                state_not: 'PowerOff'
+            card:
+              type: horizontal-stack
+              cards:
+                - type: conditional
+                  conditions:
+                   - entity: sensor.harmony_livingroom
+                     state: 'TV'
+                  card:
+                    type: entity-button
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.livingroom
+                        device: "Arris DVR"
+                        command: "Play"
+                    hold_action:
+                      action: none
+                    show_icon: true
+                    show_name: false
+                    entity: sensor.harmony_livingroom
+                    icon: 'mdi:play'
+                - type: conditional
+                  conditions:
+                   - entity: sensor.harmony_livingroom
+                     state: 'TV'
+                  card:
+                    type: entity-button
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.livingroom
+                        device: "Arris DVR"
+                        command: "Pause"
+                    hold_action:
+                      action: none
+                    show_icon: true
+                    show_name: false
+                    entity: sensor.harmony_livingroom
+                    icon: 'mdi:pause'
+                # for chromecast, use play&pause of TV
+                - type: conditional
+                  conditions:
+                   - entity: sensor.harmony_livingroom
+                     state: 'Chromecast'
+                  card:
+                    type: entity-button
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.livingroom
+                        device: "LG TV"
+                        command: "Play"
+                    hold_action:
+                      action: none
+                    show_icon: true
+                    show_name: false
+                    entity: sensor.harmony_livingroom
+                    icon: 'mdi:play'
+                - type: conditional
+                  conditions:
+                   - entity: sensor.harmony_livingroom
+                     state: 'Chromecast'
+                  card:
+                    type: entity-button
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.livingroom
+                        device: "LG TV"
+                        command: "Pause"
+                    hold_action:
+                      action: none
+                    show_icon: true
+                    show_name: false
+                    entity: sensor.harmony_livingroom
+                    icon: 'mdi:pause'
+                - type: entity-button
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.livingroom
+                      device: "Logitech Amp"
+                      command: "VolumeDown"
+                  hold_action:
+                    action: none
+                  show_icon: true
+                  show_name: false
+                  entity: sensor.harmony_livingroom
+                  icon: 'mdi:volume-low'
+                - type: entity-button
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.livingroom
+                      device: "Logitech Amp"
+                      command: "Mute"
+                  hold_action:
+                    action: none
+                  show_icon: true
+                  show_name: false
+                  entity: sensor.harmony_livingroom
+                  icon: 'mdi:volume-mute'
+                - type: entity-button
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.livingroom
+                      device: "Logitech Amp"
+                      command: "VolumeUp"
+                  hold_action:
+                    action: none
+                  show_icon: true
+                  show_name: false
+                  entity: sensor.harmony_livingroom
+                  icon: 'mdi:volume-high'
