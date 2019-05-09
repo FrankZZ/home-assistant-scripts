@@ -22,16 +22,6 @@ heating_away:
   sequence:
     - service: climate.set_temperature
       data:
-        entity_id: climate.bijkeuken
-        temperature: 21
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.bijkeuken
-        operation_mode: "Manual"
-    - delay:
-        seconds: 1
-    - service: climate.set_temperature
-      data:
         entity_id: climate.woonkamer
         temperature: 15
     - service: climate.set_operation_mode
