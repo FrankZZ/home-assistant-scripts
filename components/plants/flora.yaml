@@ -1,0 +1,25 @@
+livingroom_plant_yucca:
+  sensors:
+    moisture: sensor.livingroom_plant_yucca_moisture
+    battery: sensor.livingroom_plant_yucca_battery
+    temperature: sensor.livingroom_plant_yucca_temperature
+    conductivity: sensor.livingroom_plant_yucca_conductivity
+    brightness: sensor.livingroom_plant_yucca_light_intensity
+  min_moisture: 30
+  max_moisture: 65
+  min_battery: 25
+  min_conductivity: 250
+  min_temperature: 15
+
+kitchen_plant_pancake:
+  sensors:
+    moisture: sensor.kitchen_plant_pancake_moisture
+    battery: sensor.kitchen_plant_pancake_battery
+    temperature: sensor.kitchen_plant_pancake_temperature
+    conductivity: sensor.kitchen_plant_pancake_conductivity
+    brightness: sensor.kitchen_plant_pancake_light_intensity
+  min_moisture: 30
+  max_moisture: 65
+  min_battery: 25
+  min_conductivity: 250
+  min_temperature: 15

@@ -173,6 +173,7 @@ timer: !include_dir_merge_named components/timers
 history_graph: !include_dir_merge_named components/history_graphs
 zone: !include_dir_merge_list components/zones
 proximity: !include_dir_merge_named components/proximities
+plant: !include_dir_merge_named components/plants
 
 remote:
   - platform: harmony
