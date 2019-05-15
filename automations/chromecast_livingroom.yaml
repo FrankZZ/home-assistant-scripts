@@ -1,22 +1,82 @@
-# - alias: "TV uit als chromecast 15 minuten idle is"
-#   trigger:
-#     - platform: state
-#       entity_id: media_player.woonkamer_tv
-#       to: 'idle'
-#       for:
-#         minutes: 15
-#     - platform: state
-#       entity_id: media_player.woonkamer_tv
-#       to: 'off'
-#       for:
-#         minutes: 15
-#   condition:
-#     condition: template
-#     value_template: '{{ states.remote.livingroom.attributes.current_activity == "Chromecast kijken" }}'
-#   action:
-#     - service: remote.turn_off
-#       data:
-#         entity_id: remote.livingroom
+- alias: "TV uit als chromecast 15 minuten idle is"
+  trigger:
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      to: 'idle'
+      for:
+        minutes: 15
+    - platform: state
+      entity_id: media_player.woonkamer_tv
+      to: 'off'
+      for:
+        minutes: 15
+  condition:
+    condition: template
+    value_template: "{{ is_state_attr('remote.livingroom', 'current_activity', 'Chromecast') }}"
+  action:
+    - service: remote.turn_off
+      data:
+        entity_id: remote.livingroom
+
+- alias: "Notify dat TV uit gaat over 2 minuten geen beweging"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.livingroom_pir_0
+      to: 'off'
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: binary_sensor.livingroom_pir_0
+      to: 'off'
+      for:
+        minutes: 2
+    - platform: state
+      entity_id: binary_sensor.livingroom_pir_0
+      to: 'off'
+      for:
+        minutes: 55
+    - platform: state
+      entity_id: binary_sensor.livingroom_pir_0
+      to: 'off'
+      for:
+        minutes: 56
+    - platform: state
+      entity_id: binary_sensor.livingroom_pir_0
+      to: 'off'
+      for:
+        minutes: 57
+    - platform: state
+      entity_id: binary_sensor.livingroom_pir_0
+      to: 'off'
+      for:
+        minutes: 58
+    - platform: state
+      entity_id: binary_sensor.livingroom_pir_0
+      to: 'off'
+      for:
+        minutes: 59
+  condition:
+    condition: template
+    value_template: "{{ not is_state_attr('remote.livingroom', 'current_activity', 'PowerOff') }}"
+  action:
+    - service: notify.livingroom_tv
+      data_template:
+        message: "Geen beweging gedetecteerd. Over {{ 60 - (trigger.for.seconds|int/60)|int }} {% if trigger.for.seconds/60|int == 59 -%}minuut{%- else -%}minuten{%- endif %} wordt de TV uitgeschakeld."
+
+- alias: "TV uit als er een uur geen beweging in de woonkamer is"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.livingroom_pir_0
+      to: 'off'
+      for:
+        minutes: 60
+  condition:
+    condition: template
+    value_template: "{{ not is_state_attr('remote.livingroom', 'current_activity', 'PowerOff') }}"
+  action:
+    - service: remote.turn_off
+      data:
+        entity_id: remote.livingroom
 
 # - alias: "Greet when someone gets home and the google home is not used"
 #   initial_state: off

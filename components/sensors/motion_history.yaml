@@ -5,3 +5,8 @@
 #   type: count
 #   start: "{{ as_timestamp(now())|int - states('input_number.upperhallway_recent_motions_seconds')|int }}"
 #   end: '{{ now() }}'
+
+- platform: template
+  sensors:
+    last_motion:
+      value_template: "{{ states('input_text.last_motion') }}"

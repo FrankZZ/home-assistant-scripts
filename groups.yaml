@@ -394,7 +394,7 @@ presence_view:
 
 default_generic:
   entities:
-    - input_text.last_motion
+    - sensor.last_motion
     - sensor.doorbell
     - sensor.last_doorbell
     - sensor.bed_tilt_0
