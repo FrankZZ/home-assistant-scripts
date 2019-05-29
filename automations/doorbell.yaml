@@ -50,7 +50,7 @@
       data:
         gw_mac: !secret aqara_gateway_mac
         ringtone_id: 10
-        ringtone_vol: 30
+        ringtone_vol: 15
     - service: light.turn_on
       data:
         entity_id: !secret aqara_gateway_light
@@ -72,7 +72,7 @@
       data:
         gw_mac: !secret aqara_gateway_mac
         ringtone_id: 10
-        ringtone_vol: 30
+        ringtone_vol: 15
 
 - alias: "Zet deurbel lamp uit na 60 seconden"
   trigger:

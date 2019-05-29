@@ -6,7 +6,7 @@ livingroom_planthealth_yucca_moisture:
   message: "De Yucca heeft water nodig."
   done_message: De Yucca heeft genoeg water.
   notifiers:
-    - web
+    - telegram
 
 kitchen_planthealth_pancake_moisture:
   name: Plant Monitoring
@@ -16,7 +16,7 @@ kitchen_planthealth_pancake_moisture:
   message: "De Pannenkoekenplant heeft water nodig."
   done_message: De Pannenkoekenplant heeft genoeg water.
   notifiers:
-    - web
+    - telegram
 
 # frank_coming_home_from_work:
 #   name: Vertrekmelding Frank

@@ -37,15 +37,15 @@ default_view:
 plants:
   entities:
     - sensor.livingroom_plant_yucca_moisture
-    - sensor.livingroom_plant_yucca_light_intensity
-    - sensor.livingroom_plant_yucca_conductivity
+    # - sensor.livingroom_plant_yucca_light_intensity
+    # - sensor.livingroom_plant_yucca_conductivity
     - binary_sensor.livingroom_planthealth_yucca_moisture
-    - binary_sensor.livingroom_planthealth_yucca_conductivity
+    # - binary_sensor.livingroom_planthealth_yucca_conductivity
     - sensor.kitchen_plant_pancake_moisture
-    - sensor.kitchen_plant_pancake_light_intensity
-    - sensor.kitchen_plant_pancake_conductivity
+    # - sensor.kitchen_plant_pancake_light_intensity
+    # - sensor.kitchen_plant_pancake_conductivity
     - binary_sensor.kitchen_planthealth_pancake_moisture
-    - binary_sensor.kitchen_planthealth_pancake_conductivity
+    # - binary_sensor.kitchen_planthealth_pancake_conductivity
 
 plants_settings:
   name: Planten
@@ -397,8 +397,8 @@ default_generic:
     - sensor.last_motion
     - sensor.doorbell
     - sensor.last_doorbell
-    - sensor.bed_tilt_0
-    - sensor.bed_tilt_1
+    # - sensor.bed_tilt_0
+    # - sensor.bed_tilt_1
     - sensor.harmony_livingroom
     - calendar.malissa_frank
 

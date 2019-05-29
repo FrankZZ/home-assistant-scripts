@@ -24,16 +24,6 @@
       entity_id: binary_sensor.livingroom_pir_0
       to: 'off'
       for:
-        minutes: 1
-    - platform: state
-      entity_id: binary_sensor.livingroom_pir_0
-      to: 'off'
-      for:
-        minutes: 2
-    - platform: state
-      entity_id: binary_sensor.livingroom_pir_0
-      to: 'off'
-      for:
         minutes: 55
     - platform: state
       entity_id: binary_sensor.livingroom_pir_0
