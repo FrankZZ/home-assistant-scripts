@@ -1,0 +1,6 @@
+livingroom_minimum_humidity:
+  min: 20
+  max: 80
+  step: 5
+  unit_of_measurement: '%'
+

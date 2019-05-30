@@ -59,8 +59,8 @@ temperature_sensors:
   entities:
     - sensor.bathroom_temp_0_humidity
     - sensor.bathroom_temp_0_temperature
-    - sensor.freezer_temp_0_humidity
-    - sensor.freezer_temp_0_temperature
+    - sensor.livingroom_temp_0_humidity
+    - sensor.livingroom_temp_0_temperature
 
 light_timers:
   entities:
@@ -395,6 +395,7 @@ presence_view:
 default_generic:
   entities:
     - sensor.last_motion
+    - switch.humidifier_power_0
     - sensor.doorbell
     - sensor.last_doorbell
     # - sensor.bed_tilt_0

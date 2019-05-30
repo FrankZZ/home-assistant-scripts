@@ -1,4 +1,4 @@
-# - platform: rflink
-#   devices:
-#     !secret christmastree_power_0_id:
-#       name: christmastree_power_0
+- platform: rflink
+  devices:
+    !secret humidifier_power_0_id:
+      name: humidifier_power_0

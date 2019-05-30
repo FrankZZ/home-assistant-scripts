@@ -11,7 +11,7 @@
         sensor.scullery_smoke_0_battery,
         sensor.livingroom_smoke_0_battery,
         sensor.bathroom_temp_0_battery,
-        sensor.freezer_temp_0_battery,
+        sensor.livingroom_temp_0_battery,
         sensor.scullery_water_0_battery,
         sensor.bathroom_water_0_battery,
         sensor.livingroom_plant_yucca_battery,
