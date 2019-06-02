@@ -2,3 +2,5 @@
   devices:
     !secret humidifier_power_0_id:
       name: humidifier_power_0
+    !secret gardenlight_power_0_id:
+      name: gardenlight_power_0

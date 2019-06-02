@@ -2,7 +2,7 @@
   sensors:
     livingroom_humidity_too_low:
       entity_id:
-        - sensor.livingroom_temp_0_humidity
+        - sensor.woonkamer_humidity
         - input_number.livingroom_minimum_humidity
       value_template: >-
-        {{ not is_state('sensor.livingroom_temp_0_humidity', 'unavailable') and states('sensor.livingroom_temp_0_humidity')|int < states('input_number.livingroom_minimum_humidity')|int }}
+        {{ not is_state('sensor.woonkamer_humidity', 'unavailable') and states('sensor.woonkamer_humidity')|int < states('input_number.livingroom_minimum_humidity')|int }}

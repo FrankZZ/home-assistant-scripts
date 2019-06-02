@@ -1,0 +1,7 @@
+- platform: template
+  sensors:
+    garden_dark:
+      entity_id:
+        - input_select.timeofday
+      value_template: >-
+        {{ is_state('input_select.timeofday', 'evening') or is_state('input_select.timeofday', 'night')  }}
