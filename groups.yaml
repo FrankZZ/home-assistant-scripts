@@ -395,7 +395,7 @@ presence_view:
 default_generic:
   entities:
     - sensor.last_motion
-    - switch.humidifier_power_0
+    - switch.livingroom_power_0
     - sensor.doorbell
     - sensor.last_doorbell
     # - sensor.bed_tilt_0

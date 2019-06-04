@@ -37,6 +37,12 @@ binary_sensor.kitchen_pir_0:
   friendly_name: Keuken PIR
   device_class: motion
 
+switch.livingroom_power_0:
+  friendly_name: Luchtbevochtiger
+
+switch.scullery_power_0:
+  friendly_name: Achtertuin Lamp
+
 binary_sensor.livingroom_pir_0:
   friendly_name: Woonkamer PIR
   device_class: motion

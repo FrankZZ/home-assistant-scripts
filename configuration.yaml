@@ -109,8 +109,8 @@ discovery:
 # Track the sun
 sun:
 
-rflink:
-  port: !secret rflink_gateway_dev_path
+# rflink:
+#   port: !secret rflink_gateway_dev_path
 
 recorder:
   db_url: !secret recorder_db_url

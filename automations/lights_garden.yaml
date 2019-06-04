@@ -15,7 +15,7 @@
   action:
     - service: switch.turn_on
       data:
-        entity_id: "switch.gardenlight_power_0"
+        entity_id: "switch.scullery_power_0"
 
 - alias: "Licht achtertuin uit sochtends en smiddags"
   initial_state: on
@@ -34,4 +34,4 @@
   action:
     - service: switch.turn_off
       data:
-        entity_id: "switch.gardenlight_power_0"
+        entity_id: "switch.scullery_power_0"

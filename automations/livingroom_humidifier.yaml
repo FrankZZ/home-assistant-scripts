@@ -12,7 +12,7 @@
   action:
     - service: switch.turn_on
       data:
-        entity_id: switch.humidifier_power_0
+        entity_id: switch.livingroom_power_0
 
 - alias: "woonkamer stop humidifier"
   trigger:
@@ -30,4 +30,4 @@
   action:
     - service: switch.turn_off
       data:
-        entity_id: switch.humidifier_power_0
+        entity_id: switch.livingroom_power_0
