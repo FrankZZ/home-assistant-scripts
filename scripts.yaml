@@ -24,132 +24,132 @@ heating_away:
       data:
         entity_id: climate.woonkamer
         temperature: 15
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.woonkamer
-        operation_mode: "Manual"
+        hvac_mode: manual
     - delay:
         seconds: 1
     - service: climate.set_temperature
       data:
         entity_id: climate.hal
         temperature: 5
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.hal
-        operation_mode: "Manual"
+        hvac_mode: manual
     - delay:
         seconds: 1
     - service: climate.set_temperature
       data:
         entity_id: climate.badkamer
         temperature: 5
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.badkamer
-        operation_mode: "Manual"
+        hvac_mode: manual
     - delay:
         seconds: 1
     - service: climate.set_temperature
       data:
         entity_id: climate.slaapkamer
         temperature: 5
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.slaapkamer
-        operation_mode: "Manual"
+        hvac_mode: manual
     - delay:
         seconds: 1
     - service: climate.set_temperature
       data:
         entity_id: climate.kastenkamer
         temperature: 5
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.kastenkamer
-        operation_mode: "Manual"
+        hvac_mode: manual
     - delay:
         seconds: 1
     - service: climate.set_temperature
       data:
         entity_id: climate.zolder
         temperature: 5
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.zolder
-        operation_mode: "Manual"
+        hvac_mode: manual
     - delay:
         seconds: 1
     - service: climate.set_temperature
       data:
         entity_id: climate.logeerkamer
         temperature: 5
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.logeerkamer
-        operation_mode: "Manual"
+        hvac_mode: manual
 
 heating_home:
   sequence:
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.slaapkamer
-        operation_mode: "Smart schedule"
+        hvac_mode: auto
     - delay:
         seconds: 1
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.kastenkamer
-        operation_mode: "Smart schedule"
+        hvac_mode: auto
     - delay:
         seconds: 1
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.badkamer
-        operation_mode: "Smart schedule"
+        hvac_mode: auto
     - delay:
         seconds: 1
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.zolder
-        operation_mode: "Smart schedule"
+        hvac_mode: auto
     - delay:
         seconds: 1
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.woonkamer
-        operation_mode: "Smart schedule"
+        hvac_mode: auto
     - delay:
         seconds: 1
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.hal
-        operation_mode: "Smart schedule"
+        hvac_mode: auto
     - delay:
         seconds: 1
-    - service: climate.set_operation_mode
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.logeerkamer
-        operation_mode: "Smart schedule"
+        hvac_mode: auto
 
-bathroom_heating_on:
-  sequence:
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.badkamer
-        temperature: 23
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.badkamer
-        operation_mode: "Timer"
+# bathroom_heating_on:
+#   sequence:
+#     - service: climate.set_temperature
+#       data:
+#         entity_id: climate.badkamer
+#         temperature: 23
+#     - service: climate.set_hvac_mode
+#       data:
+#         entity_id: climate.badkamer
+#         operation_mode: "Timer"
 
-closetroom_heating_on:
-  sequence:
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.kastenkamer
-        temperature: 20
-    - service: climate.set_operation_mode
-      data:
-        entity_id: climate.kastenkamer
-        operation_mode: "Timer"
+# closetroom_heating_on:
+#   sequence:
+#     - service: climate.set_temperature
+#       data:
+#         entity_id: climate.kastenkamer
+#         temperature: 20
+#     - service: climate.set_hvac_mode
+#       data:
+#         entity_id: climate.kastenkamer
+#         operation_mode: "Timer"

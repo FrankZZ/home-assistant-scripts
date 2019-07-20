@@ -5,33 +5,18 @@ default_view:
     - updater.updater
     - sensor.solar_power_production
     - sensor.main_power_usage
-    - sensor.main_power_direction
-    - sensor.livingroom_dark
     - group.lights
     - group.default_generic
     - group.trash
     - camera.woonkamer
-    # - sun.sun
-    - sensor.lux_livingroom
-    - sensor.closetroom_pir_0_illuminance
-    - sensor.attichallway_pir_0_illuminance
-    - sensor.kitchen_pir_0_illuminance
-    - sensor.livingroom_pir_0_illuminance
-    - sensor.upperhallway_pir_0_illuminance
-    - sensor.hallway_pir_0_illuminance
-    # - group.light_timers
+    - sun.sun
     - sensor.plex01
     - binary_sensor.scullery_water_0
     - binary_sensor.bathroom_water_0
-    # - sensor.garage_power_0
     - group.temperature_sensors
     - switch.garage_power_0
     - group.pirs
     - group.plants
-    - binary_sensor.livingroom_smoke_0
-    - binary_sensor.scullery_smoke_0
-    - binary_sensor.attic_gasco_0_gas
-    - binary_sensor.attic_gasco_0_co
     - group.bathroom_fan_settings
 
 plants:
@@ -46,6 +31,23 @@ plants:
     # - sensor.kitchen_plant_pancake_conductivity
     - binary_sensor.kitchen_planthealth_pancake_moisture
     # - binary_sensor.kitchen_planthealth_pancake_conductivity
+
+safety_sensors:
+  entities:
+    - binary_sensor.livingroom_smoke_0
+    - binary_sensor.scullery_smoke_0
+    - binary_sensor.attic_gasco_0_gas
+    - binary_sensor.attic_gasco_0_co 
+
+lux_sensors:
+  entities:
+    - sensor.livingroom_pir_0_illuminance
+    - sensor.kitchen_pir_0_illuminance
+    - sensor.hallway_pir_0_illuminance
+    - sensor.upperhallway_pir_0_illuminance
+    - sensor.closetroom_pir_0_illuminance
+    - sensor.attichallway_pir_0_illuminance
+
 
 plants_settings:
   name: Planten
@@ -310,11 +312,13 @@ apcupsd_status:
 
 waze_travel_times:
   entities:
-    - sensor.waze_malissa_home_to_work
-    - sensor.waze_malissa_work_to_home
-    - sensor.waze_frank_home_to_work
-    - sensor.waze_frank_work_to_home
-    - sensor.waze_frank_work_to_malissa_work
+    - sensor.waze_frank_to_home
+    - sensor.waze_malissa_to_home
+    # - sensor.waze_malissa_home_to_work
+    # - sensor.waze_malissa_work_to_home
+    # - sensor.waze_frank_home_to_work
+    # - sensor.waze_frank_work_to_home
+    # - sensor.waze_frank_work_to_malissa_work
 
 nzbget:
   entities:

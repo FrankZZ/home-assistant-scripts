@@ -5,9 +5,6 @@
       entity_id:
         binary_sensor.garden_dark
       to: 'on'
-    - platform: time_pattern # check every 5 mins and re-send ON signal, remember: 433MHz is fire and forget
-      minutes: '/5'
-      seconds: 00
   condition:
     condition: state
     entity_id: binary_sensor.garden_dark
@@ -24,9 +21,6 @@
       entity_id:
         binary_sensor.garden_dark
       to: 'off'
-    - platform: time_pattern # check every 5 mins and re-send ON signal, remember: 433MHz is fire and forget
-      minutes: '/5'
-      seconds: 00
   condition:
     condition: state
     entity_id: binary_sensor.garden_dark

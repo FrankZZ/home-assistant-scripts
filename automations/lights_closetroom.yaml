@@ -4,7 +4,6 @@
     - platform: state
       entity_id:
         binary_sensor.closetroom_pir_0
-      to: 'on'
   condition:
     condition: and
     conditions:
@@ -13,6 +12,9 @@
         state: 'off'
       - condition: template
         value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.closetroom_darkness_treshold')|default(0)|int }}"
+      - condition: state
+        entity_id: binary_sensor.closetroom_pir_0
+        state: 'on'
   action:
     - service: light.turn_on
       data_template:

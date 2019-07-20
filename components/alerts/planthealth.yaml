@@ -8,15 +8,15 @@ livingroom_planthealth_yucca_moisture:
   notifiers:
     - telegram
 
-kitchen_planthealth_pancake_moisture:
-  name: Plant Monitoring
-  entity_id: binary_sensor.kitchen_planthealth_pancake_moisture
-  repeat:
-    - 300 # 5 hours
-  message: "De Pannenkoekenplant heeft water nodig."
-  done_message: De Pannenkoekenplant heeft genoeg water.
-  notifiers:
-    - telegram
+# kitchen_planthealth_pancake_moisture:
+#   name: Plant Monitoring
+#   entity_id: binary_sensor.kitchen_planthealth_pancake_moisture
+#   repeat:
+#     - 300 # 5 hours
+#   message: "De Pannenkoekenplant heeft water nodig."
+#   done_message: De Pannenkoekenplant heeft genoeg water.
+#   notifiers:
+#     - telegram
 
 # frank_coming_home_from_work:
 #   name: Vertrekmelding Frank
