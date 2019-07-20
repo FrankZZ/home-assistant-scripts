@@ -128,11 +128,11 @@ views:
         show_header_toggle: false
         title: Afval
         type: entities
+      - type: plant-status
+        entity: plant.livingroom_plant_yucca
+        name: Yucca
       - entities:
           - entity: sensor.bathroom_temp_0_humidity
-          - entity: sensor.bathroom_temp_0_temperature
-          - entity: sensor.livingroom_temp_0_humidity
-          - entity: sensor.livingroom_temp_0_temperature
           - entity: sensor.woonkamer_humidity
           - entity: binary_sensor.livingroom_humidity_too_low
         show_header_toggle: true
