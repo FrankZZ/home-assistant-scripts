@@ -10,6 +10,8 @@ homeassistant:
   customize_domain:
     light:
       assumed_state: false
+  whitelist_external_dirs:
+    - "/tmp"
 
 system_health:
 
@@ -57,12 +59,12 @@ google_assistant:
     light.kitchen_lights:
       name: De Keuken Lamp
       expose: true
-    script.closetroom_heating_on:
-      name: De Kastenkamerverwarming
-      expose: true
-    script.bathroom_heating_on:
-      name: De Badkamerverwarming
-      expose: true
+    # script.closetroom_heating_on:
+    #   name: De Kastenkamerverwarming
+    #   expose: true
+    # script.bathroom_heating_on:
+    #   name: De Badkamerverwarming
+    #   expose: true
 
 # Enables the frontend
 frontend:
@@ -102,9 +104,6 @@ config:
 
 # Discover some devices automatically
 discovery:
-  enable:
-    - homekit
-
 
 # Track the sun
 sun:
@@ -199,6 +198,12 @@ camera:
   - platform: mjpeg
     name: !secret cam1_name
     mjpeg_url: !secret cam1_input
+  - platform: mjpeg
+    name: !secret cam2_name
+    mjpeg_url: !secret cam2_input
+    username: !secret cam2_username
+    password: !secret cam2_password
+    authentication: digest
 
 # ffmpeg:
 

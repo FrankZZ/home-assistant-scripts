@@ -1,149 +1,677 @@
-title: wammes
+title: Home
 views:
-  - icon: mdi:television
-    title: Entertainment
-    id: entertainment
+  - badges:
+      - binary_sensor.scullery_water_0
+      - binary_sensor.bathroom_water_0
+      - binary_sensor.livingroom_smoke_0
+      - binary_sensor.scullery_smoke_0
+      - binary_sensor.attic_gasco_0_gas
+      - binary_sensor.attic_gasco_0_co
+      - sensor.solar_power_production
+      - sensor.main_power_usage
+      - sensor.plex01
     cards:
       - type: vertical-stack
         cards:
-          - type: picture-glance
-            title: Woonkamer TV
-            entities:
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                entity: light.hallway_lights
+                name: Gang
+                icon_height: 32px
+              - type: entity-button
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                entity: light.livingroom_lights
+                name: Woonkamer
+                icon_height: 32px
+              - type: entity-button
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                entity: light.kitchen_lights
+                name: Keuken
+                icon_height: 32px
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                entity: light.upperhallway_lights
+                name: Overloop
+                icon_height: 32px
+              - type: entity-button
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                entity: light.closetroom_lights
+                name: Kastenkamer
+                icon_height: 32px
+              - type: entity-button
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                icon: 'mdi:lightbulb'
+                entity: switch.scullery_power_0
+                name: Achtertuin
+                icon_height: 32px
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                entity: light.guestroom_light_0
+                name: Logeerkamer
+                icon_height: 32px
+              - type: entity-button
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                show_icon: true
+                show_name: true
+                entity: light.attichallway_lights
+                name: Zolder
+                icon_height: 32px
+              - type: entity-button
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                show_icon: true
+                icon: 'mdi:water-pump'
+                show_name: true
+                entity: switch.garage_power_0
+                name: Zwembad
+                icon_height: 32px
+      - entities:
+          - entity: input_text.last_motion
+          - entity: sensor.doorbell
+          - entity: sensor.harmony_livingroom
+          - entity: calendar.malissa_frank
+        show_header_toggle: false
+        title: Algemeen
+        type: entities
+      - entities:
+          - entity: sensor.trash_today
+          - entity: sensor.trash_tomorrow
+          - entity: sensor.trash_gft_nextdate
+          - entity: sensor.trash_papier_nextdate
+          - entity: sensor.trash_plastic_nextdate
+        show_header_toggle: false
+        title: Afval
+        type: entities
+      - entities:
+          - entity: sensor.bathroom_temp_0_humidity
+          - entity: sensor.bathroom_temp_0_temperature
+          - entity: sensor.livingroom_temp_0_humidity
+          - entity: sensor.livingroom_temp_0_temperature
+          - entity: sensor.woonkamer_humidity
+          - entity: binary_sensor.livingroom_humidity_too_low
+        show_header_toggle: true
+        title: temperature_sensors
+        type: entities
+      - entities:
+          - entity: sensor.livingroom_plant_yucca_moisture
+          - entity: sensor.livingroom_plant_yucca_conductivity
+          - entity: binary_sensor.livingroom_planthealth_yucca_moisture
+          - entity: sensor.kitchen_plant_pancake_moisture
+          - entity: sensor.kitchen_plant_pancake_conductivity
+          - entity: binary_sensor.kitchen_planthealth_pancake_moisture
+        show_header_toggle: false
+        title: Plants
+        type: entities
+      - entities:
+          - entity: input_number.bathroom_fan_speed
+          - entity: sensor.bathroom_temp_0_humidity
+          - entity: sensor.bathroom_fan_last_on_humidity
+          - entity: binary_sensor.toilet_occupied
+          - entity: input_number.bathroom_fan_on_diff
+          - entity: input_number.bathroom_fan_off_diff
+        show_header_toggle: true
+        title: Mechanische Ventilatie
+        type: entities
+      - type: picture-entity
+        entity: camera.voortuin
+        show-state: false
+      - entity: camera.woonkamer
+        show-state: false
+        type: picture-entity
+    icon: 'mdi:home-assistant'
+    path: default_view
+    title: default_view
+  - badges:
+      - sensor.zigbee2mqtt_status
+    cards:
+      - entities:
+          - sensor.waze_malissa_home_to_work
+          - sensor.waze_malissa_work_to_home
+          - sensor.waze_frank_home_to_work
+          - sensor.waze_frank_work_to_home
+          - sensor.waze_frank_work_to_malissa_work
+        show_header_toggle: true
+        title: Reistijden
+        type: entities
+      - entities:
+          - sensor.kitchen_pir_0_battery
+          - binary_sensor.kitchen_door_0_battery
+          - sensor.hallway_pir_0_battery
+          - sensor.upperhallway_pir_0_battery
+          - sensor.attichallway_pir_0_battery
+          - sensor.livingroom_pir_0_battery
+          - sensor.scullery_smoke_0_battery
+          - sensor.livingroom_smoke_0_battery
+          - sensor.bathroom_temp_0_battery
+          - sensor.bathroom_temp_0_battery
+          - sensor.closetroom_pir_0_battery
+          - sensor.scullery_water_0_battery
+          - sensor.bathroom_water_0_battery
+          - sensor.bed_tilt_0_battery
+          - sensor.bed_tilt_1_battery
+        show_header_toggle: true
+        title: Zigbee Batterij Status
+        type: entities
+      - entities:
+          - sensor.kitchen_pir_0_linkquality
+          - binary_sensor.kitchen_door_0_linkquality
+          - sensor.hallway_pir_0_linkquality
+          - sensor.attichallway_pir_0_linkquality
+          - sensor.upperhallway_pir_0_linkquality
+          - sensor.scullery_smoke_0_linkquality
+          - sensor.livingroom_smoke_0_linkquality
+          - sensor.garage_power_0_linkquality
+          - sensor.bathroom_temp_0_linkquality
+          - sensor.bathroom_temp_0_linkquality
+          - sensor.scullery_water_0_linkquality
+          - sensor.bathroom_water_0_linkquality
+          - sensor.closetroom_pir_0_linkquality
+          - sensor.bed_tilt_0_linkquality
+          - sensor.bed_tilt_1_linkquality
+        show_header_toggle: true
+        title: Zigbee Signaalsterkte
+        type: entities
+      - entities:
+          - sensor.ups_battery
+          - sensor.ups_battery_voltage
+          - sensor.ups_input_voltage
+          - sensor.ups_internal_temperature
+          - sensor.ups_last_transfer
+          - sensor.ups_load
+          - sensor.ups_output_voltage
+          - sensor.ups_status
+          - sensor.ups_time_left
+          - sensor.ups_time_on_battery
+          - sensor.ups_transfer_count
+          - sensor.ups_transfer_from_battery
+          - sensor.ups_transfer_to_battery
+        show_header_toggle: true
+        title: UPS Status
+        type: entities
+    icon: 'mdi:view-dashboard'
+    path: monitoring_view
+    title: monitoring_view
+  - badges:
+      - binary_sensor.kettle_heating
+      - binary_sensor.kettle_cooled_down
+    cards:
+      - entities:
+          - sensor.hot_water_link
+          - sensor.hot_water_overlay
+          - sensor.hot_water_power
+          - sensor.hot_water_tado_mode
+        show_header_toggle: true
+        title: climate_hot_water
+        type: entities
+      - entity: climate.warm_water
+        type: thermostat
+      - entities:
+          - sensor.bijkeuken_heating
+          - sensor.bijkeuken_humidity
+          - sensor.bijkeuken_link
+          - sensor.bijkeuken_overlay
+          - sensor.bijkeuken_power
+          - sensor.bijkeuken_tado_mode
+          - sensor.bijkeuken_temperature
+        show_header_toggle: true
+        title: climate_bijkeuken
+        type: entities
+      - entity: climate.bijkeuken
+        type: thermostat
+      - entities:
+          - sensor.hal_heating
+          - sensor.hal_humidity
+          - sensor.hal_link
+          - sensor.hal_overlay
+          - sensor.hal_power
+          - sensor.hal_tado_mode
+          - sensor.hal_temperature
+        show_header_toggle: true
+        title: climate_hal
+        type: entities
+      - entity: climate.hal
+        type: thermostat
+      - entities:
+          - sensor.woonkamer_heating
+          - sensor.woonkamer_humidity
+          - sensor.woonkamer_link
+          - sensor.woonkamer_overlay
+          - sensor.woonkamer_power
+          - sensor.woonkamer_tado_mode
+          - sensor.woonkamer_temperature
+        show_header_toggle: true
+        title: climate_woonkamer
+        type: entities
+      - entity: climate.woonkamer
+        type: thermostat
+      - entities:
+          - sensor.kastenkamer_heating
+          - sensor.kastenkamer_humidity
+          - sensor.kastenkamer_link
+          - sensor.kastenkamer_overlay
+          - sensor.kastenkamer_power
+          - sensor.kastenkamer_tado_mode
+          - sensor.kastenkamer_temperature
+        show_header_toggle: true
+        title: climate_kastenkamer
+        type: entities
+      - entity: climate.kastenkamer
+        type: thermostat
+      - entities:
+          - sensor.slaapkamer_heating
+          - sensor.slaapkamer_humidity
+          - sensor.slaapkamer_link
+          - sensor.slaapkamer_overlay
+          - sensor.slaapkamer_power
+          - sensor.slaapkamer_tado_mode
+          - sensor.slaapkamer_temperature
+        show_header_toggle: true
+        title: climate_slaapkamer
+        type: entities
+      - entity: climate.slaapkamer
+        type: thermostat
+      - entities:
+          - sensor.zolder_heating
+          - sensor.zolder_humidity
+          - sensor.zolder_link
+          - sensor.zolder_overlay
+          - sensor.zolder_power
+          - sensor.zolder_tado_mode
+          - sensor.zolder_temperature
+        show_header_toggle: true
+        title: climate_zolder
+        type: entities
+      - entity: climate.zolder
+        type: thermostat
+      - entities:
+          - sensor.logeerkamer_heating
+          - sensor.logeerkamer_humidity
+          - sensor.logeerkamer_link
+          - sensor.logeerkamer_overlay
+          - sensor.logeerkamer_power
+          - sensor.logeerkamer_tado_mode
+          - sensor.logeerkamer_temperature
+        show_header_toggle: true
+        title: climate_logeerkamer
+        type: entities
+      - entity: climate.logeerkamer
+        type: thermostat
+      - entities:
+          - sensor.badkamer_heating
+          - sensor.badkamer_humidity
+          - sensor.badkamer_link
+          - sensor.badkamer_overlay
+          - sensor.badkamer_power
+          - sensor.badkamer_tado_mode
+          - sensor.badkamer_temperature
+        show_header_toggle: true
+        title: climate_badkamer
+        type: entities
+      - entity: climate.badkamer
+        type: thermostat
+    icon: 'mdi:thermostat'
+    path: climate_view
+    title: climate_view
+  - badges:
+      - binary_sensor.frank_home_direction
+      - binary_sensor.malissa_home_direction
+      - sensor.proximity_frank_home_stats_mean
+      - sensor.proximity_malissa_home_stats_mean
+    cards:
+      - entities:
+          - proximity.home
+          - proximity.frank_home
+          - proximity.malissa_home
+          - proximity.frank_work_0
+          - proximity.malissa_work_0_frank
+          - proximity.malissa_work_0_malissa
+          - proximity.malissa_work_1
+        show_header_toggle: true
+        title: Zones
+        type: entities
+      - entities:
+          - input_text.last_motion
+          - sensor.doorbell
+          - sensor.last_doorbell
+          - sensor.bed_tilt_0
+          - sensor.bed_tilt_1
+          - sensor.harmony_livingroom
+          - calendar.malissa_frank
+        show_header_toggle: true
+        title: Algemeen
+        type: entities
+      - entities:
+          - person.frank
+          - person.malissa
+        show_header_toggle: true
+        title: Aanwezigheid
+        type: entities
+    icon: 'mdi:account-multiple'
+    path: presence_view
+    title: presence_view
+  - badges:
+      - sun.sun
+    cards:
+      - entities:
+          - entity: input_select.timeofday
+          - entity: sensor.zigbee2mqtt_status
+          - entity: switch.zigbee2mqtt_permit_join
+          - entity: group.all_automations
+          - entity: input_number.livingroom_minimum_humidity
+        show_header_toggle: true
+        title: Algemeen
+        type: entities
+      - entities:
+          - input_text.trash_announcement_housenumber
+          - input_text.trash_announcement_zipcode
+          - input_datetime.trash_announcement_time
+        show_header_toggle: true
+        title: Afval
+        type: entities
+      - entities:
+          - input_number.livingroom_plant_yucca_moisture_minimum
+          - input_number.livingroom_plant_yucca_conductivity_minimum
+          - input_number.kitchen_plant_pancake_moisture_minimum
+          - input_number.kitchen_plant_pancake_conductivity_minimum
+        show_header_toggle: true
+        title: Planten
+        type: entities
+      - entities:
+          - input_number.bathroom_fan_speed
+          - sensor.bathroom_temp_0_humidity
+          - sensor.bathroom_humidity_stats_mean
+          - sensor.bathroom_fan_last_on_humidity
+          - binary_sensor.bathroom_humidity_rising
+          - binary_sensor.bathroom_humidity_normal
+          - binary_sensor.toilet_occupied
+          - input_number.bathroom_fan_on_diff
+          - input_number.bathroom_fan_off_diff
+        show_header_toggle: true
+        title: Mechanische Ventilatie
+        type: entities
+      - entities:
+          - input_number.upperhallway_timeout
+        show_header_toggle: true
+        title: Overloop Timeout
+        type: entities
+      - entities:
+          - input_number.upperhallway_brightness_morning
+          - input_number.upperhallway_brightness_midday
+          - input_number.upperhallway_brightness_evening
+          - input_number.upperhallway_brightness_night
+          - input_number.upperhallway_brightness_full
+          - input_number.upperhallway_darkness_treshold
+        show_header_toggle: true
+        title: Overloop Lichtsterkte
+        type: entities
+      - entities:
+          - input_number.attichallway_brightness_morning
+          - input_number.attichallway_brightness_midday
+          - input_number.attichallway_brightness_evening
+          - input_number.attichallway_brightness_night
+          - input_number.attichallway_brightness_full
+          - input_number.attichallway_darkness_treshold
+        show_header_toggle: true
+        title: attichallway_brightness_settings
+        type: entities
+      - entities:
+          - input_number.attichallway_timeout
+        show_header_toggle: true
+        title: attichallway_timeout_settings
+        type: entities
+      - entities:
+          - input_number.hallway_brightness_morning
+          - input_number.hallway_brightness_midday
+          - input_number.hallway_brightness_evening
+          - input_number.hallway_brightness_night
+          - input_number.hallway_darkness_treshold
+        show_header_toggle: true
+        title: Gang Lichtsterkte
+        type: entities
+      - entities:
+          - input_number.hallway_timeout
+        show_header_toggle: true
+        title: Gang Timeout
+        type: entities
+      - entities:
+          - input_number.livingroom_darkness_treshold
+        show_header_toggle: true
+        title: Huiskamer Lichtsterkte
+        type: entities
+      - entities:
+          - input_number.livingroom_timeout
+        show_header_toggle: true
+        title: livingroom_timeout_settings
+        type: entities
+      - entities:
+          - input_number.kitchen_brightness_morning
+          - input_number.kitchen_brightness_midday
+          - input_number.kitchen_brightness_evening
+          - input_number.kitchen_brightness_night
+          - input_number.kitchen_darkness_treshold
+        show_header_toggle: true
+        title: kitchen_brightness_settings
+        type: entities
+      - entities:
+          - input_number.kitchen_timeout
+        show_header_toggle: true
+        title: kitchen_timeout_settings
+        type: entities
+      - entities:
+          - input_number.closetroom_brightness_morning
+          - input_number.closetroom_brightness_midday
+          - input_number.closetroom_brightness_evening
+          - input_number.closetroom_brightness_night
+          - input_number.closetroom_darkness_treshold
+        show_header_toggle: true
+        title: closetroom_brightness_settings
+        type: entities
+      - entities:
+          - input_number.closetroom_timeout
+        show_header_toggle: true
+        title: closetroom_timeout_settings
+        type: entities
+    icon: 'mdi:wrench'
+    path: settings_view
+    title: settings_view
+  - badges: []
+    cards:
+      - entity: camera.woonkamer
+        type: picture-entity
+      - entity: camera.voortuin
+        type: picture-entity
+    icon: 'mdi:cctv'
+    path: camera_view
+    title: camera_view
+  - cards:
+      - cards:
+          - entities:
               - entity: switch.livingroom_tv_input_cable
-                icon: mdi:television-classic
+                icon: 'mdi:television-classic'
               - entity: switch.livingroom_tv_input_chromecast
-                icon: mdi:cast
+                icon: 'mdi:cast'
               - entity: switch.livingroom_tv_input_ps4
-                icon: mdi:playstation
-            state_image:
-              "PowerOff": "/local/images/power_off.png"
-              "PS4": "/local/images/playstation_logo.png"
-              "Chromecast": "/local/images/chromecast_logo.png"
-              "TV": "/local/images/cable_logo.jpg"
+                icon: 'mdi:playstation'
             entity: sensor.harmony_livingroom
-          - type: conditional
+            state_image:
+              Chromecast: /local/images/chromecast_logo.png
+              PS4: /local/images/playstation_logo.png
+              PowerOff: /local/images/power_off.png
+              TV: /local/images/cable_logo.jpg
+            title: Woonkamer TV
+            type: picture-glance
+          - card:
+              cards:
+                - card:
+                    entity: sensor.harmony_livingroom
+                    hold_action:
+                      action: none
+                    icon: 'mdi:play'
+                    show_icon: true
+                    show_name: false
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        command: Play
+                        device: Arris DVR
+                        entity_id: remote.livingroom
+                    type: entity-button
+                  conditions:
+                    - entity: sensor.harmony_livingroom
+                      state: TV
+                  type: conditional
+                - card:
+                    entity: sensor.harmony_livingroom
+                    hold_action:
+                      action: none
+                    icon: 'mdi:pause'
+                    show_icon: true
+                    show_name: false
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        command: Pause
+                        device: Arris DVR
+                        entity_id: remote.livingroom
+                    type: entity-button
+                  conditions:
+                    - entity: sensor.harmony_livingroom
+                      state: TV
+                  type: conditional
+                - card:
+                    entity: sensor.harmony_livingroom
+                    hold_action:
+                      action: none
+                    icon: 'mdi:play'
+                    show_icon: true
+                    show_name: false
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        command: Play
+                        device: LG TV
+                        entity_id: remote.livingroom
+                    type: entity-button
+                  conditions:
+                    - entity: sensor.harmony_livingroom
+                      state: Chromecast
+                  type: conditional
+                - card:
+                    entity: sensor.harmony_livingroom
+                    hold_action:
+                      action: none
+                    icon: 'mdi:pause'
+                    show_icon: true
+                    show_name: false
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        command: Pause
+                        device: LG TV
+                        entity_id: remote.livingroom
+                    type: entity-button
+                  conditions:
+                    - entity: sensor.harmony_livingroom
+                      state: Chromecast
+                  type: conditional
+                - entity: sensor.harmony_livingroom
+                  hold_action:
+                    action: none
+                  icon: 'mdi:volume-low'
+                  show_icon: true
+                  show_name: false
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      command: VolumeDown
+                      device: Logitech Amp
+                      entity_id: remote.livingroom
+                  type: entity-button
+                - entity: sensor.harmony_livingroom
+                  hold_action:
+                    action: none
+                  icon: 'mdi:volume-mute'
+                  show_icon: true
+                  show_name: false
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      command: Mute
+                      device: Logitech Amp
+                      entity_id: remote.livingroom
+                  type: entity-button
+                - entity: sensor.harmony_livingroom
+                  hold_action:
+                    action: none
+                  icon: 'mdi:volume-high'
+                  show_icon: true
+                  show_name: false
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      command: VolumeUp
+                      device: Logitech Amp
+                      entity_id: remote.livingroom
+                  type: entity-button
+              type: horizontal-stack
             conditions:
               - entity: sensor.harmony_livingroom
-                state_not: 'PowerOff'
-            card:
-              type: horizontal-stack
-              cards:
-                - type: conditional
-                  conditions:
-                   - entity: sensor.harmony_livingroom
-                     state: 'TV'
-                  card:
-                    type: entity-button
-                    tap_action:
-                      action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.livingroom
-                        device: "Arris DVR"
-                        command: "Play"
-                    hold_action:
-                      action: none
-                    show_icon: true
-                    show_name: false
-                    entity: sensor.harmony_livingroom
-                    icon: 'mdi:play'
-                - type: conditional
-                  conditions:
-                   - entity: sensor.harmony_livingroom
-                     state: 'TV'
-                  card:
-                    type: entity-button
-                    tap_action:
-                      action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.livingroom
-                        device: "Arris DVR"
-                        command: "Pause"
-                    hold_action:
-                      action: none
-                    show_icon: true
-                    show_name: false
-                    entity: sensor.harmony_livingroom
-                    icon: 'mdi:pause'
-                # for chromecast, use play&pause of TV
-                - type: conditional
-                  conditions:
-                   - entity: sensor.harmony_livingroom
-                     state: 'Chromecast'
-                  card:
-                    type: entity-button
-                    tap_action:
-                      action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.livingroom
-                        device: "LG TV"
-                        command: "Play"
-                    hold_action:
-                      action: none
-                    show_icon: true
-                    show_name: false
-                    entity: sensor.harmony_livingroom
-                    icon: 'mdi:play'
-                - type: conditional
-                  conditions:
-                   - entity: sensor.harmony_livingroom
-                     state: 'Chromecast'
-                  card:
-                    type: entity-button
-                    tap_action:
-                      action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.livingroom
-                        device: "LG TV"
-                        command: "Pause"
-                    hold_action:
-                      action: none
-                    show_icon: true
-                    show_name: false
-                    entity: sensor.harmony_livingroom
-                    icon: 'mdi:pause'
-                - type: entity-button
-                  tap_action:
-                    action: call-service
-                    service: remote.send_command
-                    service_data:
-                      entity_id: remote.livingroom
-                      device: "Logitech Amp"
-                      command: "VolumeDown"
-                  hold_action:
-                    action: none
-                  show_icon: true
-                  show_name: false
-                  entity: sensor.harmony_livingroom
-                  icon: 'mdi:volume-low'
-                - type: entity-button
-                  tap_action:
-                    action: call-service
-                    service: remote.send_command
-                    service_data:
-                      entity_id: remote.livingroom
-                      device: "Logitech Amp"
-                      command: "Mute"
-                  hold_action:
-                    action: none
-                  show_icon: true
-                  show_name: false
-                  entity: sensor.harmony_livingroom
-                  icon: 'mdi:volume-mute'
-                - type: entity-button
-                  tap_action:
-                    action: call-service
-                    service: remote.send_command
-                    service_data:
-                      entity_id: remote.livingroom
-                      device: "Logitech Amp"
-                      command: "VolumeUp"
-                  hold_action:
-                    action: none
-                  show_icon: true
-                  show_name: false
-                  entity: sensor.harmony_livingroom
-                  icon: 'mdi:volume-high'
+                state_not: PowerOff
+            type: conditional
+        type: vertical-stack
+    icon: 'mdi:television'
+    id: entertainment
+    title: Entertainment

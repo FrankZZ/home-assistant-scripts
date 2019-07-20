@@ -51,23 +51,33 @@
         gw_mac: !secret aqara_gateway_mac
         ringtone_id: 10
         ringtone_vol: 15
+    - service: camera.snapshot
+      data:
+        entity_id: camera.voordeur
+        filename: "/tmp/last_doorbell.jpg"
+    - service: telegram_bot.send_photo
+      data:
+        file: "/tmp/last_doorbell.jpg"
+        caption: "Deurbel - Er staat iemand voor de deur!"
+        target:
+          - !secret telegram_frank_id
+          - !secret telegram_malissa_id
     - service: light.turn_on
       data:
         entity_id: !secret aqara_gateway_light
         brightness_pct: 100
         color_name: blue
-    - service: telegram_bot.send_photo
-      data_template:
-        url: "{{ states('sensor.http_base_url') }}{{ state_attr('camera.woonkamer', 'entity_picture') }}"
-        caption: "Deurbel - Er staat iemand voor de deur!"
-        target:
-          - !secret telegram_frank_id
-          - !secret telegram_malissa_id
-    - service: notify.livingroom_tv
-      data:
-        message: "Er staat iemand voor de deur!"
+      # data_template:
+      #   url: "{{ states('sensor.http_base_url') }}{{ state_attr('camera.voortuin', 'entity_picture') }}"
+      #   caption: "Deurbel - Er staat iemand voor de deur!"
+      #   target:
+      #     - !secret telegram_frank_id
+      #     - !secret telegram_malissa_id
+    # - service: notify.livingroom_tv
+    #   data:
+    #     message: "Er staat iemand voor de deur!"
     - delay:
-        seconds: 5
+        seconds: 2
     - service: xiaomi_aqara.play_ringtone
       data:
         gw_mac: !secret aqara_gateway_mac
