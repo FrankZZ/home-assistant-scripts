@@ -139,16 +139,6 @@ views:
         title: temperature_sensors
         type: entities
       - entities:
-          - entity: sensor.livingroom_plant_yucca_moisture
-          - entity: sensor.livingroom_plant_yucca_conductivity
-          - entity: binary_sensor.livingroom_planthealth_yucca_moisture
-          - entity: sensor.kitchen_plant_pancake_moisture
-          - entity: sensor.kitchen_plant_pancake_conductivity
-          - entity: binary_sensor.kitchen_planthealth_pancake_moisture
-        show_header_toggle: false
-        title: Plants
-        type: entities
-      - entities:
           - entity: input_number.bathroom_fan_speed
           - entity: sensor.bathroom_temp_0_humidity
           - entity: sensor.bathroom_fan_last_on_humidity
