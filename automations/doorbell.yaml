@@ -35,6 +35,31 @@
       data:
         entity_id: light.hallway_lights
 
+- alias: "Stuur bericht bij activiteit voordeur"
+  trigger:
+    - platform: event
+      event_type: dahua_event_received
+      event_data:
+        code: CrossLineDetection
+        action: Start
+  action:
+    - service: camera.snapshot
+      data:
+        entity_id: camera.voortuin
+        filename: "/tmp/last_activity_frontdoor.jpg"
+    - service: telegram_bot.send_photo
+      data:
+        file: "/tmp/last_activity_frontdoor.jpg"
+        caption: "Activiteit bij de voordeur!"
+        target:
+          - !secret telegram_frank_id
+          - !secret telegram_malissa_id
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: 10001
+        ringtone_vol: 30
+
 - alias: "Stuur bericht bij aanbellen voordeur"
   id: doorbell_pressed
   trigger:
@@ -50,11 +75,13 @@
       data:
         gw_mac: !secret aqara_gateway_mac
         ringtone_id: 10
-        ringtone_vol: 15
+        ringtone_vol: 30
     - service: camera.snapshot
       data:
-        entity_id: camera.voordeur
+        entity_id: camera.voortuin
         filename: "/tmp/last_doorbell.jpg"
+    # - delay:
+    #     seconds: 3
     - service: telegram_bot.send_photo
       data:
         file: "/tmp/last_doorbell.jpg"
@@ -67,6 +94,8 @@
         entity_id: !secret aqara_gateway_light
         brightness_pct: 100
         color_name: blue
+    - delay:
+        seconds: 5
       # data_template:
       #   url: "{{ states('sensor.http_base_url') }}{{ state_attr('camera.voortuin', 'entity_picture') }}"
       #   caption: "Deurbel - Er staat iemand voor de deur!"
@@ -76,8 +105,6 @@
     # - service: notify.livingroom_tv
     #   data:
     #     message: "Er staat iemand voor de deur!"
-    - delay:
-        seconds: 2
     - service: xiaomi_aqara.play_ringtone
       data:
         gw_mac: !secret aqara_gateway_mac

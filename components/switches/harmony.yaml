@@ -35,3 +35,15 @@
         service: remote.turn_off
         data:
           entity_id: remote.livingroom
+
+    livingroom_tv_input_music:
+      value_template: "{{ is_state_attr('remote.livingroom', 'current_activity', 'Music') }}"
+      turn_on:
+        service: remote.turn_on
+        data:
+          entity_id: remote.livingroom
+          activity: 'Music'
+      turn_off:
+        service: remote.turn_off
+        data:
+          entity_id: remote.livingroom

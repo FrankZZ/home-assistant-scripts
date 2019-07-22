@@ -18,6 +18,33 @@
       data:
         entity_id: remote.livingroom
 
+- alias: "Muziek aan als Harmony op Music is gezet"
+  trigger:
+    - platform: state
+      entity_id: sensor.harmony_livingroom
+      to: 'Music'
+  # condition:
+  #   condition: template
+  #   value_template: "{{ is_state_attr('remote.livingroom', 'current_activity', 'Chromecast') }}"
+  action:
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.spotify
+        source: "SNAPCAST01"
+    - service: media_player.media_play
+      data:
+        entity_id: media_player.spotify
+
+- alias: "Muziek uit als Harmony van Music uit is gezet"
+  trigger:
+    - platform: state
+      entity_id: sensor.harmony_livingroom
+      from: 'Music'
+  action:
+    - service: media_player.media_pause
+      data:
+        entity_id: media_player.spotify
+
 - alias: "Notify dat TV uit gaat over 2 minuten geen beweging"
   trigger:
     - platform: state
