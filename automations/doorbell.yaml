@@ -54,6 +54,18 @@
         target:
           - !secret telegram_frank_id
           - !secret telegram_malissa_id
+
+- alias: "Speel geluid bij activiteit voordeur"
+  trigger:
+    - platform: event
+      event_type: dahua_event_received
+      event_data:
+        code: CrossLineDetection
+        action: Start
+  condition:
+    condition: template
+    value_template: "{{ not is_state('input_select.timeofday', 'evening') and not is_state('input_select.timeofday', 'night') }}"
+  action:
     - service: xiaomi_aqara.play_ringtone
       data:
         gw_mac: !secret aqara_gateway_mac

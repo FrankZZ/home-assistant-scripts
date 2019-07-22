@@ -1,0 +1,20 @@
+- alias: "Pomp zwembad aan"
+  initial_state: on
+  trigger:
+    - platform: time
+      at: '12:00:00'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: "switch.garage_power_0"
+
+- alias: "Pomp zwembad uit"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: input_select.timeofday
+      to: 'evening'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: "switch.garage_power_0"

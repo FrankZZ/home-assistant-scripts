@@ -583,6 +583,23 @@ views:
                     entity: sensor.harmony_livingroom
                     hold_action:
                       action: none
+                    icon: 'mdi:skip-previous'
+                    show_icon: true
+                    show_name: false
+                    tap_action:
+                      action: call-service
+                      service: media_player.media_previous_track
+                      service_data:
+                        entity_id: media_player.spotify
+                    type: entity-button
+                  conditions:
+                    - entity: sensor.harmony_livingroom
+                      state: Music
+                  type: conditional
+                - card:
+                    entity: sensor.harmony_livingroom
+                    hold_action:
+                      action: none
                     icon: 'mdi:play'
                     show_icon: true
                     show_name: false
@@ -606,23 +623,6 @@ views:
                     tap_action:
                       action: call-service
                       service: media_player.media_pause
-                      service_data:
-                        entity_id: media_player.spotify
-                    type: entity-button
-                  conditions:
-                    - entity: sensor.harmony_livingroom
-                      state: Music
-                  type: conditional
-                - card:
-                    entity: sensor.harmony_livingroom
-                    hold_action:
-                      action: none
-                    icon: 'mdi:skip-previous'
-                    show_icon: true
-                    show_name: false
-                    tap_action:
-                      action: call-service
-                      service: media_player.media_previous_track
                       service_data:
                         entity_id: media_player.spotify
                     type: entity-button
@@ -688,7 +688,7 @@ views:
                 - entity: sensor.harmony_livingroom
                   hold_action:
                     action: none
-                  icon: 'mdi:volume-minus'
+                  icon: 'mdi:volume-medium'
                   show_icon: true
                   show_name: false
                   tap_action:
@@ -702,7 +702,7 @@ views:
                 - entity: sensor.harmony_livingroom
                   hold_action:
                     action: none
-                  icon: 'mdi:volume-mute'
+                  icon: 'mdi:volume-off'
                   show_icon: true
                   show_name: false
                   tap_action:
@@ -716,7 +716,7 @@ views:
                 - entity: sensor.harmony_livingroom
                   hold_action:
                     action: none
-                  icon: 'mdi:volume-plus'
+                  icon: 'mdi:volume-high'
                   show_icon: true
                   show_name: false
                   tap_action:

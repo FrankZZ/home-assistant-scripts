@@ -204,8 +204,15 @@ camera:
     username: !secret cam2_username
     password: !secret cam2_password
     authentication: digest
+  # - platform: onvif
+  #   name: !secret cam2_name
+  #   host: !secret cam2_ip
+  #   profile: 2
+  #   port: 80
+  #   username: !secret cam2_username
+  #   password: !secret cam2_password
 
-# ffmpeg:
+ffmpeg:
 
 mqtt:
   discovery: false
