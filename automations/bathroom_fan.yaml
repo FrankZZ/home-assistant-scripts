@@ -83,14 +83,16 @@
 - alias: "toilet fan start high"
   trigger:
     - platform: state
-      entity_id: binary_sensor.toilet_occupied
+      entity_id: binary_sensor.toilet_pir_0
       from: "on"
       to: "off"
       for:
-        seconds: 30
+        seconds: 90
   condition:
     condition: and
     conditions:
+      - condition: template
+        value_template: "{{ is_state('binary_sensor.toilet_occupied', 'on') }}"
       - condition: template
         value_template: "{{ is_state('input_number.bathroom_fan_last_on_humidity', '0.0') }}"
       - condition: template
