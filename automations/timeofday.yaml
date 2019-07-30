@@ -2,7 +2,7 @@
   initial_state: on
   trigger:
     platform: time
-    at: '23:30:00'
+    at: '23:42:22'
   action:
     service: input_select.select_option
     data:
@@ -13,7 +13,7 @@
   initial_state: on
   trigger:
     platform: time
-    at: '05:15'
+    at: '05:22'
   action:
     service: input_select.select_option
     data:

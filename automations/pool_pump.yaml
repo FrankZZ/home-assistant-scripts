@@ -1,8 +1,9 @@
 - alias: "Pomp zwembad aan"
   initial_state: on
   trigger:
-    - platform: time
-      at: '12:00:00'
+    - platform: state
+      entity_id: input_select.timeofday
+      to: 'midday'
   action:
     - service: switch.turn_on
       data:

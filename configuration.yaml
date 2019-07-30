@@ -151,6 +151,7 @@ logbook:
 tts:
   - platform: google_translate
 
+input_boolean: !include_dir_merge_named components/input_booleans
 input_number: !include_dir_merge_named components/input_numbers
 input_datetime: !include_dir_merge_named components/input_datetimes
 input_text: !include_dir_merge_named components/input_texts
