@@ -90,6 +90,10 @@
     - service: light.turn_on
       data:
         entity_id: light.hallway_lights
+    - service: timer.start
+      data:
+        entity_id: timer.hallway
+        duration: 18
 
 - alias: "Stuur bericht bij activiteit voordeur"
   trigger:
