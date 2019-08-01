@@ -3,8 +3,17 @@
   trigger:
     - platform: state
       entity_id:
-        binary_sensor.livingroom_pir_0,
+        binary_sensor.livingroom_pir_0
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id:
         binary_sensor.kitchen_pir_0
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id:
+        binary_sensor.hallway_pir_0
       from: 'off'
       to: 'on'
   condition:
@@ -23,7 +32,7 @@
         caption: "ALARM: Activity at {{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }}"
         target:
           - !secret telegram_frank_id
-          # - !secret telegram_malissa_id
+          - !secret telegram_malissa_id
 
 - alias: "Alarm bij beweging maar niemand is thuis"
   trigger:
