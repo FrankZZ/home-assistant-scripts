@@ -27,7 +27,7 @@
         entity_id: camera.woonkamer
         filename: "/tmp/last_activity_woonkamer.jpg"
     - service: telegram_bot.send_photo
-      data:
+      data_template:
         file: "/tmp/last_activity_woonkamer.jpg"
         caption: "ALARM: Activity at {{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }}"
         target:
