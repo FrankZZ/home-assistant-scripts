@@ -102,8 +102,9 @@
     - delay:
         seconds: 10
     - service: light.turn_on
-      data:
+      data_template:
         entity_id: light.hallway_lights
+        brightness_pct: "{{ states('input_number.hallway_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
     - service: timer.start
       data:
         entity_id: timer.hallway
@@ -144,7 +145,7 @@
       data:
         gw_mac: !secret aqara_gateway_mac
         ringtone_id: 10001
-        ringtone_vol: 30
+        ringtone_vol: 80
 
 - alias: "Stuur bericht bij aanbellen voordeur"
   id: doorbell_pressed
