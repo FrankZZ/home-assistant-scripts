@@ -4,13 +4,15 @@
     - platform: state
       entity_id:
         binary_sensor.upperhallway_pir_0
-      to: 'on'
   condition:
     condition: and
     conditions:
       - condition: state
         entity_id: light.upperhallway_lights
         state: 'off'
+      - condition: state
+        entity_id: binary_sensor.upperhallway_pir_0
+        state: 'on'
       - condition: or
         conditions:
           - condition: template
@@ -18,7 +20,7 @@
           - condition: template
             value_template: "{{ is_state('input_select.timeofday', 'night') }}"
           - condition: template
-            value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.kitchen_darkness_treshold')|default(0)|int }}"
+            value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.upperhallway_darkness_treshold')|default(0)|int }}"
   action:
     - service: light.turn_on
       data_template:

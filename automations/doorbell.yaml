@@ -68,7 +68,21 @@
       data:
         gw_mac: !secret aqara_gateway_mac
         ringtone_id: "0"
-        ringtone_vol: 40
+        ringtone_vol: 100
+    - delay:
+        seconds: 30
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: "0"
+        ringtone_vol: 100
+    - delay:
+        seconds: 30
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret aqara_gateway_mac
+        ringtone_id: "0"
+        ringtone_vol: 100
 
 - alias: "Ganglicht bij aanbellen voordeur"
   trigger:

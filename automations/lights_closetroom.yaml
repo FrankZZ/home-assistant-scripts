@@ -7,19 +7,38 @@
   condition:
     condition: and
     conditions:
-      - condition: state
-        entity_id: light.closetroom_lights
-        state: 'off'
       - condition: template
         value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.closetroom_darkness_treshold')|default(0)|int }}"
       - condition: state
         entity_id: binary_sensor.closetroom_pir_0
         state: 'on'
+      - condition: state
+        entity_id: light.closetroom_lights
+        state: 'off'
   action:
     - service: light.turn_on
       data_template:
         entity_id: "light.closetroom_lights"
         brightness_pct: "{{ states('input_number.closetroom_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
+    - service: timer.cancel
+      entity_id: timer.closetroom
+
+- alias: "Licht Kastenkamer blijft aan bij beweging als het donker is buiten"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id:
+        binary_sensor.closetroom_pir_0
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.closetroom_lights
+        state: 'on'
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.closetroom_darkness_treshold')|default(0)|int+10 }}"
+  action:
     - service: timer.cancel
       entity_id: timer.closetroom
 
@@ -45,25 +64,6 @@
       data:
         entity_id: timer.closetroom
         duration: 300
-
-- alias: "Licht Kastenkamer blijft aan bij beweging als het donker is buiten"
-  initial_state: on
-  trigger:
-    - platform: state
-      entity_id:
-        binary_sensor.closetroom_pir_0
-      to: 'on'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: light.closetroom_lights
-        state: 'on'
-      - condition: template
-        value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.closetroom_darkness_treshold')|default(0)|int+10 }}"
-  action:
-    - service: timer.cancel
-      entity_id: timer.closetroom
 
 - alias: Licht Kastenkamer uit na configurabele tijd geen beweging
   trigger:

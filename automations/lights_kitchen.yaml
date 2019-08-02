@@ -4,13 +4,15 @@
     - platform: state
       entity_id:
         binary_sensor.kitchen_pir_0
-      to: 'on'
   condition:
     condition: and
     conditions:
       - condition: state
         entity_id: light.kitchen_lights
         state: 'off'
+      - condition: state
+        entity_id: binary_sensor.kitchen_pir_0
+        state: 'on'
       - condition: or
         conditions:
           - condition: template
