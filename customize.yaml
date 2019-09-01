@@ -197,7 +197,7 @@ group.bathroom_fan_settings:
 sensor.bathroom_fan_last_on_humidity:
   friendly_name: Gestart bij luchtvochtigheid
 
-sensor.bathroom_humidity_stats_mean:
+sensor.bathroom_humidity_stats:
   friendly_name: Gemiddelde luchtvochtigheid
 
 binary_sensor.bathroom_humidity_rising:

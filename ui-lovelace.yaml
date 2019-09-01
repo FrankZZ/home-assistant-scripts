@@ -415,7 +415,7 @@ views:
       - entities:
           - input_number.bathroom_fan_speed
           - sensor.bathroom_temp_0_humidity
-          - sensor.bathroom_humidity_stats_mean
+          - sensor.bathroom_humidity_stats
           - sensor.bathroom_fan_last_on_humidity
           - binary_sensor.bathroom_humidity_rising
           - binary_sensor.bathroom_humidity_normal

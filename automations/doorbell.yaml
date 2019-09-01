@@ -21,6 +21,11 @@
         binary_sensor.kitchen_door_0
       from: 'off'
       to: 'on'
+    - platform: state
+      entity_id:
+        binary_sensor.hallway_door_0
+      from: 'off'
+      to: 'on'
   condition:
     condition: and
     conditions:
@@ -54,6 +59,16 @@
     - platform: state
       entity_id:
         binary_sensor.hallway_pir_0
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id:
+        binary_sensor.kitchen_door_0
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id:
+        binary_sensor.hallway_door_0
       from: 'off'
       to: 'on'
   condition:

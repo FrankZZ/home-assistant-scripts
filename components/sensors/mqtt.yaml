@@ -396,3 +396,27 @@
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes_topic: "zigbee2mqtt/bed_tilt_1"
+
+- platform: "mqtt"
+  name: bathroom_switch_0
+  state_topic: "zigbee2mqtt/bathroom_switch_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:toggle-switch"
+  value_template: "{{ value_json.click }}"
+  json_attributes_topic: "zigbee2mqtt/bathroom_switch_0"
+
+- platform: mqtt
+  name: bathroom_switch_0_battery
+  state_topic: "zigbee2mqtt/bathroom_switch_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  value_template: "{{ value_json.battery|int }}"
+  json_attributes_topic: "zigbee2mqtt/bathroom_switch_0"
+
+- platform: mqtt
+  name: bathroom_switch_0_linkquality
+  state_topic: "zigbee2mqtt/bathroom_switch_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
+  json_attributes_topic: "zigbee2mqtt/bathroom_switch_0"

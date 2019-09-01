@@ -1,3 +1,36 @@
+- alias: "badkamer fan on request low"
+  trigger:
+    - platform: state
+      entity_id: sensor.bathroom_switch_0
+      to: "single"
+  action:
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.bathroom_fan_speed
+        value: "1"
+
+- alias: "badkamer fan on request high"
+  trigger:
+    - platform: state
+      entity_id: sensor.bathroom_switch_0
+      to: "double"
+  action:
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.bathroom_fan_speed
+        value: "2"
+
+- alias: "badkamer fan off request"
+  trigger:
+    - platform: state
+      entity_id: sensor.bathroom_switch_0
+      to: "long"
+  action:
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.bathroom_fan_speed
+        value: "0"
+
 - alias: "badkamer fan start slow humidity"
   trigger:
     - platform: state
@@ -15,7 +48,7 @@
     - service: input_number.set_value
       data_template:
         entity_id: input_number.bathroom_fan_last_on_humidity
-        value: "{{ state_attr('sensor.bathroom_humidity_stats_mean', 'min_value') | int }}"
+        value: "{{ state_attr('sensor.bathroom_humidity_stats', 'min_value') | int }}"
     - service: input_number.set_value
       data:
         entity_id: input_number.bathroom_fan_speed

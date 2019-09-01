@@ -2,11 +2,11 @@
   sensors:
     bathroom_humidity_rising:
       entity_id:
-        - sensor.bathroom_humidity_stats_mean
+        - sensor.bathroom_humidity_stats
         - sensor.bathroom_temp_0_humidity
         - input_number.bathroom_fan_on_diff
       value_template: >-
-        {{ (state_attr('sensor.bathroom_humidity_stats_mean', 'max_value') | default(0) | int - state_attr('sensor.bathroom_humidity_stats_mean', 'min_value') | default(0) | int) > states('input_number.bathroom_fan_on_diff') | default(0) | int and state_attr('sensor.bathroom_humidity_stats_mean', 'change') | int >= 0 }}
+        {{ (state_attr('sensor.bathroom_humidity_stats', 'max_value') | default(0) | int - state_attr('sensor.bathroom_humidity_stats', 'min_value') | default(0) | int) > states('input_number.bathroom_fan_on_diff') | default(0) | int and state_attr('sensor.bathroom_humidity_stats', 'change') | int >= 0 }}
 
     bathroom_humidity_normal:
       entity_id:
