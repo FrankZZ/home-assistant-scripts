@@ -37,7 +37,7 @@ safety_sensors:
     - binary_sensor.livingroom_smoke_0
     - binary_sensor.scullery_smoke_0
     - binary_sensor.attic_gasco_0_gas
-    - binary_sensor.attic_gasco_0_co 
+    - binary_sensor.attic_gasco_0_co
 
 lux_sensors:
   entities:
@@ -389,8 +389,8 @@ presence_view:
   view: yes
   entities:
     - group.all_proximities
-    - sensor.proximity_frank_home_stats_mean
-    - sensor.proximity_malissa_home_stats_mean
+    - sensor.proximity_frank_home_stats
+    - sensor.proximity_malissa_home_stats
     - binary_sensor.frank_home_direction
     - binary_sensor.malissa_home_direction
     - group.default_generic
