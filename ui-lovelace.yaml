@@ -101,9 +101,8 @@ views:
               - entity: switch.garage_power_0
                 hold_action:
                   action: more-info
-                icon: 'mdi:water-pump'
                 icon_height: 32px
-                name: Zwembad
+                name: Lichtslang Tuin
                 show_icon: true
                 show_name: true
                 tap_action:

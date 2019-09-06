@@ -1,5 +1,5 @@
 - alias: "Pomp zwembad aan"
-  initial_state: on
+  initial_state: off
   trigger:
     - platform: state
       entity_id: input_select.timeofday
@@ -10,7 +10,7 @@
         entity_id: "switch.garage_power_0"
 
 - alias: "Pomp zwembad uit"
-  initial_state: on
+  initial_state: off
   trigger:
     - platform: state
       entity_id: input_select.timeofday
