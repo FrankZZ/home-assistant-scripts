@@ -1,25 +1,35 @@
-livingroom_plant_yucca:
+plant_0:
   sensors:
-    moisture: sensor.livingroom_plant_yucca_moisture
-    battery: sensor.livingroom_plant_yucca_battery
-    temperature: sensor.livingroom_plant_yucca_temperature
-    conductivity: sensor.livingroom_plant_yucca_conductivity
-    brightness: sensor.livingroom_plant_yucca_light_intensity
-  min_moisture: 30
-  max_moisture: 65
-  min_battery: 25
-  min_conductivity: 250
-  min_temperature: 15
+    moisture: sensor.plant_0_moisture
+    battery: sensor.plant_0_battery
+    temperature: sensor.plant_0_temperature
+    conductivity: sensor.plant_0_fertility
+    brightness: sensor.plant_0_illuminance
+  min_battery: 5
 
-kitchen_plant_pancake:
+plant_1:
   sensors:
-    moisture: sensor.kitchen_plant_pancake_moisture
-    battery: sensor.kitchen_plant_pancake_battery
-    temperature: sensor.kitchen_plant_pancake_temperature
-    conductivity: sensor.kitchen_plant_pancake_conductivity
-    brightness: sensor.kitchen_plant_pancake_light_intensity
-  min_moisture: 30
-  max_moisture: 65
-  min_battery: 25
-  min_conductivity: 250
-  min_temperature: 15
+    moisture: sensor.plant_1_moisture
+    battery: sensor.plant_1_battery
+    temperature: sensor.plant_1_temperature
+    conductivity: sensor.plant_1_fertility
+    brightness: sensor.plant_1_illuminance
+  min_battery: 5
+
+plant_2:
+  sensors:
+    moisture: sensor.plant_2_moisture
+    battery: sensor.plant_2_battery
+    temperature: sensor.plant_2_temperature
+    conductivity: sensor.plant_2_fertility
+    brightness: sensor.plant_2_illuminance
+  min_battery: 5
+
+plant_3:
+  sensors:
+    moisture: sensor.plant_3_moisture
+    battery: sensor.plant_3_battery
+    temperature: sensor.plant_3_temperature
+    conductivity: sensor.plant_3_fertility
+    brightness: sensor.plant_3_illuminance
+  min_battery: 5

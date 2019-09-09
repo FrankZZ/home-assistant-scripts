@@ -1,41 +1,41 @@
-- platform: template
-  sensors:
-    livingroom_planthealth_yucca_moisture:
-      friendly_name: "Yucca water"
-      entity_id:
-        - sensor.livingroom_plant_yucca_moisture
-        - input_number.livingroom_plant_yucca_moisture_minimum
-      delay_on:
-        minutes: 30
-      value_template: "{{ states('sensor.livingroom_plant_yucca_moisture')|int < states('input_number.livingroom_plant_yucca_moisture_minimum')|int }}"
-      icon_template: "{{ 'mdi:alert-circle' if is_state('binary_sensor.livingroom_planthealth_yucca_moisture', 'on') else 'mdi:check-circle' }}"
+# - platform: template
+#   sensors:
+#     livingroom_planthealth_yucca_moisture:
+#       friendly_name: "Yucca water"
+#       entity_id:
+#         - sensor.livingroom_plant_yucca_moisture
+#         - input_number.livingroom_plant_yucca_moisture_minimum
+#       delay_on:
+#         minutes: 30
+#       value_template: "{{ states('sensor.livingroom_plant_yucca_moisture')|int < states('input_number.livingroom_plant_yucca_moisture_minimum')|int }}"
+#       icon_template: "{{ 'mdi:alert-circle' if is_state('binary_sensor.livingroom_planthealth_yucca_moisture', 'on') else 'mdi:check-circle' }}"
 
-    livingroom_planthealth_yucca_conductivity:
-      friendly_name: "Yucca voeding"
-      entity_id:
-        - sensor.livingroom_plant_yucca_conductivity
-        - input_number.livingroom_plant_yucca_conductivity_minimum
-      value_template: "{{ states('sensor.livingroom_plant_yucca_conductivity')|int < states('input_number.livingroom_plant_yucca_conductivity_minimum')|int }}"
-      delay_on:
-        minutes: 30
-      icon_template: "{{ 'mdi:alert-circle' if is_state('binary_sensor.livingroom_planthealth_yucca_conductivity', 'on') else 'mdi:check-circle' }}"
+#     livingroom_planthealth_yucca_conductivity:
+#       friendly_name: "Yucca voeding"
+#       entity_id:
+#         - sensor.livingroom_plant_yucca_conductivity
+#         - input_number.livingroom_plant_yucca_conductivity_minimum
+#       value_template: "{{ states('sensor.livingroom_plant_yucca_conductivity')|int < states('input_number.livingroom_plant_yucca_conductivity_minimum')|int }}"
+#       delay_on:
+#         minutes: 30
+#       icon_template: "{{ 'mdi:alert-circle' if is_state('binary_sensor.livingroom_planthealth_yucca_conductivity', 'on') else 'mdi:check-circle' }}"
 
-    kitchen_planthealth_pancake_moisture:
-      friendly_name: "Pannenkoekenplant water"
-      entity_id:
-        - sensor.kitchen_plant_pancake_moisture
-        - input_number.kitchen_plant_pancake_moisture_minimum
-      value_template: "{{ states('sensor.kitchen_plant_pancake_moisture')|int < states('input_number.kitchen_plant_pancake_moisture_minimum')|int }}"
-      delay_on:
-        minutes: 30
-      icon_template: "{{ 'mdi:alert-circle' if is_state('binary_sensor.kitchen_planthealth_pancake_moisture', 'on') else 'mdi:check-circle' }}"
+#     kitchen_planthealth_pancake_moisture:
+#       friendly_name: "Pannenkoekenplant water"
+#       entity_id:
+#         - sensor.kitchen_plant_pancake_moisture
+#         - input_number.kitchen_plant_pancake_moisture_minimum
+#       value_template: "{{ states('sensor.kitchen_plant_pancake_moisture')|int < states('input_number.kitchen_plant_pancake_moisture_minimum')|int }}"
+#       delay_on:
+#         minutes: 30
+#       icon_template: "{{ 'mdi:alert-circle' if is_state('binary_sensor.kitchen_planthealth_pancake_moisture', 'on') else 'mdi:check-circle' }}"
 
-    kitchen_planthealth_pancake_conductivity:
-      friendly_name: "Pannenkoekenplant voeding"
-      entity_id:
-        - sensor.kitchen_plant_pancake_conductivity
-        - input_number.kitchen_plant_pancake_conductivity_minimum
-      delay_on:
-        minutes: 30
-      value_template: "{{ states('sensor.kitchen_plant_pancake_conductivity')|int < states('input_number.kitchen_plant_pancake_conductivity_minimum')|int }}"
-      icon_template: "{{ 'mdi:alert-circle' if is_state('binary_sensor.kitchen_planthealth_pancake_conductivity', 'on') else 'mdi:check-circle' }}"
+#     kitchen_planthealth_pancake_conductivity:
+#       friendly_name: "Pannenkoekenplant voeding"
+#       entity_id:
+#         - sensor.kitchen_plant_pancake_conductivity
+#         - input_number.kitchen_plant_pancake_conductivity_minimum
+#       delay_on:
+#         minutes: 30
+#       value_template: "{{ states('sensor.kitchen_plant_pancake_conductivity')|int < states('input_number.kitchen_plant_pancake_conductivity_minimum')|int }}"
+#       icon_template: "{{ 'mdi:alert-circle' if is_state('binary_sensor.kitchen_planthealth_pancake_conductivity', 'on') else 'mdi:check-circle' }}"
