@@ -1,0 +1,17 @@
+- alias: "smartgarden turn on at 5h"
+  trigger:
+    - platform: time
+      at: '05:00:00'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.livingroom_power_0
+
+- alias: "smartgarden turn off at 21h"
+  trigger:
+    - platform: time
+      at: '21:00:00'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.livingroom_power_0
