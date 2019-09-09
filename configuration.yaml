@@ -34,37 +34,37 @@ person:
       - device_tracker.frank_router
       - device_tracker.frank_gps
 
-google_assistant:
-  project_id: !secret google_assistant_project_id
-  api_key: !secret google_assistant_homegraph_api_key
-  expose_by_default: false
-  # exposed_domains:
-  #   - light
-  entity_config:
-    light.livingroom_lights:
-      name: De Woonkamer Lampen
-      expose: true
-    light.hallway_lights:
-      name: De Gang Lamp
-      expose: true
-    light.closetroom_lights:
-      name: De Kastenkamer Lamp
-      expose: true
-    light.upperhallway_light_0:
-      name: De Overloop Lamp
-      expose: true
-    light.attichallway_light_0:
-      name: De Zolder Lamp
-      expose: true
-    light.kitchen_lights:
-      name: De Keuken Lamp
-      expose: true
-    # script.closetroom_heating_on:
-    #   name: De Kastenkamerverwarming
-    #   expose: true
-    # script.bathroom_heating_on:
-    #   name: De Badkamerverwarming
-    #   expose: true
+# google_assistant:
+#   project_id: !secret google_assistant_project_id
+#   api_key: !secret google_assistant_homegraph_api_key
+#   expose_by_default: false
+#   # exposed_domains:
+#   #   - light
+#   entity_config:
+#     light.livingroom_lights:
+#       name: De Woonkamer Lampen
+#       expose: true
+#     light.hallway_lights:
+#       name: De Gang Lamp
+#       expose: true
+#     light.closetroom_lights:
+#       name: De Kastenkamer Lamp
+#       expose: true
+#     light.upperhallway_light_0:
+#       name: De Overloop Lamp
+#       expose: true
+#     light.attichallway_light_0:
+#       name: De Zolder Lamp
+#       expose: true
+#     light.kitchen_lights:
+#       name: De Keuken Lamp
+#       expose: true
+#     # script.closetroom_heating_on:
+#     #   name: De Kastenkamerverwarming
+#     #   expose: true
+#     # script.bathroom_heating_on:
+#     #   name: De Badkamerverwarming
+#     #   expose: true
 
 # Enables the frontend
 frontend:
@@ -94,7 +94,7 @@ google:
   client_secret: !secret gcal_client_secret
 
 logger:
-  default: warning
+  default: error
   logs:
     homeassistant.components.homekit_controller: debug
     # homeassistant.components.tado: info
@@ -274,3 +274,7 @@ telegram_bot:
     allowed_chat_ids:
       - !secret telegram_frank_id
       - !secret telegram_malissa_id
+
+hacs:
+  token: !secret hacs_github_token
+  theme: true
