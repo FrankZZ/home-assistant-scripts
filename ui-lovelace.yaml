@@ -1,7 +1,9 @@
-title: Home
 resources:
-  - url: /local/lovelace-flower-card/index.js
-    type: module
+  - type: js
+    url: /local/lovelace-card-tools/index.js
+  - type: module
+    url: /local/lovelace-flower-card/index.js
+title: Home
 views:
   - badges:
       - binary_sensor.scullery_water_0
@@ -737,24 +739,24 @@ views:
     icon: 'mdi:television'
     id: entertainment
     title: Entertainment
-  - cards:
-      - entity: plant.plant_0
-        name: Pannenkoekenplant
-        type: plant-status
-      - entity: plant.plant_1
-        name: Yucca
-        type: plant-status
-      - entity: plant.plant_2
-        name: Monstera Variegata
-        type: plant-status
-      - entity: plant.plant_3
-        name: Calathea Rosea
-        type: plant-status
-    badges:
+  - badges:
       - sensor.plant_0_linkquality
       - sensor.plant_1_linkquality
       - sensor.plant_2_linkquality
       - sensor.plant_3_linkquality
+    cards:
+      - entity: plant.plant_0
+        species: pilea peperomioides
+        type: 'custom:flower-card'
+      - entity: plant.plant_1
+        species: yucca elephantipes
+        type: 'custom:flower-card'
+      - entity: plant.plant_2
+        species: monstera deliciosa
+        type: 'custom:flower-card'
+      - entity: plant.plant_3
+        species: calathea roseopicta
+        type: 'custom:flower-card'
     icon: 'mdi:flower'
     path: plants
     title: Plants
