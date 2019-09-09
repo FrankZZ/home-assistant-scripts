@@ -1,4 +1,7 @@
 title: Home
+resources:
+  - url: /local/lovelace-flower-card/index.js
+    type: module
 views:
   - badges:
       - binary_sensor.scullery_water_0
@@ -101,8 +104,9 @@ views:
               - entity: switch.garage_power_0
                 hold_action:
                   action: more-info
+                icon: 'mdi:lightbulb'
                 icon_height: 32px
-                name: Lichtslang Tuin
+                name: Garage
                 show_icon: true
                 show_name: true
                 tap_action:
@@ -115,6 +119,10 @@ views:
           - entity: sensor.doorbell
           - entity: sensor.harmony_livingroom
           - entity: calendar.malissa_frank
+          - entity: input_boolean.alarm_downstairs
+          - entity: group.all_persons
+          - entity: binary_sensor.hallway_door_0
+          - entity: binary_sensor.kitchen_door_0
         show_header_toggle: false
         title: Algemeen
         type: entities
@@ -127,9 +135,6 @@ views:
         show_header_toggle: false
         title: Afval
         type: entities
-      - entity: plant.livingroom_plant_yucca
-        name: Yucca
-        type: plant-status
       - entities:
           - entity: sensor.bathroom_temp_0_humidity
           - entity: sensor.woonkamer_humidity
@@ -160,12 +165,9 @@ views:
       - sensor.zigbee2mqtt_status
     cards:
       - entities:
-          - sensor.waze_malissa_home_to_work
-          - sensor.waze_malissa_work_to_home
-          - sensor.waze_frank_home_to_work
-          - sensor.waze_frank_work_to_home
-          - sensor.waze_frank_work_to_malissa_work
-        show_header_toggle: true
+          - entity: sensor.waze_frank_to_home
+          - entity: sensor.waze_malissa_to_home
+        show_header_toggle: false
         title: Reistijden
         type: entities
       - entities:
@@ -350,8 +352,8 @@ views:
   - badges:
       - binary_sensor.frank_home_direction
       - binary_sensor.malissa_home_direction
-      - sensor.proximity_frank_home_stats
-      - sensor.proximity_malissa_home_stats
+      - sensor.proximity_frank_home_stats_mean
+      - sensor.proximity_malissa_home_stats_mean
     cards:
       - entities:
           - proximity.home
@@ -414,7 +416,7 @@ views:
       - entities:
           - input_number.bathroom_fan_speed
           - sensor.bathroom_temp_0_humidity
-          - sensor.bathroom_humidity_stats
+          - sensor.bathroom_humidity_stats_mean
           - sensor.bathroom_fan_last_on_humidity
           - binary_sensor.bathroom_humidity_rising
           - binary_sensor.bathroom_humidity_normal
@@ -531,8 +533,8 @@ views:
                 icon: 'mdi:playstation'
             entity: sensor.harmony_livingroom
             state_image:
-              Music: /local/images/spotify_logo.png
               Chromecast: /local/images/chromecast_logo.png
+              Music: /local/images/spotify_logo.png
               PS4: /local/images/playstation_logo.png
               PowerOff: /local/images/power_off.png
               TV: /local/images/cable_logo.jpg
@@ -735,3 +737,24 @@ views:
     icon: 'mdi:television'
     id: entertainment
     title: Entertainment
+  - cards:
+      - entity: plant.plant_0
+        name: Pannenkoekenplant
+        type: plant-status
+      - entity: plant.plant_1
+        name: Yucca
+        type: plant-status
+      - entity: plant.plant_2
+        name: Monstera Variegata
+        type: plant-status
+      - entity: plant.plant_3
+        name: Calathea Rosea
+        type: plant-status
+    badges:
+      - sensor.plant_0_linkquality
+      - sensor.plant_1_linkquality
+      - sensor.plant_2_linkquality
+      - sensor.plant_3_linkquality
+    icon: 'mdi:flower'
+    path: plants
+    title: Plants
