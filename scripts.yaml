@@ -24,70 +24,37 @@ heating_away:
       data:
         entity_id: climate.woonkamer
         temperature: 15
-    - service: climate.set_hvac_mode
-      data:
-        entity_id: climate.woonkamer
-        hvac_mode: manual
-    - delay:
-        seconds: 1
+        hvac_mode: heat
     - service: climate.set_temperature
       data:
         entity_id: climate.hal
         temperature: 5
-    - service: climate.set_hvac_mode
-      data:
-        entity_id: climate.hal
-        hvac_mode: manual
-    - delay:
-        seconds: 1
+        hvac_mode: heat
     - service: climate.set_temperature
       data:
         entity_id: climate.badkamer
         temperature: 5
-    - service: climate.set_hvac_mode
-      data:
-        entity_id: climate.badkamer
-        hvac_mode: manual
-    - delay:
-        seconds: 1
+        hvac_mode: heat
     - service: climate.set_temperature
       data:
         entity_id: climate.slaapkamer
         temperature: 5
-    - service: climate.set_hvac_mode
-      data:
-        entity_id: climate.slaapkamer
-        hvac_mode: manual
-    - delay:
-        seconds: 1
+        hvac_mode: heat
     - service: climate.set_temperature
       data:
         entity_id: climate.kastenkamer
         temperature: 5
-    - service: climate.set_hvac_mode
-      data:
-        entity_id: climate.kastenkamer
-        hvac_mode: manual
-    - delay:
-        seconds: 1
+        hvac_mode: heat
     - service: climate.set_temperature
       data:
         entity_id: climate.zolder
         temperature: 5
-    - service: climate.set_hvac_mode
-      data:
-        entity_id: climate.zolder
-        hvac_mode: manual
-    - delay:
-        seconds: 1
+        hvac_mode: heat
     - service: climate.set_temperature
       data:
         entity_id: climate.logeerkamer
         temperature: 5
-    - service: climate.set_hvac_mode
-      data:
-        entity_id: climate.logeerkamer
-        hvac_mode: manual
+        hvac_mode: heat
 
 heating_home:
   sequence:
@@ -95,38 +62,26 @@ heating_home:
       data:
         entity_id: climate.slaapkamer
         hvac_mode: auto
-    - delay:
-        seconds: 1
     - service: climate.set_hvac_mode
       data:
         entity_id: climate.kastenkamer
         hvac_mode: auto
-    - delay:
-        seconds: 1
     - service: climate.set_hvac_mode
       data:
         entity_id: climate.badkamer
         hvac_mode: auto
-    - delay:
-        seconds: 1
     - service: climate.set_hvac_mode
       data:
         entity_id: climate.zolder
         hvac_mode: auto
-    - delay:
-        seconds: 1
     - service: climate.set_hvac_mode
       data:
         entity_id: climate.woonkamer
         hvac_mode: auto
-    - delay:
-        seconds: 1
     - service: climate.set_hvac_mode
       data:
         entity_id: climate.hal
         hvac_mode: auto
-    - delay:
-        seconds: 1
     - service: climate.set_hvac_mode
       data:
         entity_id: climate.logeerkamer
