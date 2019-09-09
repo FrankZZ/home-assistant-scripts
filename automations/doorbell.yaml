@@ -159,7 +159,7 @@
         action: Start
   condition:
     condition: template
-    value_template: "{{ not is_state('input_select.timeofday', 'evening') and not is_state('input_select.timeofday', 'night') }}"
+    value_template: "{{ is_state('input_select.timeofday', 'midday') or is_state('input_select.timeofday', 'evening') }}"
   action:
     - service: xiaomi_aqara.play_ringtone
       data:
