@@ -1,7 +1,7 @@
 - alias: "restart dahua addon"
   trigger:
     - platform: time_pattern
-      minute: '/15'
+      minutes: '/15'
   action:
     - service: hassio.addon_restart
       data:
