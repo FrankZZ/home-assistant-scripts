@@ -1,0 +1,9 @@
+- alias: "restart dahua addon"
+  trigger:
+    - platform: time
+      pattern:
+        minutes: '/15'
+  action:
+    - service: hassio.addon_restart
+      data:
+        addon: local_jsdahuaevents2mqtt
