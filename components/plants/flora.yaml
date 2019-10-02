@@ -33,3 +33,21 @@ plant_3:
     conductivity: sensor.plant_3_fertility
     brightness: sensor.plant_3_illuminance
   min_battery: 5
+
+plant_4:
+  sensors:
+    moisture: sensor.plant_4_moisture
+    battery: sensor.plant_4_battery
+    temperature: sensor.plant_4_temperature
+    conductivity: sensor.plant_4_fertility
+    brightness: sensor.plant_4_illuminance
+  min_battery: 5
+
+plant_5:
+  sensors:
+    moisture: sensor.plant_5_moisture
+    battery: sensor.plant_5_battery
+    temperature: sensor.plant_5_temperature
+    conductivity: sensor.plant_5_fertility
+    brightness: sensor.plant_5_illuminance
+  min_battery: 5
