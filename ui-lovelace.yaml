@@ -739,12 +739,7 @@ views:
     icon: 'mdi:television'
     id: entertainment
     title: Entertainment
-  - badges:
-      - sensor.plant_0_linkquality
-      - sensor.plant_1_linkquality
-      - sensor.plant_2_linkquality
-      - sensor.plant_3_linkquality
-    cards:
+  - cards:
       - entity: plant.plant_0
         species: pilea peperomioides
         type: 'custom:flower-card'
@@ -757,6 +752,19 @@ views:
       - entity: plant.plant_3
         species: calathea roseopicta
         type: 'custom:flower-card'
+      - entity: plant.plant_4
+        species: alocasia frydek
+        type: 'custom:flower-card'
+      - entity: plant.plant_5
+        species: alocasia frydek
+        type: 'custom:flower-card'
+    badges:
+      - sensor.plant_0_linkquality
+      - sensor.plant_1_linkquality
+      - sensor.plant_2_linkquality
+      - sensor.plant_3_linkquality
+      - sensor.plant_4_linkquality
+      - sensor.plant_5_linkquality
     icon: 'mdi:flower'
     path: plants
     title: Plants
