@@ -2,3 +2,15 @@
   sensors:
     http_base_url:
       value_template: !secret http_base_url
+
+- platform: template
+  sensors:
+    calendar_malissa_frank_location:
+      entity_id: calendar.malissa_frank
+      value_template: "{{ state_attr('calendar.malissa_frank', 'location') }}"
+    calendar_malissa_frank_start_time:
+      entity_id: calendar.malissa_frank
+      value_template: "{{ state_attr('calendar.malissa_frank', 'start_time') }}"
+    calendar_malissa_frank_end_time:
+      entity_id: calendar.malissa_frank
+      value_template: "{{ state_attr('calendar.malissa_frank', 'end_time') }}"

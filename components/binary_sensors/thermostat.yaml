@@ -45,3 +45,17 @@
             states('sensor.zolder_heating')
           ] | max | int > 5
         }}
+
+    # takes into account waze travel time to destination
+    # will return True if travel time + 1 hour is left before appointment
+    # which will result in heating turned off 1 hour before leaving
+    thermostat_leaving_next_hour:
+      entity_id:
+        - sensor.waze_calendar_to_next_appointment
+        - sensor.calendar_malissa_frank_start_time
+      value_template: >-
+        {{
+          not is_state('sensor.calendar_malissa_frank_location', None) and
+          not is_state('sensor.waze_calendar_to_next_appointment', None) and
+          (as_timestamp(states('sensor.calendar_malissa_frank_start_time')) - (state_attr('sensor.waze_calendar_to_next_appointment', 'duration') * 60) - 3600) < as_timestamp(now())
+        }}

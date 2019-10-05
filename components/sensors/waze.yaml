@@ -10,6 +10,12 @@
   destination: zone.home
   region: 'EU'
 
+- platform: waze_travel_time
+  name: waze_calendar_to_next_appointment
+  origin: zone.home
+  region: EU
+  destination: sensor.calendar_malissa_frank_location
+
 # - platform: waze_travel_time
 #   name: waze_frank_work_to_home
 #   origin: !secret waze_frank_work_address
