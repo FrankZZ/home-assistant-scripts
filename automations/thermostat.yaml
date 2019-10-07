@@ -100,6 +100,33 @@
         title: Verwarming uitgeschakeld
         message: "Iedereen heeft het huis verlaten."
 
+- alias: "Thermostaat Woonkamer omlaag als we bijna vertrekken"
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.thermostat_leaving_next_hour
+    from: 'off'
+    to: 'on'
+#   condition:
+#     condition: and
+#     conditions:
+#       # - condition: template
+#       #   value_template: "{{ states('proximity.home') | int >= 5 }}"
+#     #   - condition: state
+#     #     entity_id: binary_sensor.frank_home_direction
+#     #     state: 'off'
+#     #   - condition: state
+#     #     entity_id: binary_sensor.malissa_home_direction
+#     #     state: 'off'
+#       - condition: template
+#         value_template: "{{ is_state('sensor.woonkamer_overlay', 'False') or state_attr('climate.woonkamer', 'temperature') > 15.0 }}"
+  action:
+    # - service: script.turn_on
+    #   entity_id: script.heating_away
+    - service: notify.telegram
+      data:
+        title: "[TEST] Verwarming uitgeschakeld"
+        message: "Bewoners vertrekken binnen een uur."
+
 - alias: "Thermostaat Woonkamer omhoog als we thuis komen en hij staat nog niet aan"
   trigger:
   - platform: state
