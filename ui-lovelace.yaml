@@ -5,7 +5,19 @@ resources:
     url: /local/lovelace-flower-card/index.js
 title: Home
 views:
-  - cards:
+  - badges:
+      - binary_sensor.scullery_water_0
+      - binary_sensor.bathroom_water_0
+      - binary_sensor.livingroom_smoke_0
+      - binary_sensor.scullery_smoke_0
+      - binary_sensor.garage_smoke_0
+      - binary_sensor.attic_gasco_0_gas
+      - binary_sensor.attic_gasco_0_co
+      - sensor.solar_power_production
+      - sensor.main_power_usage
+      - sensor.plex
+      - binary_sensor.thermostat_leaving_next_hour
+    cards:
       - cards:
           - cards:
               - entity: light.hallway_lights
@@ -115,6 +127,7 @@ views:
           - entity: group.all_persons
           - entity: binary_sensor.hallway_door_0
           - entity: binary_sensor.kitchen_door_0
+          - entity: sensor.waze_calendar_to_next_appointment
         show_header_toggle: false
         title: Algemeen
         type: entities
@@ -150,16 +163,6 @@ views:
       - entity: camera.woonkamer
         show-state: false
         type: picture-entity
-    badges:
-      - binary_sensor.scullery_water_0
-      - binary_sensor.bathroom_water_0
-      - binary_sensor.livingroom_smoke_0
-      - binary_sensor.scullery_smoke_0
-      - binary_sensor.attic_gasco_0_gas
-      - binary_sensor.attic_gasco_0_co
-      - sensor.solar_power_production
-      - sensor.main_power_usage
-      - sensor.plex
     icon: 'mdi:home-assistant'
     path: default_view
     title: default_view
