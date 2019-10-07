@@ -123,9 +123,9 @@
     # - service: script.turn_on
     #   entity_id: script.heating_away
     - service: notify.telegram
-      data:
+      data_template:
         title: "[TEST] Verwarming uitgeschakeld"
-        message: "Bewoners vertrekken binnen een uur."
+        message: "Vertrektijd \"{{ state_attr('calendar.malissa_frank', 'message') }}\" is binnen een uur."
 
 - alias: "Thermostaat Woonkamer omhoog als we thuis komen en hij staat nog niet aan"
   trigger:
