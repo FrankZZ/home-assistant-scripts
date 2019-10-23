@@ -1,4 +1,8 @@
-- platform: plex
-  name: !secret plex_name
-  host: !secret plex_host
-  token: !secret plex_token
+# - platform: plex
+#   name: !secret plex_name
+#   host: !secret plex_host
+#   token: !secret plex_token
+- platform: tautulli
+  api_key: !secret tautulli_apikey
+  host: !secret tautulli_host
+  path: "/plexpy"

@@ -10,7 +10,6 @@ default_view:
     - group.trash
     - camera.woonkamer
     - sun.sun
-    - sensor.plex01
     - binary_sensor.scullery_water_0
     - binary_sensor.bathroom_water_0
     - group.temperature_sensors
