@@ -51,6 +51,10 @@ binary_sensor.livingroom_smoke_0:
   friendly_name: Huiskamer Rook
   device_class: smoke
 
+binary_sensor.garage_smoke_0:
+  friendly_name: Garage Rook
+  device_class: smoke
+
 binary_sensor.attic_gasco_0_co:
   friendly_name: Zolder CO
   device_class: gas
