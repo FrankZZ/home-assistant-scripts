@@ -72,6 +72,74 @@
   brightness: true
   qos: 1
 
+- name: "attichallway_light_0"
+  command_topic: zigbee2mqtt/attichallway_light_0/set
+  state_topic: zigbee2mqtt/attichallway_light_0
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
+
+- name: "attic_light_0"
+  command_topic: zigbee2mqtt/attic_light_0/set
+  state_topic: zigbee2mqtt/attic_light_0
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  qos: 1
+
+- name: "attic_light_1"
+  command_topic: zigbee2mqtt/attic_light_1/set
+  state_topic: zigbee2mqtt/attic_light_1
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  qos: 1
+
+- name: "attic_light_2"
+  command_topic: zigbee2mqtt/attic_light_2/set
+  state_topic: zigbee2mqtt/attic_light_2
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  qos: 1
+
+- name: "attic_light_3"
+  command_topic: zigbee2mqtt/attic_light_3/set
+  state_topic: zigbee2mqtt/attic_light_3
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  qos: 1
+
+- name: "attic_light_4"
+  command_topic: zigbee2mqtt/attic_light_4/set
+  state_topic: zigbee2mqtt/attic_light_4
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  qos: 1
+
+- name: "attic_lights"
+  command_topic: zigbee2mqtt/attic_lights/set
+  # state_topic: zigbee2mqtt/attic_lights
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  qos: 1
 
 - name: "closetroom_light_0"
   command_topic: zigbee2mqtt/closetroom_light_0/set

@@ -420,3 +420,59 @@
   unit_of_measurement: "dBm"
   value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
   json_attributes_topic: "zigbee2mqtt/bathroom_switch_0"
+
+- platform: mqtt
+  name: upperhallway_light_0_linkquality
+  state_topic: "zigbee2mqtt/upperhallway_light_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
+  json_attributes_topic: "zigbee2mqtt/upperhallway_light_0"
+
+- platform: mqtt
+  name: attichallway_light_0_linkquality
+  state_topic: "zigbee2mqtt/attichallway_light_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
+  json_attributes_topic: "zigbee2mqtt/attichallway_light_0"
+
+- platform: mqtt
+  name: attic_light_0_linkquality
+  state_topic: "zigbee2mqtt/attic_light_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
+  json_attributes_topic: "zigbee2mqtt/attic_light_0"
+
+- platform: mqtt
+  name: attic_light_1_linkquality
+  state_topic: "zigbee2mqtt/attic_light_1"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
+  json_attributes_topic: "zigbee2mqtt/attic_light_1"
+
+- platform: mqtt
+  name: attic_light_2_linkquality
+  state_topic: "zigbee2mqtt/attic_light_2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
+  json_attributes_topic: "zigbee2mqtt/attic_light_2"
+
+- platform: mqtt
+  name: attic_light_3_linkquality
+  state_topic: "zigbee2mqtt/attic_light_3"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
+  json_attributes_topic: "zigbee2mqtt/attic_light_3"
+
+- platform: mqtt
+  name: attic_light_4_linkquality
+  state_topic: "zigbee2mqtt/attic_light_4"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
+  json_attributes_topic: "zigbee2mqtt/attic_light_4"
