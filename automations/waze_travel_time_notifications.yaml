@@ -220,3 +220,34 @@
     data_template:
       title: "Vertrekmelding Frank"
       message: "Frank is onderweg naar huis. ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_home')|int)*60)) | float | timestamp_custom('%H:%M') }}"
+
+- alias: "Notify Frank when Malissa is heading Home"
+  trigger:
+    - platform: state
+      entity_id: sensor.waze_malissa_to_home
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.malissa_home_direction
+        state: 'on'
+        # wait for a waze update after binary_sensor.malissa_home_direction turned true
+      - condition: template
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.malissa_home_direction.last_changed) | int > as_timestamp(now()) - as_timestamp(trigger.to_state.last_updated)|int }}'
+        # check if this is the first time that the update of waze occurs after frank_home_directory turned true
+      - condition: template
+        value_template: '{{ as_timestamp(now()) - as_timestamp(trigger.from_state.last_updated) | int > as_timestamp(now()) - as_timestamp(states.binary_sensor.malissa_home_direction.last_changed)|int }}'
+      - condition: time
+        after: '15:00:00'
+        before: '21:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+    service: notify.telegram
+    data_template:
+      title: "Vertrekmelding Malissa"
+      message: "Malissa is onderweg naar huis. ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_malissa_to_home')|int)*60)) | float | timestamp_custom('%H:%M') }}"
