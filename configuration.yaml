@@ -95,8 +95,8 @@ google:
 
 logger:
   default: error
-  logs:
-    homeassistant.components.homekit_controller: debug
+#   logs:
+    # homeassistant.components.homekit_controller: debug
     # homeassistant.components.tado: info
 
 # Enables configuration UI

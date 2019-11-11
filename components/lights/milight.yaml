@@ -4,10 +4,10 @@
       version: 5
       port: 8899
       groups:
-        - number: 1
-          type: rgbw
-          name: hallway_light_0
-          fade: true
+        # - number: 1
+        #   type: rgbw
+        #   name: hallway_light_0
+        #   fade: true
         # - number: 2
         #   type: rgbw
         #   name: attichallway_light_0

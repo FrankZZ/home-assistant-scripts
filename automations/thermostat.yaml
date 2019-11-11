@@ -8,15 +8,23 @@
       entity_id: binary_sensor.malissa_home_direction
       from: 'off'
       to: 'on'
+    - platform: numeric_state
+      entity_id: proximity.home
+      below: 15
   condition:
     condition: and
     conditions:
-      # - condition: template
-      #   value_template: "{{ trigger.to_state.attributes.dir_of_travel == 'towards' }}"
-      - condition: template
-        value_template: "{{ not states('input_select.timeofday') == 'night' }}"
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{{ is_state('binary_sensor.frank_home_direction', 'on') }}"
+          - condition: template
+            value_template: "{{ is_state('binary_sensor.malissa_home_direction', 'on') }}"
       - condition: template
         value_template: "{{ is_state('sensor.woonkamer_overlay', 'True') and state_attr('climate.woonkamer', 'temperature') == 15.0 }}"
+      - condition: numeric_state
+        entity_id: proximity.home
+        below: 15
   action:
     - service: climate.set_hvac_mode
       data:
@@ -120,12 +128,12 @@
 #       - condition: template
 #         value_template: "{{ is_state('sensor.woonkamer_overlay', 'False') or state_attr('climate.woonkamer', 'temperature') > 15.0 }}"
   action:
-    # - service: script.turn_on
-    #   entity_id: script.heating_away
+    - service: script.turn_on
+      entity_id: script.heating_away
     - service: notify.telegram
       data_template:
-        title: "[TEST] Verwarming uitgeschakeld"
-        message: "Vertrektijd \"{{ state_attr('calendar.malissa_frank', 'message') }}\" is binnen een uur."
+        title: "Verwarming uitgeschakeld"
+        message: "Vertrektijd \"{{ state_attr('calendar.malissa_frank', 'message') }}\" is binnen een uur ({{ (as_timestamp(states('sensor.calendar_malissa_frank_start_time')) - (state_attr('sensor.waze_calendar_to_next_appointment', 'duration') * 60))|timestamp_custom('%H:%M', true) }})."
 
 - alias: "Thermostaat Woonkamer omhoog als we thuis komen en hij staat nog niet aan"
   trigger:
