@@ -159,10 +159,6 @@
       entity_id: climate.woonkamer
       data:
         hvac_mode: auto
-    - service: climate.set_hvac_mode
-      entity_id: climate.hal
-      data:
-        hvac_mode: auto
     - service: notify.telegram
       data_template:
         title: Verwarming Woonkamer ingeschakeld
@@ -175,7 +171,7 @@
     from: 'not_home'
     to: 'home'
     for:
-      minutes: 30
+      minutes: 60
   condition:
     condition: and
     conditions:
