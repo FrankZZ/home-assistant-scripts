@@ -185,7 +185,7 @@ device_tracker:
     hosts: !secret nmap_tracker_hosts
     home_interval: 5
     interval_seconds: 30
-    consider_home: 00:30:00
+    consider_home: 00:15:00
     scan_options: " --privileged --host-timeout 5s -sP "
     new_device_defaults:
       track_new_devices: false
