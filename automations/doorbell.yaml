@@ -130,26 +130,6 @@
         entity_id: timer.hallway
         duration: 18
 
-- alias: "Stuur bericht bij activiteit voordeur"
-  trigger:
-    - platform: event
-      event_type: dahua_event_received
-      event_data:
-        code: CrossLineDetection
-        action: Start
-  action:
-    - service: camera.snapshot
-      data:
-        entity_id: camera.voortuin
-        filename: "/tmp/last_activity_frontdoor.jpg"
-    - service: telegram_bot.send_photo
-      data:
-        file: "/tmp/last_activity_frontdoor.jpg"
-        caption: "Activiteit bij de voordeur!"
-        target:
-          - !secret telegram_frank_id
-          - !secret telegram_malissa_id
-
 - alias: "Speel geluid bij activiteit voordeur"
   trigger:
     - platform: event
@@ -245,3 +225,38 @@
     - service: notify.livingroom_tv
       data:
         message: "Storing: deurbel offline"
+
+# - alias: "Stuur bericht bij activiteit voordeur"
+#   trigger:
+#     - platform: event
+#       event_type: dahua_event_received
+#       event_data:
+#         code: CrossLineDetection
+#         action: Start
+#   action:
+#     - service: camera.snapshot
+#       data:
+#         entity_id: camera.voortuin
+#         filename: "/tmp/last_activity_frontdoor.jpg"
+#     - service: telegram_bot.send_photo
+#       data:
+#         file: "/tmp/last_activity_frontdoor.jpg"
+#         caption: "Activiteit bij de voordeur!"
+#         target:
+#           - !secret telegram_frank_id
+#           - !secret telegram_malissa_id
+
+- alias: "Stuur bericht bij activiteit voordeur"
+  trigger:
+    platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: created
+  action:
+    - service: telegram_bot.send_photo
+      data_template:
+        file: "{{ trigger.event.data.path }}"
+        caption: "Activiteit bij de voordeur!"
+        target:
+          - !secret telegram_frank_id
+          - !secret telegram_malissa_id

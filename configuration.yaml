@@ -12,6 +12,7 @@ homeassistant:
       assumed_state: false
   whitelist_external_dirs:
     - "/tmp"
+    - !secret dahua_folder_0
 
 system_health:
 
@@ -174,6 +175,11 @@ history_graph: !include_dir_merge_named components/history_graphs
 zone: !include_dir_merge_list components/zones
 proximity: !include_dir_merge_named components/proximities
 plant: !include_dir_merge_named components/plants
+
+folder_watcher:
+  - folder: !secret dahua_folder_0
+    patterns:
+      - '*.jpg'
 
 remote:
   - platform: harmony
