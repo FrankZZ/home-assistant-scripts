@@ -21,3 +21,17 @@
     service: switch.turn_off
     data_template:
       entity_id: "{{ trigger.entity_id }}"
+
+- alias: zigbee2mqtt log
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/bridge/log
+    encoding: "utf-8"
+  action:
+    service: telegram_bot.send_message
+    data_template:
+      target:
+        - !secret telegram_frank_id
+      parse_mode: html
+      title: "[ZB2M] {{ trigger.payload_json['type'] }}"
+      message: "{{ trigger.payload_json['message'] }}, meta: {{ trigger.payload_json['meta'] | default('N/A') }}"
