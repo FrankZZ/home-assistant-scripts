@@ -10,7 +10,7 @@
       to: 'on'
     - platform: numeric_state
       entity_id: proximity.home
-      below: 15
+      below: 17
   condition:
     condition: and
     conditions:
@@ -79,6 +79,8 @@
     entity_id: group.all_persons
     from: 'home'
     to: 'not_home'
+    for:
+      minutes: 1 # interval of nmap device_tracker is 30s so we dont want this to trigger on startup of HA
 #   - platform: numeric_state
 #     entity_id: proximity.home
 #     above: 5
