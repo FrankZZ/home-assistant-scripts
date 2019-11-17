@@ -61,7 +61,7 @@
       from: "off"
       to: "on"
       for:
-        minutes: 15
+        minutes: 5
   condition:
     condition: and
     conditions:
@@ -111,30 +111,7 @@
     - service: input_number.set_value
       data:
         entity_id: input_number.bathroom_fan_speed
-        value: "1"
-
-- alias: "toilet fan start high"
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.toilet_pir_0
-      from: "on"
-      to: "off"
-      for:
-        seconds: 90
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: "{{ is_state('binary_sensor.toilet_occupied', 'on') }}"
-      - condition: template
-        value_template: "{{ is_state('input_number.bathroom_fan_last_on_humidity', '0.0') }}"
-      - condition: template
-        value_template: "{{ is_state('input_number.bathroom_fan_speed', '1.0') }}"
-  action:
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.bathroom_fan_speed
-        value: "2"
+        value: "2" # poop
 
 - alias: "toilet fan stop"
   trigger:
