@@ -15,8 +15,8 @@ views:
       - binary_sensor.attic_gasco_0_co
       - sensor.solar_power_production
       - sensor.main_power_usage
-      - sensor.plex
       - binary_sensor.thermostat_leaving_next_hour
+      - sensor.tautulli
     cards:
       - cards:
           - cards:
@@ -99,7 +99,7 @@ views:
                 hold_action:
                   action: more-info
                 icon_height: 32px
-                name: Zolder
+                name: Zolder Gang
                 show_icon: true
                 show_name: true
                 tap_action:
@@ -111,6 +111,18 @@ views:
                 icon: 'mdi:lightbulb'
                 icon_height: 32px
                 name: Garage
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: entity-button
+            type: horizontal-stack
+          - cards:
+              - entity: light.attic_lights
+                hold_action:
+                  action: more-info
+                icon_height: 32px
+                name: Zolder
                 show_icon: true
                 show_name: true
                 tap_action:
@@ -152,8 +164,6 @@ views:
           - entity: sensor.bathroom_temp_0_humidity
           - entity: sensor.bathroom_fan_last_on_humidity
           - entity: binary_sensor.toilet_occupied
-          - entity: input_number.bathroom_fan_on_diff
-          - entity: input_number.bathroom_fan_off_diff
         show_header_toggle: true
         title: Mechanische Ventilatie
         type: entities
@@ -195,21 +205,26 @@ views:
         title: Zigbee Batterij Status
         type: entities
       - entities:
-          - sensor.kitchen_pir_0_linkquality
-          - binary_sensor.kitchen_door_0_linkquality
-          - sensor.hallway_pir_0_linkquality
-          - sensor.attichallway_pir_0_linkquality
-          - sensor.upperhallway_pir_0_linkquality
-          - sensor.scullery_smoke_0_linkquality
-          - sensor.livingroom_smoke_0_linkquality
-          - sensor.garage_power_0_linkquality
-          - sensor.bathroom_temp_0_linkquality
-          - sensor.bathroom_temp_0_linkquality
-          - sensor.scullery_water_0_linkquality
-          - sensor.bathroom_water_0_linkquality
-          - sensor.closetroom_pir_0_linkquality
-          - sensor.bed_tilt_0_linkquality
-          - sensor.bed_tilt_1_linkquality
+          - entity: sensor.kitchen_pir_0_linkquality
+          - entity: binary_sensor.kitchen_door_0_linkquality
+          - entity: sensor.hallway_pir_0_linkquality
+          - entity: sensor.attichallway_pir_0_linkquality
+          - entity: sensor.upperhallway_pir_0_linkquality
+          - entity: sensor.scullery_smoke_0_linkquality
+          - entity: sensor.livingroom_smoke_0_linkquality
+          - entity: sensor.garage_power_0_linkquality
+          - entity: sensor.bathroom_temp_0_linkquality
+          - entity: sensor.bathroom_temp_0_linkquality
+          - entity: sensor.scullery_water_0_linkquality
+          - entity: sensor.bathroom_water_0_linkquality
+          - entity: sensor.closetroom_pir_0_linkquality
+          - entity: sensor.bed_tilt_0_linkquality
+          - entity: sensor.bed_tilt_1_linkquality
+          - entity: sensor.attic_light_0_linkquality
+          - entity: sensor.attic_light_1_linkquality
+          - entity: sensor.attic_light_2_linkquality
+          - entity: sensor.attic_light_3_linkquality
+          - entity: sensor.attic_light_4_linkquality
         show_header_toggle: true
         title: Zigbee Signaalsterkte
         type: entities
@@ -522,6 +537,8 @@ views:
         type: picture-entity
       - entity: camera.voortuin
         type: picture-entity
+      - entity: camera.3d_printer
+        type: picture-entity
     icon: 'mdi:cctv'
     path: camera_view
     title: camera_view
@@ -739,6 +756,9 @@ views:
                 state_not: PowerOff
             type: conditional
         type: vertical-stack
+      - entities:
+          - entity: sensor.plex_plex01
+        type: entities
     icon: 'mdi:television'
     id: entertainment
     title: Entertainment

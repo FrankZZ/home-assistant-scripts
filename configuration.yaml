@@ -211,9 +211,13 @@ camera:
     username: !secret cam2_username
     password: !secret cam2_password
     authentication: digest
+  - platform: mjpeg
+    name: !secret cam3_name
+    mjpeg_url: !secret cam3_input
+    still_image_url: !secret cam3_input_still
   # - platform: onvif
-  #   name: !secret cam2_name
-  #   host: !secret cam2_ip
+  #   name: !secret cam4_name
+  #   host: !secret cam4_ip
   #   profile: 2
   #   port: 80
   #   username: !secret cam2_username

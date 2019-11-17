@@ -17,7 +17,7 @@
   json_attributes_topic: "zigbee2mqtt/scullery_smoke_0"
 
 - platform: "mqtt"
-  name: garage_smoke_0
+  name: upperhallway_smoke_0
   state_topic: "zigbee2mqtt/garage_smoke_0"
   availability_topic: "zigbee2mqtt/bridge/state"
   payload_on: true
@@ -42,3 +42,21 @@
   payload_off: false
   value_template: "{{ value_json.carbon_monoxide }}"
   json_attributes_topic: "zigbee2mqtt/attic_gasco_0"
+
+- platform: "mqtt"
+  name: upperhallway_smoke_0
+  state_topic: "zigbee2mqtt/upperhallway_smoke_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.smoke }}"
+  json_attributes_topic: "zigbee2mqtt/upperhallway_smoke_0"
+
+- platform: "mqtt"
+  name: attic_smoke_0
+  state_topic: "zigbee2mqtt/attic_smoke_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.smoke }}"
+  json_attributes_topic: "zigbee2mqtt/attic_smoke_0"

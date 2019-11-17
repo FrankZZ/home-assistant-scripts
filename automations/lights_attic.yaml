@@ -1,0 +1,35 @@
+- alias: "Licht Zolder warmer bij drukknop"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id:
+        sensor.atticremote_0
+      to: "arrow_right_click"
+  condition:
+    condition: state
+    entity_id: light.attic_lights
+    state: 'on'
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.attic_lights
+        transition: 0.5
+        color_temp: "{{ [(state_attr('light.attic_lights',  'color_temp')|default(0))+200, 500]|min }}"
+
+- alias: "Licht Zolder kouder bij drukknop"
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id:
+        sensor.atticremote_0
+      state: "arrow_left_click"
+  condition:
+    condition: state
+    entity_id: light.attic_lights
+    to: 'on'
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.attic_lights
+        transition: 0.5
+        color_temp: "{{ [(state_attr('light.attic_lights',  'color_temp')|default(0))-200, 153]|max }}"
