@@ -22,11 +22,11 @@
     - platform: state
       entity_id:
         sensor.atticremote_0
-      state: "arrow_left_click"
+      to: "arrow_left_click"
   condition:
     condition: state
     entity_id: light.attic_lights
-    to: 'on'
+    state: 'on'
   action:
     - service: light.turn_on
       data_template:
