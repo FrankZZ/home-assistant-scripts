@@ -3,7 +3,7 @@
   trigger:
     - platform: state
       entity_id:
-        sensor.atticremote_0
+        sensor.attic_remote_0
       to: "arrow_right_click"
   condition:
     condition: state
@@ -21,7 +21,7 @@
   trigger:
     - platform: state
       entity_id:
-        sensor.atticremote_0
+        sensor.attic_remote_0
       to: "arrow_left_click"
   condition:
     condition: state

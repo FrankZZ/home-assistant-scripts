@@ -80,7 +80,7 @@
     from: 'home'
     to: 'not_home'
     for:
-      minutes: 1 # interval of nmap device_tracker is 30s so we dont want this to trigger on startup of HA
+      minutes: 2 # interval of nmap device_tracker is 30s so we dont want this to trigger on startup of HA
 #   - platform: numeric_state
 #     entity_id: proximity.home
 #     above: 5
