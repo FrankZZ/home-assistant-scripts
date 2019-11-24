@@ -1,4 +1,4 @@
-- alias: "Licht achtertuin savonds en snachts"
+- alias: "Licht tuin aan als het donker is"
   initial_state: on
   trigger:
     - platform: state
@@ -12,9 +12,12 @@
   action:
     - service: switch.turn_on
       data:
+        entity_id: "light.porch_light_1"
+    - service: switch.turn_on
+      data:
         entity_id: "switch.scullery_power_0"
 
-- alias: "Licht achtertuin uit sochtends en smiddags"
+- alias: "Licht tuin uit als het licht is"
   initial_state: on
   trigger:
     - platform: state
@@ -26,6 +29,9 @@
     entity_id: binary_sensor.garden_dark
     state: 'off'
   action:
+    - service: switch.turn_on
+      data:
+        entity_id: "light.porch_light_1"
     - service: switch.turn_off
       data:
         entity_id: "switch.scullery_power_0"
