@@ -128,6 +128,16 @@ views:
                 tap_action:
                   action: toggle
                 type: entity-button
+              - entity: light.porch_light_1
+                hold_action:
+                  action: more-info
+                icon_height: 32px
+                name: Voordeur
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: entity-button
             type: horizontal-stack
         type: vertical-stack
       - entities:

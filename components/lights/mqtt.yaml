@@ -38,7 +38,7 @@
 
 - name: "livingroom_lights"
   command_topic: zigbee2mqtt/livingroom_lights/set
-  # state_topic: zigbee2mqtt/livingroom_lights
+  state_topic: zigbee2mqtt/livingroom_lights
   platform: mqtt
   schema: json
   availability_topic: "zigbee2mqtt/bridge/state"
@@ -142,7 +142,7 @@
 
 - name: "attic_lights"
   command_topic: zigbee2mqtt/attic_lights/set
-  # state_topic: zigbee2mqtt/attic_lights
+  state_topic: zigbee2mqtt/attic_lights
   platform: mqtt
   schema: json
   availability_topic: "zigbee2mqtt/bridge/state"
@@ -179,7 +179,7 @@
 
 - name: "closetroom_lights"
   command_topic: zigbee2mqtt/closetroom_lights/set
-  # state_topic: zigbee2mqtt/closetroom_lights
+  state_topic: zigbee2mqtt/closetroom_lights
   platform: mqtt
   schema: json
   availability_topic: "zigbee2mqtt/bridge/state"
