@@ -2,14 +2,14 @@
   sensors:
     frank_home_direction:
       friendly_name: "Frank richting Home"
-      value_template: "{{ ((state_attr('sensor.proximity_frank_home_stats', 'change')|int < -3) and (as_timestamp(state_attr('sensor.proximity_frank_home_stats', 'max_age')) > as_timestamp(now()) - (10*60)) or states('proximity.frank_home')|int < 2) }}"
+      value_template: "{{ (not is_state('sensor.proximity_frank_home_stats', 'unknown')) and (state_attr('sensor.proximity_frank_home_stats', 'change')|int < -3) and (as_timestamp(state_attr('sensor.proximity_frank_home_stats', 'max_age')) > as_timestamp(now()) - (10*60)) or (states('proximity.frank_home')|int < 2 and not is_state('sensor.proximity_frank_home_stats', 'unknown')) }}"
       # delay_on:
       #   minutes: 5
       delay_off:
         minutes: 15
     malissa_home_direction:
       friendly_name: "Malissa richting Home"
-      value_template: "{{ ((state_attr('sensor.proximity_malissa_home_stats', 'change')|int < -3) and (as_timestamp(state_attr('sensor.proximity_malissa_home_stats', 'max_age')) > as_timestamp(now()) - (10*60)) or states('proximity.malissa_home')|int < 2) }}"
+      value_template: "{{ ((state_attr('sensor.proximity_malissa_home_stats', 'change')|int < -3) and (as_timestamp(state_attr('sensor.proximity_malissa_home_stats', 'max_age')) > as_timestamp(now()) - (10*60)) or (states('proximity.malissa_home')|int < 2 and not is_state('sensor.proximity_malissa_home_stats', 'unknown'))) }}"
       # delay_on:
       #   minutes: 5
       delay_off:
