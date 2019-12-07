@@ -20,6 +20,8 @@
       data_template:
         entity_id: "light.livingroom_lights"
         # brightness_pct: "{{ states('input_number.livingroom_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
+    - service: switch.turn_on
+      entity_id: switch.livingroom_power_1
     - service: timer.cancel
       entity_id: timer.livingroom
 
@@ -73,6 +75,9 @@
   action:
     - service: light.turn_on
       entity_id: "light.livingroom_lights"
+    - service: switch.turn_on
+      entity_id: switch.livingroom_power_1
+
 
 - alias: "Licht Woonkamer 0 aan savonds als er niemand thuis is"
   initial_state: on
@@ -87,6 +92,8 @@
   action:
     - service: light.turn_on
       entity_id: "light.livingroom_light_0"
+    - service: switch.turn_on
+      entity_id: switch.livingroom_power_1
 
 - alias: "Licht Woonkamer 0 uit als er niemand thuis is als het nacht is geworden"
   initial_state: on
@@ -101,6 +108,8 @@
   action:
     - service: light.turn_off
       entity_id: "light.livingroom_light_0"
+    - service: switch.turn_off
+      entity_id: switch.livingroom_power_1
 
 - alias: "Licht Woonkamer uit als de avond afgelopen is"
   initial_state: on
@@ -137,6 +146,8 @@
   action:
     - service: light.turn_off
       entity_id: light.livingroom_lights
+    - service: switch.turn_off
+      entity_id: switch.livingroom_power_1
 
 # - alias: "Licht Woonkamer volgt dagdeel"
 #   initial_state: on
@@ -172,6 +183,8 @@
   action:
     - service: light.turn_off
       entity_id: light.livingroom_lights
+    - service: switch.turn_off
+      entity_id: switch.livingroom_power_1
     - service: timer.cancel
       entity_id: timer.livingroom
 

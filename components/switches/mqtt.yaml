@@ -19,6 +19,16 @@
   command_topic: "zigbee2mqtt/garage_power_0/set"
 
 - platform: "mqtt"
+  name: livingroom_power_1
+  state_topic: "zigbee2mqtt/livingroom_power_1"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_off: "OFF"
+  payload_on: "ON"
+  qos: 1
+  value_template: "{{ value_json.state }}"
+  command_topic: "zigbee2mqtt/livingroom_power_1/set"
+
+- platform: "mqtt"
   name: scullery_power_0
   state_topic: "zigbee2mqtt/scullery_power_0"
   availability_topic: "zigbee2mqtt/bridge/state"
