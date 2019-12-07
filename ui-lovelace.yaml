@@ -5,18 +5,22 @@ resources:
     url: /local/lovelace-flower-card/index.js
 title: Home
 views:
-  - badges:
-      - binary_sensor.scullery_water_0
-      - binary_sensor.bathroom_water_0
-      - binary_sensor.livingroom_smoke_0
-      - binary_sensor.scullery_smoke_0
-      - binary_sensor.garage_smoke_0
-      - binary_sensor.attic_gasco_0_gas
-      - binary_sensor.attic_gasco_0_co
-      - sensor.solar_power_production
-      - sensor.main_power_usage
-      - binary_sensor.thermostat_leaving_next_hour
-      - sensor.tautulli
+  - icon: 'mdi:home-assistant'
+    path: default_view
+    title: default_view
+    badges:
+      - entity: binary_sensor.scullery_water_0
+      - entity: binary_sensor.bathroom_water_0
+      - entity: binary_sensor.livingroom_smoke_0
+      - entity: binary_sensor.scullery_smoke_0
+      - entity: binary_sensor.garage_smoke_0
+      - entity: binary_sensor.attic_gasco_0_gas
+      - entity: binary_sensor.attic_gasco_0_co
+      - entity: binary_sensor.attic_smoke_0
+      - entity: sensor.solar_power_production
+      - entity: sensor.main_power_usage
+      - entity: binary_sensor.thermostat_leaving_next_hour
+      - entity: sensor.tautulli
     cards:
       - cards:
           - cards:
@@ -183,9 +187,6 @@ views:
       - entity: camera.woonkamer
         show-state: false
         type: picture-entity
-    icon: 'mdi:home-assistant'
-    path: default_view
-    title: default_view
   - badges:
       - sensor.zigbee2mqtt_status
     cards:

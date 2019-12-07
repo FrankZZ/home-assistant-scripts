@@ -199,7 +199,7 @@
     - service: climate.set_temperature
       data:
         entity_id: climate.bijkeuken
-        temperature: 21
+        temperature: 25
         hvac_mode: heat
 
 - alias: "Thermostaat Bijkeuken omlaag als het niet meer nodig is"

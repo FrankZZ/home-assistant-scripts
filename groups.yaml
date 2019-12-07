@@ -532,7 +532,7 @@ bathroom_fan_settings:
 lights:
   entities:
     # - light.porch_light_0
-    # - light.porch_light_1
+    - light.porch_light_1
     - light.closetroom_lights
     # - light.closetroom_light_0
     # - light.closetroom_light_1

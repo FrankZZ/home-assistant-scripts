@@ -18,43 +18,6 @@
       data:
         entity_id: "switch.scullery_power_0"
 
-- alias: "Voordeurlamp fel bij activiteit voordeur"
-  trigger:
-    - platform: event
-      event_type: dahua_event_received
-      event_data:
-        code: CrossLineDetection
-        action: Start
-  condition:
-    condition: state
-    entity_id: binary_sensor.garden_dark
-    state: 'on'
-  action:
-    - service: timer.start
-      data:
-        entity_id: timer.porch
-        duration: 120
-    - service: light.turn_on
-      data:
-        entity_id: "light.porch_light_1"
-        brightness_pct: 100
-
-- alias: "Voordeurlamp normaal na activiteit voordeur"
-  trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.porch
-  condition:
-    condition: state
-    entity_id: light.porch_light_1
-    state: 'on'
-  action:
-    - service: light.turn_on
-      data:
-        entity_id: "light.porch_light_1"
-        brightness_pct: 25
-
 - alias: "Licht tuin uit als het licht is"
   initial_state: on
   trigger:
@@ -62,12 +25,8 @@
       entity_id:
         binary_sensor.garden_dark
       to: 'off'
-  condition:
-    condition: state
-    entity_id: binary_sensor.garden_dark
-    state: 'off'
   action:
-    - service: light.turn_on
+    - service: light.turn_off
       data:
         entity_id: "light.porch_light_1"
     - service: switch.turn_off

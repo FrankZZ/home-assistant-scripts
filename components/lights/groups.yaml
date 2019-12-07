@@ -19,7 +19,6 @@
   entities:
     - light.livingroom_light_0
     - light.livingroom_light_1
-    - light.livingroom_light_2
     - light.livingroom_light_3
     - light.kitchen_light_0
 
@@ -27,11 +26,6 @@
   name: kitchen_lights
   entities:
     - light.kitchen_light_0
-
-- platform: group
-  name: upperhallway_lights
-  entities:
-    - light.upperhallway_light_0
 
 - platform: group
   name: hallway_lights

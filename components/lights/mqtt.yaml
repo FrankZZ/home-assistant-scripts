@@ -186,6 +186,15 @@
   brightness: true
   qos: 1
 
+- name: "upperhallway_lights"
+  command_topic: zigbee2mqtt/upperhallway_lights/set
+  state_topic: zigbee2mqtt/upperhallway_lights
+  platform: mqtt
+  schema: json
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  qos: 1
+
 - name: "porch_light_0"
   platform: "mqtt"
   state_topic: "zigbee2mqtt/porch_light_0"

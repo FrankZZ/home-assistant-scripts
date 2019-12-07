@@ -37,6 +37,10 @@
       value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen) }}"
       above: 3540 # 59 mins
     - platform: numeric_state
+      entity_id: binary_sensor.upperhallway_smoke_0
+      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen) }}"
+      above: 3540 # 59 mins
+    - platform: numeric_state
       entity_id: binary_sensor.scullery_smoke_0
       value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen) }}"
       above: 3540 # 59 mins
@@ -50,13 +54,12 @@
         title: "[ZB2MQTT] Heartbeat Timeout"
         message: "Last heartbeat of {{ trigger.entity_id.split('.')[1] }} was at {{ as_timestamp(trigger.to_state.state.attributes.last_seen)|timestamp_custom('%a %H:%M', True) }}."
 
-
 - alias: "Notify on gas_co test"
   trigger:
     - platform: template
-      value_template: "{{ is_state_attr('sensor.attic_gasco_0_co', 'test', True) }}"
+      value_template: "{{ is_state_attr('binary_sensor.attic_gasco_0_co', 'test', True) }}"
     - platform: template
-      value_template: "{{ is_state_attr('sensor.attic_gasco_0_smoke', 'test', True) }}"
+      value_template: "{{ is_state_attr('binary_sensor.attic_gasco_0_smoke', 'test', True) }}"
   action:
     - service: notify.telegram
       data_template:
