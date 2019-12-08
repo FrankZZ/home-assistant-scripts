@@ -183,10 +183,11 @@
   action:
     - service: light.turn_off
       entity_id: light.livingroom_lights
-    - service: switch.turn_off
-      entity_id: switch.livingroom_power_1
+    # - service: switch.turn_off
+    #   entity_id: switch.livingroom_power_1
     - service: timer.cancel
       entity_id: timer.livingroom
+
 
 - alias: Livingroom light dim when TV goes on
   trigger:
