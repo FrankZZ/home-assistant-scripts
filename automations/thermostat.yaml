@@ -27,7 +27,7 @@
         value_template: "{{ is_state('sensor.woonkamer_overlay', 'True') and state_attr('climate.woonkamer', 'temperature') == 15.0 }}"
       - condition: numeric_state
         entity_id: proximity.home
-        below: 15
+        below: 17
   action:
     - service: climate.set_hvac_mode
       data:
