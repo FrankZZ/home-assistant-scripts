@@ -2,4 +2,5 @@ image: homeassistant/amd64-homeassistant:stable
 
 test:
   script:
+  - hass --version
   - hass -c "${CI_PROJECT_DIR}" --script check_config
