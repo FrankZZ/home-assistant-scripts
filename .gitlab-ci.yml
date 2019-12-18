@@ -3,4 +3,5 @@ image: homeassistant/amd64-homeassistant:stable
 test:
   script:
   - hass --version
+  - mv secrets-empty.yaml secrets.yaml
   - hass -c "${CI_PROJECT_DIR}" --script check_config
