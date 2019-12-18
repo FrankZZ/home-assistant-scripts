@@ -31,37 +31,37 @@
         entity_id: input_number.bathroom_fan_speed
         value: "0"
 
-- alias: "badkamer fan start slow humidity"
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.bathroom_humidity_rising
-      from: "off"
-      to: "on"
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: "{{ is_state('input_number.bathroom_fan_last_on_humidity', '0.0') }}"
-      - condition: template
-        value_template: "{{ not is_state('input_number.bathroom_fan_speed', '2.0') }}"
-  action:
-    - service: input_number.set_value
-      data_template:
-        entity_id: input_number.bathroom_fan_last_on_humidity
-        value: "{{ state_attr('sensor.bathroom_humidity_stats', 'min_value') | int }}"
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.bathroom_fan_speed
-        value: "1"
+# - alias: "badkamer fan start slow humidity"
+#   trigger:
+#     - platform: state
+#       entity_id: binary_sensor.bathroom_humidity_rising
+#       from: "off"
+#       to: "on"
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: template
+#         value_template: "{{ is_state('input_number.bathroom_fan_last_on_humidity', '0.0') }}"
+#       - condition: template
+#         value_template: "{{ not is_state('input_number.bathroom_fan_speed', '2.0') }}"
+#   action:
+#     - service: input_number.set_value
+#       data_template:
+#         entity_id: input_number.bathroom_fan_last_on_humidity
+#         value: "{{ state_attr('sensor.bathroom_humidity_stats', 'min_value') | int }}"
+#     - service: input_number.set_value
+#       data:
+#         entity_id: input_number.bathroom_fan_speed
+#         value: "1"
 
-- alias: "badkamer fan delayed high humidity"
+- alias: "badkamer fan high humidity" # was delayed
   trigger:
     - platform: state
       entity_id: binary_sensor.bathroom_humidity_rising
       from: "off"
       to: "on"
-      for:
-        minutes: 5
+      # for:
+      #   minutes: 5
   condition:
     condition: and
     conditions:

@@ -18,6 +18,32 @@
       data:
         entity_id: "switch.scullery_power_0"
 
+- alias: "porch_christmas_fx"
+  trigger:
+    - platform: state
+      entity_id: sensor.doorbell
+      from: 'not_pressed'
+      to: 'pressed'
+    - platform: event
+      event_type: dahua_event_received
+      event_data:
+        code: CrossLineDetection
+        action: Start
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.garden_dark
+        state: 'on'
+      - condition: template
+        value_template: "{{ as_timestamp(now()) - as_timestamp(state_attr('automation.porch_christmas_fx', 'last_triggered')) | int > (5 * 60) }}"
+      - condition: template
+        value_template: "{{ now().month == 12 and now().day > 5 }}"  
+  action:
+    - service: script.turn_on
+      data:
+        entity_id: "script.porch_christmas_fx"
+
 - alias: "Licht tuin uit als het licht is"
   initial_state: on
   trigger:

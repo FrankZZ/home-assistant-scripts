@@ -14,7 +14,7 @@
         - input_number.bathroom_fan_last_on_humidity
         - sensor.bathroom_temp_0_humidity
       delay_on:
-        minutes: 30
+        minutes: 45
       value_template: >-
         {{ is_state('input_number.bathroom_fan_last_on_humidity', '0.0') or ((states('sensor.bathroom_temp_0_humidity') | default(0) | int - states('input_number.bathroom_fan_last_on_humidity') | default(0) | int) <= states('input_number.bathroom_fan_off_diff') | default(0) | int) }}
 
