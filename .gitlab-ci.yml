@@ -1,15 +1,7 @@
-image: python:3
-
-before_script:
-  - git clone --single-branch --branch master https://github.com/home-assistant/home-assistant/ /hass
-  - cd /hass
-  - python -m venv venv
-  - source venv/bin/activate
-  - script/setup
-  - python -V
-  - hass --version
-  - mv "${CI_PROJECT_DIR}/secrets-empty.yaml" "${CI_PROJECT_DIR}/secrets.yaml"
+image: homeassistant/amd64-homeassistant:stable
 
 test:
   script:
+  - hass --version
+  - mv secrets-empty.yaml secrets.yaml
   - hass -c "${CI_PROJECT_DIR}" --script check_config
