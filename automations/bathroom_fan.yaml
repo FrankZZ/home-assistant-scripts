@@ -31,7 +31,7 @@
         entity_id: input_number.bathroom_fan_speed
         value: "0"
 
-- alias: "badkamer fan start slow humidity"
+- alias: "badkamer fan start humidity"
   trigger:
     - platform: state
       entity_id: binary_sensor.bathroom_humidity_rising
@@ -42,8 +42,6 @@
     conditions:
       - condition: template
         value_template: "{{ is_state('input_number.bathroom_fan_last_on_humidity', '0.0') }}"
-      - condition: template
-        value_template: "{{ not is_state('input_number.bathroom_fan_speed', '2.0') }}"
   action:
     - service: input_number.set_value
       data_template:
@@ -52,28 +50,7 @@
     - service: input_number.set_value
       data:
         entity_id: input_number.bathroom_fan_speed
-        value: "1"
-
-- alias: "badkamer fan delayed high humidity"
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.bathroom_humidity_rising
-      from: "off"
-      to: "on"
-      for:
-        minutes: 5
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: "{{ not is_state('input_number.bathroom_fan_last_on_humidity', '0.0') }}"
-      - condition: template
-        value_template: "{{ not is_state('input_number.bathroom_fan_speed', '0.0') }}"
-  action:
-    service: input_number.set_value
-    data:
-      entity_id: input_number.bathroom_fan_speed
-      value: "2"
+        value: "2"
 
 - alias: "badkamer fan stop"
   trigger:

@@ -22,39 +22,75 @@ heating_away:
   sequence:
     - service: climate.set_temperature
       data:
+        entity_id: climate.bijkeuken
+        temperature: 25
+        hvac_mode: heat
+    - delay:
+        seconds: 5
+    - service: climate.set_hvac_mode
+      data:
         entity_id: climate.woonkamer
-        temperature: 15
-        hvac_mode: heat
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.hal
-        temperature: 5
-        hvac_mode: heat
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.badkamer
-        temperature: 5
-        hvac_mode: heat
-    - service: climate.set_temperature
+        hvac_mode: "off"
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.slaapkamer
-        temperature: 5
-        hvac_mode: heat
-    - service: climate.set_temperature
+        hvac_mode: "off"
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.kastenkamer
-        temperature: 5
-        hvac_mode: heat
-    - service: climate.set_temperature
+        hvac_mode: "off"
+    - service: climate.set_hvac_mode
+      data:
+        entity_id: climate.badkamer
+        hvac_mode: "off"
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.zolder
-        temperature: 5
-        hvac_mode: heat
-    - service: climate.set_temperature
+        hvac_mode: "off"
+    - service: climate.set_hvac_mode
+      data:
+        entity_id: climate.hal
+        hvac_mode: "off"
+    - service: climate.set_hvac_mode
       data:
         entity_id: climate.logeerkamer
-        temperature: 5
-        hvac_mode: heat
+        hvac_mode: "off"
+
+    # - service: climate.set_temperature
+    #   data:
+    #     entity_id: climate.woonkamer
+    #     temperature: 15
+    #     hvac_mode: heat
+    # - service: climate.set_temperature
+    #   data:
+    #     entity_id: climate.hal
+    #     temperature: 5
+    #     hvac_mode: heat
+    # - service: climate.set_temperature
+    #   data:
+    #     entity_id: climate.badkamer
+    #     temperature: 5
+    #     hvac_mode: heat
+    # - service: climate.set_temperature
+    #   data:
+    #     entity_id: climate.slaapkamer
+    #     temperature: 5
+    #     hvac_mode: heat
+    # - service: climate.set_temperature
+    #   data:
+    #     entity_id: climate.kastenkamer
+    #     temperature: 5
+    #     hvac_mode: heat
+    # - service: climate.set_temperature
+    #   data:
+    #     entity_id: climate.zolder
+    #     temperature: 5
+    #     hvac_mode: heat
+    # - service: climate.set_temperature
+    #   data:
+    #     entity_id: climate.logeerkamer
+    #     temperature: 5
+    #     hvac_mode: heat
 
 heating_home:
   sequence:
@@ -85,6 +121,10 @@ heating_home:
     - service: climate.set_hvac_mode
       data:
         entity_id: climate.logeerkamer
+        hvac_mode: auto
+    - service: climate.set_hvac_mode
+      data:
+        entity_id: climate.bijkeuken
         hvac_mode: auto
 
 # bathroom_heating_on:
