@@ -1,2 +1,2 @@
 - platform: snapcast
- host: !secret snapcast_server_ip
+  host: !secret snapcast_server_ip
