@@ -18,6 +18,8 @@ system_health:
 
 hassio:
 
+zeroconf:
+
 map:
 
 updater:

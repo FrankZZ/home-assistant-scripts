@@ -201,6 +201,9 @@
         entity_id: binary_sensor.frank_home_direction
         state: 'on'
         # wait for a waze update after binary_sensor.frank_home_direction turned true
+      - condition: numeric_state
+        entity_id: proximity.frank_home
+        above: 1
       - condition: template
         value_template: '{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.frank_home_direction.last_changed) | int > as_timestamp(now()) - as_timestamp(trigger.to_state.last_updated)|int }}'
         # check if this is the first time that the update of waze occurs after frank_home_directory turned true
@@ -232,6 +235,9 @@
         entity_id: binary_sensor.malissa_home_direction
         state: 'on'
         # wait for a waze update after binary_sensor.malissa_home_direction turned true
+      - condition: numeric_state
+        entity_id: proximity.malissa_home
+        above: 1
       - condition: template
         value_template: '{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.malissa_home_direction.last_changed) | int > as_timestamp(now()) - as_timestamp(trigger.to_state.last_updated)|int }}'
         # check if this is the first time that the update of waze occurs after frank_home_directory turned true
