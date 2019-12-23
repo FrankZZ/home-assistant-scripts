@@ -44,8 +44,8 @@
       - condition: state
         entity_id: light.kitchen_lights
         state: 'on'
-      - condition: template
-        value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.kitchen_darkness_treshold')|default(0)|int+10 }}"
+      # - condition: template
+      #   value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.kitchen_darkness_treshold')|default(0)|int+10 }}"
   action:
     - service: timer.cancel
       entity_id: timer.kitchen

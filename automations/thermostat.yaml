@@ -24,7 +24,7 @@
         entity_id: binary_sensor.thermostat_leaving_next_hour
         state: 'off'
       - condition: template
-        value_template: "{{ is_state('sensor.woonkamer_overlay', 'True') and state_attr('climate.woonkamer', 'temperature') == 15.0 }}"
+        value_template: "{{ is_state('sensor.woonkamer_overlay', 'True') }}"
       - condition: numeric_state
         entity_id: proximity.home
         below: 17
@@ -152,7 +152,7 @@
       # - condition: template
       #   value_template: "{{ not states('input_select.timeofday') == 'night' }}"
       - condition: template
-        value_template: "{{ is_state('sensor.woonkamer_overlay', 'True') and state_attr('climate.woonkamer', 'temperature') == 15.0 }}"
+        value_template: "{{ is_state('sensor.woonkamer_overlay', 'True') }}"
       - condition: state
         entity_id: binary_sensor.thermostat_leaving_next_hour
         state: 'off'
