@@ -1,29 +1,5 @@
 - platform: template
   sensors:
-    kettle_cooled_down:
-      entity_id:
-        - sensor.woonkamer_heating
-        - sensor.hal_heating
-        - sensor.badkamer_heating
-        - sensor.kastenkamer_heating
-        - sensor.slaapkamer_heating
-        - sensor.logeerkamer_heating
-        - sensor.zolder_heating
-      value_template: >-
-        {{
-          [
-            states('sensor.woonkamer_heating'),
-            states('sensor.hal_heating'),
-            states('sensor.badkamer_heating'),
-            states('sensor.kastenkamer_heating'),
-            states('sensor.slaapkamer_heating'),
-            states('sensor.logeerkamer_heating'),
-            states('sensor.zolder_heating')
-          ] | max | int == 0
-        }}
-      delay_on:
-        minutes: 15
-
     kettle_heating:
       entity_id:
         - sensor.woonkamer_heating

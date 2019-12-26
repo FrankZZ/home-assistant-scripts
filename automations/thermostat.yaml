@@ -179,6 +179,9 @@
     conditions:
       # - condition: template
       #   value_template: "{{ not states('input_select.timeofday') == 'night' }}"
+      - condition: state
+        entity_id: binary_sensor.thermostat_leaving_next_hour
+        state: 'off'
       - condition: template
         value_template: "{{ not state_attr('climate.logeerkamer', 'hvac_mode') == 'auto' }}"
   action:
@@ -208,19 +211,6 @@
       entity_id: binary_sensor.kettle_heating
       from: 'off'
       to: 'on'
-    - platform: state
-      entity_id: binary_sensor.kettle_cooled_down
-      from: 'off'
-      to: 'on'
-  condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: binary_sensor.kettle_heating
-        state: 'on'
-      - condition: state
-        entity_id: binary_sensor.kettle_cooled_down
-        state: 'on'
   action:
     - service: climate.set_hvac_mode
       data:
