@@ -29,6 +29,7 @@
       entity_id:
         - sensor.waze_calendar_to_next_appointment
         - sensor.calendar_malissa_frank_start_time
+        - sensor.time
       value_template: >-
         {{
           not is_state('sensor.calendar_malissa_frank_location', None) and
