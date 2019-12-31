@@ -23,6 +23,9 @@
             value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.kitchen_darkness_treshold')|default(0)|int }}"
   action:
     - service: light.turn_on
+      data:
+        entity_id: light.kitchen_cabinet
+    - service: light.turn_on
       data_template:
         entity_id: "light.kitchen_lights"
         brightness_pct: "{{ states('input_number.kitchen_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
@@ -95,6 +98,9 @@
     - service: light.turn_off
       data:
         entity_id: light.kitchen_lights
+    - service: light.turn_off
+      data:
+        entity_id: light.kitchen_cabinet
     - service: switch.turn_off
       entity_id: "switch.garage_power_0"
 
