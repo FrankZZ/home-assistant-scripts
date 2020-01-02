@@ -68,8 +68,23 @@
   trigger:
     - platform: state
       entity_id:
-        binary_sensor.livingroom_smoke_0,
+        binary_sensor.livingroom_smoke_0
+      to: 'on'
+    - platform: state
+      entity_id:
         binary_sensor.scullery_smoke_0
+      to: 'on'
+    - platform: state
+      entity_id:
+        binary_sensor.attic_smoke_0
+      to: 'on'
+    - platform: state
+      entity_id:
+        binary_sensor.upperhallway_smoke_0
+      to: 'on'
+    - platform: state
+      entity_id:
+        binary_sensor.garage_smoke_0
       to: 'on'
   action:
     - service: input_number.set_value
@@ -83,6 +98,11 @@
     - service: light.turn_on
       data:
         entity_id: !secret aqara_gateway_light
+        brightness_pct: 100
+        color_name: red
+    - service: light.turn_on
+      data:
+        entity_id: light.porch_light_1
         brightness_pct: 100
         color_name: red
     - service: xiaomi_aqara.play_ringtone

@@ -34,5 +34,6 @@
         {{
           not is_state('sensor.calendar_malissa_frank_location', None) and
           not is_state('sensor.waze_calendar_to_next_appointment', None) and
-          (as_timestamp(states('sensor.calendar_malissa_frank_start_time')) - (state_attr('sensor.waze_calendar_to_next_appointment', 'duration') * 60) - 3600) < as_timestamp(now())
+          not is_state('sensor.calendar_malissa_frank_start_time', None) and
+          (as_timestamp(states('sensor.calendar_malissa_frank_start_time')) - ((state_attr('sensor.waze_calendar_to_next_appointment', 'duration')|int) * 60) - 3600) < as_timestamp(now())
         }}

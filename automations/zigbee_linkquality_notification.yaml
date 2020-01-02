@@ -26,32 +26,36 @@
   trigger:
     - platform: numeric_state
       entity_id: binary_sensor.livingroom_smoke_0
-      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen) }}"
+      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen|default(now())) }}"
+      above: 3540 # 59 mins
+    - platform: numeric_state
+      entity_id: binary_sensor.attic_smoke_0
+      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen|default(now())) }}"
       above: 3540 # 59 mins
     - platform: numeric_state
       entity_id: binary_sensor.garage_smoke_0
-      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen) }}"
+      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen|default(now())) }}"
       above: 3540 # 59 mins
     - platform: numeric_state
       entity_id: binary_sensor.attic_gasco_0_co
-      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen) }}"
+      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen|default(now())) }}"
       above: 3540 # 59 mins
     - platform: numeric_state
       entity_id: binary_sensor.upperhallway_smoke_0
-      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen) }}"
+      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen|default(now())) }}"
       above: 3540 # 59 mins
     - platform: numeric_state
       entity_id: binary_sensor.scullery_smoke_0
-      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen) }}"
+      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen|default(now())) }}"
       above: 3540 # 59 mins
-    - platform: numeric_state
-      entity_id: sensor.bathroom_temp_0
-      value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen) }}"
-      above: 3540 # 59 mins
+    # - platform: numeric_state
+    #   entity_id: sensor.bathroom_temp_0
+    #   value_template: "{{ as_timestamp(now()) - as_timestamp(state.attributes.last_seen|default(now())) }}"
+    #   above: 3540 # 59 mins
   action:
     - service: notify.telegram_frank
       data_template:
-        title: "[ZB2MQTT] Heartbeat Timeout"
+        title: "[ZB2M] Heartbeat Timeout"
         message: "Last heartbeat of {{ trigger.entity_id.split('.')[1] }} was at {{ as_timestamp(trigger.to_state.state.attributes.last_seen)|timestamp_custom('%a %H:%M', True) }}."
 
 - alias: "Notify on gas_co test"
