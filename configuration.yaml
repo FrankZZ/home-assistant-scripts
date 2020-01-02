@@ -108,6 +108,8 @@ config:
 # Discover some devices automatically
 discovery:
 
+mobile_app:
+
 # Track the sun
 sun:
 
