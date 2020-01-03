@@ -12,13 +12,13 @@
       value_template: >-
         {{
           [
-            states('sensor.woonkamer_heating'),
-            states('sensor.hal_heating'),
-            states('sensor.badkamer_heating'),
-            states('sensor.kastenkamer_heating'),
-            states('sensor.slaapkamer_heating'),
-            states('sensor.logeerkamer_heating'),
-            states('sensor.zolder_heating')
+            states('sensor.woonkamer_heating')|int,
+            states('sensor.hal_heating')|int,
+            states('sensor.badkamer_heating')|int,
+            states('sensor.kastenkamer_heating')|int,
+            states('sensor.slaapkamer_heating')|int,
+            states('sensor.logeerkamer_heating')|int,
+            states('sensor.zolder_heating')|int
           ] | max | int > 5
         }}
 
