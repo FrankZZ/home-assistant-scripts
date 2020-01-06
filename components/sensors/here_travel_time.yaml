@@ -13,3 +13,18 @@
   origin_entity_id: device_tracker.malissa_gps
   destination_entity_id: zone.home
   scan_interval: 120
+
+- platform: template
+  sensors:
+    distance_malissa_to_home:
+      entity_id: sensor.here_malissa_to_home
+      value_template: "{{ state_attr('sensor.here_malissa_to_home', 'distance') }}"
+    distance_frank_to_home:
+      entity_id: sensor.here_frank_to_home
+      value_template: "{{ state_attr('sensor.here_frank_to_home', 'distance') }}"
+    duration_in_traffic_malissa_to_home:
+      entity_id: sensor.here_malissa_to_home
+      value_template: "{{ state_attr('sensor.here_malissa_to_home', 'duration_in_traffic') }}"
+    duration_in_traffic_frank_to_home:
+      entity_id: sensor.here_frank_to_home
+      value_template: "{{ state_attr('sensor.here_frank_to_home', 'duration_in_traffic') }}"

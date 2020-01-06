@@ -11,3 +11,31 @@
   max_age:
     minutes: 15
   precision: 0
+
+- platform: statistics
+  name: distance_frank_home_stats
+  entity_id: sensor.distance_frank_to_home
+  max_age:
+    minutes: 15
+  precision: 0
+
+- platform: statistics
+  name: distance_malissa_home_stats
+  entity_id: sensor.distance_malissa_to_home
+  max_age:
+    minutes: 15
+  precision: 0
+
+- platform: statistics
+  name: duration_in_traffic_frank_to_home_stats
+  entity_id: sensor.duration_in_traffic_frank_to_home
+  max_age:
+    minutes: 15
+  precision: 0
+
+- platform: statistics
+  name: duration_in_traffic_malissa_to_home_stats
+  entity_id: sensor.duration_in_traffic_malissa_to_home
+  max_age:
+    minutes: 15
+  precision: 0
