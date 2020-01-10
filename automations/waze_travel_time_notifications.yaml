@@ -219,7 +219,7 @@
           - thu
           - fri
   action:
-    service: notify.telegram
+    service: notify.mobile_app_malissa_s9
     data_template:
       title: "Vertrekmelding Frank"
       message: "Frank is onderweg naar huis. ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_frank_to_home')|int)*60)) | float | timestamp_custom('%H:%M') }}"
@@ -253,7 +253,7 @@
           - thu
           - fri
   action:
-    service: notify.telegram
+    service: notify.mobile_app_frank_s8p
     data_template:
       title: "Vertrekmelding Malissa"
       message: "Malissa is onderweg naar huis. ETA: {{ (as_timestamp(now()) | float + ((states('sensor.waze_malissa_to_home')|int)*60)) | float | timestamp_custom('%H:%M') }}"

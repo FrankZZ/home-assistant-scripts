@@ -33,7 +33,11 @@
       data:
         entity_id: climate.woonkamer
         hvac_mode: auto
-    - service: notify.telegram
+    - service: notify.mobile_app_frank_s8p
+      data:
+        title: Verwarming ingeschakeld
+        message: "Hoppa, de verwarming staat alvast aan!"
+    - service: notify.mobile_app_malissa_s9
       data:
         title: Verwarming ingeschakeld
         message: "Hoppa, de verwarming staat alvast aan!"
@@ -68,7 +72,11 @@
   action:
     - service: script.turn_on
       entity_id: script.heating_away
-    - service: notify.telegram
+    - service: notify.mobile_app_frank_s8p
+      data:
+        title: Verwarming uitgeschakeld
+        message: "Niemand is (meer) onderweg naar huis"
+    - service: notify.mobile_app_malissa_s9
       data:
         title: Verwarming uitgeschakeld
         message: "Niemand is (meer) onderweg naar huis"
@@ -108,7 +116,11 @@
   action:
     - service: script.turn_on
       entity_id: script.heating_away
-    - service: notify.telegram
+    - service: notify.mobile_app_frank_s8p
+      data:
+        title: Verwarming uitgeschakeld
+        message: "Iedereen heeft het huis verlaten."
+    - service: notify.mobile_app_malissa_s9
       data:
         title: Verwarming uitgeschakeld
         message: "Iedereen heeft het huis verlaten."
@@ -135,7 +147,11 @@
   action:
     - service: script.turn_on
       entity_id: script.heating_away
-    - service: notify.telegram
+    - service: notify.mobile_app_malissa_s9
+      data_template:
+        title: "Verwarming uitgeschakeld"
+        message: "Vertrektijd \"{{ state_attr('calendar.malissa_frank', 'message') }}\" is binnen een uur ({{ (as_timestamp(states('sensor.calendar_malissa_frank_start_time')) - (state_attr('sensor.waze_calendar_to_next_appointment', 'duration') * 60))|timestamp_custom('%H:%M', true) }})."
+    - service: notify.mobile_app_frank_s8p
       data_template:
         title: "Verwarming uitgeschakeld"
         message: "Vertrektijd \"{{ state_attr('calendar.malissa_frank', 'message') }}\" is binnen een uur ({{ (as_timestamp(states('sensor.calendar_malissa_frank_start_time')) - (state_attr('sensor.waze_calendar_to_next_appointment', 'duration') * 60))|timestamp_custom('%H:%M', true) }})."
@@ -161,7 +177,11 @@
       entity_id: climate.woonkamer
       data:
         hvac_mode: auto
-    - service: notify.telegram
+    - service: notify.mobile_app_frank_s8p
+      data_template:
+        title: Verwarming Woonkamer ingeschakeld
+        message: "Hoppa, de verwarming staat aan!"
+    - service: notify.mobile_app_malissa_s9
       data_template:
         title: Verwarming Woonkamer ingeschakeld
         message: "Hoppa, de verwarming staat aan!"
@@ -187,7 +207,11 @@
   action:
     - service: script.turn_on
       entity_id: script.heating_home
-    - service: notify.telegram
+    - service: notify.mobile_app_malissa_s9
+      data_template:
+        title: Verwarming ingeschakeld
+        message: "Bewoners in het huis gedetecteerd"
+    - service: notify.mobile_app_frank_s8p
       data_template:
         title: Verwarming ingeschakeld
         message: "Bewoners in het huis gedetecteerd"
