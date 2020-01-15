@@ -289,7 +289,3 @@ telegram_bot:
     allowed_chat_ids:
       - !secret telegram_frank_id
       - !secret telegram_malissa_id
-
-hacs:
-  token: !secret hacs_github_token
-  theme: true
