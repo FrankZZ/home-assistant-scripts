@@ -32,6 +32,7 @@
         - sensor.time
       value_template: >-
         {{
+          not is_state('sensor.calendar_malissa_frank_location', '') and
           not is_state('sensor.calendar_malissa_frank_location', None) and
           not is_state('sensor.waze_calendar_to_next_appointment', None) and
           not is_state('sensor.calendar_malissa_frank_start_time', None) and
