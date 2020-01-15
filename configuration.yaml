@@ -71,6 +71,7 @@ person:
 
 # Enables the frontend
 frontend:
+  themes: !include_dir_merge_named themes
 
 apcupsd:
   host: !secret apcupsd_host
