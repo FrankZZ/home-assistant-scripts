@@ -252,6 +252,8 @@ xiaomi_aqara:
 
 influxdb:
   host: !secret influxdb_host
+  username: !secret influxdb_username
+  password: !secret influxdb_password
   max_retries: 5
   tags_attributes:
     - friendly_name
