@@ -291,3 +291,7 @@ telegram_bot:
     allowed_chat_ids:
       - !secret telegram_frank_id
       - !secret telegram_malissa_id
+
+webostv:
+  host: !secret tv_livingroom_ip
+  name: livingroom_tv
