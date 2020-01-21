@@ -173,3 +173,18 @@
         gw_mac: !secret aqara_gateway_mac
         ringtone_id: 2
         ringtone_vol: 100
+
+- alias: "3D printer uit brand zolder"
+  trigger:
+    - platform: state
+      entity_id:
+        binary_sensor.attic_smoke_0
+      to: 'on'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.attic_power_0
+    - service: notify.telegram
+      data_template:
+        title: "Brandalarm"
+        message: "3D Printer uitgeschakeld"
