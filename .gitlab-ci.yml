@@ -4,4 +4,5 @@ test:
   script:
   - hass --version
   - mv secrets-empty.yaml secrets.yaml
+  - sed -i 's/zigbee2mqtt_networkmap://' configuration.yaml
   - hass -c "${CI_PROJECT_DIR}" --script check_config
