@@ -17,9 +17,17 @@
             value_template: "{{ is_state('binary_sensor.frank_home_direction', 'on') }}"
           - condition: template
             value_template: "{{ is_state('binary_sensor.malissa_home_direction', 'on') }}"
-      - condition: state
-        entity_id: binary_sensor.thermostat_leaving_next_hour
-        state: 'off'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.thermostat_leaving_next_hour
+            state: 'off'
+          - condition: or # we have 1 calendar, if malissa has an appointment and frank heads home heating should still turn on and vice versa
+            conditions:
+              - condition: template
+                value_template: "{{ 'frank' in trigger.entity_id and 'malissa' in state_attr('calendar.malissa_frank', 'message')|lower }}"
+              - condition: template
+                value_template: "{{ 'malissa' in trigger.entity_id and 'frank' in state_attr('calendar.malissa_frank', 'message')|lower }}"
       - condition: template
         value_template: "{{ is_state('sensor.woonkamer_overlay', 'True') }}"
   action:
