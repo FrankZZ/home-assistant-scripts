@@ -18,7 +18,7 @@
       data_template:
         entity_id: "light.hallway_lights"
         brightness_pct: "{{ states('input_number.hallway_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
-    - service: timer.start
+    - service: timer.cancel
       entity_id: timer.hallway
 
 - alias: "Licht Hal blijft aan bij beweging als het donker is buiten"
@@ -37,7 +37,7 @@
       - condition: template
         value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.hallway_darkness_treshold')|default(0)|int+10 }}"
   action:
-    - service: timer.start
+    - service: timer.cancel
       entity_id: timer.hallway
 
 - alias: Licht gang uit na configurabele tijd geen beweging
