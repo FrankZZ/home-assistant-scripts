@@ -31,7 +31,7 @@
         brightness_pct: "{{ states('input_number.kitchen_brightness_' + states('input_select.timeofday'))|default(100)|int }}"
     - service: switch.turn_on
       entity_id: "switch.garage_power_0"
-    - service: timer.cancel
+    - service: timer.start
       entity_id: timer.kitchen
 
 - alias: "Licht Keuken blijft aan bij beweging als het donker is buiten"
@@ -50,7 +50,7 @@
       # - condition: template
       #   value_template: "{{ trigger.to_state.attributes.illuminance|default(0)|int <= states('input_number.kitchen_darkness_treshold')|default(0)|int+10 }}"
   action:
-    - service: timer.cancel
+    - service: timer.start
       entity_id: timer.kitchen
 
 - alias: Licht Keuken uit na configurabele tijd geen beweging
@@ -133,5 +133,5 @@
 #   action:
 #     - service: light.turn_off
 #       entity_id: light.kitchen_lights
-#     - service: timer.cancel
+#     - service: timer.start
 #       entity_id: timer.kitchen
