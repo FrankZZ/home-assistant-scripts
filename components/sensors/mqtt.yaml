@@ -28,6 +28,7 @@
   state_topic: "zigbee2mqtt/bridge/state"
 
 - platform: "mqtt"
+  name: livingroom_vibration_0
   state_topic: "zigbee2mqtt/livingroom_vibration_0"
   json_attributes_topic: "zigbee2mqtt/livingroom_vibration_0"
   qos: 1

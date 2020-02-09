@@ -4,6 +4,9 @@
     - platform: state
       entity_id:
         binary_sensor.upperhallway_pir_0
+    - platform: state
+      entity_id: sensor.livingroom_vibration_0
+      from: ""
   condition:
     condition: and
     conditions:
