@@ -27,6 +27,33 @@
   name: zigbee2mqtt_status
   state_topic: "zigbee2mqtt/bridge/state"
 
+- platform: "mqtt"
+  state_topic: "zigbee2mqtt/livingroom_vibration_0"
+  json_attributes_topic: "zigbee2mqtt/livingroom_vibration_0"
+  qos: 1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:gesture-double-tap"
+  value_template: "{{ value_json.action }}"
+
+- platform: mqtt
+  name: livingroom_vibration_0_linkquality
+  state_topic: "zigbee2mqtt/livingroom_vibration_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "dBm"
+  value_template: "{{ (-87+(value_json.linkquality|int)*(10--87)/255)|int }}"
+  json_attributes_topic: "zigbee2mqtt/livingroom_vibration_0"
+
+- platform: mqtt
+  name: livingroom_vibration_0_battery
+  state_topic: "zigbee2mqtt/livingroom_vibration_0"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  qos: 1
+  value_template: "{{ value_json.battery|int }}"
+  json_attributes_topic: "zigbee2mqtt/livingroom_vibration_0"
+
+
+
 - platform: mqtt
   name: garage_power_0
   state_topic: "zigbee2mqtt/garage_power_0"
