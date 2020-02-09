@@ -64,6 +64,9 @@
       entity_id:
         binary_sensor.upperhallway_pir_0
       to: 'on'
+    - platform: state
+      entity_id: sensor.livingroom_vibration_0
+      from: ""
   condition:
     condition: and
     conditions:
