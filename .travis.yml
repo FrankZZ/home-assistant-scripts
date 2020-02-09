@@ -8,6 +8,7 @@ before_install:
   - docker run homeassistant/home-assistant:latest python -m homeassistant --version
   - docker run homeassistant/home-assistant:latest python --version
   - mv "${TRAVIS_BUILD_DIR}/secrets-empty.yaml" "${TRAVIS_BUILD_DIR}/secrets.yaml"
+  - sed -i "s/zigbee2mqtt_networkmap\://" "${TRAVIS_BUILD_DIR}/configuration.yaml"
 
 script:
   - docker run -v "${TRAVIS_BUILD_DIR}:/hassconfig" homeassistant/home-assistant:latest python -m homeassistant --script check_config -c /hassconfig
