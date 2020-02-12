@@ -3,12 +3,13 @@ resources:
     url: /local/lovelace-card-tools/index.js
   - type: module
     url: /local/lovelace-flower-card/index.js
+  - type: module
+    url: /community_plugin/simple-weather-card/simple-weather-card-bundle.js
+  - type: module
+    url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
 title: Home
 views:
-  - icon: 'mdi:home-assistant'
-    path: default_view
-    title: default_view
-    badges:
+  - badges:
       - entity: binary_sensor.scullery_water_0
       - entity: binary_sensor.bathroom_water_0
       - entity: binary_sensor.livingroom_smoke_0
@@ -16,6 +17,7 @@ views:
       - entity: binary_sensor.garage_smoke_0
       - entity: binary_sensor.attic_gasco_0_gas
       - entity: binary_sensor.attic_gasco_0_co
+      - entity: binary_sensor.upperhallway_smoke_0
       - entity: binary_sensor.attic_smoke_0
       - entity: sensor.solar_power_production
       - entity: sensor.main_power_usage
@@ -142,6 +144,28 @@ views:
                 tap_action:
                   action: toggle
                 type: entity-button
+              - entity: switch.attic_power_0
+                hold_action:
+                  action: more-info
+                icon_height: 32px
+                name: 3D Printer
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: none
+                type: entity-button
+            type: horizontal-stack
+          - cards:
+              - entity: light.kitchen_cabinet
+                hold_action:
+                  action: more-info
+                icon_height: 32px
+                name: Keuken werkblad
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: entity-button
             type: horizontal-stack
         type: vertical-stack
       - entities:
@@ -154,6 +178,7 @@ views:
           - entity: binary_sensor.hallway_door_0
           - entity: binary_sensor.kitchen_door_0
           - entity: sensor.waze_calendar_to_next_appointment
+          - entity: sensor.livingroom_vibration_0
         show_header_toggle: false
         title: Algemeen
         type: entities
@@ -165,13 +190,6 @@ views:
           - entity: sensor.trash_plastic_nextdate
         show_header_toggle: false
         title: Afval
-        type: entities
-      - entities:
-          - entity: sensor.bathroom_temp_0_humidity
-          - entity: sensor.woonkamer_humidity
-          - entity: binary_sensor.livingroom_humidity_too_low
-        show_header_toggle: true
-        title: temperature_sensors
         type: entities
       - entities:
           - entity: input_number.bathroom_fan_speed
@@ -187,6 +205,19 @@ views:
       - entity: camera.woonkamer
         show-state: false
         type: picture-entity
+      - entities:
+          - entity: sensor.woonkamer_humidity
+            index: 0
+        name: Woonkamer Luchtvochtigheid
+        type: 'custom:mini-graph-card'
+      - entities:
+          - entity: sensor.bathroom_temp_0_humidity
+            index: 0
+        name: Badkamer Luchtvochtigheid
+        type: 'custom:mini-graph-card'
+    icon: 'mdi:home-assistant'
+    path: default_view
+    title: default_view
   - badges:
       - sensor.zigbee2mqtt_status
     cards:
@@ -380,179 +411,6 @@ views:
     icon: 'mdi:thermostat'
     path: climate_view
     title: climate_view
-  - badges:
-      - binary_sensor.frank_home_direction
-      - binary_sensor.malissa_home_direction
-      - sensor.proximity_frank_home_stats
-      - sensor.proximity_malissa_home_stats
-    cards:
-      - entities:
-          - proximity.home
-          - proximity.frank_home
-          - proximity.malissa_home
-          - proximity.frank_work_0
-          - proximity.malissa_work_0_frank
-          - proximity.malissa_work_0_malissa
-          - proximity.malissa_work_1
-        show_header_toggle: true
-        title: Zones
-        type: entities
-      - entities:
-          - input_text.last_motion
-          - sensor.doorbell
-          - sensor.last_doorbell
-          - sensor.bed_tilt_0
-          - sensor.bed_tilt_1
-          - sensor.harmony_livingroom
-          - calendar.malissa_frank
-        show_header_toggle: true
-        title: Algemeen
-        type: entities
-      - entities:
-          - person.frank
-          - person.malissa
-        show_header_toggle: true
-        title: Aanwezigheid
-        type: entities
-    icon: 'mdi:account-multiple'
-    path: presence_view
-    title: presence_view
-  - badges:
-      - sun.sun
-    cards:
-      - entities:
-          - entity: input_select.timeofday
-          - entity: sensor.zigbee2mqtt_status
-          - entity: switch.zigbee2mqtt_permit_join
-          - entity: group.all_automations
-          - entity: input_number.livingroom_minimum_humidity
-        show_header_toggle: true
-        title: Algemeen
-        type: entities
-      - entities:
-          - input_text.trash_announcement_housenumber
-          - input_text.trash_announcement_zipcode
-          - input_datetime.trash_announcement_time
-        show_header_toggle: true
-        title: Afval
-        type: entities
-      - entities:
-          - input_number.livingroom_plant_yucca_moisture_minimum
-          - input_number.livingroom_plant_yucca_conductivity_minimum
-          - input_number.kitchen_plant_pancake_moisture_minimum
-          - input_number.kitchen_plant_pancake_conductivity_minimum
-        show_header_toggle: true
-        title: Planten
-        type: entities
-      - entities:
-          - input_number.bathroom_fan_speed
-          - sensor.bathroom_temp_0_humidity
-          - sensor.bathroom_humidity_stats_mean
-          - sensor.bathroom_fan_last_on_humidity
-          - binary_sensor.bathroom_humidity_rising
-          - binary_sensor.bathroom_humidity_normal
-          - binary_sensor.toilet_occupied
-          - input_number.bathroom_fan_on_diff
-          - input_number.bathroom_fan_off_diff
-        show_header_toggle: true
-        title: Mechanische Ventilatie
-        type: entities
-      - entities:
-          - input_number.upperhallway_timeout
-        show_header_toggle: true
-        title: Overloop Timeout
-        type: entities
-      - entities:
-          - input_number.upperhallway_brightness_morning
-          - input_number.upperhallway_brightness_midday
-          - input_number.upperhallway_brightness_evening
-          - input_number.upperhallway_brightness_night
-          - input_number.upperhallway_brightness_full
-          - input_number.upperhallway_darkness_treshold
-        show_header_toggle: true
-        title: Overloop Lichtsterkte
-        type: entities
-      - entities:
-          - input_number.attichallway_brightness_morning
-          - input_number.attichallway_brightness_midday
-          - input_number.attichallway_brightness_evening
-          - input_number.attichallway_brightness_night
-          - input_number.attichallway_brightness_full
-          - input_number.attichallway_darkness_treshold
-        show_header_toggle: true
-        title: attichallway_brightness_settings
-        type: entities
-      - entities:
-          - input_number.attichallway_timeout
-        show_header_toggle: true
-        title: attichallway_timeout_settings
-        type: entities
-      - entities:
-          - input_number.hallway_brightness_morning
-          - input_number.hallway_brightness_midday
-          - input_number.hallway_brightness_evening
-          - input_number.hallway_brightness_night
-          - input_number.hallway_darkness_treshold
-        show_header_toggle: true
-        title: Gang Lichtsterkte
-        type: entities
-      - entities:
-          - input_number.hallway_timeout
-        show_header_toggle: true
-        title: Gang Timeout
-        type: entities
-      - entities:
-          - input_number.livingroom_darkness_treshold
-        show_header_toggle: true
-        title: Huiskamer Lichtsterkte
-        type: entities
-      - entities:
-          - input_number.livingroom_timeout
-        show_header_toggle: true
-        title: livingroom_timeout_settings
-        type: entities
-      - entities:
-          - input_number.kitchen_brightness_morning
-          - input_number.kitchen_brightness_midday
-          - input_number.kitchen_brightness_evening
-          - input_number.kitchen_brightness_night
-          - input_number.kitchen_darkness_treshold
-        show_header_toggle: true
-        title: kitchen_brightness_settings
-        type: entities
-      - entities:
-          - input_number.kitchen_timeout
-        show_header_toggle: true
-        title: kitchen_timeout_settings
-        type: entities
-      - entities:
-          - input_number.closetroom_brightness_morning
-          - input_number.closetroom_brightness_midday
-          - input_number.closetroom_brightness_evening
-          - input_number.closetroom_brightness_night
-          - input_number.closetroom_darkness_treshold
-        show_header_toggle: true
-        title: closetroom_brightness_settings
-        type: entities
-      - entities:
-          - input_number.closetroom_timeout
-        show_header_toggle: true
-        title: closetroom_timeout_settings
-        type: entities
-    icon: 'mdi:wrench'
-    path: settings_view
-    title: settings_view
-  - badges: []
-    cards:
-      - entity: camera.woonkamer
-        type: picture-entity
-      - entity: camera.voortuin
-        type: picture-entity
-      - entity: camera.3d_printer
-        type: picture-entity
-    icon: 'mdi:cctv'
-    path: camera_view
-    title: camera_view
   - cards:
       - cards:
           - entities:
@@ -773,6 +631,185 @@ views:
     icon: 'mdi:television'
     id: entertainment
     title: Entertainment
+  - badges:
+      - entity: binary_sensor.frank_home_direction
+      - entity: binary_sensor.malissa_home_direction
+      - entity: sensor.proximity_frank_home_stats
+      - entity: sensor.proximity_malissa_home_stats
+      - entity: sensor.here_frank_to_home
+      - entity: sensor.here_malissa_to_home
+      - entity: sensor.distance_frank_to_home
+      - entity: sensor.distance_malissa_to_home
+      - entity: sensor.distance_malissa_home_stats
+      - entity: sensor.distance_frank_home_stats
+    cards:
+      - entities:
+          - proximity.home
+          - proximity.frank_home
+          - proximity.malissa_home
+          - proximity.frank_work_0
+          - proximity.malissa_work_0_frank
+          - proximity.malissa_work_0_malissa
+          - proximity.malissa_work_1
+        show_header_toggle: true
+        title: Zones
+        type: entities
+      - entities:
+          - input_text.last_motion
+          - sensor.doorbell
+          - sensor.last_doorbell
+          - sensor.bed_tilt_0
+          - sensor.bed_tilt_1
+          - sensor.harmony_livingroom
+          - calendar.malissa_frank
+        show_header_toggle: true
+        title: Algemeen
+        type: entities
+      - entities:
+          - person.frank
+          - person.malissa
+        show_header_toggle: true
+        title: Aanwezigheid
+        type: entities
+    icon: 'mdi:account-multiple'
+    path: presence_view
+    title: presence_view
+  - badges:
+      - sun.sun
+    cards:
+      - entities:
+          - entity: input_select.timeofday
+          - entity: sensor.zigbee2mqtt_status
+          - entity: switch.zigbee2mqtt_permit_join
+          - entity: group.all_automations
+          - entity: input_number.livingroom_minimum_humidity
+        show_header_toggle: true
+        title: Algemeen
+        type: entities
+      - entities:
+          - input_text.trash_announcement_housenumber
+          - input_text.trash_announcement_zipcode
+          - input_datetime.trash_announcement_time
+        show_header_toggle: true
+        title: Afval
+        type: entities
+      - entities:
+          - input_number.livingroom_plant_yucca_moisture_minimum
+          - input_number.livingroom_plant_yucca_conductivity_minimum
+          - input_number.kitchen_plant_pancake_moisture_minimum
+          - input_number.kitchen_plant_pancake_conductivity_minimum
+        show_header_toggle: true
+        title: Planten
+        type: entities
+      - entities:
+          - entity: input_number.bathroom_fan_speed
+          - entity: sensor.bathroom_temp_0_humidity
+          - entity: sensor.bathroom_humidity_stats
+          - entity: sensor.bathroom_fan_last_on_humidity
+          - entity: binary_sensor.bathroom_humidity_rising
+          - entity: binary_sensor.bathroom_humidity_normal
+          - entity: binary_sensor.toilet_occupied
+          - entity: input_number.bathroom_fan_on_diff
+          - entity: input_number.bathroom_fan_off_diff
+        show_header_toggle: true
+        title: Mechanische Ventilatie
+        type: entities
+      - entities:
+          - input_number.upperhallway_timeout
+        show_header_toggle: true
+        title: Overloop Timeout
+        type: entities
+      - entities:
+          - input_number.upperhallway_brightness_morning
+          - input_number.upperhallway_brightness_midday
+          - input_number.upperhallway_brightness_evening
+          - input_number.upperhallway_brightness_night
+          - input_number.upperhallway_brightness_full
+          - input_number.upperhallway_darkness_treshold
+        show_header_toggle: true
+        title: Overloop Lichtsterkte
+        type: entities
+      - entities:
+          - input_number.attichallway_brightness_morning
+          - input_number.attichallway_brightness_midday
+          - input_number.attichallway_brightness_evening
+          - input_number.attichallway_brightness_night
+          - input_number.attichallway_brightness_full
+          - input_number.attichallway_darkness_treshold
+        show_header_toggle: true
+        title: attichallway_brightness_settings
+        type: entities
+      - entities:
+          - input_number.attichallway_timeout
+        show_header_toggle: true
+        title: attichallway_timeout_settings
+        type: entities
+      - entities:
+          - input_number.hallway_brightness_morning
+          - input_number.hallway_brightness_midday
+          - input_number.hallway_brightness_evening
+          - input_number.hallway_brightness_night
+          - input_number.hallway_darkness_treshold
+        show_header_toggle: true
+        title: Gang Lichtsterkte
+        type: entities
+      - entities:
+          - input_number.hallway_timeout
+        show_header_toggle: true
+        title: Gang Timeout
+        type: entities
+      - entities:
+          - input_number.livingroom_darkness_treshold
+        show_header_toggle: true
+        title: Huiskamer Lichtsterkte
+        type: entities
+      - entities:
+          - input_number.livingroom_timeout
+        show_header_toggle: true
+        title: livingroom_timeout_settings
+        type: entities
+      - entities:
+          - input_number.kitchen_brightness_morning
+          - input_number.kitchen_brightness_midday
+          - input_number.kitchen_brightness_evening
+          - input_number.kitchen_brightness_night
+          - input_number.kitchen_darkness_treshold
+        show_header_toggle: true
+        title: kitchen_brightness_settings
+        type: entities
+      - entities:
+          - input_number.kitchen_timeout
+        show_header_toggle: true
+        title: kitchen_timeout_settings
+        type: entities
+      - entities:
+          - input_number.closetroom_brightness_morning
+          - input_number.closetroom_brightness_midday
+          - input_number.closetroom_brightness_evening
+          - input_number.closetroom_brightness_night
+          - input_number.closetroom_darkness_treshold
+        show_header_toggle: true
+        title: closetroom_brightness_settings
+        type: entities
+      - entities:
+          - input_number.closetroom_timeout
+        show_header_toggle: true
+        title: closetroom_timeout_settings
+        type: entities
+    icon: 'mdi:wrench'
+    path: settings_view
+    title: settings_view
+  - badges: []
+    cards:
+      - entity: camera.woonkamer
+        type: picture-entity
+      - entity: camera.voortuin
+        type: picture-entity
+      - entity: camera.3d_printer
+        type: picture-entity
+    icon: 'mdi:cctv'
+    path: camera_view
+    title: camera_view
   - badges:
       - sensor.plant_0_linkquality
       - sensor.plant_1_linkquality
