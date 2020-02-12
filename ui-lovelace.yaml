@@ -7,6 +7,12 @@ resources:
     url: /community_plugin/simple-weather-card/simple-weather-card-bundle.js
   - type: module
     url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
+  - type: module
+    url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+  - type: js
+    url: /community_plugin/calendar-card/calendar-card.js
+  - type: module
+    url: /community_plugin/lovelace-thermostat-card/main.js
 title: Home
 views:
   - badges:
@@ -20,10 +26,15 @@ views:
       - entity: binary_sensor.upperhallway_smoke_0
       - entity: binary_sensor.attic_smoke_0
       - entity: sensor.solar_power_production
-      - entity: sensor.main_power_usage
       - entity: binary_sensor.thermostat_leaving_next_hour
       - entity: sensor.tautulli
     cards:
+      - type: 'custom:simple-weather-card'
+        entity: weather.home
+        name: at home
+        backdrop:
+          day: var(--primary-color)
+          night: '##222222'
       - cards:
           - cards:
               - entity: light.hallway_lights
@@ -169,19 +180,10 @@ views:
             type: horizontal-stack
         type: vertical-stack
       - entities:
-          - entity: input_text.last_motion
-          - entity: sensor.doorbell
-          - entity: sensor.harmony_livingroom
-          - entity: calendar.malissa_frank
-          - entity: input_boolean.alarm_downstairs
-          - entity: group.all_persons
-          - entity: binary_sensor.hallway_door_0
-          - entity: binary_sensor.kitchen_door_0
-          - entity: sensor.waze_calendar_to_next_appointment
-          - entity: sensor.livingroom_vibration_0
-        show_header_toggle: false
-        title: Algemeen
-        type: entities
+          - calendar.malissa_frank
+        progressBar: true
+        title: Kalender
+        type: 'custom:calendar-card'
       - entities:
           - entity: sensor.trash_today
           - entity: sensor.trash_tomorrow
@@ -191,30 +193,32 @@ views:
         show_header_toggle: false
         title: Afval
         type: entities
-      - entities:
+      - cards:
           - entity: input_number.bathroom_fan_speed
-          - entity: sensor.bathroom_temp_0_humidity
-          - entity: sensor.bathroom_fan_last_on_humidity
-          - entity: binary_sensor.toilet_occupied
-        show_header_toggle: true
+            hide_state: true
+            type: 'custom:slider-entity-row'
+          - cards:
+              - entities:
+                  - entity: sensor.woonkamer_humidity
+                    index: 0
+                index: 0
+                name: Woonkamer
+                type: 'custom:mini-graph-card'
+              - entities:
+                  - entity: sensor.bathroom_temp_0_humidity
+                    index: 0
+                index: 0
+                name: Badkamer
+                type: 'custom:mini-graph-card'
+            type: horizontal-stack
         title: Mechanische Ventilatie
-        type: entities
+        type: vertical-stack
       - entity: camera.voortuin
         show-state: false
         type: picture-entity
       - entity: camera.woonkamer
         show-state: false
         type: picture-entity
-      - entities:
-          - entity: sensor.woonkamer_humidity
-            index: 0
-        name: Woonkamer Luchtvochtigheid
-        type: 'custom:mini-graph-card'
-      - entities:
-          - entity: sensor.bathroom_temp_0_humidity
-            index: 0
-        name: Badkamer Luchtvochtigheid
-        type: 'custom:mini-graph-card'
     icon: 'mdi:home-assistant'
     path: default_view
     title: default_view
