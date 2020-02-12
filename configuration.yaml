@@ -230,6 +230,10 @@ camera:
 
 ffmpeg:
 
+weather:
+  - platform: buienradar
+    name: home
+
 mqtt:
   discovery: false
   # discovery_prefix: homeassistant
