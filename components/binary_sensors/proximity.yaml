@@ -2,7 +2,7 @@
   sensors:
     frank_home_direction:
       friendly_name: "Frank richting Home"
-      value_template: "{{ ((state_attr('sensor.distance_frank_home_stats', 'change')|int < -3) or (states('sensor.distance_frank_to_home')|int < 2 and not is_state('sensor.distance_frank_to_home', 'None'))) }}"
+      value_template: "{{ ((not is_state('sensor.distance_frank_home_stats', 'unknown') and state_attr('sensor.distance_frank_home_stats', 'change')|int < -3) or (states('sensor.distance_frank_to_home')|int < 2 and not is_state('sensor.distance_frank_to_home', 'None'))) }}"
       delay_on:
         seconds: 30
       delay_off:
@@ -10,7 +10,7 @@
 
     malissa_home_direction:
       friendly_name: "Malissa richting Home"
-      value_template: "{{ ((state_attr('sensor.distance_malissa_home_stats', 'change')|int < -3) or (states('sensor.distance_malissa_to_home')|int < 2 and not is_state('sensor.distance_malissa_to_home', 'None'))) }}"
+      value_template: "{{ ((not is_state('sensor.distance_malissa_home_stats', 'unknown') and state_attr('sensor.distance_malissa_home_stats', 'change')|int < -3) or (states('sensor.distance_malissa_to_home')|int < 2 and not is_state('sensor.distance_malissa_to_home', 'None'))) }}"
       delay_on:
         seconds: 30
       delay_off:
