@@ -18,7 +18,7 @@ decrease_livingroom_lights:
     - service: light.turn_off
       entity_id: light.livingroom_light_0
 
-porch_christmas_fx: 
+porch_christmas_fx:
   sequence:
     - service: light.turn_on
       data_template:
@@ -90,7 +90,7 @@ porch_christmas_fx:
         brightness_pct: 30
         transition: 0.5
         color_temp: 366
-  
+
 heating_away:
   sequence:
     - service: climate.set_temperature
@@ -100,34 +100,41 @@ heating_away:
         hvac_mode: heat
     - delay:
         seconds: 5
-    - service: climate.set_hvac_mode
+    - service: climate.set_temperature
       data:
         entity_id: climate.woonkamer
-        hvac_mode: "off"
-    - service: climate.set_hvac_mode
+        hvac_mode: heat
+        temperature: 15
+    - service: climate.set_temperature
       data:
         entity_id: climate.slaapkamer
-        hvac_mode: "off"
-    - service: climate.set_hvac_mode
+        hvac_mode: heat
+        temperature: 5
+    - service: climate.set_temperature
       data:
         entity_id: climate.kastenkamer
-        hvac_mode: "off"
-    - service: climate.set_hvac_mode
+        hvac_mode: heat
+        temperature: 5
+    - service: climate.set_temperature
       data:
         entity_id: climate.badkamer
-        hvac_mode: "off"
-    - service: climate.set_hvac_mode
+        hvac_mode: heat
+        temperature: 5
+    - service: climate.set_temperature
       data:
         entity_id: climate.zolder
-        hvac_mode: "off"
-    - service: climate.set_hvac_mode
+        hvac_mode: heat
+        temperature: 5
+    - service: climate.set_temperature
       data:
         entity_id: climate.hal
-        hvac_mode: "off"
-    - service: climate.set_hvac_mode
+        hvac_mode: heat
+        temperature: 5
+    - service: climate.set_temperature
       data:
         entity_id: climate.logeerkamer
-        hvac_mode: "off"
+        hvac_mode: heat
+        temperature: 5
 
     # - service: climate.set_temperature
     #   data:

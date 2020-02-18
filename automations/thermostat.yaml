@@ -29,7 +29,7 @@
               - condition: template
                 value_template: "{{ 'malissa' in trigger.entity_id and 'frank' in state_attr('calendar.malissa_frank', 'message')|lower }}"
       - condition: template
-        value_template: "{{ is_state('sensor.woonkamer_overlay', 'True') }}"
+        value_template: "{{ is_state('sensor.woonkamer_overlay', 'True') and is_state_attr('climate.woonkamer', 'temperature', 15.0) }}"
   action:
     - service: climate.set_hvac_mode
       data:

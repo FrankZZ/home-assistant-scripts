@@ -248,6 +248,7 @@ mqtt:
 tado:
   username: !secret tado_username
   password: !secret tado_password
+  fallback: false
 
 xiaomi_aqara:
   gateways:
