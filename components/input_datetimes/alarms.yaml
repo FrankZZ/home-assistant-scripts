@@ -1,0 +1,5 @@
+frank_next_alarm:
+  has_time: true
+
+malissa_next_alarm:
+  has_time: true
