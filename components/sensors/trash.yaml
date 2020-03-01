@@ -1,5 +1,5 @@
 - platform: command_line
-  command: "curl -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
+  command: "curl -k -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
   name: trash_today
   scan_interval: 3600
   value_template: >
@@ -13,7 +13,7 @@
     {% endfor %}
 
 - platform: command_line
-  command: "curl -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
+  command: "curl -k -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
   name: trash_tomorrow
   scan_interval: 3600
   value_template: >
@@ -27,14 +27,14 @@
     {% endfor %}
 
 - platform: command_line
-  command: "curl -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
+  command: "curl -k -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
   name: trash_gft_nextdate
   scan_interval: 3600
   value_template: >
     {% set data = value.split("\n") %}
     {% set weekDays = ["Ma","Di","Wo","Do","Vr","Za","Zo"] %}
     {% set yesterday = strptime(((as_timestamp(now()) - 86400) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
-    {% set dayInTwoWeeks = strptime(((as_timestamp(now())+ (86400 * 14)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %} 
+    {% set dayInTwoWeeks = strptime(((as_timestamp(now())+ (86400 * 14)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
     {% for row in data %}
       {% set row = row.split(";") %}
       {% if row[0] == "GFT" %}
@@ -61,7 +61,7 @@
 #     {% set data = value.split("\n") %}
 #     {% set weekDays = ["Ma","Di","Wo","Do","Vr","Za","Zo"] %}
 #     {% set yesterday = strptime(((as_timestamp(now()) - 86400) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
-#     {% set dayInTwoWeeks = strptime(((as_timestamp(now())+ (86400 * 14)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %} 
+#     {% set dayInTwoWeeks = strptime(((as_timestamp(now())+ (86400 * 14)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
 #     {% for row in data %}
 #       {% set row = row.split(";") %}
 #       {% if row[0] == "REST" %}
@@ -81,14 +81,14 @@
 #     {% endfor %}
 
 - platform: command_line
-  command: "curl -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
+  command: "curl -k -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
   name: trash_papier_nextdate
   scan_interval: 3600
   value_template: >
     {% set data = value.split("\n") %}
     {% set weekDays = ["Ma","Di","Wo","Do","Vr","Za","Zo"] %}
     {% set yesterday = strptime(((as_timestamp(now()) - 86400) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
-    {% set dayInOneMonth = strptime(((as_timestamp(now())+ (86400 * 31)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %} 
+    {% set dayInOneMonth = strptime(((as_timestamp(now())+ (86400 * 31)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
     {% for row in data %}
       {% set row = row.split(";") %}
       {% if row[0] == "PAPIER" %}
@@ -108,14 +108,14 @@
     {% endfor %}
 
 - platform: command_line
-  command: "curl -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
+  command: "curl -k -m 10 -G -s -d type=ANDROID -d service=OPHAALSCHEMA -d land=NL -d postcode=$(echo {{ states('input_text.trash_announcement_zipcode') }} ) -d straatId=0 -d huisnr=$(echo {{ states('input_text.trash_announcement_housenumber') }} ) https://dataservice.deafvalapp.nl/dataservice/DataServiceServlet"
   name: trash_plastic_nextdate
   scan_interval: 3600
   value_template: >
     {% set data = value.split("\n") %}
     {% set weekDays = ["Ma","Di","Wo","Do","Vr","Za","Zo"] %}
     {% set yesterday = strptime(((as_timestamp(now()) - 86400) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
-    {% set dayInTwoWeeks = strptime(((as_timestamp(now())+ (86400 * 14)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %} 
+    {% set dayInTwoWeeks = strptime(((as_timestamp(now())+ (86400 * 14)) | timestamp_custom("%d-%m-%Y")), "%d-%m-%Y") %}
     {% for row in data %}
       {% set row = row.split(";") %}
       {% if row[0] == "PLASTIC" %}

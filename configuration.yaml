@@ -30,12 +30,12 @@ person:
     id: malissa
     device_trackers:
       - device_tracker.malissa_router
-      - device_tracker.malissa_gps
+      - device_tracker.malissa_s9
   - name: Frank
     id: frank
     device_trackers:
       - device_tracker.frank_router
-      - device_tracker.frank_gps
+      - device_tracker.frank_s8p
 
 # google_assistant:
 #   project_id: !secret google_assistant_project_id

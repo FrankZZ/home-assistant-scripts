@@ -4,18 +4,8 @@ frank_router:
   mac: !secret device_frank_mac
   track: true
 
-frank_gps:
-  name: Frank GPS
-  hide_if_away: false
-  track: true
-
 malissa_router:
   name: Malissa Router
   hide_if_away: false
   mac: !secret device_malissa_mac
-  track: true
-
-malissa_gps:
-  name: Malissa GPS
-  hide_if_away: false
   track: true

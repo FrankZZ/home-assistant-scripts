@@ -1,0 +1,5 @@
+thermostat_mins_before_alarm:
+  min: 0
+  max: 120
+  step: 15
+  unit_of_measurement: 'min'

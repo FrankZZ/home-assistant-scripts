@@ -1,5 +1,7 @@
 frank_next_alarm:
   has_time: true
+  has_date: true
 
 malissa_next_alarm:
   has_time: true
+  has_date: true
